@@ -1,6 +1,5 @@
 class Scrabble {
-  // Write your implementation here
-
+  // first submision
 }
 
 module.exports = Scrabble

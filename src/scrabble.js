@@ -16,27 +16,13 @@ class Scrabble {
     let count = 0
     if (this.word === null || this.word.length === 0 || this.word === ' \t\n') { return count }
     for (let i = 0; i < this.word.length; i++) {
-      if (letterScores.onePoint.includes(this.word[i])) {
-        count += 1
-      }
-      if (letterScores.twoPoints.includes(this.word[i])) {
-        count += 2
-      }
-      if (letterScores.threePoints.includes(this.word[i])) {
-        count += 3
-      }
-      if (letterScores.fourPoints.includes(this.word[i])) {
-        count += 4
-      }
-      if (letterScores.fivePoints.includes(this.word[i])) {
-        count += 5
-      }
-      if (letterScores.eightPoints.includes(this.word[i])) {
-        count += 8
-      }
-      if (letterScores.tenPoints.includes(this.word[i])) {
-        count += 10
-      }
+      if (letterScores.onePoint.includes(this.word[i])) { count += 1 }
+      if (letterScores.twoPoints.includes(this.word[i])) { count += 2 }
+      if (letterScores.threePoints.includes(this.word[i])) { count += 3 }
+      if (letterScores.fourPoints.includes(this.word[i])) { count += 4 }
+      if (letterScores.fivePoints.includes(this.word[i])) { count += 5 }
+      if (letterScores.eightPoints.includes(this.word[i])) { count += 8 }
+      if (letterScores.tenPoints.includes(this.word[i])) { count += 10 }
     }
     return count
   }

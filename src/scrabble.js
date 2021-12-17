@@ -4,4 +4,4 @@ class Scrabble {
 }
 
 module.exports = Scrabble
- 
+ fr

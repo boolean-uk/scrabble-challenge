@@ -1,6 +1,15 @@
 class Scrabble {
-  // Write your implementation here
+  constructor(word) {
+    this.word = word
+  }
+  score () {
 
+    this.word
+  }
+  emptyWord () {
+    
+  }
+    
 }
-
+    
 module.exports = Scrabble

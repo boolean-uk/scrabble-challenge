@@ -1,5 +1,5 @@
 const letterScores = {
-  onePoint: ['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U', 'l', 'L', 'n', 'N', 'r', 'R', 's', 'S', 't','T'],
+  onepoint: ['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U', 'l', 'L', 'n', 'N', 'r', 'R', 's', 'S', 't','T'],
   twoPoints: ['d', 'D', 'g', 'G'],
   threePoints: ['b', 'B', 'c', 'C', 'm', 'M', 'p', 'P'],
   fourPoints: ['f', 'F', 'h', 'H', 'v', 'V', 'w', 'W', 'y', 'Y'],
@@ -7,7 +7,6 @@ const letterScores = {
   eightPoints: ['j', 'J', 'x', 'X'],
   tenPoints: ['q', 'Q', 'z', 'Z']
 }
-
 class Scrabble {
   constructor(word){
     this.word = word
@@ -16,7 +15,7 @@ class Scrabble {
     let count = 0
     if (this.word === null || this.word.length === 0 || this.word === ' \t\n') { return count }
     for (let i = 0; i < this.word.length; i++) {
-      if (letterScores.onePoint.includes(this.word[i])) { count += 1 }
+      if (letterScores.onepoint.includes(this.word[i])) { count += 1 }
       if (letterScores.twoPoints.includes(this.word[i])) { count += 2 }
       if (letterScores.threePoints.includes(this.word[i])) { count += 3 }
       if (letterScores.fourPoints.includes(this.word[i])) { count += 4 }

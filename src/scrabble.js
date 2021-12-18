@@ -40,11 +40,33 @@ class Scrabble {
       Z: 10,
       // score = 0
       _: 0,
+      "{": 0,
+      "}": 0,
+      "[": 0,
+      "]": 0,
     };
 
     if (this.word == null || this.word.length < 1 || this.word.trim() === "")
       return 0;
-    const wordUpper = this.word.toUpperCase();
+    let wordUpper = this.word.toUpperCase();
+    // ----
+    console.log(wordUpper);
+    let double = "";
+    let triple = "";
+    // ----
+
+    if (wordUpper.match(/\{([^\{\}]*)\}/g))
+      double = wordUpper.match(/\{([^\{\}]*)\}/g).pop();
+    console.log(double);
+    // ----
+
+    if (wordUpper.match(/\[([^\[\]]*)\]/g))
+      triple = wordUpper.match(/\[([^\[\]]*)\]/g).pop();
+    console.log(triple);
+    // ----
+
+    wordUpper = wordUpper.concat(double).concat(triple).concat(triple);
+    console.log(wordUpper);
     if (this.word.length === 1) return scoreMap[wordUpper];
     if (this.word.length > 1)
       return [...wordUpper]

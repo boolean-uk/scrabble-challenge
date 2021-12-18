@@ -3,7 +3,7 @@ class Scrabble {
     this.word = word;
   }
 
-  score() {
+  scoreMap() {
     const scoreMap = {
       // score = 1
       A: 1,
@@ -45,28 +45,43 @@ class Scrabble {
       "[": 0,
       "]": 0,
     };
+  }
 
+  trueWord() {
     if (this.word == null || this.word.length < 1 || this.word.trim() === "")
       return 0;
+    return this.word;
+  }
+
+  doubleScore() {
+    let bracketArray = [];
+    let extractArray = [];
+    let extractTriple = "";
+    for (let i = 0; i < string.length; i++) {
+      if (string.charAt(i) === "{") bracketArray.push(i);
+      if (string.charAt(i) === "}") {
+        extractArray.push(string.substring(bracketArray.pop() + 1, i));
+        return (extractTriple = extractArray.toString());
+      }
+    }
+  }
+
+  TripleScore() {
+    let bracketArray = [];
+    let extractArray = [];
+    let extractTriple = "";
+    for (let i = 0; i < string.length; i++) {
+      if (string.charAt(i) === "[") bracketArray.push(i);
+      if (string.charAt(i) === "]") {
+        extractArray.push(string.substring(bracketArray.pop() + 1, i));
+        return (extractTriple = extractArray.toString());
+      }
+    }
+  }
+
+  score() {
     let wordUpper = this.word.toUpperCase();
-    // ----
-    console.log(wordUpper);
-    let double = "";
-    let triple = "";
-    // ----
-
-    if (wordUpper.match(/\{([^\{\}]*)\}/g))
-      double = wordUpper.match(/\{([^\{\}]*)\}/g).pop();
-    console.log(double);
-    // ----
-
-    if (wordUpper.match(/\[([^\[\]]*)\]/g))
-      triple = wordUpper.match(/\[([^\[\]]*)\]/g).pop();
-    console.log(triple);
-    // ----
-
-    wordUpper = wordUpper.concat(double).concat(triple).concat(triple);
-    console.log(wordUpper);
+    wordUpper = wordUpper.concat(doubleScore()).concat(TripleScore());
     if (this.word.length === 1) return scoreMap[wordUpper];
     if (this.word.length > 1)
       return [...wordUpper]

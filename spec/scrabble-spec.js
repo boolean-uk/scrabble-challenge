@@ -81,4 +81,10 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(18)
   })
+
+  it('triple letter double word', function() {
+    scrabble = new Scrabble('{z[o]om}')
+
+    expect(scrabble.score()).toEqual(32)
+  })
 })

@@ -3,8 +3,8 @@ class Scrabble {
     this.word = word
   }
 
-  scoreLoop (string, num) {
-    num = 0
+  scoreLoop (string) {
+    let num = 0
     for (let i = 0; i < string.length; i++) {
       if (string[i].match(/[^A-Z{}[]]/i)) {
         return 0
@@ -39,10 +39,9 @@ class Scrabble {
       return 0
     }
 
-    let count
     const wordTrimmed = this.word.trim()
 
-    return this.scoreLoop(wordTrimmed, count)
+    return this.scoreLoop(wordTrimmed)
   }
 
   scoreDouble () {
@@ -50,7 +49,6 @@ class Scrabble {
       return 0
     }
 
-    let countDouble
     const openCurlyBracket = this.word.indexOf('{')
     const closeCurlyBracket = this.word.indexOf('}')
     const doubleScore = this.word.substring(openCurlyBracket + 1, closeCurlyBracket)
@@ -59,7 +57,7 @@ class Scrabble {
       return 0
     }
 
-    return this.scoreLoop(doubleScore, countDouble)
+    return this.scoreLoop(doubleScore)
   }
 
   scoreTriple () {
@@ -67,7 +65,6 @@ class Scrabble {
       return 0
     }
 
-    let countTriple
     const openSquareBracket = this.word.indexOf('[')
     const closeSquareBracket = this.word.indexOf(']')
     const tripleScore = this.word.substring(openSquareBracket + 1, closeSquareBracket)
@@ -76,7 +73,7 @@ class Scrabble {
       return 0
     }
 
-    return this.scoreLoop(tripleScore, countTriple) * 2
+    return this.scoreLoop(tripleScore) * 2
   }
 
   score () {

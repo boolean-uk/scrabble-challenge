@@ -1,6 +1,7 @@
 let boolean = true
 let points = 0
-const letters = [[], ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'], ['D', 'G'], ['B', 'C', 'M', 'P'], ['F', 'H', 'V', 'W', 'Y'], ['K'], ['J', 'X'], ['Q', 'Z']]
+const commonLetters = [['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'], ['D', 'G'], ['B', 'C', 'M', 'P'], ['F', 'H', 'V', 'W', 'Y'], ['K']]
+const rareLetters = [['J', 'X'], ['Q', 'Z']]
 
 function noInput (type) {
   type === null
@@ -29,15 +30,14 @@ function scoreWord (arr) {
 }
 
 function scoreLetter (element) {
-  if (letters[6].includes(element)) {
-    points += 8
-  } else if (letters[7].includes(element)) {
-    points += 10
-  } else {
-    for (let i = 0; i <= 5; i++) {
-      if (letters[i].includes(element)) {
-        points += i
-      }
+  for (let i = 0; i < 5; i++) {
+    if (commonLetters[i].includes(element)) {
+      points += i + 1
+    }
+  }
+  for (let i = 0; i < 2; i++) {
+    if (rareLetters[i].includes(element)) {
+      points += (i + 4) * 2
     }
   }
 }

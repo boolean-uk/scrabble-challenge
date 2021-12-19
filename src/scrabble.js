@@ -36,26 +36,23 @@ class Scrabble {
       Q: 10,
       Z: 10,
       // score = 0
-      _: 0,
       "{": 0,
       "}": 0,
       "[": 0,
       "]": 0,
+      ",": 2,
     };
   }
 
-  // testFunc() {
-  //   let string = "A";
-  //   this.scoreMap[string];
+  // notTrueWord() {
+  //   return this.word == null || this.word.length < 1 || this.word.trim() === ""
+  //      0
+  //     : this.word;
   // }
 
-  trueWord() {
-    if (this.word == null || this.word.length < 1 || this.word.trim() === "")
-      return 0;
-    return this.word;
-  }
-
   doubleScore() {
+    if (this.word == null || this.word.length < 1 || this.word.trim() === "")
+      return;
     let bracketArray = [];
     let extractArray = [];
     let extractDouble = "";
@@ -69,6 +66,8 @@ class Scrabble {
   }
 
   TripleScore() {
+    if (this.word == null || this.word.length < 1 || this.word.trim() === "")
+      return;
     let bracketArray = [];
     let extractArray = [];
     let extractTriple = "";
@@ -83,12 +82,13 @@ class Scrabble {
   }
 
   score() {
-    let wordUpper = this.word.toUpperCase();
-    wordUpper = wordUpper
+    if (this.word == null || this.word.length < 1 || this.word.trim() === "")
+      return 0;
+    this.word = this.word
       .concat(this.doubleScore())
       .concat(this.TripleScore())
       .concat(this.TripleScore());
-    wordUpper;
+    let wordUpper = this.word.toUpperCase();
     if (this.word.length === 1) return this.scoreMap[wordUpper];
     if (this.word.length > 1)
       return [...wordUpper]
@@ -97,10 +97,11 @@ class Scrabble {
   }
 }
 
-let scrabble = new Scrabble("hello");
+// let scrabble = new Scrabble("{h[e][l]{l}o}");
+// console.log(scrabble.score());
 
-console.log(scrabble.score());
+// let scrabble = new Scrabble("{h[e][l]lo}");
+// console.log(scrabble.score());
 
+let scrabble = new Scrabble("");
 module.exports = Scrabble;
-
-console.log(scrabble.testFunc());

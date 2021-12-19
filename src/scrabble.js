@@ -9,8 +9,6 @@ const letters = {
 }
 
 
-
-
 class Scrabble {
   // Write your implementation here
   constructor(word) {
@@ -48,13 +46,5 @@ class Scrabble {
     return count
   }
 }
-
-
-
-
-
-// let scrabble = new Scrabble('')
-//scrabble.score() // => 0
-
 
 module.exports = Scrabble

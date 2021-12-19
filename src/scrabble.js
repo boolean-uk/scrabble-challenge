@@ -1,10 +1,7 @@
 class Scrabble {
   constructor(word) {
     this.word = word;
-  }
-
-  scoreMap() {
-    const scoreMap = {
+    this.scoreMap = {
       // score = 1
       A: 1,
       E: 1,
@@ -47,6 +44,11 @@ class Scrabble {
     };
   }
 
+  // testFunc() {
+  //   let string = "A";
+  //   this.scoreMap[string];
+  // }
+
   trueWord() {
     if (this.word == null || this.word.length < 1 || this.word.trim() === "")
       return 0;
@@ -56,42 +58,49 @@ class Scrabble {
   doubleScore() {
     let bracketArray = [];
     let extractArray = [];
-    let extractTriple = "";
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === "{") bracketArray.push(i);
-      if (string.charAt(i) === "}") {
-        extractArray.push(string.substring(bracketArray.pop() + 1, i));
-        return (extractTriple = extractArray.toString());
+    let extractDouble = "";
+    for (let i = 0; i < this.word.length; i++) {
+      if (this.word.charAt(i) === "{") bracketArray.push(i);
+      if (this.word.charAt(i) === "}") {
+        extractArray.push(this.word.substring(bracketArray.pop() + 1, i));
       }
     }
+    return (extractDouble = extractArray.toString() ?? "");
   }
 
   TripleScore() {
     let bracketArray = [];
     let extractArray = [];
     let extractTriple = "";
-    for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) === "[") bracketArray.push(i);
-      if (string.charAt(i) === "]") {
-        extractArray.push(string.substring(bracketArray.pop() + 1, i));
-        return (extractTriple = extractArray.toString());
+    for (let i = 0; i < this.word.length; i++) {
+      if (this.word.charAt(i) === "[") bracketArray.push(i);
+      if (this.word.charAt(i) === "]") {
+        extractArray.push(this.word.substring(bracketArray.pop() + 1, i));
       }
     }
+    //nullish colaescing - return RHS operand if LHS operand is falsy - null, undefined, 0
+    return (extractTriple = extractArray.toString() ?? "");
   }
 
   score() {
     let wordUpper = this.word.toUpperCase();
-    wordUpper = wordUpper.concat(doubleScore()).concat(TripleScore());
-    if (this.word.length === 1) return scoreMap[wordUpper];
+    wordUpper = wordUpper
+      .concat(this.doubleScore())
+      .concat(this.TripleScore())
+      .concat(this.TripleScore());
+    wordUpper;
+    if (this.word.length === 1) return this.scoreMap[wordUpper];
     if (this.word.length > 1)
       return [...wordUpper]
-        .map((letter) => scoreMap[letter])
+        .map((letter) => this.scoreMap[letter])
         .reduce((acc, letterNum) => (acc = acc + letterNum));
   }
 }
 
-let scrabble = new Scrabble("");
+let scrabble = new Scrabble("hello");
 
 console.log(scrabble.score());
 
 module.exports = Scrabble;
+
+console.log(scrabble.testFunc());

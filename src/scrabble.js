@@ -1,6 +1,6 @@
 class Scrabble {
-  constructor(word) {
-    this.word = word;
+  constructor (word) {
+    this.word = word
     this.scoreMap = {
       // score = 1
       A: 1,
@@ -36,64 +36,64 @@ class Scrabble {
       Q: 10,
       Z: 10,
       // score = 0
-      "{": 0,
-      "}": 0,
-      "[": 0,
-      "]": 0,
-      ",": 2,
-    };
+      '{': 0,
+      '}': 0,
+      '[': 0,
+      ']': 0,
+      ',': 2
+    }
   }
 
-  // notTrueWord() {
-  //   return this.word == null || this.word.length < 1 || this.word.trim() === ""
-  //      0
-  //     : this.word;
-  // }
-
-  doubleScore() {
-    if (this.word == null || this.word.length < 1 || this.word.trim() === "")
-      return;
-    let bracketArray = [];
-    let extractArray = [];
-    let extractDouble = "";
+  doubleScore () {
+    if (this.word == null || this.word.length < 1 || this.word.trim() === '') {
+      return
+    }
+    const bracketArray = []
+    const extractArray = []
+    // let extractDouble = ''
     for (let i = 0; i < this.word.length; i++) {
-      if (this.word.charAt(i) === "{") bracketArray.push(i);
-      if (this.word.charAt(i) === "}") {
-        extractArray.push(this.word.substring(bracketArray.pop() + 1, i));
+      if (this.word.charAt(i) === '{') bracketArray.push(i)
+      if (this.word.charAt(i) === '}') {
+        extractArray.push(this.word.substring(bracketArray.pop() + 1, i))
       }
     }
-    return (extractDouble = extractArray.toString() ?? "");
+    // return (extractDouble = extractArray.toString() ?? '')
+    return extractArray.toString() ?? ''
   }
 
-  TripleScore() {
-    if (this.word == null || this.word.length < 1 || this.word.trim() === "")
-      return;
-    let bracketArray = [];
-    let extractArray = [];
-    let extractTriple = "";
+  TripleScore () {
+    if (this.word == null || this.word.length < 1 || this.word.trim() === '') {
+      return
+    }
+    const bracketArray = []
+    const extractArray = []
+    // let extractTriple = "";
     for (let i = 0; i < this.word.length; i++) {
-      if (this.word.charAt(i) === "[") bracketArray.push(i);
-      if (this.word.charAt(i) === "]") {
-        extractArray.push(this.word.substring(bracketArray.pop() + 1, i));
+      if (this.word.charAt(i) === '[') bracketArray.push(i)
+      if (this.word.charAt(i) === ']') {
+        extractArray.push(this.word.substring(bracketArray.pop() + 1, i))
       }
     }
-    //nullish colaescing - return RHS operand if LHS operand is falsy - null, undefined, 0
-    return (extractTriple = extractArray.toString() ?? "");
+    // nullish colaescing - return RHS operand if LHS operand is falsy - null, undefined, 0
+    // return (extractTriple = extractArray.toString() ?? "");
+    return extractArray.toString() ?? ''
   }
 
-  score() {
-    if (this.word == null || this.word.length < 1 || this.word.trim() === "")
-      return 0;
+  score () {
+    if (this.word == null || this.word.length < 1 || this.word.trim() === '') {
+      return 0
+    }
     this.word = this.word
       .concat(this.doubleScore())
       .concat(this.TripleScore())
-      .concat(this.TripleScore());
-    let wordUpper = this.word.toUpperCase();
-    if (this.word.length === 1) return this.scoreMap[wordUpper];
-    if (this.word.length > 1)
+      .concat(this.TripleScore())
+    const wordUpper = this.word.toUpperCase()
+    if (this.word.length === 1) return this.scoreMap[wordUpper]
+    if (this.word.length > 1) {
       return [...wordUpper]
         .map((letter) => this.scoreMap[letter])
-        .reduce((acc, letterNum) => (acc = acc + letterNum));
+        .reduce((acc, letterNum) => (acc = acc + letterNum))
+    }
   }
 }
 
@@ -103,5 +103,7 @@ class Scrabble {
 // let scrabble = new Scrabble("{h[e][l]lo}");
 // console.log(scrabble.score());
 
-let scrabble = new Scrabble("");
-module.exports = Scrabble;
+// const scrabble = new Scrabble('')
+module.exports = Scrabble
+
+// Bug - solution works for double/triple word with up to 2 levels of nesting, 3+ levels score incorrect

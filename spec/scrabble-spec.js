@@ -51,4 +51,28 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('scores a double letter', function() {
+    scrabble = new Scrabble("fis{h}")
+
+    expect(scrabble.score()).toEqual(14)
+  })
+
+  it('scores a triple letter', function() {
+    scrabble = new Scrabble("tri[p]le")
+
+    expect(scrabble.score()).toEqual(11)
+  })
+
+  it('scores a double word', function() {
+    scrabble = new Scrabble("{student}")
+
+    expect(scrabble.score()).toEqual(16)
+  })
+
+  it('scores a triple word', function() {
+    scrabble = new Scrabble("[fox]")
+
+    expect(scrabble.score()).toEqual(39)
+  })
 })

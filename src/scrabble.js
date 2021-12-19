@@ -1,11 +1,11 @@
 const letters = {
   lettersA: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T', 'a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'],
-  lettersB: ['D', 'G'],
-  lettersC: ['B', 'C', 'M', 'P'],
-  lettersD: ['F', 'H', 'V', 'W', 'Y'],
-  lettersE: ['K'],
-  lettersF: ['J', 'X'],
-  lettersG: ['Q', 'Z']
+  lettersB: ['D', 'G', 'd', 'g'],
+  lettersC: ['B', 'C', 'M', 'P', 'b', 'c', 'm', 'p'],
+  lettersD: ['F', 'H', 'V', 'W', 'Y', 'f', 'h', 'v', 'w', 'y'],
+  lettersE: ['K', 'k'],
+  lettersF: ['J', 'X', 'j', 'x'],
+  lettersG: ['Q', 'Z', 'q', 'z']
 }
 
 
@@ -13,7 +13,7 @@ const letters = {
 
 class Scrabble {
   // Write your implementation here
-  constructor (word) {
+  constructor(word) {
     this.word = word
   }
 
@@ -32,12 +32,22 @@ class Scrabble {
       if (letters.lettersC.includes(this.word[i])) {
         count += 3
       }
+      if (letters.lettersD.includes(this.word[i])) {
+        count += 4
+      }
+      if (letters.lettersE.includes(this.word[i])) {
+        count += 5
+      }
+      if (letters.lettersF.includes(this.word[i])) {
+        count += 8
+      }
+      if (letters.lettersG.includes(this.word[i])) {
+        count += 10
+      }
     }
     return count
   }
 }
-
-
 
 
 

@@ -1,36 +1,39 @@
+const letters = {
+  lettersA: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+  letterB: ['D', 'G'],
+  letterC: ['B', 'C', 'M', 'P'],
+  lettersD: 
+}
+
+
+
+
 class Scrabble {
   // Write your implementation here
-  constructor (word) {
+  constructor(word) {
     this.word = word
   }
 
-  score () {
-    if (this.word === '') {
-      return 0
-    } else if (this.word === ' \t\n'){
-      return 0
-    } else if (this.word === null){
-      return 0
-    } else if (this.word === 'a'){
-      return 1
-    } else if (this.word === 'f'){
-      return 4
-    } else if (this.word === 'street'){
-      return 6
-    } else if (this.word === 'quirky'){
-      return 22
-    } else if (this.word === 'OXYPHENBUTAZONE'){
-      return 41
-    }
+  score() {
+    let count = 0
+    if (this.word === null || this.word.length === '' || this.word === ' \t\n') {
   }
+  for (let i = 1; i < this.word.length; i++) {
+  if (letters.lettersA.includes(this.word[i]) )
+  count += 1  
+}
 }
 
 
 
 
 
- // let scrabble = new Scrabble('')
+
+
+
+// let scrabble = new Scrabble('')
 //scrabble.score() // => 0
 
 
 module.exports = Scrabble
+letters = letters

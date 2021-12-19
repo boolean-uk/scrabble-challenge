@@ -3,7 +3,7 @@ let points = 0
 const letters = [[], ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'], ['D', 'G'], ['B', 'C', 'M', 'P'], ['F', 'H', 'V', 'W', 'Y'], ['K'], ['J', 'X'], ['Q', 'Z']]
 
 function noInput (type) {
-  type === null || type.includes(' ') || type === ''
+  type === null
     ? boolean = true
     : boolean = false
   return boolean

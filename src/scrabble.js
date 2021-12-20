@@ -16,36 +16,36 @@ score() {
   let count = 0
   if (this.word === null || this.word.length === 0 || this.word.trim === '') {return count}
   for (let i = 0; i < this.word.length; i++) {
-    if (letterScores.onePoint.includes(this.word[i])) {count += 1}
-    if (letterScores.twoPoints.includes(this.word[i])) {count += 2}
-    if (letterScores.threePoints.includes(this.word[i])) {count += 3}
-    if (letterScores.fourPoints.includes(this.word[i])) {count += 4}
-    if (letterScores.fivePoints.includes(this.word[i])) {count += 5}
-    if (letterScores.eightPoints.includes(this.word[i])) {count += 8}
-    if (letterScores.tenPoints.includes(this.word[i])) {count += 10}
+    if (letterScores.onePoint.includes(this.word[i])) count += 1
+    if (letterScores.twoPoints.includes(this.word[i])) count += 2
+    if (letterScores.threePoints.includes(this.word[i])) count += 3
+    if (letterScores.fourPoints.includes(this.word[i])) count += 4
+    if (letterScores.fivePoints.includes(this.word[i])) count += 5
+    if (letterScores.eightPoints.includes(this.word[i])) count += 8
+    if (letterScores.tenPoints.includes(this.word[i])) count += 10
   }
   for (let j = 0, jl = count; j < this.word.length; j++) {
     if(this.word[j] === '{' && this.word[j+2] === '}') {
-      if (letterScores.onePoint.includes(this.word[j+1])) {count += 1}
-    if (letterScores.twoPoints.includes(this.word[j+1])) {count += 2}
-    if (letterScores.threePoints.includes(this.word[j+1])) {count += 3}
-    if (letterScores.fourPoints.includes(this.word[j+1])) {count += 4}
-    if (letterScores.fivePoints.includes(this.word[j+1])) {count += 5}
-    if (letterScores.eightPoints.includes(this.word[j+1])) {count += 8}
-    if (letterScores.tenPoints.includes(this.word[j+1])) {count += 10}
+      if (letterScores.onePoint.includes(this.word[j+1])) count += 1
+    if (letterScores.twoPoints.includes(this.word[j+1])) count += 2
+    if (letterScores.threePoints.includes(this.word[j+1])) count += 3
+    if (letterScores.fourPoints.includes(this.word[j+1])) count += 4
+    if (letterScores.fivePoints.includes(this.word[j+1])) count += 5
+    if (letterScores.eightPoints.includes(this.word[j+1])) count += 8
+    if (letterScores.tenPoints.includes(this.word[j+1])) count += 10
   }
   if(this.word[j] === '[' && this.word[j+2] === ']') {
-    if (letterScores.onePoint.includes(this.word[j+1])) {count += 2}
-  if (letterScores.twoPoints.includes(this.word[j+1])) {count += 4}
-  if (letterScores.threePoints.includes(this.word[j+1])) {count += 6}
-  if (letterScores.fourPoints.includes(this.word[j+1])) {count += 8}
-  if (letterScores.fivePoints.includes(this.word[j+1])) {count += 10}
-  if (letterScores.eightPoints.includes(this.word[j+1])) {count += 16}
-  if (letterScores.tenPoints.includes(this.word[j+1])) {count += 20}
+    if (letterScores.onePoint.includes(this.word[j+1])) count += 2
+  if (letterScores.twoPoints.includes(this.word[j+1])) count += 4
+  if (letterScores.threePoints.includes(this.word[j+1])) count += 6
+  if (letterScores.fourPoints.includes(this.word[j+1])) count += 8
+  if (letterScores.fivePoints.includes(this.word[j+1])) count += 10
+  if (letterScores.eightPoints.includes(this.word[j+1])) count += 16
+  if (letterScores.tenPoints.includes(this.word[j+1])) count += 20
   }
 }
-  if (this.word.charAt(0) === '{' && this.word.charAt(this.word.length - 1) === '}') { count *= 2 }
-  if (this.word.charAt(0) === '[' && this.word.charAt(this.word.length - 1) === ']') { count *= 3 }
+  if (this.word.charAt(0) === '{' && this.word.charAt(this.word.length - 1) === '}') count *= 2 
+  if (this.word.charAt(0) === '[' && this.word.charAt(this.word.length - 1) === ']') count *= 3 
   return count
 }
 

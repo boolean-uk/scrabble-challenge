@@ -1,69 +1,50 @@
-const onePoint= [
-    "A",
-    "E",
-    "I",
-    "O",
-    "U",
-    "L",
-    "N",
-    "R",
-    "S",
-    "T",
-    "a",
-    "e",
-    "i",
-    "o",
-    "u",
-    "l",
-    "n",
-    "r",
-    "s",
-    "t",
-  ];
-  const twoPoints= ["D", "G", "d", "g"];
-  const threePoints= ["B", "C", "M", "P", "b", "c", "m", "p"];
-  const fourPoints= ["F", "H", "V", "W", "Y", "f", "h", "v", "w", "y"];
-  const fivePoints= ["K", "k"];
-  const eightPoints= ["J", "X", "j", "x"];
-  const tenPoints= ["Q", "Z", "q", "z"];
-
-let score = 0
+const val1 = ["A", "E","I","O","U","L","N","R","S","T","a","e","i","o","u","l","n","r","s","t",];
+const val2 = ["D", "d", "G", "g"];
+const val3 = ["B", "b", "C", "c", "M", "m", "P", "p"];
+const val4 = ["F", "f", "H", "h", "V", "v", "W", "w", "Y", "y"];
+const val5 = ["K", "k"];
+const val8 = ["J", "j", "X", "x"];
+const val10 = ["Q", "q", "Z", "z"];
 
 class Scrabble {
   // Write your implementation here
 
   constructor(word) {
     this.word = word;
-    console.log(word);
-  }
+   }
 
   score() {
+    let score = 0
+
+    if (this.word === undefined || this.word === null) {
+      return 0
+    }
+
     for (let i = 0; i < this.word.length; i++) {
-      if (onePoint.includes(this.word[i])) {
-        score = score + 1;
+      if (val1.includes(this.word[i])) {
+        score += 1
       }
-      else if (twoPoints.includes(this.word[i])) {
-        score = score + 2;
+      if (val2.includes(this.word[i])) {
+        score += 2
       }
-      else if (threePoints.includes(this.word[i])) {
-        score = score + 3;
+      if (val3.includes(this.word[i])) {
+        score += 3
       }
-      else if (fourPoints.includes(this.word[i])) {
-        score = score + 4;
+      if (val4.includes(this.word[i])) {
+        score += 4
       }
-      else if (fivePoints.includes(this.word[i])) {
-        score = score + 5;
+      if (val5.includes(this.word[i])) {
+        score += 5
       }
-      else if (eightPoints.includes(this.word[i])) {
-        score = score + 8;
+      if (val8.includes(this.word[i])) {
+        score += 8
       }
-      else if (tenPoints.includes(this.word[i])) {
-        score = score + 10;
-      } else {
-        score = score + 0;
-      } 
-    } return score ; 
+      if (val10.includes(this.word[i])) {
+        score += 10
+      }
+    }
+    return score
   }
 }
 
-module.exports = Scrabble;
+module.exports = Scrabble

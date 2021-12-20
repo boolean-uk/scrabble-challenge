@@ -51,4 +51,28 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('scores a word with double points if {}', function() {
+    scrabble = new Scrabble('{dog}')
+
+    expect(scrabble.score()).toEqual(10)
+  })
+
+  it('scores a word with triple points if []', function() {
+    scrabble = new Scrabble('[dog]')
+
+    expect(scrabble.score()).toEqual(15)
+  })
+
+  it('scores a letter with double points if {}', function() {
+    scrabble = new Scrabble('d{o}g')
+
+    expect(scrabble.score()).toEqual(6)
+  })
+
+  it('scores a letter with triple points if []', function() {
+    scrabble = new Scrabble('d[o]g')
+
+    expect(scrabble.score()).toEqual(7)
+  })
 })

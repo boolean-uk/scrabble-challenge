@@ -90,10 +90,12 @@ scrabble.score() // => 41
 ## Extended Acceptance Criteria
 
 ### Double and Triple Letter
-Your solution should support the ability to define specific letters as double and triple score. Letters that count as double are enclosed in a pair of curly brackets `{}` - for example, the letter `o` would be defined as a double letter in in the word dog like this: `d{0}g`. Triple letters are enclosed in a set of square brackets - for example: `d[o]g`. Your solution should detect these brackets and apply the correct score modifications. You should add tests for this functionality to the spec file.
+Your solution should support the ability to define specific letters as double and triple score. Letters that count as double are enclosed in a pair of curly brackets `{}` - for example, the letter `o` would be defined as a double letter in in the word dog like this: `d{0}g`. 
+Triple letters are enclosed in a set of square brackets - for example: `d[o]g`. Your solution should detect these brackets and apply the correct score modifications. You should add tests for this functionality to the spec file.
 
 ### Double or Triple Word
-Similar to above, your solution should support the ability to define double and triple word scores. To indicate a double word score, the submitted word will be enclose in a pair of curly brackets (for example `{dog}`), and for triple word score a pair of square brackets (`[dog]`). Your solution should detect these brackets and apply the correct score modifications. You should add tests for this functionality to the spec file.
+Similar to above, your solution should support the ability to define double and triple word scores. 
+To indicate a double word score, the submitted word will be enclose in a pair of curly brackets (for example `{dog}`), and for triple word score a pair of square brackets (`[dog]`). Your solution should detect these brackets and apply the correct score modifications. You should add tests for this functionality to the spec file.
 
 ### Concise Code
 Each method in your `Scrabble` class should be no more than 5 lines and contain no more than 5 operations.

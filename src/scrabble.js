@@ -47,4 +47,10 @@ class Scrabble {
   }
 }
 
+//function doubleLetters () {
+  //let doubleDigits = []
+ // for (let i = 0; i < doubleDigits)
+//}
+
+
 module.exports = Scrabble

@@ -51,4 +51,10 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it ('scores a double word', function() {
+    scrabble = new Scrabble({dog})
+
+    expect(scrabble.score()).toEqual(10) 
+  })
 })

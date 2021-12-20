@@ -12,9 +12,10 @@ const scoreNum = {
 
 class Scrabble {
 
-  constructor (word) {
+  constructor(word) {
     this.word = word
   }
+  
   score() {
     let sum = 0
     if (this.word === null || this.word.length === 0 || this.word === ' \t\n') {
@@ -25,32 +26,26 @@ class Scrabble {
       if (scoreNum.pointOne.includes(this.word[i])) {
         sum += 1
       }
-
-    if (scoreNum.pointTwo.includes(this.word[i])) {
-      sum += 2
+      if (scoreNum.pointTwo.includes(this.word[i])) {
+        sum += 2
+      }
+      if (scoreNum.pointThree.includes(this.word[i])) {
+        sum += 3
+      }
+      if (scoreNum.pointFour.includes(this.word[i])) {
+        sum += 4
+      }
+      if (scoreNum.pointFive.includes(this.word[i])) {
+        sum += 5
+      }
+      if (scoreNum.pointEight.includes(this.word[i])) {
+        sum += 8
+      }
+      if (scoreNum.pointTen.includes(this.word[i])) {
+        sum += 10
+      }
     }
-
-    if (scoreNum.pointThree.includes(this.word[i])) {
-      sum += 3
-    }
-
-    if (scoreNum.pointFour.includes(this.word[i])) {
-      sum += 4
-    }
-
-    if (scoreNum.pointFive.includes(this.word[i])) {
-      sum += 5
-    }
-
-    if (scoreNum.pointEight.includes(this.word[i])) {
-      sum += 8
-    }
-
-    if (scoreNum.pointTen.includes(this.word[i])) {
-      sum += 10
-    }
-  }
-      return sum
+    return sum
   }
 }
 

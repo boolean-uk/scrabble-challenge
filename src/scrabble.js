@@ -8,6 +8,9 @@ const letters = {
   lettersG: ['Q', 'Z', 'q', 'z']
 }
 
+const doubleWords = {
+  wordA: ['DOG', 'dog'],
+}
 
 class Scrabble {
   // Write your implementation here
@@ -24,33 +27,44 @@ class Scrabble {
       if (letters.lettersA.includes(this.word[i])) {
         count += 1
       }
-      if (letters.lettersB.includes(this.word[i])) {
+      else if (letters.lettersB.includes(this.word[i])) {
         count += 2
       }
-      if (letters.lettersC.includes(this.word[i])) {
+      else if (letters.lettersC.includes(this.word[i])) {
         count += 3
       }
-      if (letters.lettersD.includes(this.word[i])) {
+      else if (letters.lettersD.includes(this.word[i])) {
         count = count + 4
       }
-      if (letters.lettersE.includes(this.word[i])) {
+      else if (letters.lettersE.includes(this.word[i])) {
         count = count + 5
       }
-      if (letters.lettersF.includes(this.word[i])) {
+      else if (letters.lettersF.includes(this.word[i])) {
         count = count + 8
       }
-      if (letters.lettersG.includes(this.word[i])) {
+      else if (letters.lettersG.includes(this.word[i])) {
         count = count + 10
       }
     }
     return count
   }
+
+  
+
+
+
+  doubleScore() {
+    let doubleCount = 0
+    if (this.word === null || this.word.length === '' || this.word === ' \t\n') {
+      return doubleCount
+    }
+    if (doubleWords.wordA.includes(this.word.length[i])) {
+      doubleCount = doubleCount * 2
+    }
+  }
 }
 
-//function doubleLetters () {
-  //let doubleDigits = []
- // for (let i = 0; i < doubleDigits)
-//}
+
 
 
 module.exports = Scrabble

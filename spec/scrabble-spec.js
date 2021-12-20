@@ -92,4 +92,24 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(27)
   })
+  it('two double letters', function() {
+    scrabble = new Scrabble('b{o}{o}k')
+
+    expect(scrabble.score()).toEqual(12)
+  })
+  it('two triple letters', function() {
+    scrabble = new Scrabble('b[o][o]k')
+
+    expect(scrabble.score()).toEqual(14)
+  })
+  it('not repeating double letter and double word', function() {
+    scrabble = new Scrabble('{o}')
+
+    expect(scrabble.score()).toEqual(2)
+  })
+  it('ultimate test', function() {
+    scrabble = new Scrabble('[t[h]r{o}w]')
+
+    expect(scrabble.score()).toEqual(60)
+  })
 })

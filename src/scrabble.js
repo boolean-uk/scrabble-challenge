@@ -31,16 +31,16 @@ class Scrabble {
         count += 3
       }
       if (letters.lettersD.includes(this.word[i])) {
-        count += 4
+        count = count + 4
       }
       if (letters.lettersE.includes(this.word[i])) {
-        count += 5
+        count = count + 5
       }
       if (letters.lettersF.includes(this.word[i])) {
-        count += 8
+        count = count + 8
       }
       if (letters.lettersG.includes(this.word[i])) {
-        count += 10
+        count = count + 10
       }
     }
     return count

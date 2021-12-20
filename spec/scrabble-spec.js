@@ -73,6 +73,6 @@ describe("Scrabble", function() {
   it('scores triple points for letter in square brackets', function() {
     scrabble = new Scrabble('gla[s]s')
 
-    expect(scrabble.score()).toEqual(14)
+    expect(scrabble.score()).toEqual(8)
   })
 })

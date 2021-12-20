@@ -9,11 +9,11 @@ const letterScores = {
 }
 class Scrabble {
   constructor(word){
-    this.word = word
+    this.word = word;
   }
   score() {
     let count = 0
-    if (this.word === null || this.word.length === 0 || this.word === ' \t\n') { return count }
+    if (this.word === null || this.word.length === 0 || this.word.trim === '') { return count }
     for (let i = 0; i < this.word.length; i++) {
       if (letterScores.onepoint.includes(this.word[i])) { count += 1 }
       if (letterScores.twoPoints.includes(this.word[i])) { count += 2 }
@@ -23,6 +23,8 @@ class Scrabble {
       if (letterScores.eightPoints.includes(this.word[i])) { count += 8 }
       if (letterScores.tenPoints.includes(this.word[i])) { count += 10 }
     }
+    if (this.word.charAt(0) === '{' && this.word.charAt(this.word.length - 1) === '}') { count *= 2 }
+    if (this.word.charAt(0) === '[' && this.word.charAt(this.word.length - 1) === ']') { count *= 3 }
     return count
   }
 }

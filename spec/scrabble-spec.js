@@ -104,6 +104,11 @@ describe("Scrabble", function () {
   //triple-letter nested in double word
   it("triple-letter nested in double word", function () {
     scrabble = new Scrabble("{he[l]lo}");
-    expect(scrabble.score()).toEqual(18);
+    expect(scrabble.score()).toEqual(20);
+  });
+  //double letter in double word
+  it("double-letter next to bracket, nested in double word", function () {
+    scrabble = new Scrabble("{{h}ello}");
+    expect(scrabble.score()).toEqual(24);
   });
 });

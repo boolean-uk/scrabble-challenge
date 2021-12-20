@@ -1,6 +1,7 @@
 class Scrabble {
   constructor (word) {
     this.word = word
+    this.wordMultiply = word
     this.scoreMap = {
       // score = 1
       A: 1,
@@ -40,70 +41,71 @@ class Scrabble {
       '}': 0,
       '[': 0,
       ']': 0,
-      ',': 2
+      ',': 0
     }
   }
 
-  doubleScore () {
-    if (this.word == null || this.word.length < 1 || this.word.trim() === '') {
-      return
-    }
-    const bracketArray = []
-    const extractArray = []
-    // let extractDouble = ''
-    for (let i = 0; i < this.word.length; i++) {
-      if (this.word.charAt(i) === '{') bracketArray.push(i)
-      if (this.word.charAt(i) === '}') {
-        extractArray.push(this.word.substring(bracketArray.pop() + 1, i))
+  doubleLetter () {
+    const wordArray = []
+    for (let i = 0; i < this.word.length - 1; i++) {
+      if (this.word.charAt(i) === '{' && this.word.charAt(i + 2) === '}') {
+        wordArray.push(this.word.charAt(i + 1))
       }
     }
-    // return (extractDouble = extractArray.toString() ?? '')
-    return extractArray.toString() ?? ''
+    return wordArray.toString() ?? '' // nullish coallescing - return RHS when LHS is falsy
   }
 
-  TripleScore () {
-    if (this.word == null || this.word.length < 1 || this.word.trim() === '') {
-      return
-    }
-    const bracketArray = []
-    const extractArray = []
-    // let extractTriple = "";
-    for (let i = 0; i < this.word.length; i++) {
-      if (this.word.charAt(i) === '[') bracketArray.push(i)
-      if (this.word.charAt(i) === ']') {
-        extractArray.push(this.word.substring(bracketArray.pop() + 1, i))
+  tripleLetter () {
+    const wordArray = []
+    for (let i = 0; i < this.word.length - 1; i++) {
+      if (this.word.charAt(i) === '[' && this.word.charAt(i + 2) === ']') {
+        wordArray.push(this.word.charAt(i + 1))
       }
     }
-    // nullish colaescing - return RHS operand if LHS operand is falsy - null, undefined, 0
-    // return (extractTriple = extractArray.toString() ?? "");
-    return extractArray.toString() ?? ''
+    return wordArray.toString() ?? ''
+  }
+
+  lettersScore () {
+    this.word = this.word // original word
+      .concat(this.doubleLetter()) // + one more letter from orignal word (double letter)
+      .concat(this.tripleLetter())
+      .concat(this.tripleLetter()) // + two more letters from original word (triple letter)
+    this.word = this.word.toUpperCase()
+    if (this.word.length === 1) return this.scoreMap[this.word]
+    if (this.word.length > 1) {
+      return [...this.word]
+        .map((letter) => this.scoreMap[letter])
+        .reduce((acc, letterNum) => (acc = acc + letterNum))
+    }
+  }
+
+  wordMultiplier () {
+    if (
+      this.wordMultiply[0] === '[' &&
+      this.wordMultiply[this.wordMultiply.length - 1] === ']' &&
+      this.wordMultiply.length !== 3 // ignore [a] or {a}
+    ) {
+      return 3
+    }
+    if (
+      this.wordMultiply[0] === '{' &&
+      this.wordMultiply[this.wordMultiply.length - 1] === '}' &&
+      this.wordMultiply.length !== 3
+    ) {
+      return 2
+    }
+    return 1
   }
 
   score () {
     if (this.word == null || this.word.length < 1 || this.word.trim() === '') {
       return 0
     }
-    this.word = this.word
-      .concat(this.doubleScore())
-      .concat(this.TripleScore())
-      .concat(this.TripleScore())
-    const wordUpper = this.word.toUpperCase()
-    if (this.word.length === 1) return this.scoreMap[wordUpper]
-    if (this.word.length > 1) {
-      return [...wordUpper]
-        .map((letter) => this.scoreMap[letter])
-        .reduce((acc, letterNum) => (acc = acc + letterNum))
-    }
+    return this.lettersScore() * this.wordMultiplier()
   }
 }
 
-// let scrabble = new Scrabble("{h[e][l]{l}o}");
-// console.log(scrabble.score());
+const scrabble = new Scrabble('')
+scrabble.score()
 
-// let scrabble = new Scrabble("{h[e][l]lo}");
-// console.log(scrabble.score());
-
-// const scrabble = new Scrabble('')
 module.exports = Scrabble
-
-// Bug - solution works for double/triple word with up to 2 levels of nesting, 3+ levels score incorrect

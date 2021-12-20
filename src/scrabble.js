@@ -44,12 +44,12 @@ class Scrabble {
     return this.scoreLoop(wordTrimmed)
   }
 
-  scoreDoubleLetter () {
+  scoreDoubleTripleLetter (open, close) {
     if (this.word == null) {
       return 0
     }
 
-    if (this.word.indexOf('{') === -1 && this.word.indexOf('}') === -1) {
+    if (this.word.indexOf(open) === -1 && this.word.indexOf(close) === -1) {
       return 0
     }
 
@@ -57,7 +57,7 @@ class Scrabble {
 
     for (let i = 0; i < this.word.length; i++) {
       if (this.word[i + 2] !== undefined) {
-        if (this.word[i] === '{' && this.word[i + 2] === '}') {
+        if (this.word[i] === open && this.word[i + 2] === close) {
           letterArray.push(this.word[i + 1])
         }
       }
@@ -77,39 +77,6 @@ class Scrabble {
     return score
   }
 
-  scoreTripleLetter () {
-    if (this.word == null) {
-      return 0
-    }
-
-    if (this.word.indexOf('[') === -1 && this.word.indexOf(']') === -1) {
-      return 0
-    }
-
-    const letterArray = []
-
-    for (let i = 0; i < this.word.length; i++) {
-      if (this.word[i + 2] !== undefined) {
-        if (this.word[i] === '[' && this.word[i + 2] === ']') {
-          letterArray.push(this.word[i + 1])
-        }
-      }
-    }
-
-    if (letterArray.length === 0) {
-      return 0
-    }
-
-    let score = 0
-
-    if (letterArray.length > 0) {
-      for (let j = 0; j < letterArray.length; j++) {
-        score += (this.scoreLoop(letterArray[j]) * 2)
-      }
-    }
-    return score
-  }
-
   scoreDoubleOrTripleWord () {
     if (this.word == null) {
       return 0
@@ -124,7 +91,7 @@ class Scrabble {
   }
 
   score () {
-    return (this.scoreMain() + this.scoreDoubleLetter() + this.scoreTripleLetter()) * (this.scoreDoubleOrTripleWord())
+    return (this.scoreMain() + this.scoreDoubleTripleLetter('{','}') + (this.scoreDoubleTripleLetter('[',']') * 2)) * (this.scoreDoubleOrTripleWord())
   }
 }
 

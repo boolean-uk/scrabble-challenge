@@ -53,25 +53,25 @@ class Scrabble {
       return 0
     }
 
-    let letterArray = []
+    const letterArray = []
 
-    for (let i = 0; i<this.word.length;i++) {
+    for (let i = 0; i < this.word.length; i++) {
       if (this.word[i + 2] !== undefined) {
-        if (this.word[i] === '{' && this.word[i+2] === '}') {
-          letterArray.push(this.word[i+1])
+        if (this.word[i] === '{' && this.word[i + 2] === '}') {
+          letterArray.push(this.word[i + 1])
         }
       }
     }
 
-    if(letterArray.length === 0) {
+    if (letterArray.length === 0) {
       return 0
     }
 
     let score = 0
 
     if (letterArray.length > 0) {
-      for (let j = 0; j<letterArray.length; j++) {
-        score+=this.scoreLoop(letterArray[j])
+      for (let j = 0; j < letterArray.length; j++) {
+        score += this.scoreLoop(letterArray[j])
       }
     }
     return score
@@ -86,25 +86,25 @@ class Scrabble {
       return 0
     }
 
-    let letterArray = []
+    const letterArray = []
 
-    for (let i = 0; i<this.word.length;i++) {
+    for (let i = 0; i < this.word.length; i++) {
       if (this.word[i + 2] !== undefined) {
-        if (this.word[i] === '[' && this.word[i+2] === ']') {
-          letterArray.push(this.word[i+1])
+        if (this.word[i] === '[' && this.word[i + 2] === ']') {
+          letterArray.push(this.word[i + 1])
         }
       }
     }
 
-    if(letterArray.length === 0) {
+    if (letterArray.length === 0) {
       return 0
     }
 
     let score = 0
 
     if (letterArray.length > 0) {
-      for (let j = 0; j<letterArray.length; j++) {
-        score+=(this.scoreLoop(letterArray[j]) * 2)
+      for (let j = 0; j < letterArray.length; j++) {
+        score += (this.scoreLoop(letterArray[j]) * 2)
       }
     }
     return score
@@ -114,10 +114,10 @@ class Scrabble {
     if (this.word == null) {
       return 0
     }
-    if (this.word.indexOf('{') === 0 && this.word.indexOf('}') === this.word.length - 1 && this.word.length !== 3) {
+    if (this.word[0] === '{' && this.word[this.word.length - 1] === '}' && this.word.length !== 3) {
       return 2
     }
-    if (this.word.indexOf('[') === 0 && this.word.indexOf(']') === this.word.length - 1 && this.word.length !== 3) {
+    if (this.word[0] === '[' && this.word[this.word.length - 1] === ']' && this.word.length !== 3) {
       return 3
     }
     return 1

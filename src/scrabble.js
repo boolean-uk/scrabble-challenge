@@ -84,32 +84,24 @@ class Scrabble {
     return this.scoreLoop(tripleScore) * 2
   }
 
-  scoreDoubleWord () {
+  scoreDoubleOrTripleWord () {
     if (this.word == null) {
       return 0
     }
-
+    
     if (this.word.indexOf('{') === 0 && this.word.indexOf('}') === this.word.length - 1) {
       return 2
     }
-
-    return 1
-  }
-
-  scoreTripleWord () {
-    if (this.word == null) {
-      return 0
-    }
-
+    
     if (this.word.indexOf('[') === 0 && this.word.indexOf(']') === this.word.length - 1) {
       return 3
     }
-
+    
     return 1
   }
 
   score () {
-    return (this.scoreMain() + this.scoreDoubleLetter() + this.scoreTripleLetter())*(this.scoreDoubleWord()*this.scoreTripleWord())
+    return (this.scoreMain() + this.scoreDoubleLetter() + this.scoreTripleLetter()) * (this.scoreDoubleOrTripleWord())
   }
 }
 

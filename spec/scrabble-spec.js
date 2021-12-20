@@ -71,8 +71,8 @@ describe('Scrabble', function () {
   })
 
   it('scores a triple word', function () {
-    scrabble = new Scrabble('[fox]')
+    scrabble = new Scrabble('[f{o}x]')
 
-    expect(scrabble.score()).toEqual(39)
+    expect(scrabble.score()).toEqual(42)
   })
 })

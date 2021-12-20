@@ -1,3 +1,5 @@
+/* [^\{\}] */
+/* [^\[\]] */
 let doubleWord = false
 let doubleLetterRef = []
 let tripleWord = false
@@ -5,19 +7,19 @@ let tripleLetterRef = []
 let points = 0
 const commonLetters = [['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'], ['D', 'G'], ['B', 'C', 'M', 'P'], ['F', 'H', 'V', 'W', 'Y'], ['K']]
 const rareLetters = [['J', 'X'], ['Q', 'Z']]
-const double = /\{[A-Z]*\}/g
-const triple = /\[[A-Z]*\]/g
+const double = /\{[A-Z{}[\]]*\}/g
+const triple = /\[[A-Z{}[\]]*\]/g
 
 function noInput (type) {
   return type === null
 }
 
 function checkDouble (str, arr) {
-  return !!arr.includes(str)
+  return arr.includes(str)
 }
 
 function checkTriple (str, arr) {
-  return !!arr.includes(str)
+  return arr.includes(str)
 }
 
 function resetWordMultipliers () {
@@ -73,10 +75,10 @@ function scoreWord (arr) {
     scoreLetter(arr[i])
   }
   resetLetterReferences()
-  scrabbleWorld()
+  scrabbleWord()
 }
 
-function scrabbleWorld () {
+function scrabbleWord () {
   if (doubleWord) {
     points *= 2
   }
@@ -119,7 +121,6 @@ class Scrabble {
     this.str = str
   }
 
-  // Write your implementation here
   score () {
     if (noInput(this.str)) {
       points = 0

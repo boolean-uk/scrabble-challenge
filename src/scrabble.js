@@ -44,7 +44,7 @@ class Scrabble {
     return this.scoreLoop(wordTrimmed)
   }
 
-  scoreDouble () {
+  scoreDoubleLetter () {
     if (this.word == null) {
       return 0
     }
@@ -57,10 +57,14 @@ class Scrabble {
       return 0
     }
 
+    if (openCurlyBracket === 0 && closeCurlyBracket === this.word.length - 1) {
+      return 0
+    }
+
     return this.scoreLoop(doubleScore)
   }
 
-  scoreTriple () {
+  scoreTripleLetter () {
     if (this.word == null) {
       return 0
     }
@@ -73,11 +77,39 @@ class Scrabble {
       return 0
     }
 
+    if (openSquareBracket === 0 && closeSquareBracket === this.word.length - 1) {
+      return 0
+    }
+
     return this.scoreLoop(tripleScore) * 2
   }
 
+  scoreDoubleWord () {
+    if (this.word == null) {
+      return 0
+    }
+
+    if (this.word.indexOf('{') === 0 && this.word.indexOf('}') === this.word.length - 1) {
+      return 2
+    }
+
+    return 1
+  }
+
+  scoreTripleWord () {
+    if (this.word == null) {
+      return 0
+    }
+
+    if (this.word.indexOf('[') === 0 && this.word.indexOf(']') === this.word.length - 1) {
+      return 3
+    }
+
+    return 1
+  }
+
   score () {
-    return this.scoreMain() + this.scoreDouble() + this.scoreTriple()
+    return (this.scoreMain() + this.scoreDoubleLetter() + this.scoreTripleLetter())*(this.scoreDoubleWord()*this.scoreTripleWord())
   }
 }
 

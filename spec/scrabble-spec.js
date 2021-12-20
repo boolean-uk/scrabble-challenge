@@ -85,6 +85,11 @@ describe("Scrabble", function() {
   it('triple letter double word', function() {
     scrabble = new Scrabble('{z[o]om}')
 
-    expect(scrabble.score()).toEqual(32)
+    expect(scrabble.score()).toEqual(34)
+  })
+  it('double letter triple word', function() {
+    scrabble = new Scrabble('[b{o}y]')
+
+    expect(scrabble.score()).toEqual(27)
   })
 })

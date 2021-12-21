@@ -42,13 +42,15 @@ class Scrabble {
     //create var for score total
     let scoreTotal = 0;
     // 1- loop this.word - to get each letter
+    if (this.word === null) {
+      return 0;
+    }
     for (let i = 0; i < this.word.length; i++) {
       const currentLetter = this.word[i];
       //2-look up the score of this letter
       // 3- store value of the letter
       let letterScore = this.getLetterScore(currentLetter);
-      if (null && undefined === letterScore) {
-      }
+
       // Add the letterscore to the scoreTotal
       scoreTotal = letterScore + scoreTotal;
       // if you use the return keyword here  - in this position (inside the loop) - then only one letter will be calculated

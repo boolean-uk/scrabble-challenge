@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const val1 = ["A", "E","I","O","U","L","N","R","S","T","a","e","i","o","u","l","n","r","s","t"];
-=======
 const val1 = ["A", "E","I","O","U","L","N","R","S","T","a","e","i","o","u","l","n","r","s","t",];
->>>>>>> 085e9428cd311afaa7205e2cc6a17122fd45c09a
 const val2 = ["D", "d", "G", "g"];
 const val3 = ["B", "b", "C", "c", "M", "m", "P", "p"];
 const val4 = ["F", "f", "H", "h", "V", "v", "W", "w", "Y", "y"];
@@ -15,10 +11,6 @@ class Scrabble {
 
   constructor(word) {
     this.word = word;
-<<<<<<< HEAD
-    console.log(this.word)
-=======
->>>>>>> 085e9428cd311afaa7205e2cc6a17122fd45c09a
    }
 
   score() {
@@ -27,39 +19,8 @@ class Scrabble {
     if (this.word === undefined || this.word === null) {
       return 0
     }
-
     for (let i = 0; i < this.word.length; i++) {
       if (val1.includes(this.word[i])) {
-<<<<<<< HEAD
-        score += 1 
-      }
-      if (val2.includes(this.word[i])) {
-        score += 2 
-      }
-      if (val3.includes(this.word[i])) {
-        score += 3 
-      }
-      if (val4.includes(this.word[i])) {
-        score += 4 
-      }
-      if (val5.includes(this.word[i])) {
-        score += 5 
-      }
-      if (val8.includes(this.word[i])) {
-        score += 8 
-      }
-      if (val10.includes(this.word[i])) {
-        score += 10 
-      }
-    }
-    return score 
-  }
-
-  bonus() {
-    let count = []
-
-   
-=======
         score += 1
       }
       if (val2.includes(this.word[i])) {
@@ -80,9 +41,7 @@ class Scrabble {
       if (val10.includes(this.word[i])) {
         score += 10
       }
-    }
-    return score
->>>>>>> 085e9428cd311afaa7205e2cc6a17122fd45c09a
+    } return score 
   }
 }
 

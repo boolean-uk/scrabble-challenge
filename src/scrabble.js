@@ -7,7 +7,7 @@ class Scrabble {
     let num = 0
     for (let i = 0; i < string.length; i++) {
       if (string[i].match(/[^A-Z{}[]]/i)) {
-        return 0
+        return num
       }
       if (string[i].match(/[AEIOULNRST]/i)) {
         num++
@@ -45,35 +45,26 @@ class Scrabble {
   }
 
   scoreDoubleTripleLetter (open, close) {
+    let score = 0
     if (this.word == null) {
-      return 0
+      return score
     }
 
     if (this.word.indexOf(open) === -1 && this.word.indexOf(close) === -1) {
-      return 0
+      return score
     }
 
     const letterArray = []
 
     for (let i = 0; i < this.word.length; i++) {
-      if (this.word[i + 2] !== undefined) {
         if (this.word[i] === open && this.word[i + 2] === close) {
           letterArray.push(this.word[i + 1])
         }
-      }
     }
 
-    if (letterArray.length === 0) {
-      return 0
-    }
-
-    let score = 0
-
-    if (letterArray.length > 0) {
       for (let j = 0; j < letterArray.length; j++) {
         score += this.scoreLoop(letterArray[j])
       }
-    }
     return score
   }
 
@@ -91,7 +82,7 @@ class Scrabble {
   }
 
   score () {
-    return (this.scoreMain() + this.scoreDoubleTripleLetter('{','}') + (this.scoreDoubleTripleLetter('[',']') * 2)) * (this.scoreDoubleOrTripleWord())
+    return (this.scoreMain() + this.scoreDoubleTripleLetter('{', '}') + (this.scoreDoubleTripleLetter('[', ']') * 2)) * (this.scoreDoubleOrTripleWord())
   }
 }
 

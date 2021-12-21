@@ -112,4 +112,9 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(60)
   })
+  it('invalid braces', function() {
+    scrabble = new Scrabble('str{{{{[[]]e]et')
+
+    expect(scrabble.score()).toEqual(6)
+  })
 })

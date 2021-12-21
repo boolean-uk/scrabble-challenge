@@ -52,9 +52,16 @@ describe("Scrabble", function() {
     expect(scrabble.score()).toEqual(41)
   })
 
-  it ('scores a double word', function() {
+  it ('a double word score', function() {
     scrabble = new Scrabble('{dog}')
 
     expect(scrabble.score()).toEqual(10) 
+  })
+
+
+  fit ('a triple word score', function() {
+    scrabble = new Scrabble('{dog}')
+
+    expect(scrabble.score()).toEqual(15) 
   })
 })

@@ -9,7 +9,7 @@ const letters = {
 }
 
 const doubleWords = {
-  wordA: ['DOG', 'dog'],
+  curlyBrackets: ['{', '}'],
 }
 
 class Scrabble {
@@ -27,39 +27,36 @@ class Scrabble {
       if (letters.lettersA.includes(this.word[i])) {
         count += 1
       }
-      else if (letters.lettersB.includes(this.word[i])) {
+      if (letters.lettersB.includes(this.word[i])) {
         count += 2
       }
-      else if (letters.lettersC.includes(this.word[i])) {
+      if (letters.lettersC.includes(this.word[i])) {
         count += 3
       }
-      else if (letters.lettersD.includes(this.word[i])) {
+      if (letters.lettersD.includes(this.word[i])) {
         count = count + 4
       }
-      else if (letters.lettersE.includes(this.word[i])) {
+      if (letters.lettersE.includes(this.word[i])) {
         count = count + 5
       }
-      else if (letters.lettersF.includes(this.word[i])) {
+      if (letters.lettersF.includes(this.word[i])) {
         count = count + 8
       }
-      else if (letters.lettersG.includes(this.word[i])) {
+      if (letters.lettersG.includes(this.word[i])) {
         count = count + 10
       }
     }
     return count
   }
 
-  
+
 
 
 
   doubleScore() {
-    let doubleCount = 0
-    if (this.word === null || this.word.length === '' || this.word === ' \t\n') {
-      return doubleCount
-    }
-    if (doubleWords.wordA.includes(this.word.length[i])) {
-      doubleCount = doubleCount * 2
+    if (this.word === null || this.word.length === '' || this.word === ' \t\n')
+    if (doubleWords.curlyBrackets.includes(this.word[i])) {
+      count = curlyBrackets * 2
     }
   }
 }

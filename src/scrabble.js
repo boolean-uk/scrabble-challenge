@@ -1,35 +1,50 @@
-class Scrabble {
-  // Write your implementation here
-  constructor (word) {
-    this.word = word
-  }
-
-  score () {
-    if (this.word === '') {
-      return 0
-    }
-    if (this.word === ' \t\n') {
-      return 0
-    }
-    if (this.word === null) {
-      return 0
-    }
-    if (this.word === 'a') {
-      return 1
-    }
-    if (this.word === 'f') {
-      return 4
-    }
-    if (this.word === 'street') {
-      return 6
-    }
-    if (this.word === 'quirky') {
-      return 22
-    }
-    if (this.word === 'OXYPHENBUTAZONE') {
-      return 41
-    }
-  }
+const letters = {
+    lettersA: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T', 'a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'],
+    lettersB: ['D', 'G', 'd', 'g'],
+    lettersC: ['B', 'C', 'M', 'P', 'b', 'c', 'm', 'p'],
+    lettersD: ['F', 'H', 'V', 'W', 'Y', 'f', 'h', 'v', 'w', 'y'],
+    lettersE: ['K', 'k'],
+    lettersF: ['J', 'X', 'j', 'x'],
+    lettersG: ['Q', 'Z', 'q', 'z']
 }
+
+class Scrabble {
+    // Write your implementation here
+    constructor(word) {
+        this.word = word
+    }
+
+    score() {
+        let count = 0
+        if (this.word === null || this.word === '' || this.word === ' \t\n') {
+            return count
+        }
+        for (let i = 0; i < this.word.length; i++) {
+            if (letters.lettersA.includes(this.word[i])) {
+                count += 1
+            }
+            if (letters.lettersB.includes(this.word[i])) {
+                count += 2
+            }
+            if (letters.lettersC.includes(this.word[i])) {
+                count += 3
+            }
+            if (letters.lettersD.includes(this.word[i])) {
+                count += 4
+            }
+            if (letters.lettersE.includes(this.word[i])) {
+                count += 5
+            }
+            if (letters.lettersF.includes(this.word[i])) {
+                count += 8
+            }
+            if (letters.lettersG.includes(this.word[i])) {
+                count += 10
+            }
+        }
+        return count
+    }
+}
+
 
 module.exports = Scrabble

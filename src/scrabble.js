@@ -1,13 +1,38 @@
 
-const scoreNum = {
+const scoreNum =
+{
+  'A': 1,
+  'E': 1,
+  'I': 1,
+  'O': 1,
+  'U': 1,
+  'L': 1,
+  'N': 1,
+  'R': 1,
+  'S': 1,
+  'T': 1,
 
-  pointOne: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
-  pointTwo: ['D', 'G'],
-  pointThree: ['B', 'C', 'M', 'P'],
-  pointFour: ['F', 'H', 'V', 'W', 'Y'],
-  pointFive: ['K'],
-  pointEight: ['J', 'X'],
-  pointTen: ['Q', 'Z']
+  'D': 2,
+  'G': 2,
+
+  'B': 3,
+  'C': 3,
+  'M': 3,
+  'P': 3,
+
+  'F': 4,
+  'H': 4,
+  'V': 4,
+  'W': 4,
+  'Y': 4,
+
+  'K': 5,
+
+  'J': 8,
+  'X': 8,
+
+  'Q': 10,
+  'Z': 10,
 }
 
 class Scrabble {
@@ -15,37 +40,17 @@ class Scrabble {
   constructor(word) {
     this.word = word
   }
-  
+
   score() {
-    let sum = 0
-    if (this.word === null || this.word.length === 0 || this.word === ' \t\n') {
-      return sum
+    let totalScore = 0
+    if (this.word === null || this.word.length === 0) {
+      return totalScore
     }
-    this.word = this.word.toUpperCase()
+    this.word = this.word.toUpperCase().trim()
     for (let i = 0; i < this.word.length; i++) {
-      if (scoreNum.pointOne.includes(this.word[i])) {
-        sum += 1
-      }
-      if (scoreNum.pointTwo.includes(this.word[i])) {
-        sum += 2
-      }
-      if (scoreNum.pointThree.includes(this.word[i])) {
-        sum += 3
-      }
-      if (scoreNum.pointFour.includes(this.word[i])) {
-        sum += 4
-      }
-      if (scoreNum.pointFive.includes(this.word[i])) {
-        sum += 5
-      }
-      if (scoreNum.pointEight.includes(this.word[i])) {
-        sum += 8
-      }
-      if (scoreNum.pointTen.includes(this.word[i])) {
-        sum += 10
-      }
+      totalScore += scoreNum[this.word[i]]
     }
-    return sum
+    return totalScore
   }
 }
 

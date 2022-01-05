@@ -31,29 +31,27 @@ const points = {
   X: 8,
   // 10 POINT CHARACTERS
   Q: 10,
-  Z: 10,
+  Z: 10
 }
 
 class Scrabble {
   // Write your implementation here
 
-  constructor(word, score) {
-    this.word = word;
+  constructor (word, score) {
+    this.word = word
   }
 
-  score() {
+  score () {
+    let score = 0
     if (this.word === null || this.word === '\t\n') {
       return score
     }
-    let score = 0;
-
-    let word = this.word.trim().toUpperCase();
+    const word = this.word.trim().toUpperCase()
     for (let i = 0; i < this.word.length; i++) {
-      const letter = word[i]
       score += points[word[i]]
     }
-    return score;
+    return score
   }
 }
 
-module.exports = Scrabble:
+module.exports = Scrabble

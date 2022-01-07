@@ -75,4 +75,10 @@ describe('Scrabble', function () {
 
     expect(scrabble.score()).toEqual(42)
   })
+
+  it('ignores an invalid brace input', function () {
+    scrabble = new Scrabble('fi{sh}')
+
+    expect(scrabble.score()).toEqual(10)
+  })
 })

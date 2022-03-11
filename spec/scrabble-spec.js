@@ -63,4 +63,16 @@ describe("Scrabble", function() {
     scrabble.setDoubleLetter('a')
     expect(scrabble.word).toEqual('b{a}n{a}n{a}')
   })
+
+  it('sets a triple letter', function() {
+    scrabble = new Scrabble('Monkey')
+    scrabble.setTripleLetter('o')
+    expect(scrabble.word).toEqual('M[o]nkey')
+  })
+
+  it('sets a triple letter multiple times', function() {
+    scrabble = new Scrabble('antena')
+    scrabble.setTripleLetter('a')
+    expect(scrabble.word).toEqual('[a]nten[a]')
+  })
 })

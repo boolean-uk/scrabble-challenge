@@ -60,10 +60,26 @@ class Scrabble {
     return score
   }
 
+  /**
+   * Setter method to idenfity a double points letter.
+   * @param {string} ch - A character to identify the double letter.
+   */
   setDoubleLetter (ch) {
     let newWord = ''
     for (let i = 0; i < this.word.length; i++) {
       this.word[i] === ch ? newWord += `{${ch}}` : newWord += this.word[i]
+    }
+    this.word = newWord
+  }
+
+  /**
+   * Setter method to idenfity a triple points letter.
+   * @param {string} ch - A character to identify the triple letter.
+   */
+  setTripleLetter (ch) {
+    let newWord = ''
+    for (let i = 0; i < this.word.length; i++) {
+      this.word[i] === ch ? newWord += `[${ch}]` : newWord += this.word[i]
     }
     this.word = newWord
   }

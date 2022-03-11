@@ -83,6 +83,13 @@ class Scrabble {
     }
     this.word = newWord
   }
+
+  /**
+   * Sets the word to a double points word.
+   */
+  setDoubleWord () {
+    this.word = `{${this.word}}`
+  }
 }
 
 module.exports = Scrabble

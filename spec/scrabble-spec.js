@@ -51,4 +51,28 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('scores double points for word in curly braces', function() {
+    scrabble = new Scrabble('{dog}')
+
+    expect(scrabble.score()).toEqual(10)
+  })
+
+  it('scores triple points for word in square brackets', function() {
+    scrabble = new Scrabble('[mug]')
+
+    expect(scrabble.score()).toEqual(18)
+  })
+
+  it('scores double points for letter in curly braces', function() {
+    scrabble = new Scrabble('du{c}k')
+
+    expect(scrabble.score()).toEqual(14)
+  })
+
+  it('scores triple points for letter in square brackets', function() {
+    scrabble = new Scrabble('gla[s]s')
+
+    expect(scrabble.score()).toEqual(8)
+  })
 })

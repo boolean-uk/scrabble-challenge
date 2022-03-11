@@ -90,6 +90,13 @@ class Scrabble {
   setDoubleWord () {
     this.word = `{${this.word}}`
   }
+
+  /**
+   * Sets the word to a triple points word.
+   */
+  setTripleWord () {
+    this.word = `[${this.word}]`
+  }
 }
 
 module.exports = Scrabble

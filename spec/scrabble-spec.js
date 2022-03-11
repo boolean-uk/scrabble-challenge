@@ -76,9 +76,15 @@ describe("Scrabble", function() {
     expect(scrabble.word).toEqual('[a]nten[a]')
   })
 
-  it('sets a triple letter multiple times', function() {
+  it('sets a double points word', function() {
     scrabble = new Scrabble('duck')
     scrabble.setDoubleWord()
     expect(scrabble.word).toEqual('{duck}')
+  })
+
+  it('sets a triple points word', function() {
+    scrabble = new Scrabble('camera')
+    scrabble.setTripleWord()
+    expect(scrabble.word).toEqual('[camera]')
   })
 })

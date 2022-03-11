@@ -87,4 +87,29 @@ describe("Scrabble", function() {
     scrabble.setTripleWord()
     expect(scrabble.word).toEqual('[camera]')
   })
+
+  it('double word', function() {
+    scrabble = new Scrabble('envelope')
+    scrabble.setDoubleWord()
+    expect(scrabble.score()).toEqual(26)
+  })
+
+  it('triple word', function() {
+    scrabble = new Scrabble('dog')
+    scrabble.setTripleWord()
+    expect(scrabble.score()).toEqual(15)
+  })
+
+  it('double letter', function() {
+    scrabble = new Scrabble('creme')
+    scrabble.setDoubleLetter('e')
+    expect(scrabble.score()).toEqual(11)
+  })
+
+  it('triple letter', function() {
+    scrabble = new Scrabble('bottle')
+    scrabble.setTripleLetter('t')
+    console.log(scrabble.word)
+    expect(scrabble.score()).toEqual(12)
+  })
 })

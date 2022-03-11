@@ -59,13 +59,13 @@ describe("Scrabble", function() {
   })
 
   it('sets a double letter multiple times', function() {
-    scrabble = new Scrabble('banana')
+    scrabble = new Scrabble('banAna')
     scrabble.setDoubleLetter('a')
     expect(scrabble.word).toEqual('b{a}n{a}n{a}')
   })
 
   it('sets a triple letter', function() {
-    scrabble = new Scrabble('Monkey')
+    scrabble = new Scrabble('MOnkey')
     scrabble.setTripleLetter('o')
     expect(scrabble.word).toEqual('M[o]nkey')
   })

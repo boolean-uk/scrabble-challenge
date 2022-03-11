@@ -67,7 +67,7 @@ class Scrabble {
   setDoubleLetter (ch) {
     let newWord = ''
     for (let i = 0; i < this.word.length; i++) {
-      this.word[i] === ch ? newWord += `{${ch}}` : newWord += this.word[i]
+      this.word[i].toLowerCase() === ch.toLowerCase() ? newWord += `{${ch}}` : newWord += this.word[i]
     }
     this.word = newWord
   }
@@ -79,7 +79,7 @@ class Scrabble {
   setTripleLetter (ch) {
     let newWord = ''
     for (let i = 0; i < this.word.length; i++) {
-      this.word[i] === ch ? newWord += `[${ch}]` : newWord += this.word[i]
+      this.word[i].toLowerCase() === ch.toLowerCase() ? newWord += `[${ch}]` : newWord += this.word[i]
     }
     this.word = newWord
   }

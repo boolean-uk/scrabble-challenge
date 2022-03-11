@@ -59,6 +59,14 @@ class Scrabble {
     }
     return score
   }
+
+  setDoubleLetter (ch) {
+    let newWord = ''
+    for (let i = 0; i < this.word.length; i++) {
+      this.word[i] === ch ? newWord += `{${ch}}` : newWord += this.word[i]
+    }
+    this.word = newWord
+  }
 }
 
 module.exports = Scrabble

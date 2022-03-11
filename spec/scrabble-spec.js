@@ -13,7 +13,7 @@ describe("Scrabble", function() {
   it('returns 0 for whitespace', function() {
     scrabble = new Scrabble(" \t\n")
 
-    expect(scrabble.score()).toEqual(0) 
+    expect(scrabble.score()).toEqual(0)
   })
 
   it('returns 0 for null', function () {
@@ -50,5 +50,17 @@ describe("Scrabble", function() {
     scrabble = new Scrabble('OXYPHENBUTAZONE')
 
     expect(scrabble.score()).toEqual(41)
+  })
+
+  it('sets a double letter', function() {
+    scrabble = new Scrabble('dog')
+    scrabble.setDoubleLetter('o')
+    expect(scrabble.word).toEqual('d{o}g')
+  })
+
+  it('sets a double letter multiple times', function() {
+    scrabble = new Scrabble('banana')
+    scrabble.setDoubleLetter('a')
+    expect(scrabble.word).toEqual('b{a}n{a}n{a}')
   })
 })

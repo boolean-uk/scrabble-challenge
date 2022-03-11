@@ -13,16 +13,16 @@ describe("Scrabble", function() {
   it('returns 0 for whitespace', function() {
     scrabble = new Scrabble(" \t\n")
 
-    expect(scrabble.score()).toEqual(0)
+    expect(scrabble.score()).toEqual(0) 
   })
 
-  it('returns 0 for null', function() {
+  it('returns 0 for null', function () {
     scrabble = new Scrabble(null)
 
     expect(scrabble.score()).toEqual(0)
   })
 
-  it('scores short word', function() {
+  it('scores short word', function () {
     scrabble = new Scrabble('a')
 
     expect(scrabble.score()).toEqual(1)

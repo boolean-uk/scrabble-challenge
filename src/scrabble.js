@@ -16,16 +16,15 @@ class Scrabble {
       return score
     } else {
       const wordArr = this.word.toLowerCase().split('')
-      wordArr.filter(letter => {
-        if (this.onePoint.includes(letter)) score += 1
-        if (this.twoPoints.includes(letter)) score += 2
-        if (this.threePoints.includes(letter)) score += 3
-        if (this.fourPoints.includes(letter)) score += 4
-        if (this.fivePoints.includes(letter)) score += 5
-        if (this.eightPoints.includes(letter)) score += 8
-        if (this.tenPoints.includes(letter)) score += 10
-        return score
-      })
+      for (let i = 0; i < wordArr.length; i++) {
+        if (this.onePoint.includes(wordArr[i])) score += 1
+        if (this.twoPoints.includes(wordArr[i])) score += 2
+        if (this.threePoints.includes(wordArr[i])) score += 3
+        if (this.fourPoints.includes(wordArr[i])) score += 4
+        if (this.fivePoints.includes(wordArr[i])) score += 5
+        if (this.eightPoints.includes(wordArr[i])) score += 8
+        if (this.tenPoints.includes(wordArr[i])) score += 10
+      }
     }
     return score
   }

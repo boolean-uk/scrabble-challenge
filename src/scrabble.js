@@ -11,27 +11,39 @@ class Scrabble {
   }
 
   score () {
-    let score = 0
+    let finalScore = 0
+    let subScore = 0
+    let multiply = 1
+    // check if the argument is a string
     if (typeof this.word !== 'string') {
-      return score
+      return finalScore
     } else {
       const wordArr = this.word.toLowerCase().split('')
-      for (let i = 0; i < wordArr.length; i++) {
-        if (this.onePoint.includes(wordArr[i])) score += 1
-        if (this.twoPoints.includes(wordArr[i])) score += 2
-        if (this.threePoints.includes(wordArr[i])) score += 3
-        if (this.fourPoints.includes(wordArr[i])) score += 4
-        if (this.fivePoints.includes(wordArr[i])) score += 5
-        if (this.eightPoints.includes(wordArr[i])) score += 8
-        if (this.tenPoints.includes(wordArr[i])) score += 10
-      }
 
-      // double word
-      if (wordArr[0] === '{' && wordArr[wordArr.length - 1] === '}') return score * 2
-      // triple word
-      if (wordArr[0] === '[' && wordArr[wordArr.length - 1] === ']') return score * 3
-      return score
+      for (let i = 0; i < wordArr.length; i++) {
+        // check if there is curly bracket or square bracket
+        // if so, change the multiply to 2 or 3
+        if (wordArr[i] === '{') {
+          multiply = 2
+        } else if (wordArr[i] === '}') {
+          multiply = 1
+        } else if (wordArr[i] === '[') {
+          multiply = 3
+        } else if (wordArr[i] === ']') {
+          multiply = 1
+        } else {
+          if (this.onePoint.includes(wordArr[i])) subScore = 1
+          if (this.twoPoints.includes(wordArr[i])) subScore = 2
+          if (this.threePoints.includes(wordArr[i])) subScore = 3
+          if (this.fourPoints.includes(wordArr[i])) subScore = 4
+          if (this.fivePoints.includes(wordArr[i])) subScore = 5
+          if (this.eightPoints.includes(wordArr[i])) subScore = 8
+          if (this.tenPoints.includes(wordArr[i])) subScore = 10
+          finalScore += subScore * multiply
+        }
+      }
     }
+    return finalScore
   }
 }
 

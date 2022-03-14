@@ -19,10 +19,9 @@ class Scrabble {
       return finalScore
     } else {
       const wordArr = this.word.toLowerCase().split('')
-
       for (let i = 0; i < wordArr.length; i++) {
         // check if there is curly bracket or square bracket
-        // if so, change the multiply to 2 or 3
+        // If so, change the multiply to 2 or 3. If not, multiply remains 1
         if (wordArr[i] === '{') {
           multiply = 2
         } else if (wordArr[i] === '}') {

@@ -26,11 +26,10 @@ class Scrabble {
         if (this.tenPoints.includes(wordArr[i])) score += 10
       }
 
-      if (wordArr[0] === '{' && wordArr[wordArr.length - 1] === '}') {
-        return score * 2
-      } else if (wordArr[0] === '[' && wordArr[wordArr.length - 1] === ']') {
-        return score * 3
-      }
+      // double word
+      if (wordArr[0] === '{' && wordArr[wordArr.length - 1] === '}') return score * 2
+      // triple word
+      if (wordArr[0] === '[' && wordArr[wordArr.length - 1] === ']') return score * 3
       return score
     }
   }

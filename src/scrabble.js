@@ -1,12 +1,12 @@
-const Pointsystem = {
-  1: ['A' , 'a', 'E' , 'e', 'I', 'i', 'O','o', 'U','u', 'L','l', 'N','n', 'R','r', 'S','s', 'T','t'],
-  2: ['D','d', 'G','g'],
-  3: ['B','b', 'C','c', 'M','m', 'P','p'],
-  4: ['F','f', 'H','h', 'V','v', 'W','w', 'Y','y'],
-  5: ['K','k'],
-  8: ['J','j', 'X','x'],
-  10: ['Q','q', 'Z','z']
-};
+// const Pointsystem = {
+//   1: ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u', 'L', 'l', 'N', 'n', 'R', 'r', 'S', 's', 'T', 't'],
+//   2: ['D', 'd', 'G', 'g'],
+//   3: ['B', 'b', 'C', 'c', 'M', 'm', 'P', 'p'],
+//   4: ['F', 'f', 'H', 'h', 'V', 'v', 'W', 'w', 'Y', 'y'],
+//   5: ['K', 'k'],
+//   8: ['J', 'j', 'X', 'x'],
+//   10: ['Q', 'q', 'Z', 'z']
+// }
 
 const letterScores = {
   a: 1,
@@ -37,7 +37,7 @@ const letterScores = {
   z: 10
 }
 
-console.log (letterScores)
+console.log(letterScores)
 
 // Added lowercases to see if it would work assuming the program was case sensitive
 
@@ -48,56 +48,65 @@ class Scrabble {
     this.word = word
   }
 
-  score() {
-
-    // const Totalscore 
+  score () {
+    // const Totalscore
     // const Pointsystem = this.word.split('')
     if (this.word === null) {
       return 0
     }
 
-    
     // Each individual letter (charAt) in the word is given point and added
     // Return 0 if nothing is run
     let totalpoints = 0
-    for (var i = 0; i < this.word.length; i++) {
-      totalpoints += letterScores[this.word.toLowerCase().charAt(i)] || 0;
+    for (let i = 0; i < this.word.length; i++) {
+      totalpoints += letterScores[this.word.toLowerCase().charAt(i)] || 0
     }
-    
+
     console.log(totalpoints)
     return totalpoints
-    
-    
-    /* EXTENSION STARTS */
-
-
-    /* PSEUDOCODE FOR NEXT OBJECTIVE STARTS */
-
-// At default multiplier should be declared and assigned to 1
-// Multiplier should be reassigned to 2 when a curly open bracket is detected
-// The multiplier should be reassigned to 1 when a curly closed bracket is detected
-// Multiplier should be assigned to 3 when open bracket is detected and reassigned to 1 when closing square bracket is detected
-// The totalscores for the values inside will change due to the multipliers declared
-// the totalscores at default (without the brackets) will not change
-
-    /* PSEUDOCODE FOR NEXT OBJECTIVE ENDS */
-
-    // DoubleOrTriple = []
-
-    // if (this.word === '{' {DoubleOrTriple.push(Double)})
-    // console.log (DoubleOrTriple)
-    // else if (this.word === '[' {DoubleOrTriple.push(triple)})
-    // console.log (DoubleOrTriple)
-    // if DoubleOrTriple = Double 
-    // return totalpoints += Pointsystem[this.word[i]] * 2
-
-    
-    
-    /* EXTENSION ENDS */
-
-
   }
 
+  /* EXTENSION STARTS */
+
+  /* PSEUDOCODE FOR NEXT OBJECTIVE STARTS */
+
+  // At default multiplier should be declared and assigned to 1
+  // Multiplier should be reassigned to 2 when a curly open bracket is detected
+  // The multiplier should be reassigned to 1 when a curly closed bracket is detected
+  // Multiplier should be assigned to 3 when open bracket is detected and reassigned to 1 when closing square bracket is detected
+  // The totalscores for the values inside will change due to the multipliers declared
+  // the totalscores at default (without the brackets) will not change
+
+  /* PSEUDOCODE FOR NEXT OBJECTIVE ENDS */
+
+  // DoubleOrTriple = []
+
+  // if (this.word === '{' {DoubleOrTriple.push(Double)})
+  // console.log (DoubleOrTriple)
+  // else if (this.word === '[' {DoubleOrTriple.push(triple)})
+  // console.log (DoubleOrTriple)
+  // if DoubleOrTriple = Double
+  // return totalpoints += Pointsystem[this.word[i]] * 2
+
+  // let multiplier = 1
+  // if (this.word === '{' )
+  // multiplier = 2
+  // totalpoints = letterScores * multiplier
+  // return totalpoints
+  // else (this.word === '}' )
+  // multiplier = 1
+  // totalpoints = letterScores * multiplier
+  // return totalpoints
+  // if (this.word === '[' )
+  // multiplier = 3
+  // totalpoints = letterScores * multiplier
+  // return totalpoints
+  // else (this.word === ']' )
+  // multiplier = 1
+  // totalpoints = letterScores * multiplier
+  // return totalpoints
+
+  /* EXTENSION ENDS */
 }
 
 module.exports = Scrabble

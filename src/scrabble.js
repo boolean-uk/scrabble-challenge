@@ -10,6 +10,8 @@ class Scrabble {
     this.doubleScoreLettersToRemove = []
     this.arrayMinusDoubleScoredLetters = []
 
+    this.totalScore = 0
+
     // this.cleanArrayForScoring
 
     this.word = word
@@ -73,38 +75,38 @@ class Scrabble {
   doubleScoreCurlyBrackets () {
     if (
       // MORE THAN ONE DOUBLE SCORING LETTER
-      this.word.split('{').length - 1 >
+      this.word.split(this.curly).length - 1 >
       1
     ) {
       this.doubleLetterArray = [...this.word]
       for (let j = 0; j < this.doubleLetterArray.length; j++) {
-        if (this.doubleLetterArray[j] === '{') {
+        if (this.doubleLetterArray[j] === this.curly) {
           this.doubleLetterArrayReduced.push(this.doubleLetterArray[j + 1])
         }
       }
       return this.doubleLetterArrayReduced
     } else if (
       // ONE LETTER, BUT NOT FIRST, POSSIBLY LAST, ANYTHING IN BETWEEN
-      this.word.includes('{') &&
-      this.word[0] !== '{'
+      this.word.includes(this.curly) &&
+      this.word[0] !== this.curly
     ) {
       this.doubleLetterArrayReduced.push(
-        this.word[this.word.indexOf('{') + 1]
+        this.word[this.word.indexOf(this.curly) + 1]
       )
       return this.doubleLetterArrayReduced
     } else if (
       // ONE LETTER, BUT NOT LAST, POSSIBLY FIRST, ANYTHING IN BETWEEN
-      this.word.includes('}') &&
-      this.word[this.word.length - 1] !== '}'
+      this.word.includes(this.curly) &&
+      this.word[this.word.length - 1] !== this.curly
     ) {
       this.doubleLetterArrayReduced.push(
-        this.word[this.word.indexOf('{') + 1]
+        this.word[this.word.indexOf(this.curly) + 1]
       )
       return this.doubleLetterArrayReduced
     } else if (
       // WHOLE WORD BETWEEN [ ]
-      this.word[0] === '{' &&
-      this.word[this.word.length - 1] === '}'
+      this.word[0] === this.curly &&
+      this.word[this.word.length - 1] === this.curly
     ) {
       this.doubleLetterArrayReduced = [...this.word]
       return this.doubleLetterArrayReduced
@@ -116,29 +118,29 @@ class Scrabble {
   tripleScoreSquareBrackets () {
     if (
       // MORE THAN ONE DOUBLE SCORING LETTER
-      this.word.split('[').length - 1 >
+      this.word.split(this.square).length - 1 >
       1
     ) {
       this.tripleLetterArray = [...this.word]
       for (let j = 0; j < this.tripleLetterArray.length; j++) {
-        if (this.tripleLetterArray[j] === '[') {
+        if (this.tripleLetterArray[j] === this.square) {
           this.tripleLetterArrayReduced.push(this.tripleLetterArray[j + 1])
         }
       }
       return this.tripleLetterArrayReduced
     } else if (
       // ONE LETTER, BUT NOT FIRST, POSSIBLY LAST, ANYTHING IN BETWEEN
-      this.word.includes('[') &&
-      this.word[0] !== '['
+      this.word.includes(this.square) &&
+      this.word[0] !== this.square
     ) {
       this.tripleLetterArrayReduced.push(
-        this.word[this.word.indexOf('[') + 1]
+        this.word[this.word.indexOf(this.square) + 1]
       )
       return this.tripleLetterArrayReduced
     } else if (
       // ONE LETTER, BUT NOT LAST, POSSIBLY FIRST, ANYTHING IN BETWEEN
-      this.word.includes('[') &&
-      this.word[this.word.length - 1] !== ']'
+      this.word.includes(this.square) &&
+      this.word[this.word.length - 1] !== this.square
     ) {
       this.tripleLetterArrayReduced.push(
         this.word[this.word.indexOf('[') + 1]
@@ -146,8 +148,8 @@ class Scrabble {
       return this.tripleLetterArrayReduced
     } else if (
       // WHOLE WORD BETWEEN [ ]
-      this.word[0] === '[' &&
-      this.word[this.word.length - 1] === ']'
+      this.word[0] === this.square &&
+      this.word[this.word.length - 1] === this.square
     ) {
       this.tripleLetterArrayReduced = [...this.word]
       return this.tripleLetterArrayReduced
@@ -165,25 +167,56 @@ class Scrabble {
     return arrayMinusDoubleScoredLetters
   }
 
-  // REMOVE TRIPLE SCORE LETTERS FROM ARRAY
+  // REMOVE TRIPLE SCORE LETTERS FROM ARRAY ABOVE
 
   removeTripleScoredLetters () {
     const tripleScoreLettersToRemove = this.tripleScoreSquareBrackets()
-    const arrayMinusTripleScoredLetters = [...this.word].filter(item => {
+    const arrayMinusDoubleTripleScoredLetters = [...this.arrayMinusDoubleScoredLetters].filter(item => {
       return tripleScoreLettersToRemove.indexOf(item) === -1
     })
-    return arrayMinusTripleScoredLetters
+    return arrayMinusDoubleTripleScoredLetters
   }
 
-  // REMOVE BRACKETS FROM ARRAY
-  cleanArrayOfBrackets () {
-    const cleanArrayForScoring = this.arrayMinusScoredLetters.filter(item => {
-      return this.bracketsToRemove.indexOf(item) === -1
-    })
-    return cleanArrayForScoring
+  // // REMOVE BRACKETS FROM ARRAY
+  // cleanArrayOfBrackets () {
+  //   const cleanArrayForScoring = [...this.arrayMinusDoubleTripleScoredLetters].filter(item => {
+  //     return this.bracketsToRemove.indexOf(item) === -1
+  //   })
+
+  //   return cleanArrayForScoring
+  // }
+
+  // single score
+  singleScore () {
+    const singleScore = this.arrayMinusDoubleTripleScoredLetters.map(letter => scoreObject[letter.toUpperCase()]).reduce((x, y) => x + y, 0)
+    console.log(singleScore)
+    return singleScore
+  }
+
+  // double score
+  doubleScore () {
+    const doubleScore = this.doubleScoreCurlyBrackets().map(letter => scoreObject[letter.toUpperCase()]).reduce((x, y) => x + y, 0)
+    console.log(doubleScore)
+    return doubleScore
+  }
+
+  // triple score
+  tripleScore () {
+    const tripleScore = this.tripleScoreSquareBrackets().map(letter => scoreObject[letter.toUpperCase()]).reduce((x, y) => x + y, 0)
+    console.log(tripleScore)
+    return tripleScore
+  }
+
+  scoresTotaled () {
+    this.totalScore = singleScore + doubleScore + tripleScore
+    console.log('.............', this.totalScore)
+    return this.totalScore
   }
 }
-const doubleScoreWord = new Scrabble('[O]XY{P}HENBUTAZON[E]')
+const doubleScoreWord = new Scrabble('[X][X]{Y}{Y}HENBUTAZON[X]')
+const final = new Scrabble('[X][X]{Y}{Y}HENBUTAZON[X]')
+console.log('removeDoubleScoredLetters', final.removeDoubleScoredLetters())
+console.log('removeTripleScoredLetters', final.removeTripleScoredLetters())
 const wordArray = doubleScoreWord.wordArray()
 console.log('wordArray', wordArray)
 const scoredLettersDouble = doubleScoreWord.doubleScoreCurlyBrackets()

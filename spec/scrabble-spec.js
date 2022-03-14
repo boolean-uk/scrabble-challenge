@@ -12,13 +12,14 @@ describe("Scrabble", function() {
 
   it('returns 0 for whitespace', function() {
     scrabble = new Scrabble(" \t\n")
-
+// \t that equals empty space tab or indentation
+// \n is a new line, a break in a html like </br>
     expect(scrabble.score()).toEqual(0)
   })
 
   it('returns 0 for null', function() {
     scrabble = new Scrabble(null)
-
+// no value added, nothing
     expect(scrabble.score()).toEqual(0)
   })
 

@@ -109,7 +109,33 @@ describe("Scrabble", function() {
   it('triple letter', function() {
     scrabble = new Scrabble('bottle')
     scrabble.setTripleLetter('t')
-    console.log(scrabble.word)
     expect(scrabble.score()).toEqual(12)
   })
+
+  describe("Ed's Edge Cases", function() {
+  it('Double double letter or double word?', function() {
+    scrabble = new Scrabble('{b}ottl{e}')
+    expect(scrabble.score()).toEqual(12)
+  })
+
+  it('Double triple letter or triple word?', function() {
+    scrabble = new Scrabble('[b]ottl[e]')
+    expect(scrabble.score()).toEqual(16)
+  })
+
+  it('Both double word and double letters', function() {
+    scrabble = new Scrabble('{{b}ottl{e}}')
+    expect(scrabble.score()).toEqual(24)
+  })
+
+  it('Both triple word and triple letters', function() {
+    scrabble = new Scrabble('[[b]ottl[e]]')
+    expect(scrabble.score()).toEqual(48)
+  })
+
+  it("Deluxe Edition", function() {
+    scrabble = new Scrabble('{[[b]{o}tt[l]{e}]]}')
+    expect(scrabble.score()).toEqual(108)
+  })
+})
 })

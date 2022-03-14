@@ -30,6 +30,7 @@ const scoreBoard = {
 class Scrabble {
   constructor (word) {
     this.word = word
+    this.multiplier = 1
   }
 
   // Scores for each letter
@@ -48,20 +49,15 @@ class Scrabble {
    * @returns A score for the given word.
    */
   score () {
-    if (this.word === null) return 0
-    else if (this.word.length === 0) return 0
-    // Tests if there is any whitespace
-    else if (/\s/g.test(this.word)) return 0
+    if (!this.isValid(this.word)) return 0
 
     let score = 0
-    let doubleIsOn = false
-    let tripleIsOn = false
     for (let i = 0; i < this.word.length; i++) {
-      if (this.word[i] === '{') { doubleIsOn = true; i++ } else if (this.word[i] === '[') { tripleIsOn = true; i++ } else if (this.word[i] === '}') doubleIsOn = false
-      else if (this.word[i] === ']') tripleIsOn = false
-      if (doubleIsOn) score += scoreBoard[this.word[i].toUpperCase()] * 2
-      else if (tripleIsOn) score += scoreBoard[this.word[i].toUpperCase()] * 3
-      else if (i < this.word.length && this._isALpha(this.word[i])) score += scoreBoard[this.word[i].toUpperCase()]
+      if (this.word[i] === '{') this.multiplier = this.multiplier * 2
+      else if (this.word[i] === '[') this.multiplier = this.multiplier * 3
+      else if (this.word[i] === '}') this.multiplier = this.multiplier / 2
+      else if (this.word[i] === ']') this.multiplier = this.multiplier / 3
+      if (this._isALpha(this.word[i])) score += scoreBoard[this.word[i].toUpperCase()] * this.multiplier
     }
     return score
   }
@@ -102,6 +98,19 @@ class Scrabble {
    */
   setTripleWord () {
     this.word = `[${this.word}]`
+  }
+
+  /**
+   * Cehcks if the input word is valid.
+   * @param {string} word - A scrabble word.
+   * @returns Boolean
+   */
+  isValid (word) {
+    if (word === null) return false
+    else if (word.length === 0) return false
+    // Tests if there is any whitespace
+    else if (/\s/g.test(word)) return false
+    return true
   }
 
   /**

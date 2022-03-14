@@ -27,73 +27,24 @@ const letterValue = {
   z: 10
 }
 class Scrabble {
-  // Write your implementation here
   constructor (word) {
     this.word = word;
   }
 
   score () { 
     if (this.word === null || this.word === '') {return 0}
-    // \t = tab - horizontal whitespace used for indentation
-    // \n = new line
+    if (this.word === "\t" || this.word === "\n") {totalScore += 0}
     let totalScore = 0;
     let multiple = 1;
     for (let i = 0; i < this.word.length; i++) {
-      const letter = this.word[i].toLowerCase();
-      const scoreOfLetter = letterValue[letter] || 0
-      if (letter === "["){
-        multiple = 2 * multiple;
-      }
-      if (letter === "{"){
-        multiple = 3 * multiple;        
-      }
-      if (letter === "]"){
-        multiple = multiple / 2;        
-      }
-      if (letter === "}"){
-        multiple = multiple / 3;        
-      }
-      totalScore += (scoreOfLetter * multiple);
+      const letter = letterValue[this.word[i].toLowerCase()] || 0;
+      if (this.word[i] === "["){multiple = 2 * multiple}
+      if (this.word[i] === "{"){multiple = 3 * multiple}
+      if (this.word[i] === "]"){multiple = multiple / 2}
+      if (this.word[i] === "}"){multiple = multiple / 3}
+      totalScore += (letter * multiple);
     } 
     return totalScore;
   }
 }
 module.exports = Scrabble
-
-    /*
-  score () {
-
-    if ((this.word === null || this.word.includes('\t') || this.word.includes('\n') || this.word === '')) { return 0 }
-    for (let i = 0; i < this.word.length; i++) {
-      if (this.word[i] === "[" && this.word[i + 2] === "]") {
-        console.log("double letter");
-        if (this.word[i] === "["){
-          continue
-        }
-        if (this.word[i + 2] === "]"){
-          continue
-        }
-        totalScore += letterValue[this.word[i].toLowerCase().toString()];
-        totalScore += letterValue[this.word[i + 1].toLowerCase()];
-        return totalScore;
-      }
-      if (this.word[i] === "{" && this.word[i + 2] === "}") {
-        console.log("tripple letter");
-
-        totalScore += letterValue[this.word[i].toLowerCase().toString()];
-        totalScore += (letterValue[this.word[i + 1].toLowerCase()] + letterValue[this.word[i + 1].toLowerCase()])
-        return totalScore;
-      }
-      totalScore += letterValue[this.word[i].toLowerCase().toString()]
-    }
-    if (this.word[0] === "[" && this.word[this.word.length - 1] === "]") {
-      console.log("double score")
-      return (totalScore * 2)
-    }
-    if (this.word[0] === "{" && this.word[this.word.length - 1] === "}") {
-      console.log("tripple score")
-      return (totalScore * 3)
-    }
-    return totalScore
-  }
-  */

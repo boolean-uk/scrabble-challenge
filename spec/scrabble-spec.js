@@ -77,7 +77,7 @@ describe("Scrabble", function() {
   })
 
   it('double score with a triple letter', function() {
-  scrabble = new Scrabble("[OXY{P}}}HENBUTAZONE]")
+  scrabble = new Scrabble("[OXY{P}HENBUTAZONE]")
 
   expect(scrabble.score()).toEqual(94)
   })

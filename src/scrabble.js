@@ -178,13 +178,14 @@ class Scrabble {
   }
 
   // // REMOVE BRACKETS FROM ARRAY
-  // cleanArrayOfBrackets () {
-  //   const cleanArrayForScoring = [...this.arrayMinusDoubleTripleScoredLetters].filter(item => {
-  //     return this.bracketsToRemove.indexOf(item) === -1
-  //   })
 
-  //   return cleanArrayForScoring
-  // }
+  cleanArrayOfBrackets () {
+    const cleanArrayForScoring = [...this.arrayMinusDoubleTripleScoredLetters].filter(item => {
+      return this.bracketsToRemove.indexOf(item) === -1
+    })
+
+    return cleanArrayForScoring
+  }
 
   // single score
   singleScore () {
@@ -197,14 +198,14 @@ class Scrabble {
   doubleScore () {
     const doubleScore = this.doubleScoreCurlyBrackets().map(letter => scoreObject[letter.toUpperCase()]).reduce((x, y) => x + y, 0)
     console.log(doubleScore)
-    return doubleScore
+    return doubleScore * 2
   }
 
   // triple score
   tripleScore () {
     const tripleScore = this.tripleScoreSquareBrackets().map(letter => scoreObject[letter.toUpperCase()]).reduce((x, y) => x + y, 0)
     console.log(tripleScore)
-    return tripleScore
+    return tripleScore * 3
   }
 
   scoresTotaled () {
@@ -213,8 +214,9 @@ class Scrabble {
     return this.totalScore
   }
 }
-const doubleScoreWord = new Scrabble('[X][X]{Y}{Y}HENBUTAZON[X]')
-const final = new Scrabble('[X][X]{Y}{Y}HENBUTAZON[X]')
+// -------------------------------------24-24-8-8-24-1-1-1-1-3-4-1
+const doubleScoreWord = new Scrabble('[X][X]{Y}{Y}[X]aaaapwu')
+const final = new Scrabble('xx')
 console.log('removeDoubleScoredLetters', final.removeDoubleScoredLetters())
 console.log('removeTripleScoredLetters', final.removeTripleScoredLetters())
 const wordArray = doubleScoreWord.wordArray()
@@ -279,22 +281,25 @@ const scoreObject = {
 const singleScore = arrayCleanDoubleTriple
   .map(letter => scoreObject[letter.toUpperCase()])
   .reduce((x, y) => x + y, 0)
-console.log(singleScore)
+console.log('single score....', singleScore)
 
 // double score
 
 const doubleScore = scoredLettersDouble
   .map(letter => scoreObject[letter.toUpperCase()])
-  .reduce((x, y) => x + y, 0)
+  .reduce((x, y) => x + y, 0) * 2
 
-console.log(doubleScore)
+console.log('double score....', doubleScore)
 
 // triple score
 
 const tripleScore = scoredLettersTriple
   .map(letter => scoreObject[letter.toUpperCase()])
-  .reduce((x, y) => x + y, 0)
+  .reduce((x, y) => x + y, 0) * 3
 
-console.log(tripleScore)
+console.log('triple score....', tripleScore)
+
+const finalScore = singleScore + doubleScore + tripleScore
+console.log('final score....', finalScore)
 
 module.exports = Scrabble

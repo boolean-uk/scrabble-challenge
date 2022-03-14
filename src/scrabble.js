@@ -1,35 +1,60 @@
-const ScoreUtil = require('./utils/Scores')
+const ScoreUtil = require("./utils/Scores");
 
 class Scrabble {
-  constructor (word) {
-    this.word = word
+  constructor(word) {
+    this.word = word;
   }
 
-  isValid () {
+  isValid() {
     return (
-      this.word != null && typeof this.word === 'string' && this.word.length > 0
-    )
+      this.word != null && typeof this.word === "string" && this.word.length > 0
+    );
   }
 
-  getCharScore (char) {
-    if (ScoreUtil.scores[char]) return ScoreUtil.scores[char]
-    else return 0
+  getCharScore(char) {
+    if (ScoreUtil.scores[char]) return ScoreUtil.scores[char];
+    else return 0;
   }
 
-  score () {
-    let s = 0
-    if (!this.isValid()) return s
+  score() {
+    let s = 0;
+    let doubleNext = false;
+    let tripleNext = false;
+    if (!this.isValid()) return s;
     this.word
-      .replace(' ', '')
+      .replace(" ", "")
       .toLowerCase()
-      .split('')
-      .forEach((ch) => (s += this.getCharScore(ch)))
+      .split("")
+      .forEach((ch, index) => {
+        if (ch === "[") {
+          let i = this.word.indexOf("]");
+          if (i === index + 2) {
+            tripleNext = true;
+          }
+        } else
+        if (ch === "{") {
+          let i = this.word.indexOf("}");
+          if (i === index + 2) {
+            doubleNext = true;
+          }
+        } else
+        if (doubleNext) {
+          s += this.getCharScore(ch) * 2;
+          doubleNext = false;
+        } else if (tripleNext) {
+          s += this.getCharScore(ch) * 3;
+          tripleNext = false;
+        } else s += this.getCharScore(ch);
+      });
 
-    return s
+
+    if(this.word.indexOf("[") === 0 && this.word.indexOf("]") == this.word.length-1) return s*3;
+    if(this.word.indexOf("{") === 0 && this.word.indexOf("}") == this.word.length-1) return s*2;
+    return s;
   }
 }
 
-const t = new Scrabble('    \n')
-console.log(t.score())
+const t = new Scrabble("d[o]g");
+console.log(t.score());
 
-module.exports = Scrabble
+module.exports = Scrabble;

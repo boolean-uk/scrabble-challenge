@@ -10,7 +10,7 @@ describe('Scrabble', function () {
     expect(scrabble.score()).toEqual(0)
   })
 
-   .it('returns 0 for whitespace', function () {
+   it('returns 0 for whitespace', function () {
     scrabble = new Scrabble(' \t\n')
 
     expect(scrabble.score()).toEqual(0)

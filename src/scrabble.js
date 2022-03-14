@@ -49,6 +49,8 @@ class Scrabble {
         .filter(Boolean)
       console.log(this.doubleArrayScore)
       return this.doubleArrayScore
+    } else {
+      return this.doubleArrayScore
     }
   }
 
@@ -64,6 +66,8 @@ class Scrabble {
         .filter(Boolean)
       console.log(this.tripleArrayScore)
       return this.tripleArrayScore
+    } else {
+      return this.tripleArrayScore
     }
   }
 
@@ -76,7 +80,7 @@ class Scrabble {
       return 0
     } else if (this.word === '\n') {
       return 0
-    } else if (this.word.includes(' ')) {
+    } else if (this.word.includes(' ') || this.word.includes('\t') || this.word.includes('\n')) {
       return 0
     } else {
       this.wordScore += [...this.word.toUpperCase()].reduce(
@@ -88,7 +92,7 @@ class Scrabble {
   }
 }
 
-const test = new Scrabble('[ppppppp}').doubleScore()
+const test = new Scrabble('{p}{p}ppoijs{u}').doubleScore()
 console.log('test', test)
 
 module.exports = Scrabble

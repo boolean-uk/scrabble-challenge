@@ -52,7 +52,4 @@ class Scrabble {
   }
 }
 
-const t = new Scrabble('d[o]g')
-console.log(t.score())
-
 module.exports = Scrabble

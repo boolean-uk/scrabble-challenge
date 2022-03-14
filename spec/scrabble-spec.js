@@ -51,4 +51,70 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('scores a full double word', function() {
+    scrabble = new Scrabble('{aaf}')
+
+    expect(scrabble.score()).toEqual(12)
+  })
+
+  it('scores a double letter', function() {
+    scrabble = new Scrabble('z{o}om')
+
+    expect(scrabble.score()).toEqual(16)
+  })
+
+  it('scores a triple word', function() {
+    scrabble = new Scrabble('[after]')
+
+    expect(scrabble.score()).toEqual(24)
+  })
+
+  it('scores a triple letter', function() {
+    scrabble = new Scrabble('[z]oom')
+
+    expect(scrabble.score()).toEqual(35)
+  })
+
+  it('mix double and triple letter', function() {
+    scrabble = new Scrabble('z[o]{o}m')
+
+    expect(scrabble.score()).toEqual(18)
+  })
+
+  it('triple letter double word', function() {
+    scrabble = new Scrabble('{z[o]om}')
+
+    expect(scrabble.score()).toEqual(34)
+  })
+  it('double letter triple word', function() {
+    scrabble = new Scrabble('[b{o}y]')
+
+    expect(scrabble.score()).toEqual(27)
+  })
+  it('two double letters', function() {
+    scrabble = new Scrabble('b{o}{o}k')
+
+    expect(scrabble.score()).toEqual(12)
+  })
+  it('two triple letters', function() {
+    scrabble = new Scrabble('b[o][o]k')
+
+    expect(scrabble.score()).toEqual(14)
+  })
+  it('not repeating double letter and double word', function() {
+    scrabble = new Scrabble('{o}')
+
+    expect(scrabble.score()).toEqual(2)
+  })
+  it('ultimate test', function() {
+    scrabble = new Scrabble('[t[h]r{o}w]')
+
+    expect(scrabble.score()).toEqual(60)
+  })
+  it('invalid braces', function() {
+    scrabble = new Scrabble('str{{{{[[]]e]et')
+
+    expect(scrabble.score()).toEqual(6)
+  })
 })

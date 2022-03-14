@@ -52,4 +52,17 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('scores a double-letter', function() {
+    scrabble = new Scrabble('C{A}T')
+
+    expect(scrabble.score()).toEqual(6)
+  })
+
+  it('scores a triple-letter', function() {
+    scrabble = new Scrabble('C[A]T')
+
+    expect(scrabble.score()).toEqual(7)
+  })
+
 })

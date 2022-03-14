@@ -12,8 +12,7 @@ class Scrabble {
   }
 
   getCharScore (char) {
-    if (ScoreUtil.scores[char]) return ScoreUtil.scores[char]
-    else return 0
+    return ScoreUtil.scores[char] || 0
   }
 
   score () {
@@ -28,17 +27,11 @@ class Scrabble {
       .forEach((ch, index) => {
         if (ch === '[') {
           const i = this.word.indexOf(']')
-          if (i === index + 2) {
-            tripleNext = true
-          }
-        } else
-        if (ch === '{') {
+          if (i === index + 2) tripleNext = true
+        } else if (ch === '{') {
           const i = this.word.indexOf('}')
-          if (i === index + 2) {
-            doubleNext = true
-          }
-        } else
-        if (doubleNext) {
+          if (i === index + 2) doubleNext = true
+        } else if (doubleNext) {
           s += this.getCharScore(ch) * 2
           doubleNext = false
         } else if (tripleNext) {
@@ -47,8 +40,14 @@ class Scrabble {
         } else s += this.getCharScore(ch)
       })
 
-    if (this.word.indexOf('[') === 0 && this.word.indexOf(']') === this.word.length - 1) return s * 3
-    if (this.word.indexOf('{') === 0 && this.word.indexOf('}') === this.word.length - 1) return s * 2
+    if (
+      this.word.indexOf('[') === 0 &&
+      this.word.indexOf(']') === this.word.length - 1
+    ) { return s * 3 }
+    if (
+      this.word.indexOf('{') === 0 &&
+      this.word.indexOf('}') === this.word.length - 1
+    ) { return s * 2 }
     return s
   }
 }

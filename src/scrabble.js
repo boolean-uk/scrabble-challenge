@@ -25,8 +25,14 @@ class Scrabble {
         if (this.eightPoints.includes(wordArr[i])) score += 8
         if (this.tenPoints.includes(wordArr[i])) score += 10
       }
+
+      if (wordArr[0] === '{' && wordArr[wordArr.length - 1] === '}') {
+        return score * 2
+      } else if (wordArr[0] === '[' && wordArr[wordArr.length - 1] === ']') {
+        return score * 3
+      }
+      return score
     }
-    return score
   }
 }
 

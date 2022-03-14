@@ -81,6 +81,6 @@ class Scrabble {
   }
 }
 
-Scrabble = new Scrabble("dog");
+scrabble = new Scrabble("dog");
 
 module.exports = Scrabble;

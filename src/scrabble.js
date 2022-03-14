@@ -53,10 +53,10 @@ class Scrabble {
 
     let score = 0
     for (let i = 0; i < this.word.length; i++) {
-      if (this.word[i] === '{') this.multiplier = this.multiplier * 2
-      else if (this.word[i] === '[') this.multiplier = this.multiplier * 3
-      else if (this.word[i] === '}') this.multiplier = this.multiplier / 2
-      else if (this.word[i] === ']') this.multiplier = this.multiplier / 3
+      if (this.word[i] === '{') this.multiplier *= 2
+      else if (this.word[i] === '[') this.multiplier *= 3
+      else if (this.word[i] === '}') this.multiplier /= 2
+      else if (this.word[i] === ']') this.multiplier /= 3
       if (this._isALpha(this.word[i])) score += scoreBoard[this.word[i].toUpperCase()] * this.multiplier
     }
     return score

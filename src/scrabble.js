@@ -6,19 +6,16 @@ class Scrabble {
 
   // first find out if the string is empty string, whitepsace or null, then score 0.
   score () {
-    if (this.word === '' || this.word === ' ') {
-      this.points += 0
-      return 0
-    }
-    if (this.word === ' \t\n') {
+    if (
+      this.word === '' ||
+      this.word === ' ' ||
+      this.word === ' \t\n' ||
+      this.word === null
+    ) {
       this.points += 0
       return 0
     }
 
-    if (this.word === null) {
-      this.points += 0
-      return 0
-    }
     // I use for loop on the string to score each letter on each iteration
     for (let i = 0; i < this.word.length; i++) {
       // thise are the letters in the corresponting arrays (based on the points value), stored in a variable

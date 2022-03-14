@@ -51,4 +51,33 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+
+  it('scores with double and triple letters', function() {
+    scrabble = new Scrabble('d[o]g')
+
+    expect(scrabble.score()).toEqual(7)
+
+    scrabble = new Scrabble('d{o}g')
+    expect(scrabble.score()).toEqual(6)
+  })
+
+  it('scores with double and triple letters', function() {
+    scrabble = new Scrabble('[dog]')
+
+    expect(scrabble.score()).toEqual(15)
+
+    scrabble = new Scrabble('{dog}')
+    expect(scrabble.score()).toEqual(10)
+  })
+
+
+  it('scores with double/triple letters and words', function() {
+    scrabble = new Scrabble('[d{o}g]')
+
+    expect(scrabble.score()).toEqual(18)
+
+    scrabble = new Scrabble('{d[o]g}')
+    expect(scrabble.score()).toEqual(14)
+  })
 })

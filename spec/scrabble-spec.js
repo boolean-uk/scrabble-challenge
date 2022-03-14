@@ -54,29 +54,29 @@ describe('Scrabble', function () {
 
   // -------extension tests added below-----------
 
-  it('short word with double points', function () {
-    scrabble = new Scrabble('{a}')
+  // it('short word with double points', function () {
+  //   scrabble = new Scrabble('{a}')
 
-    expect(scrabble.score()).toEqual(2)
-  })
+  //   expect(scrabble.score()).toEqual(2)
+  // })
 
-  it('short word with triple points', function () {
-    scrabble = new Scrabble('[j]')
+  // it('short word with triple points', function () {
+  //   scrabble = new Scrabble('[j]')
 
-    expect(scrabble.score()).toEqual(24)
-  })
+  //   expect(scrabble.score()).toEqual(24)
+  // })
 
-  it('case-sensitive longer word with doulbe and triple letter', function () {
-    scrabble = new Scrabble('Su{p}er[m]an')
+  // it('case-sensitive longer word with doulbe and triple letter', function () {
+  //   scrabble = new Scrabble('Su{p}er[m]an')
 
-    expect(scrabble.score()).toEqual(21)
-  })
+  //   expect(scrabble.score()).toEqual(21)
+  // })
 
-  it('short word with double letter', function () {
-    scrabble = new Scrabble('{a}ei')
+  // it('short word with double letter', function () {
+  //   scrabble = new Scrabble('{a}ei')
 
-    expect(scrabble.score()).toEqual(4)
-  })
+  //   expect(scrabble.score()).toEqual(4)
+  // })
 
   // ---------extension tests for double and tripple words ------------
 

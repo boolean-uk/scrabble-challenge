@@ -1,0 +1,47 @@
+    doubleLetter () {
+    for (let i = 0; i < this.word.length; i++)
+        if (this.word[i] === "[" && this.word[i + 2] === "]") {
+            totalScore += letterValue[this.word[i + 1].toLowerCase()]
+            if(this.word[i] === "["){this.word.splice[i]}
+            if(this.word[i + 2] === "]"){this.word.splice[i + 2]}
+            totalScore += letterValue[this.word[i].toLowerCase().toString()];
+            return totalScore
+        }
+    }
+  }
+
+    trippleLetter () {
+    for (let i = 0; i < this.word.length; i++)
+        if (this.word[i] === "{" && this.word[i + 2] === "}") {
+            totalScore += (letterValue[this.word[i + 1].toLowerCase()] + letterValue[this.word[i + 1].toLowerCase()])
+            if(this.word[i] === "{"){this.word.splice[i]}
+            if(this.word[i + 2] === "}"){this.word.splice[i + 2]}
+            totalScore += letterValue[this.word[i].toLowerCase().toString()];
+            return totalScore
+        }
+  }
+
+    doubleWord () {
+    if (this.word[0] === "[" && this.word[this.word.length - 1] === "]") {
+        this.word.splice[0];
+        this.word.splice[this.word.length - 1];
+        for (let i = 0; i < this.word.length; i++)
+        totalScore += (letterValue[this.word[i].toLowerCase().toString()] * 2);
+        return totalScore
+    }
+  }
+
+    trippleWord () {
+    if (this.word[0] === "{" && this.word[this.word.length - 1] === "}") {
+        this.word.splice[0];
+        this.word.splice[this.word.length - 1];
+        for (let i = 0; i < this.word.length; i++)
+        totalScore += (letterValue[this.word[i].toLowerCase().toString()] * 3);
+        return totalScore
+    }
+  }
+
+    normalWord() {
+        totalScore += (letterValue[this.word[i].toLowerCase().toString()]);
+        return totalScore
+    }

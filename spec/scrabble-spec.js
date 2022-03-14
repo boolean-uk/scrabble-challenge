@@ -51,4 +51,34 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('add a double letter', function() {
+    scrabble = new Scrabble("O[X]YPHENBUTAZONE")
+
+    expect(scrabble.score()).toEqual(49)
+  })
+
+  it('add a triple letter', function() {
+    scrabble = new Scrabble("O{X}YPHENBUTAZONE")
+
+    expect(scrabble.score()).toEqual(57)
+  })
+
+  it('double score', function() {
+    scrabble = new Scrabble("[OXYPHENBUTAZONE]")
+
+    expect(scrabble.score()).toEqual(82)
+  })
+
+  it('tripple score', function() {
+    scrabble = new Scrabble("{OXYPHENBUTAZONE}")
+
+    expect(scrabble.score()).toEqual(123)
+  })
+
+  it('double score with a triple letter', function() {
+  scrabble = new Scrabble("[OXY{P}}}HENBUTAZONE]")
+
+  expect(scrabble.score()).toEqual(94)
+  })
 })

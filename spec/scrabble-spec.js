@@ -51,4 +51,19 @@ describe('Scrabble', function () {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('scores a double-score-word word', function () {
+    scrabble = new Scrabble('{OXYPHENBUTAZONE}')
+
+    expect(scrabble.score()).toEqual(82)
+  })
+
+  it('scores a triple-score-word word', function () {
+    scrabble = new Scrabble('[OXYPHENBUTAZONE]')
+
+    expect(scrabble.score()).toEqual(123)
+  })
+
+  
+  
 })

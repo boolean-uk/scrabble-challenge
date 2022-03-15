@@ -6,7 +6,7 @@ class Scrabble {
   score () {
     let totalScore = 0
     let multiple = 1
-    if (this.word === null || this.word === '') { return 0 }
+    if (typeof this.word !== 'string') { return 0 }
     if (this.word === '\t' || this.word === '\n') { totalScore += 0 }
     for (let i = 0; i < this.word.length; i++) {
       const letter = letterValue[this.word[i].toLowerCase()] || 0

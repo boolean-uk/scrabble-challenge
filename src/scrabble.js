@@ -51,13 +51,31 @@ class Scrabble {
   score () {
     if (!this.isValid(this.word)) return 0
 
+    const str = this.word.toUpperCase()
     let score = 0
-    for (let i = 0; i < this.word.length; i++) {
-      if (this.word[i] === '{') this.multiplier *= 2
-      else if (this.word[i] === '[') this.multiplier *= 3
-      else if (this.word[i] === '}') this.multiplier /= 2
-      else if (this.word[i] === ']') this.multiplier /= 3
-      if (this._isALpha(this.word[i])) score += scoreBoard[this.word[i].toUpperCase()] * this.multiplier
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === '{') {
+        this.multiplier *= 2
+        continue
+      }
+      if (str[i] === '[') {
+        this.multiplier *= 3
+        continue
+      }
+
+      if (str[i] === '}') {
+        this.multiplier /= 2
+        continue
+      }
+
+      if (str[i] === ']') {
+        this.multiplier /= 3
+        continue
+      }
+
+      if (this._isALpha(str[i])) {
+        score += scoreBoard[str[i]] * this.multiplier
+      }
     }
     return score
   }
@@ -101,15 +119,15 @@ class Scrabble {
   }
 
   /**
-   * Cehcks if the input word is valid.
+   * Checks if the input word is valid.
    * @param {string} word - A scrabble word.
    * @returns Boolean
    */
   isValid (word) {
     if (word === null) return false
-    else if (word.length === 0) return false
+    if (word.length === 0) return false
     // Tests if there is any whitespace
-    else if (/\s/g.test(word)) return false
+    if (/\s/g.test(word)) return false
     return true
   }
 

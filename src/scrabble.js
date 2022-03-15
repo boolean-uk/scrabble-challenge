@@ -19,17 +19,18 @@ class Scrabble {
       return finalScore
     } else {
       const wordArr = this.word.toLowerCase().split('')
+
       for (let i = 0; i < wordArr.length; i++) {
         // check if there is curly bracket or square bracket
-        // If so, change the multiply to 2 or 3. If not, multiply remains 1
+        // if so, change the multiply to 2 or 3. If not, multiply remains 1
         if (wordArr[i] === '{') {
-          multiply = 2
+          multiply = multiply * 2
         } else if (wordArr[i] === '}') {
-          multiply = 1
+          multiply = multiply / 2
         } else if (wordArr[i] === '[') {
-          multiply = 3
+          multiply = multiply * 3
         } else if (wordArr[i] === ']') {
-          multiply = 1
+          multiply = multiply / 3
         } else {
           if (this.onePoint.includes(wordArr[i])) subScore = 1
           if (this.twoPoints.includes(wordArr[i])) subScore = 2

@@ -53,8 +53,8 @@ describe("Scrabble", function() {
   })
 
   it('scores a simple word with double letter', function() {
-    scrabble = new Scrabble('{d}{o}[g]')
+    scrabble = new Scrabble('{{d}{o}[g]}')
 
-    expect(scrabble.score()).toEqual(12)
+    expect(scrabble.score()).toEqual(24)
   })
 })

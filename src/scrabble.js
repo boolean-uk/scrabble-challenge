@@ -57,7 +57,6 @@ class Scrabble {
           multiple = multiple / 3
         }
         scrabbleWordScore += this.scoresObject[this.string[j].toUpperCase()] * multiple || 0
-        console.log(scrabbleWordScore)
       }
       return scrabbleWordScore
     }

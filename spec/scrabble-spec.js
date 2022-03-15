@@ -64,6 +64,18 @@ describe('Scrabble', function () {
     expect(scrabble.score()).toEqual(123)
   })
 
+  it('scores a triple-score-word-triple-score-letter word', function () {
+    scrabble = new Scrabble('[OXYPHENBUTA[Z]ONE]')
+
+    expect(scrabble.score()).toEqual(183)
+  })
+
+  it('scores a triple-score-word-double-score-letter word', function () {
+    scrabble = new Scrabble('[OXYPHENBUTA{Z}ONE]')
+
+    expect(scrabble.score()).toEqual(153)
+  })
+
   
   
 })

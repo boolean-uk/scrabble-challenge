@@ -69,7 +69,6 @@ module.exports = Scrabble;
 // ./node_modules/jasmine/bin/jasmine.js
 
 // Nathan's solution of Scrabble Challenge:
-
 /* const pointMap = {
   A: 1,
   B: 3,

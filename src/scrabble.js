@@ -47,7 +47,7 @@ class Scrabble {
       if (letterScores.eightPoints.includes(this.word[i])) count += 8;
       if (letterScores.tenPoints.includes(this.word[i])) count += 10;
     }
-    for (let j = 0, jl = count; j < this.word.length; j++) {
+    for (let j = 0, j = count; j < this.word.length; j++) {
       if (this.word[j] === "{" && this.word[j + 2] === "}") {
         if (letterScores.onePoint.includes(this.word[j + 1])) count += 1;
         if (letterScores.twoPoints.includes(this.word[j + 1])) count += 2;

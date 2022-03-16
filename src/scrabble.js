@@ -63,6 +63,8 @@ class Scrabble {
     for (let i = 0; i < this.word.length; i++) {
       const letter = this.word.toLowerCase()[i]
 
+      /* EXTENSION STARTS */
+
       if (letter === '{') {
         multiplier = 2
       } else if (letter === '}') {
@@ -76,11 +78,13 @@ class Scrabble {
 
         totalpoints += letterscore * multiplier
       }
+      continue
     }
+    /* EXTENSION ENDS */
 
     console.log(totalpoints)
 
-    /* EXTENSION STARTS */
+    return totalpoints
 
     /* PSEUDOCODE FOR NEXT OBJECTIVE STARTS */
 
@@ -101,11 +105,7 @@ class Scrabble {
     // console.log (DoubleOrTriple)
     // if DoubleOrTriple = Double
     // return totalpoints += Pointsystem[this.word[i]] * 2
-
-    return totalpoints
   }
-
-  /* EXTENSION ENDS */
 }
 
 module.exports = Scrabble

@@ -63,4 +63,22 @@ describe("Scrabble", function () {
 
     expect(scrabble.score()).toEqual(35);
   });
+
+  // it("scores a double word and triple letter", function () {
+  //   scrabble = new Scrabble("{dog[z]}");
+
+  //   expect(scrabble.score()).toEqual(70);
+  // });
+
+  // it("returns 0 for an incomplete bracket pair", function () {
+  //   scrabble = new Scrabble("dog{i}e{z");
+
+  //   expect(scrabble.score()).toEqual(0);
+  // });
+
+  // it("returns 0 for a bracket pair the wrong way round", function () {
+  //   scrabble = new Scrabble("dog}z{");
+
+  //   expect(scrabble.score()).toEqual(0);
+  // });
 });

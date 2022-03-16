@@ -13,19 +13,19 @@ class Scrabble {
     for (let i = 0; i < this.word.length; i++) {
       const letter = letterValue[this.word[i].toLowerCase()] || 0
       if (this.word[i] === '[') {
-        multiple = 2 * multiple
+        multiple = 3 * multiple
         sumSquareBracket += 1
       }
       if (this.word[i] === '{') {
-        multiple = 3 * multiple
+        multiple = 2 * multiple
         sumCurlyBracket += 1
       }
       if (this.word[i] === ']' && sumSquareBracket > 0) {
-        multiple = multiple / 2
+        multiple = multiple / 3
         sumSquareBracket -= 1
       }
       if (this.word[i] === '}' && sumCurlyBracket > 0) {
-        multiple = multiple / 3
+        multiple = multiple / 2
         sumCurlyBracket -= 1
       }
       totalScore += (letter * multiple)

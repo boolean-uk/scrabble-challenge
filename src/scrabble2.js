@@ -25,7 +25,7 @@ class Scrabble {
     if (!= this.word)
     return 0
 
-    if (this.word = ('\t' || this.word = ('/n'))) 
+    if (this.word = ('\t') || this.word = ('/n'))
     return 0
 
     for (let i = 0; i < this.word; i++)

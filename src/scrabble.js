@@ -31,10 +31,9 @@ class Scrabble {
         const isDouble = arrOfLetters.join("").includes("*")
         const isTriple = arrOfLetters.join("").includes("%")
     
-        let doubleArr, tripleArr
+        let arrOfArrs
     
-        if (isDouble) doubleArr = arrOfLetters.map(x => x.split(""))
-        if (isTriple) tripleArr = arrOfLetters.map(x => x.split(""))
+        if (isDouble || isTriple) arrOfArrs = arrOfLetters.map(x => x.split(""))
     
         const getScore = arr => {
           let score = 0
@@ -52,12 +51,12 @@ class Scrabble {
         }
     
         if (isDouble) {
-          totalScore = doubleArr.map(x => {
-            return x.includes("*") ? getScore(x) * 2 : getScore(x)
+          totalScore = arrOfArrs.map(arrInArr => {
+            return arrInArr.includes("*") ? getScore(arrInArr) * 2 : getScore(arrInArr)
           }).reduce((a, b) => a + b)
         } else if (isTriple) {
-          totalScore = tripleArr.map(x => {
-            return x.includes("%") ? getScore(x) * 3 : getScore(x)
+          totalScore = arrOfArrs.map(arrInArr => {
+            return arrInArr.includes("%") ? getScore(arrInArr) * 3 : getScore(arrInArr)
           }).reduce((a, b) => a + b)
         } else {
           totalScore = getScore(arrOfLetters)

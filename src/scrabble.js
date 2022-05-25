@@ -26,7 +26,6 @@ class Scrabble {
         if (this.value5.includes(allCaps)) totalScore += 5
         if (this.value8.includes(allCaps)) totalScore += 8
         if (this.value10.includes(allCaps)) totalScore += 10
-        return 
       })
     }
     

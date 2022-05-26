@@ -1,3 +1,22 @@
+const wordListSample = [
+  "a",
+  "aa",
+  "aaa",
+  "aah",
+  "aahed",
+  "aahing",
+  "aahs",
+  "aal",
+  "aalii",
+  "aaliis",
+  "aals",
+  "aam",
+  "aani",
+  "aardvark",
+  "aardvarks",
+  "aardwolf"
+]
+
 class Scrabble {
 
   constructor(input) {
@@ -67,6 +86,10 @@ class Scrabble {
     
     return totalScore
     
+  }
+
+  checkValidity() {
+    return wordListSample.includes(this.input)
   }
 
   // THE FOLLOWING IS AN EXTRA METHOD WHICH WORKS BUT IT WILL BREAK THE NPX JASMINE TEST:

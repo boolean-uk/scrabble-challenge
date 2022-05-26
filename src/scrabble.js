@@ -8,12 +8,12 @@ class Scrabble {
   score() {
     let totalScore = 0
 
+    //  to test for null/undefined
     if (this.word === null || this.word === undefined) {
       this.word = 0
     }
 
-    // for (let i = 0; i < this.word ? this.word.length : 0; i++) {
-
+    // for loop to test every letter in the word and add their value to the total score, checks if the letter is in {} or []
     for (let i = 0; i < this.word.length; i++) {
       if (
         this.word[i] === 'a' ||
@@ -37,7 +37,11 @@ class Scrabble {
         this.word[i] === 'S' ||
         this.word[i] === 'T'
       ) {
-        totalScore += 1
+        if (this.word[i - 1] === '{' && this.word[i + 1] === '}') {
+          totalScore += 2
+        } else if (this.word[i - 1] === '[' && this.word[i + 1] === ']') {
+          totalScore += 3
+        } else totalScore += 1
       }
 
       if (
@@ -46,7 +50,11 @@ class Scrabble {
         this.word[i] === 'D' ||
         this.word[i] === 'G'
       ) {
-        totalScore += 2
+        if (this.word[i - 1] === '{' && this.word[i + 1] === '}') {
+          totalScore += 4
+        } else if (this.word[i - 1] === '[' && this.word[i + 1] === ']') {
+          totalScore += 6
+        } else totalScore += 2
       }
 
       if (
@@ -59,7 +67,11 @@ class Scrabble {
         this.word[i] === 'M' ||
         this.word[i] === 'P'
       ) {
-        totalScore += 3
+        if (this.word[i - 1] === '{' && this.word[i + 1] === '}') {
+          totalScore += 6
+        } else if (this.word[i - 1] === '[' && this.word[i + 1] === ']') {
+          totalScore += 9
+        } else totalScore += 3
       }
 
       if (
@@ -74,11 +86,19 @@ class Scrabble {
         this.word[i] === 'W' ||
         this.word[i] === 'Y'
       ) {
-        totalScore += 4
+        if (this.word[i - 1] === '{' && this.word[i + 1] === '}') {
+          totalScore += 8
+        } else if (this.word[i - 1] === '[' && this.word[i + 1] === ']') {
+          totalScore += 12
+        } else totalScore += 4
       }
 
       if (this.word[i] === 'k' || this.word[i] === 'K') {
-        totalScore += 5
+        if (this.word[i - 1] === '{' && this.word[i + 1] === '}') {
+          totalScore += 10
+        } else if (this.word[i - 1] === '[' && this.word[i + 1] === ']') {
+          totalScore += 15
+        } else totalScore += 5
       }
 
       if (
@@ -87,7 +107,11 @@ class Scrabble {
         this.word[i] === 'J' ||
         this.word[i] === 'X'
       ) {
-        totalScore += 8
+        if (this.word[i - 1] === '{' && this.word[i + 1] === '}') {
+          totalScore += 16
+        } else if (this.word[i - 1] === '[' && this.word[i + 1] === ']') {
+          totalScore += 24
+        } else totalScore += 8
       }
 
       if (
@@ -96,15 +120,34 @@ class Scrabble {
         this.word[i] === 'Q' ||
         this.word[i] === 'Z'
       ) {
-        totalScore += 10
+        if (this.word[i - 1] === '{' && this.word[i + 1] === '}') {
+          totalScore += 20
+        } else if (this.word[i - 1] === '[' && this.word[i + 1] === ']') {
+          totalScore += 30
+        } else totalScore += 10
       }
+    }
+
+    // if statements to test if the whole word is in {} or [] and then doubling/tripling the total if so
+    if (
+      this.word[0] === '{' &&
+      this.word[this.word.length - 1] === '}' &&
+      this.word[2] !== '}'
+    ) {
+      totalScore *= 2
+    } else if (
+      this.word[0] === '[' &&
+      this.word[this.word.length - 1] === ']' &&
+      this.word[2] !== ']'
+    ) {
+      totalScore *= 3
     }
 
     return totalScore
   }
 }
 
-const scrabble = new Scrabble(null)
+const scrabble = new Scrabble('[street]')
 console.log('the scrabble word is: ', scrabble.word)
 console.log('the scrabble score is: ', scrabble.score())
 

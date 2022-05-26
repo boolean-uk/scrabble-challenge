@@ -51,4 +51,52 @@ describe("Scrabble", function() {
 
     expect(scrabble.score()).toEqual(41)
   })
+
+  it('doubles the score of letters in {}', function() {
+    scrabble = new Scrabble('{q}uir{k}y')
+
+    expect(scrabble.score()).toEqual(37)
+  })
+
+  it('doubles the score of letters in {}', function() {
+    scrabble = new Scrabble('s{t}re{e}t')
+
+    expect(scrabble.score()).toEqual(8)
+  })
+
+  it('triples the score of letters in []', function() {
+    scrabble = new Scrabble('s[t]re[e]t')
+
+    expect(scrabble.score()).toEqual(10)
+  })
+
+  it('triples the score of letters in []', function() {
+    scrabble = new Scrabble('quir[k][y]')
+
+    expect(scrabble.score()).toEqual(40)
+  })
+
+  it('doubles the score of the whole word if it is enclosed in {}', function() {
+    scrabble = new Scrabble('{street}')
+
+    expect(scrabble.score()).toEqual(12)
+  })
+
+  it('doubles the score of the whole word if it is enclosed in {}', function() {
+    scrabble = new Scrabble('{OXYPHENBUTAZONE}')
+
+    expect(scrabble.score()).toEqual(82)
+  })
+
+  it('triples the score of the whole word if it is enclosed in []', function() {
+    scrabble = new Scrabble('[street]')
+
+    expect(scrabble.score()).toEqual(18)
+  })
+
+  it('triples the score of the whole word if it is enclosed in []', function() {
+    scrabble = new Scrabble('[quirky]')
+
+    expect(scrabble.score()).toEqual(66)
+  })
 })

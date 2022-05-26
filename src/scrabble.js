@@ -13,13 +13,14 @@ class Scrabble {
   // Write your implementation here
   constructor(word) {
     this.word = word
-    // word.toUpperCase()
   }
 
   score() {
     let total = 0
     if (this.word === ' ' || this.word === null || this.word === undefined) {
-      return total
+      this.word = ''
+    } else {
+      this.word = this.word.toUpperCase() //stores toUpperCase back in this.Word
     }
     for (let i = 0; i < this.word.length; i++) {
       if (
@@ -65,12 +66,13 @@ class Scrabble {
       if (this.word[i] === 'Q' || this.word[i] === 'Z') {
         total = total + 10
       }
+      // console.log(this.word)
     }
     return total
   }
 }
 
-const scrabble = new Scrabble('quirky')
+const scrabble = new Scrabble()
 // console.log(Scrabble.score())
 
 module.exports = Scrabble

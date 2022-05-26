@@ -2,6 +2,7 @@ class Scrabble {
 
   constructor(input) {
     this.input = input
+
     this.value1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
     this.value2 = ["D", "G"]
     this.value3 = ["B", "C", "M", "P"]
@@ -67,6 +68,17 @@ class Scrabble {
     return totalScore
     
   }
+
+  // THE FOLLOWING IS AN EXTRA METHOD WHICH WORKS BUT IT WILL BREAK THE NPX JASMINE TEST:
+
+  // game(input, input2, input3, input4, input5, input6) {
+  //   const playerAnswers = [input, input2, input3, input4, input5, input6]
+  //   const validPlayerAnswers = playerAnswers.filter(answer => answer !== undefined)
+  //   const playerScores = validPlayerAnswers.map(answer => this.score(answer))
+  //   const winnerIndex = playerScores.indexOf(Math.max(...playerScores))
+  //   return `Congratulations Player ${winnerIndex + 1}! "${playerAnswers[winnerIndex]}" wins!`
+  // }
+  
 }
 
 module.exports = Scrabble

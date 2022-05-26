@@ -12,7 +12,6 @@
 
 
 class Scrabble {
-  // Write your implementation here
 
   constructor (word) {
     this.word = word
@@ -20,55 +19,108 @@ class Scrabble {
 
   score() {
 
-      let finalScore = 0;
+    let finalScore = 0;
 
-      if (this.word === null) {
+    if (this.word === null) {
+      return finalScore;
+    }
+
+    let caseInsensitiveWord = this.word.toUpperCase();
+
+    let visitedParentheses = "";
+
+    for (let i = 0; i < caseInsensitiveWord.length; i++) {
+
+      if (["\t", "\n", " "].includes(caseInsensitiveWord[i])) {
         return finalScore;
       }
 
-      const caseInsensitiveWord = this.word.toUpperCase().split("");
+      if (this.isOpenedParentheses(caseInsensitiveWord[i])) {
+        visitedParentheses = caseInsensitiveWord[i];
+        continue
+      }
 
-      for (let i = 0; i < caseInsensitiveWord.length; i++) {
-        if (["\t", "\n", " "].includes(caseInsensitiveWord[i])) {
-          return finalScore;
-        }
-
-        else if (["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"].includes(caseInsensitiveWord[i])) {
-        finalScore += 1;
-        }
-
-        else if (["D", "G"].includes(caseInsensitiveWord[i])) {
-          finalScore += 2;
-        }
-
-        else if (["B", "C", "M", "P"].includes(caseInsensitiveWord[i])) {
-          finalScore += 3;
-        }
-
-        else if (["F", "H", "V", "W", "Y"].includes(caseInsensitiveWord[i])) {
-          finalScore += 4;
-        }
-
-        else if (["K"].includes(caseInsensitiveWord[i])) {
-          finalScore += 5;
-        }
-
-        else if (["J", "X"].includes(caseInsensitiveWord[i])) {
-          finalScore += 8;
-        }
-
-        else if (["Q", "Z"].includes(caseInsensitiveWord[i])) {
-          finalScore += 10;
-        }
-
-      console.log("word =>", caseInsensitiveWord, "Letter =>", caseInsensitiveWord[i], "Score", finalScore)
+      if (this.isClosedParentheses(caseInsensitiveWord[i])) {
+        visitedParentheses = "";
+        continue
+      }
+      
+      finalScore += this.getScoreByChar(caseInsensitiveWord[i]) * this.getMultiplierByParentheses(visitedParentheses);
     }
+
+    console.log("word =>", caseInsensitiveWord, "Score =>", finalScore)
 
     return finalScore;
   }
-}
 
-let scrabble = new Scrabble('quirky')
-scrabble.score()
+  getScoreByChar(char) {
+    
+    const onePointLetters = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"];
+    const twoPointsLetters = ["D", "G"];
+    const threePointsLetters = ["B", "C", "M", "P"];
+    const fourPointsLetters = ["F", "H", "V", "W", "Y"];
+    const fivePointsLetters = ["K"];
+    const eightPointsLetters = ["J", "X"];
+    const tenPointsLetters = ["Q", "Z"];
+
+    if (onePointLetters.includes(char)) {
+      return 1;
+    }
+
+    if (twoPointsLetters.includes(char)) {
+      return 2;
+    }
+
+    if (threePointsLetters.includes(char)) {
+      return 3;
+    }
+
+    if (fourPointsLetters.includes(char)) {
+      return 4;
+    }
+
+    if (fivePointsLetters.includes(char)) {
+      return 5;
+    }
+
+    if (eightPointsLetters.includes(char)) {
+      return 8;
+    }
+
+    if (tenPointsLetters.includes(char)) {
+      return 10;
+    }
+
+    return 0;
+  }
+
+  isOpenedParentheses(char) {
+
+    if ("{" === char || "[" === char) {
+      return true;
+    }
+    return false;
+  }
+
+  isClosedParentheses(char) {
+
+    if ("}" === char || "]" === char) {
+      return true;
+    }
+    return false;
+  }
+
+  getMultiplierByParentheses(parentheses) {
+
+    if (parentheses === "{") {
+      return 2;
+    }
+
+    if (parentheses === "[") {
+      return 3;
+    }
+    return 1;
+  }
+}
 
 module.exports = Scrabble

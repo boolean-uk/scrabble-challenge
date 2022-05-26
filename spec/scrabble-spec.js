@@ -1,6 +1,6 @@
 // Note: you shouldn't need to change anything in this file.
 
-Scrabble = require('../src/scrabble')
+const Scrabble = require('../src/scrabble');
 let scrabble;
 
 describe("Scrabble", function() {
@@ -50,5 +50,31 @@ describe("Scrabble", function() {
     scrabble = new Scrabble('OXYPHENBUTAZONE')
 
     expect(scrabble.score()).toEqual(41)
+  })
+
+  //Added specs
+
+  it('scores double score for curly brackets character', function() {
+    scrabble = new Scrabble('d{o}g')
+
+    expect(scrabble.score()).toEqual(6)
+  })
+
+  it('scores double score for curly brackets word', function() {
+    scrabble = new Scrabble('{dog}')
+
+    expect(scrabble.score()).toEqual(10)
+  })
+
+  it('scores triple score for square brackets character', function() {
+    scrabble = new Scrabble('d[o]g')
+
+    expect(scrabble.score()).toEqual(7)
+  })
+
+  it('scores triple score for curly brackets word', function() {
+    scrabble = new Scrabble('[dog]')
+
+    expect(scrabble.score()).toEqual(15)
   })
 })

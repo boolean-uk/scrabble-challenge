@@ -30,9 +30,13 @@ function sanitizeAndConvert(word) {
     return sanitizedWord.split('')
 }
 
-// ** Double and triple letter **
-// Parse the curly braces around word and return word twice
-// Parse the square brackets around word and return word three times
+// Extended Acceptance Criteria - Double and triple letters and words
+
+// Find position of CURLY BRACES IN word, double the next letter, remove curly braces from word and return word.
+// Find position of SQUARE BRACKETS IN word, triple the next letter, remove square brackets from word and return word.
+
+// Find and remove the CURLY BRACES AROUND word and return word twice.
+// Find and remove the SQUARE BRACKETS AROUND word and return word three times.
 
 function checkForMultiples(word) {
     if(word[0] === '{' && word[word.length - 1] === '}') {

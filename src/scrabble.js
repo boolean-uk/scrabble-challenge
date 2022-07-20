@@ -37,11 +37,9 @@ const pointValue = {
   8: ['j', 'x'],
   10: ['q', 'z']
 }
-const doubledWords = []
 
-function splitWord(word) {
+function splitWord(word, doubledWords) {
   if (typeof word !== 'string' || /\s/g.test(word)) {
-    console.log('not valid')
     return 0
   }
   word = word.toLowerCase()
@@ -51,16 +49,11 @@ function splitWord(word) {
     if (word[letter] === '{') {
       doubledWords.push(word.slice(index + 1, index + 2))
       doubleWordCounter++
-      console.log('includes [')
-      console.log(word)
     }
   }
-  console.log(
-    (word =
-      word.substring(0, index) + word.substring(index + 3 * doubleWordCounter))
-  )
-  console.log('valid word')
-  console.log(doubledWords)
+  console.log(word)
+  word =
+    word.substring(0, index) + word.substring(index + 3 * doubleWordCounter)
   console.log(word)
   return word.split('')
 }
@@ -72,21 +65,20 @@ function assignPointsToWord(letter) {
 }
 
 function scrabble(word) {
-  word = splitWord(word)
-  console.log(word[0])
+  const doubledWords = []
+  word = splitWord(word, doubledWords)
   if (word === 0) {
     return 0
   }
   let valueSum = 0
   for (letter in word) {
-    console.log(valueSum += assignPointsToWord(word[letter]))
+    valueSum += assignPointsToWord(word[letter])
   }
   for (letter in doubledWords) {
-    console.log(doubledWords[letter])
-    console.log((valueSum += 2 * assignPointsToWord(doubledWords[letter])))
+    valueSum += 2 * assignPointsToWord(doubledWords[letter])
   }
   return valueSum
 }
-
+console.log(scrabble('OX{Y}{P}HENBUTAZONE'))
 
 module.exports = scrabble

@@ -12,25 +12,21 @@ const wordValues = {
 let score = 0
 
 function scrabble(word) {
-    const wordArray = convertWordToArray(word)
+    const wordArray = sanitizeAndConvertWord(word)
     for( let letter of wordArray ) { score += wordValues[letter] }
-    return finalResultAndReset()
+    return finalResultAndReset(score)
 }
 
-function finalResultAndReset() {
-    let wordScore = score
+function finalResultAndReset(finalScore) {
     score = 0
-    return wordScore
+    return finalScore
 }
 
-function convertWordToArray(word) {
+function sanitizeAndConvertWord(word) {
     if ( word === null) { return ['_'] }
-    // if ( word.indexOf(' ') != -1 ) { return word.replaceAll(' ', '_')}
-    if ( word.length === 1 ) { return [ `${word.toUpperCase()}` ] }
-    
-    let upperCaseWord = word.toUpperCase()
-    
-    return upperCaseWord.split('')
+    let sanitizedWord = word.toUpperCase().replace(' ', '_').replace('\t', '_').replace('\n', '_')
+    if ( sanitizedWord.length === 1 ) { return [ `${sanitizedWord}` ] }
+    return sanitizedWord.split('')
 }
 
 module.exports = scrabble

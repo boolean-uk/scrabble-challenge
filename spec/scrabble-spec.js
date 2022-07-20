@@ -15,15 +15,15 @@ describe("Scrabble", () => {
     expect(scrabble(null)).toEqual(0)
   })
 
-  it('scores short word', () => {
+  it('scores short word a', () => {
     expect(scrabble('a')).toEqual(1)
   })
 
-  it('scores short word', () => {
+  it('scores short word f', () => {
     expect(scrabble('f')).toEqual(4)
   })
 
-  it('scores a simple word', () => {
+  it('scores a simple word street', () => {
     expect(scrabble('street')).toEqual(6)
   })
 

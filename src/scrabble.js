@@ -24,15 +24,15 @@ function outputFinalResultAndReset(finalScore) {
 
 function sanitizeAndConvert(word) {
     if (word === null) { return ['_'] }
-    const checkedWord = checkForMultiples(word);
-    const sanitizedWord = checkedWord.toUpperCase().replace(' ', '_').replace('\t', '_').replace('\n', '_')
+    const wordCheckedForMultples = checkForMultiples(word);
+    const sanitizedWord = wordCheckedForMultples.toUpperCase().replace(' ', '_').replace('\t', '_').replace('\n', '_')
     if (sanitizedWord.length === 1) { return [`${sanitizedWord}`] }
     return sanitizedWord.split('')
 }
 
 // ** Double and triple letter **
-// Parse the square brackets around word and return word twice
-// Parse the curly braces around word and return word three times
+// Parse the curly braces around word and return word twice
+// Parse the square brackets around word and return word three times
 
 function checkForMultiples(word) {
     if(word[0] === '{' && word[word.length - 1] === '}') {

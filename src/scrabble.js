@@ -1,5 +1,5 @@
 const wordValues = {
-    '_': 0,
+    _: 0,
     A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
     D: 2, G: 2,
     B: 3, C: 3, M: 3, P: 3,
@@ -12,21 +12,52 @@ const wordValues = {
 let score = 0
 
 function scrabble(word) {
-    const wordArray = sanitizeAndConvertWord(word)
-    for( let letter of wordArray ) { score += wordValues[letter] }
-    return finalResultAndReset(score)
+    const wordArray = sanitizeAndConvert(word)
+    for (let letter of wordArray) { score += wordValues[letter] }
+    return outputFinalResultAndReset(score)
 }
 
-function finalResultAndReset(finalScore) {
+function outputFinalResultAndReset(finalScore) {
     score = 0
     return finalScore
 }
 
-function sanitizeAndConvertWord(word) {
-    if ( word === null) { return ['_'] }
-    let sanitizedWord = word.toUpperCase().replace(' ', '_').replace('\t', '_').replace('\n', '_')
-    if ( sanitizedWord.length === 1 ) { return [ `${sanitizedWord}` ] }
+function sanitizeAndConvert(word) {
+    if (word === null) { return ['_'] }
+    const checkedWord = checkForMultiples(word);
+    const sanitizedWord = checkedWord.toUpperCase().replace(' ', '_').replace('\t', '_').replace('\n', '_')
+    if (sanitizedWord.length === 1) { return [`${sanitizedWord}`] }
     return sanitizedWord.split('')
+}
+
+// ** Double and triple letter **
+// Parse the square brackets around word and return word twice
+// Parse the curly braces around word and return word three times
+
+function checkForMultiples(word) {
+    if(word[0] === '{' && word[word.length - 1] === '}') {
+        let doubleWordRemovedControlCharacters = word.toUpperCase().replace('{', '').replace('}', '')
+        return doubleWordRemovedControlCharacters + doubleWordRemovedControlCharacters
+    }
+    if(word[0] === '[' && word[word.length - 1] === ']') {
+        let tripleWordRemovedControlCharacters = word.toUpperCase().replace('[', '').replace(']', '')
+        return tripleWordRemovedControlCharacters + tripleWordRemovedControlCharacters + tripleWordRemovedControlCharacters
+    }
+    if(word.indexOf('{') !== -1) {
+        const position = word.indexOf('{') + 1
+        let letterToMultiply = word.slice(position, position + 1)
+        letterToMultiply += letterToMultiply
+        let expandedWord = [word.slice(0, position), letterToMultiply, word.slice(position)].join('');
+        return expandedWord.toUpperCase().replace('{', '').replace('}', '')
+    }
+    if(word.indexOf('[') !== -1) {
+        const position = word.indexOf('[') + 1
+        let letterToMultiply = word.slice(position, position + 1)
+        letterToMultiply = letterToMultiply + letterToMultiply + letterToMultiply
+        let expandedWord = [word.slice(0, position), letterToMultiply, word.slice(position)].join('');
+        return expandedWord.toUpperCase().replace('[', '').replace(']', '')
+    }
+    return word
 }
 
 module.exports = scrabble

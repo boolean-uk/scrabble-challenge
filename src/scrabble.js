@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /*
 Standard criteria:
 
@@ -43,6 +42,16 @@ function assignPointsToWord(letter) {
     Object.keys(pointValue).find((k) => pointValue[k].includes(letter))
   )
 }
+function isWordDouble(word, curlyCount) {
+  if (word[0] === '{' && word[word.length - 1] === '}' && curlyCount === 1) {
+    return true // IF condition for double word
+  }
+}
+function isWordTriple(word, bracketCount) {
+  if (word[0] === '[' && word[word.length - 1] === ']' && bracketCount === 1) {
+    return true // IF condition for triple word
+  }
+}
 function scrabble(word) {
   if (typeof word !== 'string' || /\s/g.test(word)) {
     return 0
@@ -70,12 +79,15 @@ function scrabble(word) {
     }
     sumValue += assignPointsToWord(word[i])
   }
-  if (word[0] === '{' && word[word.length - 1] === '}' && curlyCount === 1) {
-    return sumValue * 2 // IF condition for double word
+
+  if (isWordDouble(word, curlyCount)) {
+    return sumValue * 2
   }
-  if (word[0] === '[' && word[word.length - 1] === ']' && bracketCount === 1) {
-    return sumValue * 3 // IF condition for triple word
+
+  if (isWordTriple(word, bracketCount)) {
+    return sumValue * 3
   }
+
   return sumValue
 }
 

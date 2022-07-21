@@ -29,6 +29,7 @@ It may be possible to write the function in the 'Double or Triple Letter' extens
 
 */
 const pointValue = {
+  0: ['{', '}', '[', ']'],
   1: ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'],
   2: ['d', 'g'],
   3: ['b', 'c', 'm', 'p'],
@@ -37,48 +38,45 @@ const pointValue = {
   8: ['j', 'x'],
   10: ['q', 'z']
 }
-
-function splitWord(word, doubledWords) {
-  if (typeof word !== 'string' || /\s/g.test(word)) {
-    return 0
-  }
-  word = word.toLowerCase()
-  const index = word.indexOf('{')
-  let doubleWordCounter = 0
-  for (letter in word) {
-    if (word[letter] === '{') {
-      doubledWords.push(word.slice(index + 1, index + 2))
-      doubleWordCounter++
-    }
-  }
-  console.log(word)
-  word =
-    word.substring(0, index) + word.substring(index + 3 * doubleWordCounter)
-  console.log(word)
-  return word.split('')
-}
-
 function assignPointsToWord(letter) {
   return Number(
     Object.keys(pointValue).find((k) => pointValue[k].includes(letter))
   )
 }
-
 function scrabble(word) {
-  const doubledWords = []
-  word = splitWord(word, doubledWords)
-  if (word === 0) {
+  if (typeof word !== 'string' || /\s/g.test(word)) {
     return 0
   }
-  let valueSum = 0
-  for (letter in word) {
-    valueSum += assignPointsToWord(word[letter])
+  word = word.toLowerCase()
+  let sumValue = 0
+  let bracketCount = 0
+  let curlyCount = 0
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === '{') {
+      curlyCount++
+    }
+    if (word[i] === '[') {
+      bracketCount++
+    }
+    if (word[i] === '{' && word[i + 2] === '}') {
+      // IF condition for double letter
+      sumValue += assignPointsToWord(word[i + 1]) * 2
+      i += 2
+    }
+    if (word[i] === '[' && word[i + 2] === ']') {
+      // IF condition for triple letter
+      sumValue += assignPointsToWord(word[i + 1]) * 3
+      i += 2
+    }
+    sumValue += assignPointsToWord(word[i])
   }
-  for (letter in doubledWords) {
-    valueSum += 2 * assignPointsToWord(doubledWords[letter])
+  if (word[0] === '{' && word[word.length - 1] === '}' && curlyCount === 1) {
+    return sumValue * 2 // IF condition for double word
   }
-  return valueSum
+  if (word[0] === '[' && word[word.length - 1] === ']' && bracketCount === 1) {
+    return sumValue * 3 // IF condition for triple word
+  }
+  return sumValue
 }
-console.log(scrabble('OX{Y}{P}HENBUTAZONE'))
 
 module.exports = scrabble

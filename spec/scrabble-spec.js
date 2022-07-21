@@ -37,7 +37,19 @@ describe('Scrabble', () => {
   it('scores double letters', () => {
     expect(scrabble('g{o}{o}d')).toEqual(8)
   })
-  // it('scores triple letters', () => {
-  //   expect(scrabble('g[o][o]d')).toEqual(10)
-  // })
+  it('scores triple letters', () => {
+    expect(scrabble('g[o][o]d')).toEqual(10)
+  })
+  it('scores double letters', () => {
+    expect(scrabble('s{t}re{e}t')).toEqual(8)
+  })
+  it('scores double and triple letters', () => {
+    expect(scrabble('s{t}re[e]t')).toEqual(9)
+  })
+  it('scores double words', () => {
+    expect(scrabble('{good}')).toEqual(12)
+  })
+  it('scores triple words', () => {
+    expect(scrabble('[good]')).toEqual(18)
+  })
 })

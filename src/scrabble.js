@@ -6,33 +6,72 @@ const letterPoint=
     'K': 5,
     'J': 8, 'X': 8, 
     'Q': 10, 'Z': 10}
-
-// const value = Object.values(letterPoint)
-// const arrLetters = Object.keys(letterPoint)
-
-// const inputString = string.split('')
+    
 
 
 function scrabble(inputString) {
-    
-    let letter = inputString.toUpperCase()
-    letter = letter.split('')
 
-    const matchKey = letterPoint.filter(key =>letter.includes(key))
-    console.log('wahat is it', matchKey)
-    return letterPoint
+    if (inputString === null) {
+        return 0
+    }
+    const value = Object.values(letterPoint)
+    const arrLetters = Object.keys(letterPoint)
+    let string = inputString
+    string = string.toUpperCase()
+    string.split('')
+    let sum = 0
+    for (let i = 0; string.length > i; i++) {
+    
+        const givenString = string[i]
+        
+        for (let l = 0; arrLetters.length > l; l++) {
+    
+            const givenPoint = arrLetters[l]
+            
+            if (givenString === givenPoint) {
+                
+    
+                // console.log('add me up@@@@@@@@@@@@@@@', givenPoint, letterPoint[givenPoint])
+    
+                sum += letterPoint[givenPoint]
+                // console.log(sum)
+            }
+        }
+        
+    }
+return sum
+
 }
+console.log(scrabble('cabbage'))
+
+
+// function scrabble(letter1) {
+    
+//     let letter=letter1.toUpperCase()
+    
 //     const matchingKey = Object.keys(letterPoint).find(key => key === letter)
     
 //     if (matchingKey === undefined) {
 //         return 0
-//     
+        
+//     }
+        
 //     return letterPoint[letter]
-    
+        
 // }
-console.log(scrabble('pii'))
+    
+    
+    
+// console.log(scrabble('q', 'a'))
 
 
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//     letter = letter.split('')
+
+    //     const matchKey = arrLetters.filter(key =>letter.includes(key))       
+    //     // console.log('hi', filter)
+    //     return letterPoint[]
+    // }
 
 
 
@@ -45,29 +84,6 @@ console.log(scrabble('pii'))
 //     }
 
 // }
-
-
-// function scrabble(inputString) {
-//     for (let i = 0; letter.length > i; i++) {
-
-//         const letterChar = letter[i]
-        
-//         for (let p = 0; letterPoint.length > p; p++) {
-//             const letterPointChar = letterPoint[p]
-
-//             if (letterChar === letterPointChar) {
-
-
-//             }
-
-//         }
-//     }
-
-// }
-
-
-
-
 
 
 
@@ -94,25 +110,26 @@ console.log(scrabble('pii'))
 
 
 // function getKey(object, value){
-    //     console.log("object is", object)
-    //     console.log("value is", value)
+//         console.log("object is", object)
+//         console.log("value is", value)
     
-    //     const keys = Object.keys(object)
-    //     console.log("keys are", keys, '\n\n') // added some new lines to put some space in the console
+//         const keys = Object.keys(object)
+//         console.log("keys are", keys, '\n\n') // added some new lines to put some space in the console
     
-    //     const findResult = keys.find(key => {
-        //       console.log("key in find is", key)
-        //       console.log("object[key] in find is", object[key], '\n\n') // added some new lines to put some space in the console
+//         const findResult = keys.find(key => {
+//               console.log("key in find is", key)
+//               console.log("object[key] in find is", object[key], '\n\n') // added some new lines to put some space in the console
+//               console.log('tiger', object[key])
+//               console.log('me too', value)
+//               return object[key] === value
+//             })
         
-        //       return object[key] === value
-        //     })
+//             console.log("findResult is", findResult)
         
-        //     console.log("findResult is", findResult)
+//             return findResult[value]
+//           }
+// console.log(getKey(letterPoint, 'K'))
         
-        //     return findResult
-        //   }
-        
-        
-// module.exports = scrabble
+module.exports = scrabble
 
 

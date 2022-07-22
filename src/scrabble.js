@@ -1,3 +1,4 @@
+// first Try
 // function scrabble(word) {
 //     if (word === null) {
 //         word = ''
@@ -35,14 +36,32 @@
 // }
 
 const scoreValue = {
-  1: ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'],
-  2: ['d', 'g'],
-  3: ['b', 'c', 'm', 'p'],
-  4: ['f', 'h', 'v', 'w', 'y'],
-  5: ['k'],
-  8: ['j', 'x'],
-  10: ['q', 'z']
+    0: [null, '', ' \t\n'],
+    1: ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'],
+    2: ['d', 'g'],
+    3: ['b', 'c', 'm', 'p'],
+    4: ['f', 'h', 'v', 'w', 'y'],
+    5: ['k'],
+    8: ['j', 'x'],
+    10: ['q', 'z']
 }
+
+function checkIfWordOrNot(word) {
+    if (word === null || word === '' || word === ' \t\n') {
+        return 0
+        }
+    else {
+            return word = word.toLowerCase()
+        }
+}
+
+function setStartingValues() {
+    let score = 0
+    let multiplierSquare = 1
+    let multiplierCurvy = 1
+}
+
+
 
 
 function scrabble(word) {
@@ -55,28 +74,27 @@ function scrabble(word) {
   let multiplierCurvy = 1
   for (let i = 0; i < word.length; i++) {
     if (word[i] === '{') {
-        multiplierCurvy = 2
+      multiplierCurvy = 2
     }
     if (word[i] === '[') {
-        multiplierSquare = 3
+      multiplierSquare = 3
     }
     if (word[i] === '}') {
-        multiplierCurvy = 1
+      multiplierCurvy = 1
     }
     if (word[i] === ']') {
-        multiplierSquare = 1
+      multiplierSquare = 1
     }
     for (const j in scoreValue) {
       if (scoreValue[j].includes(word[i])) {
-        score += Number(j) * multiplierSquare*multiplierCurvy
+        score += Number(j) * multiplierSquare * multiplierCurvy
         // console.log(word[i]+ "" + score)
       }
     }
   }
-    // return console.log(word + " vale " +score)
+  // return console.log(word + " vale " +score)
   return score
 }
-
 
 scrabble('Xi{lofo}no')
 scrabble('{incorreggibile}')

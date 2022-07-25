@@ -34,4 +34,16 @@ describe("Scrabble", () => {
   it('scores a case-insensitive word', () => {
     expect(scrabble('OXYPHENBUTAZONE')).toEqual(41)
   })
+  it('scores a double letter', () => {
+    expect(scrabble('double{t}{h}{e}{s}{e}')).toEqual(25)
+  })
+  it('scores a triple letter', () => {
+    expect(scrabble('tri[p]le[p]')).toEqual(23)
+  })
+  it('scores a double word', () => {
+    expect(scrabble('{twice}')).toEqual(20)
+  })
+  it('scores a triple word', () => {
+    expect(scrabble('[c[h]oreo{g}raphy]')).toEqual(108)
+  })
 })

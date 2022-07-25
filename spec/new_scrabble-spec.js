@@ -1,6 +1,6 @@
 // Note: you shouldn't need to change anything in this file.
 
-const scrabble = require('../src/scrabble.js')
+const scrabble = require('../src/new_scrabble.js')
 
 describe("Scrabble", () => {
   it('returns 0 for empty words', () => {
@@ -36,11 +36,11 @@ describe("Scrabble", () => {
   })
 
   it('scores a doubled character', () => {
-    expect(scrabble('d{o}g')).toEqual(7)
+    expect(scrabble('d{o}g')).toEqual(6)
   })
 
   it('scores a tripled character', () => {
-    expect(scrabble('d[o]g')).toEqual(8)
+    expect(scrabble('d[o]g')).toEqual(7)
   })
 
   it('scores a doubled word', () => {

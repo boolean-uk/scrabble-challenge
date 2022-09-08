@@ -9,64 +9,29 @@ const scoreDict = {
   score10: ['Q', 'Z']
 }
 
-function scrabble(string) {
-  // Verify if the string is: not empty; not a string
-  if (!stringValid(string)) {
-    return 0
+function scrabble(str) {
+  if (typeof str !== 'string' || str.length === 0) {
+    return 0 // If any condition is true, 0
   }
-
-  string = string.toUpperCase()
-  let score = 0
-
-  for (const char of string.split('')) {
-    // DEBUG CODE
-    // eslint-disable-next-line prettier/prettier
-    if (showDebug) {console.log(`Checking char ${char} now...`)}
-
-    score += giveScore(char)
+  str = str.toUpperCase()
+  for (const char of str.split('')) {
+    score += giveScore(char) // check which score to give
   }
-
   return score
-}
-
-function stringValid(string) {
-  // Check if the parsed string has the desirable atribbutes
-  if (typeof string !== 'string' || string.length === 0) {
-    return false
-  } else return true
 }
 
 function giveScore(char) {
   let charScore = 0
-
-  // For every Key inside the ScoreDict, check the Key's value
   for (const key of Object.keys(scoreDict)) {
-    // DEBUG CODE
-    // eslint-disable-next-line prettier/prettier
-    if (showDebug) {console.log(`- Checking key ${key}..`)}
-
-    // If the Key's Array includes the Character parsed, give score
     if (scoreDict[key].includes(char)) {
-      const givenScore = Number(key.substring('score'.length))
-      charScore += givenScore // Gets the Score Number
-
-      // DEBUG CODE
-      // eslint-disable-next-line prettier/prettier
-      if (showDebug) { console.log(`- - ${char} included in ${key}, given score is ${givenScore}\n`)}
-
+      charScore += Number(key.substring('score'.length)) // Gets the Score Number
       break // Don't go any further than that
-    } else {
-      // DEBUG CODE
-      if (showDebug) {
-        console.log(`- - ${key} does not include ${char} as it's value.`)
-      }
     }
   }
-
   return charScore
 }
 
-const showDebug = false
-console.log(scrabble('Luciano Simoni'))
+let score = 0
+console.log(scrabble('OXYPHENBUTAZONE'))
 
 module.exports = scrabble

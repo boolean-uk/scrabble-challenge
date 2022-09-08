@@ -1,4 +1,4 @@
-scrabble('{Pint}')
+scrabble('P{i}nt')
 
 function scrabble(word) {
   // Catching the cheeky null value first
@@ -70,15 +70,39 @@ function scrabble(word) {
         points += 10
       }
     }
-    if (word[0] === '{') {
-      console.log('Double word!')
+    if (word[0] === '{' && word[word.length - 1] === '}') {
+      console.log('This is a double word!')
       points *= 2
-    } else if (word[0] === '[') {
-      console.log('Triple word!')
+    } else if (word[0] === '[' && word[word.length - 1] === ']') {
+      console.log('This is a triple word!')
       points *= 3
     }
+    function isOpeningCurlyBracket(element) {
+      if (element === '{') {
+        return true
+      } else {
+        return false
+      }
+    }
+    function isClosingCurlyBracket(element) {
+      if (element === '}') {
+        return true
+      } else {
+        return false
+      }
+    }
+    const openingCurlyBracketPlace = wordSplit.findIndex(isOpeningCurlyBracket)
+    const closingCurlyBracketPlace = wordSplit.findIndex(isClosingCurlyBracket)
+    const powerLetter = openingCurlyBracketPlace + 1
+
+    if (closingCurlyBracketPlace - openingCurlyBracketPlace === 2) {
+      console.log(
+        'We know this letter is in curly brackets and we will need to do something with it in the future: ' +
+          wordSplit[powerLetter]
+      )
+    }
     console.log(`This gives you ${points} points in Scrabble!`)
-    return points;
+    return points
   }
 }
 

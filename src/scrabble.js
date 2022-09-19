@@ -1,11 +1,3 @@
-// Next steps:
-// 1. We need to exclude certain brackets from the onlyLetters function and allow those words to continue
-// 2. Perhaps this could also be done with Regular Expressions. If not, we need to use some kind of loop maybe
-// 3. We need to check if those brackets are present. If at the start and end, we change the score
-// 4. If in the middle of the word, we get the index of those brackets and get the difference
-// 5. We add the points bonus to the score variable
-// 6. Possibly do all this in an extra 'bonusPoints' function to keep it clean
-
 const points = {
   a: 1,
   e: 1,
@@ -47,48 +39,56 @@ function scrabble(word) {
   const wordArray = word.toLowerCase().split('')
   let score = 0
 
-  console.log(wordArray)
-
   // loop through the array and, accessing the object, we can add the correct points to the score
-  for (let i = 0; i < wordArray.length; i++) {
-    score += points[wordArray[i]]
-  }
-
-  bonusChecker(wordArray, score)
+  // for (let i = 0; i < wordArray.length; i++) {
+  //   score += points[wordArray[i]]
+  // }
 
   // forEach version, nicer looking and easier to understand
-  // wordArray.forEach((letter) => {
-  //   score += points[letter]
-  // })
+  wordArray.forEach((letter) => {
+    score += points[letter]
+  })
+
+  // Moved code to a separate function, checks for bonus letters
+  score = letterBonusChecker(wordArray, score)
+  // Checks for whole word bonus
+  score = wordBonusChecker(wordArray, score)
 
   return score
 }
 
-function bonusChecker(wordArray, score) {
+function letterBonusChecker(wordArray, score) {
   for (let j = 0; j < wordArray.length; j++) {
     if (wordArray[j] === '{' && wordArray[j + 2] === '}') {
+      score -= points[wordArray[j + 1]]
       score += points[wordArray[j + 1]] * 2
+      return score
     } else if (wordArray[j] === '[' && wordArray[j + 2] === ']') {
+      score -= points[wordArray[j + 1]]
       score += points[wordArray[j + 1]] * 3
-    } else {
       return score
     }
   }
+  return score
 }
-// function onlyLetters(str) {
-//   return /^[a-zA-Z]+$/.test(str)
-// }
 
-// function squareBracketChecker(str) {
-//   return /\[(.*?)\]/.test(str)
-// }
+function wordBonusChecker(wordArray, score) {
+  if (wordArray[0] === '{' && wordArray[wordArray.length - 1] === '}') {
+    const scoreWithBonus = score * 2
+    return scoreWithBonus
+  } else if (wordArray[0] === '[' && wordArray[wordArray.length - 1] === ']') {
+    const scoreWithBonus = score * 3
+    return scoreWithBonus
+  } else {
+    return score
+  }
+}
 
-// function curlyBracketChecker(str) {
-//   return /\{(.*?)\}/.test(str)
-// }
-
-console.log(scrabble('moose'))
-// console.log(scrabble('quirky'))
-// console.log(scrabble('OXYPHENBUTAZONE'))
+console.log(scrabble('do[g]')) // 2 + 1 + 6 = should be 9
+console.log(scrabble('{dog}')) // (2 + 1 + 2) * 2 = should be 10
+console.log(scrabble('[dog]')) // should be 15
+console.log(scrabble('quirky')) // should be 22
+console.log(scrabble('{O}XYPHENBUTAZONE')) // should be 42
+console.log(scrabble('OXYPHENBUTAZ{O}NE')) // should also be 42
 
 module.exports = scrabble

@@ -1,112 +1,143 @@
+const pointsMap = {
+  A: 1,
+  E: 1,
+  I: 1,
+  O: 1,
+  U: 1,
+  L: 1,
+  N: 1,
+  R: 1,
+  S: 1,
+  T: 1,
+  D: 2,
+  G: 2,
+  B: 3,
+  C: 3,
+  M: 3,
+  P: 3,
+  F: 4,
+  H: 4,
+  V: 4,
+  W: 4,
+  Y: 4,
+  K: 5,
+  J: 8,
+  X: 8,
+  Q: 10,
+  Z: 10
+}
+
 scrabble('P{i}nt')
 
 function scrabble(word) {
   // Guard condition for null
   if (word === null) {
-    console.log('Why would you enter null?')
+    console.log(`Why would you enter null? This gives you 0 points.`)
     return 0
   }
-  // If it's not null we move on
-  const wordUpperCase = word.toUpperCase() // Coverting the given word to upper case
-  const wordSplit = wordUpperCase.split('') // Splitting the given word letter by letter
-  console.log(`Your letters are the following: ${wordSplit}`) // Displaying the letters to the user
-  let points = 0 // Setting up initial points tally at 0
-  for (const i of wordSplit) {
-    // Awarding points
-    points = letterToPoints(i, points)
-  }
-  if (word[0] === '{' && word[word.length - 1] === '}') {
-    console.log('This is a double word!')
-    points *= 2
-  } else if (word[0] === '[' && word[word.length - 1] === ']') {
-    console.log('This is a triple word!')
-    points *= 3
-  }
-  function isOpeningCurlyBracket(element) {
-    if (element === '{') {
-      return true
-    } else {
-      return false
-    }
-  }
-  function isClosingCurlyBracket(element) {
-    if (element === '}') {
-      return true
-    } else {
-      return false
-    }
-  }
-  const openingCurlyBracketPlace = wordSplit.findIndex(isOpeningCurlyBracket)
-  const closingCurlyBracketPlace = wordSplit.findIndex(isClosingCurlyBracket)
-  const powerLetter = openingCurlyBracketPlace + 1
 
-  if (closingCurlyBracketPlace - openingCurlyBracketPlace === 2) {
-    console.log(
-      'We know this letter is in curly brackets and we will need to do something with it in the future: ' +
-        wordSplit[powerLetter]
-    )
+  // If it's not null we move on
+  // Setting up initial points tally at 0
+  let points = 0
+
+  // Coverting the given word to upper case
+  const wordUpperCase = word.toUpperCase()
+
+  // Splitting the given word letter by letter
+  const wordSplit = wordUpperCase.split('')
+
+  // Displaying the letters to the user
+  console.log(`Your letters are the following: ${wordSplit}`)
+
+  // Awarding points for each letter
+  for (const character of wordSplit) {
+    points += letterToPoints(character)
   }
+
+  // Checking for double and triple words
+  points = doubleAndTripleWordChecker(wordSplit, points)
+
+  // Checking for double and triple letters
+  points = doubleAndTripleCharacterChecker(wordSplit, points)
+
+  // Logging the final points tally to the console
   console.log(`This gives you ${points} points in Scrabble!`)
+
+  // Returning the final points tally
   return points
 }
 
-function letterToPoints(i, points) {
-  if (
-    // letters for 1 point below
-    i === 'A' ||
-    i === 'E' ||
-    i === 'I' ||
-    i === 'O' ||
-    i === 'U' ||
-    i === 'L' ||
-    i === 'N' ||
-    i === 'R' ||
-    i === 'S' ||
-    i === 'T'
-  ) {
-    points += 1
-  } else if (
-    // letters for 2 points below
-    i === 'D' ||
-    i === 'G'
-  ) {
-    points += 2
-  } else if (
-    // letters for 3 points below
-    i === 'B' ||
-    i === 'C' ||
-    i === 'M' ||
-    i === 'P'
-  ) {
-    points += 3
-  } else if (
-    // letters for 4 points below
-    i === 'F' ||
-    i === 'H' ||
-    i === 'V' ||
-    i === 'W' ||
-    i === 'Y'
-  ) {
-    points += 4
-  } else if (
-    // letters for 5 points below
-    i === 'K'
-  ) {
-    points += 5
-  } else if (
-    // letters for 8 points below
-    i === 'J' ||
-    i === 'X'
-  ) {
-    points += 8
-  } else if (
-    // letters for 10 points below
-    i === 'Q' ||
-    i === 'Z'
-  ) {
-    points += 10
+function letterToPoints(letter) {
+  const value = pointsMap[letter] || 0
+  return value
+}
+
+function doubleAndTripleCharacterChecker(word, points) {
+  // There must be a simpler / nicer way to do this
+  const openingCurlyBracketPlace = word.findIndex(isOpeningCurlyBracket)
+  const closingCurlyBracketPlace = word.findIndex(isClosingCurlyBracket)
+  const doublePowerLetterIndex = openingCurlyBracketPlace + 1
+
+  const openingSquareBracketPlace = word.findIndex(isOpeningSquareBracket)
+  const closingSquareBracketPlace = word.findIndex(isClosingSquareBracket)
+  const triplePowerLetterIndex = openingSquareBracketPlace + 1
+
+  function isOpeningCurlyBracket(character) {
+    if (character === '{') {
+      return true
+    } else {
+      return false
+    }
   }
+  function isClosingCurlyBracket(character) {
+    if (character === '}') {
+      return true
+    } else {
+      return false
+    }
+  }
+  function isOpeningSquareBracket(character) {
+    if (character === '[') {
+      return true
+    } else {
+      return false
+    }
+  }
+  function isClosingSquareBracket(character) {
+    if (character === ']') {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  if (closingCurlyBracketPlace - openingCurlyBracketPlace === 2) {
+    console.log(
+      `Double points for the letter "${word[doublePowerLetterIndex]}"!`
+    )
+    return (points += letterToPoints(word[doublePowerLetterIndex]))
+  } else if (closingSquareBracketPlace - openingSquareBracketPlace === 2) {
+    console.log(
+      `Triple points for the letter "${word[triplePowerLetterIndex]}"!`
+    )
+    return (points += letterToPoints(word[triplePowerLetterIndex]) * 2)
+  } else {
     return points
+  }
+}
+
+function doubleAndTripleWordChecker(word, points) {
+  if (word[0] === '{' && word[word.length - 1] === '}') {
+    console.log('This is a double word!')
+    points *= 2
+    return points
+  } else if (word[0] === '[' && word[word.length - 1] === ']') {
+    console.log('This is a triple word!')
+    points *= 3
+    return points
+  } else {
+    return points
+  }
 }
 
 module.exports = scrabble

@@ -1,3 +1,6 @@
+// Input word here (moved to top for ease of access)
+const scrabbleInput = 'P[i]nt'
+
 const pointsMap = {
   A: 1,
   E: 1,
@@ -27,7 +30,7 @@ const pointsMap = {
   Z: 10
 }
 
-scrabble('P{i}nt')
+scrabble(scrabbleInput)
 
 function scrabble(word) {
   // Guard condition for null
@@ -73,43 +76,13 @@ function letterToPoints(letter) {
 }
 
 function doubleAndTripleCharacterChecker(word, points) {
-  // There must be a simpler / nicer way to do this
-  const openingCurlyBracketPlace = word.findIndex(isOpeningCurlyBracket)
-  const closingCurlyBracketPlace = word.findIndex(isClosingCurlyBracket)
+  const openingCurlyBracketPlace = word.indexOf('{')
+  const closingCurlyBracketPlace = word.indexOf('}')
   const doublePowerLetterIndex = openingCurlyBracketPlace + 1
 
-  const openingSquareBracketPlace = word.findIndex(isOpeningSquareBracket)
-  const closingSquareBracketPlace = word.findIndex(isClosingSquareBracket)
+  const openingSquareBracketPlace = word.indexOf('[')
+  const closingSquareBracketPlace = word.indexOf(']')
   const triplePowerLetterIndex = openingSquareBracketPlace + 1
-
-  function isOpeningCurlyBracket(character) {
-    if (character === '{') {
-      return true
-    } else {
-      return false
-    }
-  }
-  function isClosingCurlyBracket(character) {
-    if (character === '}') {
-      return true
-    } else {
-      return false
-    }
-  }
-  function isOpeningSquareBracket(character) {
-    if (character === '[') {
-      return true
-    } else {
-      return false
-    }
-  }
-  function isClosingSquareBracket(character) {
-    if (character === ']') {
-      return true
-    } else {
-      return false
-    }
-  }
 
   if (closingCurlyBracketPlace - openingCurlyBracketPlace === 2) {
     console.log(

@@ -1,6 +1,4 @@
 const { empty } = require("joi/lib/types/alternatives")
-
-
 let letters = {
   A: 1,
   E: 1,

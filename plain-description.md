@@ -11,4 +11,4 @@ Plain English Description - Extension
 
 **2.** Similarly to the first step, check if the entire word is within brackets to also double/triple the value of the entire string, and once again add tests in the spec file for these.
 
-**3.** Split the function into multiple smaller functions, possibly to help increase readability using [this] (<https://github.com/ryanmcdermott/clean-code-javascript#functions>)
+**3.** Split the function into multiple smaller functions, possibly to help increase readability using [this](https://github.com/ryanmcdermott/clean-code-javascript#functions)

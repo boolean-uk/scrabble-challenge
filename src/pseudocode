@@ -1,0 +1,17 @@
+Scrabble challenge
+
+*Objective: Input a string containing the word that needs to be scored based on the assigned points per letter*
+
+Steps required to complete task
+
+#1 Declare an object that shows all letters and their assigned numerical values.
+
+#2 Create a guard function that will return the value '0' when input is null/not a previously stated character.
+
+#3 Create a variable that will contain the declared word and;
+   -put all characters in lower case
+   -divide it into an array.
+
+#4 Use forEach to assign a numerical value to each declared letter in the array. (guard function will return 0 if character is not in previously stated object)
+
+#5 Add numbers in array and return total.

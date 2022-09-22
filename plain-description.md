@@ -7,4 +7,8 @@ For example baggage would be split and give the values of: 3, 1, 2, 2, 1, 2 and 
 Plain English Description - Extension
 ------
 
-TBA
+**1.** Check if the argument contains {} or [] around certain characters, if they do, double or triple (respectively) the value of those characters, and add tests in the spec file to check this.
+
+**2.** Similarly to the first step, check if the entire word is within brackets to also double/triple the value of the entire string, and once again add tests in the spec file for these.
+
+**3.** Split the function into multiple smaller functions, possibly to help increase readability using [this] (<https://github.com/ryanmcdermott/clean-code-javascript#functions>)

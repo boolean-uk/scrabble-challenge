@@ -1,4 +1,5 @@
-# Pseudocode - Core
+Pseudocode - Core
+======
 
 1. Create an array that stores each letter with a value, for example: a, e, i, o u: 1
 2. Create a function that allows a string input
@@ -8,3 +9,4 @@
 6. Total the values and return said total
 
 Extensions:
+TBA

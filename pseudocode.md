@@ -8,5 +8,7 @@ Pseudocode - Core
 5. Use a forEach to reassign the characters based on the values array, return 0 if a character isn't a letter for example: '@'
 6. Total the values and return said total
 
-Extensions:
+Pseudocode - Extensions
+------
+
 TBA

@@ -8,15 +8,30 @@ const scoreDict = {
   score10: ['Q', 'Z']
 }
 
+// INPUT
+// - str as a var that holds the users input
+
+// OUTPUT
+// - score of the str input based on the scoreDict
+
+// 1. Create a function called 'scrabble' that takes as argument 'str'
 function scrabble(str) {
+  // 2. Check if the 'str' is a valid string in order to continue the code
   if (!validateString(str)) return // If true, continue
+
+  // 3. create the output variable called 'score', it will be returned at the end of the function
   let score = 0
 
+  // 4. The 'str' must be set to upperCase in order to have the checks made properly. The scoreDict
+  // has its keys as upperCase letter.
   str = str.toUpperCase()
 
   console.log(`String parsed is ${str} ...`)
 
+  // 5. Itinerate the characters of 'str' for us to check if the 'char' matches with the scoreDict
   for (const char of str.split('')) {
+    // 5.1. Return the value of the 'char' if it belongs to scoreDict. If not, just jump to next
+    // sum the score returned to the variable 'score'
     const checkExtension = checkForDoubleOrTriple(char)
     const isDouble = checkExtension[0]
     const isTriple = checkExtension[1]

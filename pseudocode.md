@@ -1,6 +1,6 @@
 # Pseudocode - Core
 
-1. create an array that stores each letter with a value, for example: a, e, i, o u: 1
+1. Create an array that stores each letter with a value, for example: a, e, i, o u: 1
 2. Create a function that allows a string input
 3. If the input isn't a string return 0, can use if statement or || 0
 4. Split the string into indivdual characters and force every instance to be lowercase

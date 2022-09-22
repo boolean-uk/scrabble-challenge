@@ -31,7 +31,7 @@ Create initial points tally at 0 with a new variable equalling the number zero. 
 Convert the input string into something we can iterate on better.
 
 - Convert the input word to uppercase to make sure we are ok with capitalization
-- Update our letters and points value object in step 1 to capital letters
+- Update our letters and points value object in [Step 1](#step-1) to capital letters
 - Split the word to a new array
 
 ### Step 6
@@ -42,7 +42,7 @@ Iterate through all the elements of the array with a for loop
 
 ### Step 7
 
-Inside the for loop, create a function that awards points for each letter by incrementing our empty points tally variable created on [Step 4].
+Inside the for loop, create a function that awards points for each letter by incrementing our empty points tally variable created on [Step 4](#step-4).
 
 - Inside the function we take one letter at a time
 - We create a new variable that takes the value from the object created in step one

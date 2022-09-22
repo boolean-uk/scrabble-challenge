@@ -1,0 +1,8 @@
+1. create a function that strings can operate in(inputing a string will return a value)
+
+
+2. declare an object which all letters are assigned a value ie: a=2
+3. using split create the function where the word will be split into individual letters so it can calculate the points assigned to each letter.
+4. within the function add tolowercase. so that an input of an uppercase still runs and calculates correctly.
+5. create a guard function that will return 0 when inputs are null.
+6. create a variable to store the scores.

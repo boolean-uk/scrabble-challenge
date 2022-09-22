@@ -14,8 +14,8 @@ step 5: function goes through each character in the word
 
 step 6: Checks if character matches any in the letter values object, if not returns 0
 
-step 7: If a match is fund return the value pair for that character
+step 7: If a match is found return the value from the object key value pair for that character
 
-step 8: add all letter values to total word score variable
+step 8: add all letter values to total word score variable during the loop
 
 step 9: return final total value score

@@ -24,11 +24,11 @@ const points = {
   j: 8,
   x: 8,
   q: 10,
-  z: 10,
-  '{': 0,
-  '}': 0,
-  '[': 0,
-  ']': 0
+  z: 10
+  // '{': 0,
+  // '}': 0,
+  // '[': 0,
+  // ']': 0
 }
 
 function scrabble(word) {
@@ -46,7 +46,7 @@ function scrabble(word) {
 
   // forEach version, nicer looking and easier to understand
   wordArray.forEach((letter) => {
-    score += points[letter]
+    score += points[letter] || 0
   })
 
   // Moved code to a separate function, checks for bonus letters
@@ -90,5 +90,6 @@ console.log(scrabble('[dog]')) // should be 15
 console.log(scrabble('quirky')) // should be 22
 console.log(scrabble('{O}XYPHENBUTAZONE')) // should be 42
 console.log(scrabble('OXYPHENBUTAZ{O}NE')) // should also be 42
+console.log(scrabble('hel!o'))
 
 module.exports = scrabble

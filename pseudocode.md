@@ -11,8 +11,8 @@ output: score
 
 5: Declare score variable that holds 0 for now
 
-6: Use forEach on array- for each letter, we access the points object and add to the score
+6: Use forEach on array- for each letter, we access the points object and add to the score. Add 0 if char not in points object
 
 7: return the score
 
-8: Extension functions could come before the final return statement (more later)
+8: Extension functions can go before the final return statement (more later)

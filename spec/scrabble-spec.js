@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // Note: you shouldn't need to change anything in this file.
 
 const scrabble = require('../src/scrabble')

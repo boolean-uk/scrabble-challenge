@@ -92,3 +92,5 @@ Similar to above, your solution should support the ability to define double and 
 
 ### Concise Code
 Split up your `scrabble` function in to multiple smaller functions that do one thing only. Read this [article on Clean Functions](https://github.com/ryanmcdermott/clean-code-javascript#functions) and apply the principles you think are relevant.
+
+// 

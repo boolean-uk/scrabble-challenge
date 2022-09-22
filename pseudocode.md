@@ -1,6 +1,6 @@
-# Markdown heading Scrabble Challange
+# Scrabble Challange
 
-    [input = a word]  =>  [output = scrre of word]
+## [input = a word]  =>  [output = score of word]
 
 step 1. Create a function that accepts the string as the input
 step 2. Create an object that associates the points to the corect (before the function)

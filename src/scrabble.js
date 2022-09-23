@@ -41,6 +41,11 @@ function scrabble(scrabbleWord) {
     scrabbleWord[scrabbleWord.length - 1] === ']'
   ) {
     return sum * 3
+  } else if (
+    scrabbleWord[0] === '{' &&
+    scrabbleWord[scrabbleWord.length - 1] === '}'
+  ) {
+    return sum * 2
   }
   return sum
 }
@@ -48,6 +53,6 @@ function scrabble(scrabbleWord) {
 //   if(scrabbledWord[0] && scrabbledWord[scrabbledWord.length-1]) = []
 // return scrabble * 3
 // }
-console.log(scrabble(''))
+console.log(scrabble('cat'))
 
 module.exports = scrabble

@@ -35,4 +35,16 @@ describe("Scrabble", () => {
   it('scores a case-insensitive word', () => {
     expect(scrabble('OXYPHENBUTAZONE')).toEqual(41)
   })
+  it('scores a word containing a single double character', () => {
+    expect(scrabble('b{a}ggage')).toEqual(13)
+  })
+  it('scores a word containing multiple double characters', () => {
+    expect(scrabble('Oxy{moro}n')).toEqual(27)
+  })
+  it('scores a word containing a single triple character', () => {
+    expect(scrabble('Anyth[i]ng')).toEqual(23)
+  })
+  it('scores a word containing multiple triple characters', () => {
+    expect(scrabble('Oxy[moro]n')).toEqual(41)
+  })
 })

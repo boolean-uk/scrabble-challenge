@@ -16,7 +16,7 @@ Pseudocode - Core
 Pseudocode - Extensions
 ------
 
-**1.** Before the letters are split - before step 4 in core - check if there's brackets be it {} or [] within the string
+**1.** Before the letters are split - before step 4 in core - check if there's brackets - be it {} or [] - within the string
 
 **2.** Store the letters that were within the brackets as a separate array
 

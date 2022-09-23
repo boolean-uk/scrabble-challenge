@@ -2,8 +2,10 @@ const values = require('./letter-values.js') // fetch the values table
 
 function scrabble(word) {
   let points = 0
-  if (word != null) { // safeguarding against no value
-    if (word.includes('{', '}')) { // if word contains brackets
+  if (word != null) {
+    // safeguarding against no value
+    if (word.includes('{', '}')) {
+      // if word contains brackets
       const firstBracket = word.indexOf('{') // creates variable that's the index of the first bracket location
       const secondBracket = word.indexOf('}') // same as above but for the second bracket
       console.log(firstBracket)

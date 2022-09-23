@@ -57,11 +57,11 @@ function scrabble(word) {
     points += letterToPoints(character)
   }
 
-  // Checking for double and triple words
-  points = doubleAndTripleWordChecker(wordSplit, points)
-
   // Checking for double and triple letters
   points = doubleAndTripleCharacterChecker(wordSplit, points)
+
+  // Checking for double and triple words
+  points = doubleAndTripleWordChecker(wordSplit, points)
 
   // Logging the final points tally to the console
   console.log(`This gives you ${points} points in Scrabble!`)

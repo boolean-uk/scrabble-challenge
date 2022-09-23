@@ -1,0 +1,35 @@
+scrabble challenge pseudo code 
+
+understanding of challenge : 
+
+input - input a string value ( word)
+each letter in the english alphabet has a value preassigned to it already
+
+process - run the value through functions, loops and conditionals to them give me my output 
+charcters and null should return 0
+
+
+output - a numeric value based on the word.
+
+step 1 
+create my array with my letter scores in a let variable. 
+add guard feature so function will work with a non string null value. 
+
+
+step 2 
+create a loop that will fetch the letter values from the array. 
+sum the values of your scrabbleword or if not a valid input return 0
+
+step 3 
+return sum 
+
+step 4 
+console.log ( scrabble (scrabbledWord))
+
+step 5 
+
+test 
+
+step 6 
+
+add extensions

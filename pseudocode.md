@@ -16,4 +16,10 @@ Pseudocode - Core
 Pseudocode - Extensions
 ------
 
-TBA
+**1.** Before the letters are split - before step 4 in core - check if there's brackets be it {} or [] within the string
+
+**2.** Store the letters that were within the brackets as a separate array
+
+**3.** Multiply the separated letter's values by 2/3 before adding them to the total, and returning the total once both the original and core values are totaled
+
+**4.** In the case of the second extension, I believe that the same method as above should work too.

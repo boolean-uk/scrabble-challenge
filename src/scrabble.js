@@ -14,6 +14,6 @@ function scrabble(word) {
   return points
 }
 
-console.log(scrabble('c{a}bbage'))
+console.log(scrabble('cabbage'))
 
 module.exports = scrabble

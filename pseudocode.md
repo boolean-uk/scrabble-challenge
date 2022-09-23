@@ -22,4 +22,4 @@ Pseudocode - Extensions
 
 **3.** Multiply the separated letter's values by 2/3 before adding them to the total, and returning the total once both the original and core values are totaled
 
-**4.** In the case of the second extension, I believe that the same method as above should work too.
+**4.** ~~In the case of the second extension, I believe that the same method as above should work too.~~

@@ -28,6 +28,7 @@ const scoreTable = {
 }
 function scrabble(word) {
   let totalScore = 0
+  //   I have realy struggled without lines 32 and 32. my code was failing to proceed with line 35 without this guard.
   if (!word) {
     return 0
   }
@@ -39,4 +40,13 @@ function scrabble(word) {
 }
 console.log(scrabble('Dorofi +ychuk'))
 
+function doubleWord(word) {
+  if ((word[0] === '{') & (word[word.length - 1] === '}')) {
+    return scrabble(word) * 2
+  } else {
+    return scrabble(word)
+  }
+}
+
+console.log(doubleWord('{dorofiychuk}'))
 module.exports = scrabble

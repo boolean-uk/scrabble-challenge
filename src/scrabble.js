@@ -9,26 +9,25 @@ const scoreDict = {
 }
 
 function scrabble(str) {
-  if (!validateString(str)) return // If true, continue
+  if (!validateString(str)) return 0
+
   let score = 0
+  let doubleValue = false
+  let tripleValue = false
 
   str = str.toUpperCase()
 
-  console.log(`String parsed is ${str} ...`)
-
   for (const char of str.split('')) {
-    const checkExtension = checkForDoubleOrTriple(char)
-    const isDouble = checkExtension[0]
-    const isTriple = checkExtension[1]
-
-    console.log(`- Char ${char} will be processed, ${checkExtension}`)
+    if (char === '{') doubleValue = true
+    else if (char === '[') tripleValue = true
+    else if (char === '}') doubleValue = false
+    else if (char === ']') tripleValue = false
 
     const returnScore = () => {
       for (const key of Object.keys(scoreDict)) {
         if (scoreDict[key].includes(char)) {
           let num = 1
-          num = isDouble ? num * 2 : num
-          num = isTriple ? num * 3 : num
+          num = doubleValue ? num * 2 : tripleValue ? num * 3 : num
           const charScore = Number(key.substring('score'.length)) * num
           return (score += charScore) // Return the sum of the score
         }
@@ -45,24 +44,6 @@ function validateString(str) {
   } else return true
 }
 
-function checkForDoubleOrTriple(char) {
-  let isDouble = false
-  let isTriple = false
-  if (char === '{') {
-    isDouble = true
-  } else if (char === '}') {
-    isDouble = false
-  } else if (char === '[') {
-    isTriple = true
-  } else if (char === ']') {
-    isTriple = false
-  }
-
-  console.log(`-- ${char} checked for doubles and triples`)
-
-  return [isDouble, isTriple]
-}
-
-console.log(scrabble('Lucia{n}o'))
+console.log(scrabble('Lu[ci]ano'))
 
 module.exports = scrabble

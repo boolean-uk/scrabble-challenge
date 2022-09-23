@@ -48,5 +48,13 @@ function doubleWord(word) {
   }
 }
 
+function tripleWord(word) {
+  if ((word[0] === '[') & (word[word.length - 1] === ']')) {
+    return scrabble(word) * 3
+  } else {
+    return scrabble(word)
+  }
+}
+console.log(tripleWord('[dorofi-ychuk ]'))
 console.log(doubleWord('{dorofiychuk}'))
 module.exports = scrabble

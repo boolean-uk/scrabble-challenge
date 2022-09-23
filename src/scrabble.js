@@ -28,14 +28,20 @@ const letterValue = {
 }
 
 function scrabble(word) {
+    let total = 0
 if (word === null){
     return 0
 } else if (word === ''){
     return 0
 } else if (word){
-    return word.toUpperCase()
+    const upperCaseword = word.toUpperCase().split('')
+    for (let i = 0; i <upperCaseword.length; i++) {
+        total += letterValue[upperCaseword[i]]
+    }
 }
+return total
 }
 
-console.log(scrabble('hey'))
+console.log(scrabble('cabbage'))
 module.exports = scrabble
+  

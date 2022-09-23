@@ -12,13 +12,26 @@ function scrabble(word) {
       const secondBracket = word.indexOf('}') // same as above but for the second bracket
       if (firstBracket !== word[0] && secondBracket !== word[word.length - 1]) {
         // checking if the brackets include the whole word, if so ignore this and continue
-        // const toBeDoubled = word.substring(firstBracket + 1, secondBracket) // create a variable that includes the letters within the brackets
         const toBeDoubled = character.splice(firstBracket, secondBracket) // create a variable that is the letters within the bracket
-        console.log(toBeDoubled)
-        console.log(character)
         toBeDoubled.forEach((doubledLetter) => {
           points += values[doubledLetter.toLowerCase()] * 2 || 0
-          // change every letter to lowercase, match the letter with the letter and value in the values array and add to the points variable, or if it's not in the array, return 0 points
+          // change every letter to lowercase, match the letter with the letter and value in the values array and add to the points variable after multiplying by 2, or if it's not in the array, return 0 points
+        })
+      }
+    }
+    if (word.includes('[', ']')) {
+      // if word contains brackets
+      const firstSqBracket = word.indexOf('[') // creates variable that's the index of the first bracket location
+      const secondSqBracket = word.indexOf(']') // same as above but for the second bracket
+      if (
+        firstSqBracket !== word[0] &&
+        secondSqBracket !== word[word.length - 1]
+      ) {
+        // checking if the brackets include the whole word, if so ignore this and continue
+        const toBeTripled = character.splice(firstSqBracket, secondSqBracket) // create a variable that is the letters within the bracket
+        toBeTripled.forEach((tripledLetter) => {
+          points += values[tripledLetter.toLowerCase()] * 3 || 0
+          // change every letter to lowercase, match the letter with the letter and value in the values array and add to the points variable after multiplying by 3, or if it's not in the array, return 0 points
         })
       }
     }
@@ -38,6 +51,6 @@ function scrabble(word) {
   return points
 }
 
-console.log(scrabble('b{a}ggage'))
+console.log(scrabble('Anyth[i]ng'))
 
 module.exports = scrabble

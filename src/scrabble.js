@@ -33,12 +33,21 @@ function scrabble(scrabbleWord) {
 
   for (let i = 0; i < scrabbleWord.length; i++) {
     sum += libary[scrabbleWord[i]] || 0
+
     // double or triple word to come here ( look at if statements )
   }
-
+  if (
+    scrabbleWord[0] === '[' &&
+    scrabbleWord[scrabbleWord.length - 1] === ']'
+  ) {
+    return sum * 3
+  }
   return sum
 }
-
-console.log(scrabble(null))
+// function tripler (triple){
+//   if(scrabbledWord[0] && scrabbledWord[scrabbledWord.length-1]) = []
+// return scrabble * 3
+// }
+console.log(scrabble(''))
 
 module.exports = scrabble

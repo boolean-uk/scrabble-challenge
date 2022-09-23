@@ -33,3 +33,19 @@ test
 step 6 
 
 add extensions
+
+triple or double score based on whether my intitial string value is enclosed
+in either {} - double or [] - triple. 
+i am thinking i could check first ad last character for the word and if 
+returns true then triple or double score. that would be for 
+triple or double word.
+
+function (triple){
+    if(scrabbledWord[0] && scrabbledWord[scrabbledWord.length-1]) === []
+return scrabble * 3
+}
+
+function (double){
+    if(scrabbledWord[0] && scrabbledWord[scrabbledWord.length-1]) === {}
+return scrabble * 2
+}

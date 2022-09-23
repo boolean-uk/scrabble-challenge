@@ -15,9 +15,7 @@ function scrabble(str) {
   let doubleValue = false
   let tripleValue = false
 
-  str = str.toUpperCase()
-
-  for (const char of str.split('')) {
+  for (const char of str.toUpperCase().split('')) {
     if (char === '{') doubleValue = true
     else if (char === '[') tripleValue = true
     else if (char === '}') doubleValue = false

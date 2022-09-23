@@ -28,12 +28,9 @@ function scrabble(str) {
   let doubleValue = false
   let tripleValue = false
 
-  // 4. The 'str' must be set to upperCase in order to have the checks made properly. The scoreDict
-  // has its keys as upperCase letter.
-  str = str.toUpperCase()
-
+  // set it to upperCase before iterating
   // 5. Iterate the characters of 'str' for us to check if the 'char' matches with the scoreDict
-  for (const char of str.split('')) {
+  for (const char of str.toUpperCase().split('')) {
     // Check for initialization and finalization of double and triple values.
     if (char === '{') doubleValue = true
     else if (char === '[') tripleValue = true

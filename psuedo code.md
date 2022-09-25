@@ -1,8 +1,6 @@
-# Heading 1
-Scrabble Challange Psuedo Code
-# Heading 2
-Input = String of letters, Output = Words and their scores</h2>
-# Heading 3
+# Scrabble Challange Psuedo Code
+## Input = String of letters, Output = Words and their scores
+
 1. present object with letters and values
 
 2. make a function to split characters with lowercase

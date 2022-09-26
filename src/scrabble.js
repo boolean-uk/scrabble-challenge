@@ -35,13 +35,13 @@ if (word === null){
     return 0
 } else if (word){
     const upperCaseword = word.toUpperCase().split('')
-    for (let i = 0; i <upperCaseword.length; i++) {
+    for (let i = 0; i < upperCaseword.length; i++) {
         total += letterValue[upperCaseword[i]]
     }
-}
+} 
 return total
 }
 
+
 console.log(scrabble('cabbage'))
 module.exports = scrabble
-  

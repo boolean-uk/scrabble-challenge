@@ -39,6 +39,7 @@ function scrabble(word) {
       points += values[letter.toLowerCase()] || 0
       // change every letter to lowercase, match the letter with the letter and value in the values array and add to the points variable, or if it's not in the array, return 0 points
     })
+    // Not fully implemented, won't accept inputs like '{cabb[a]ge}' due to testing on line 13 and 26
     if (word[0].includes('{') && word[word.length - 1].includes('}')) {
       points *= 2
       console.log('Extension 2')

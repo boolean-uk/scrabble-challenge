@@ -71,28 +71,37 @@ function scrabble(word) {
 }
 
 function letterToPoints(letter) {
+  // Converting the letter to its corresponding point, if letter isn't in pointsMap, add zero
   const value = pointsMap[letter] || 0
   return value
 }
 
 function doubleAndTripleCharacterChecker(word, points) {
+  // Finding the indexes of "{" and "}" characters
   const openingCurlyBracketPlace = word.indexOf('{')
   const closingCurlyBracketPlace = word.indexOf('}')
+
+  // Finding the index of the character within the brackets
   const doublePowerLetterIndex = openingCurlyBracketPlace + 1
 
+  // Finding the indexes of "[" and "]" characters
   const openingSquareBracketPlace = word.indexOf('[')
   const closingSquareBracketPlace = word.indexOf(']')
+
+  // Finding the index of the character within the brackets
   const triplePowerLetterIndex = openingSquareBracketPlace + 1
 
   if (closingCurlyBracketPlace - openingCurlyBracketPlace === 2) {
     console.log(
       `Double points for the letter "${word[doublePowerLetterIndex]}"!`
     )
+    // Adding the points value of the double letter one more time (only once because it has already been added once)
     return (points += letterToPoints(word[doublePowerLetterIndex]))
   } else if (closingSquareBracketPlace - openingSquareBracketPlace === 2) {
     console.log(
       `Triple points for the letter "${word[triplePowerLetterIndex]}"!`
     )
+    // Adding the points value of the triple letter one more time (only twice because it has already been added once)
     return (points += letterToPoints(word[triplePowerLetterIndex]) * 2)
   } else {
     return points
@@ -100,14 +109,17 @@ function doubleAndTripleCharacterChecker(word, points) {
 }
 
 function doubleAndTripleWordChecker(word, points) {
+  // If the word starts and ends with a curly bracket, double the points
   if (word[0] === '{' && word[word.length - 1] === '}') {
     console.log('This is a double word!')
     points *= 2
     return points
+    // If the word starts and ends with a square bracket, triple the points
   } else if (word[0] === '[' && word[word.length - 1] === ']') {
     console.log('This is a triple word!')
     points *= 3
     return points
+    // Otherwise don't do anything
   } else {
     return points
   }

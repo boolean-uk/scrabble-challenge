@@ -51,6 +51,14 @@ function scrabble(str) {
           let num = 1 // If not doubled nor trippled, just let it be 1 so the score will not change
           // 'num' is condition if doubled (num*2) or if tripled (num*3) else 'num' (no ? so is a else)
           num = doubleValue ? num * 2 : tripleValue ? num * 3 : num
+          // ABOVE is same as:
+          // if (doubleValue) {
+          //  num = 2
+          // } else if (tripleValue) {
+          //  num = 3
+          // } else {
+          //  num = num (which is equal to 1, same as num = 1)
+          // }
 
           // multi the score (like score2 = 2) with the num (that is either 1, 2 or 3 depending
           // if normal, double or triple)

@@ -26,21 +26,10 @@ const letterPoints = {
   q: 10,
   z: 10
 }
-// const words = ['cabbage', 'street', 'quirky', '@hot! ', '', ' \t\n', '()']
-
-// const total = words.map((word) => {
-//   let points = 0
-//   const wordList = word.split('')
-//   wordList.forEach((letter) => {
-//     points += letterPoints[letter.toLowerCase()] || 0
-//   })
-//   return points
-// })
-
-// console.log(total)
 
 function scrabble(word) {
   let points = 0
+
   if (word === null) {
     return 0
   }
@@ -50,5 +39,8 @@ function scrabble(word) {
   })
   return points
 }
-
+// console.log(scrabble('d{o}g'))
 module.exports = scrabble
+// it('scores double letter word', () => {
+//   expect(scrabble('{o}')).toEqual(2)
+// })

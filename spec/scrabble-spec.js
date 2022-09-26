@@ -34,4 +34,25 @@ describe("Scrabble", () => {
   it('scores a case-insensitive word', () => {
     expect(scrabble('OXYPHENBUTAZONE')).toEqual(41)
   })
+
+  // Adding test functionality for double and triple words
+
+  it('scores a double word', () => {
+    expect(scrabble('{Double}')).toEqual(18)
+  })
+
+  it('scores a triple word', () => {
+    expect(scrabble('[Triple]')).toEqual(24)
+  })
+
+  // Adding test functionality for double and triple letters
+
+  it('scores a double letter', () => {
+    expect(scrabble('Dou{b}leLetter')).toEqual(18)
+  })
+
+  it('scores a triple letter', () => {
+    expect(scrabble('Tri[p]leLetter')).toEqual(20)
+  })
+
 })

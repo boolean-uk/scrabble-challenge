@@ -2,13 +2,13 @@
 
 const scrabble = require('../src/scrabble')
 
-describe("Scrabble", () => {
+describe('Scrabble', () => {
   it('returns 0 for empty words', () => {
     expect(scrabble('')).toEqual(0)
   })
 
   it('returns 0 for whitespace', () => {
-    expect(scrabble(" \t\n")).toEqual(0)
+    expect(scrabble(' \t\n')).toEqual(0)
   })
 
   it('returns 0 for null', () => {
@@ -33,5 +33,20 @@ describe("Scrabble", () => {
 
   it('scores a case-insensitive word', () => {
     expect(scrabble('OXYPHENBUTAZONE')).toEqual(41)
+  })
+})
+
+const doubleWord = require('../src/scrabble')
+const tripleWord = require('../src/scrabble')
+
+describe('doubleWord', () => {
+  it('returns double points for words inside {}', () => {
+    expect(doubleWord('{street}')).toEqual(12)
+  })
+
+  describe('tripleWord', () => {
+    it('returns triple points for words inside []', () => {
+      expect(tripleWord('[street]')).toEqual(18)
+    })
   })
 })

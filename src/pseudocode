@@ -6,12 +6,14 @@ Steps required to complete task
 
 #1 Declare an object that shows all letters and their assigned numerical values.
 
-#2 Create a guard function that will return the value '0' when input is null/not a previously stated character.
+#2 Write a guard function that will return the value '0' when input is null/not a previously stated character.
 
 #3 Create a variable that will contain the declared word and;
    -put all characters in lower case
    -divide it into an array.
 
-#4 Use forEach to assign a numerical value to each declared letter in the array. (guard function will return 0 if character is not in previously stated object)
+#4 Use a for loop to go through the array, and assign each item a numerical value.
 
-#5 Add numbers in array and return total.
+#5 calculate the sum of all items in array or return 0 if it is empty.
+
+#5 Return the sum of items in the array.

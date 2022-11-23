@@ -31,51 +31,19 @@ const points = {
 // Main Scrabble Function
 
 function scrabble(string) {
-  let invalidChecker = false
   let result = 0
-  let upCasedString = ''
-
   // Checking for null in string
   if (string === null) {
     return result
-  } else {
-    upCasedString = string.toUpperCase()
   }
-
-  // Working out the total score for the string. Ignoring all unnecessary characters
-  for (let i = 0; i < upCasedString.length; i++) {
-    const score = points[upCasedString[i]]
-    if (score > 0) {
-      result += score
-    }
-  }
-  // Checks how many additional points from double or triple letters,
-  // within the multipleLetterChecker function, and adds to the total.
-  const letterPoints = multipleLetterChecker(string)
-  if (letterPoints === true) {
-    invalidChecker = true
-  } else if (letterPoints > 0) {
-    result += letterPoints
-  }
-
-  // Checks how many additional points from double or triple word,
-  // using the multipleWordChecker function, and multiples the total.
-  const multiWordPoints = multipleWordChecker(string)
-  if (multiWordPoints === true) {
-    invalidChecker = true
-  } else if (multiWordPoints > 0) {
-    result *= multiWordPoints
-  }
-
-  // Checks if any wrong tokens are used in the string,
-  // using the wrongTokenChecker function.
-  if (wrongTokenChecker(string) === true) {
-    invalidChecker = true
-  }
-
-  // Checks if any of the previous functions found anything invalid.
-  // If so, returns 0. Otherwise returns the total score.
-  if (invalidChecker === true) {
+  // Adds the basic score to result.
+  result = basicScore(string)
+  // Adds the double and tripe letter scores to the result.
+  result += multipleLetterChecker(string)
+  // multiplies the result by 1, 2, or 3 for multiple word score.
+  result *= multipleWordChecker(string)
+  // Checks if any of the invalid checks are true... if so returns 0.
+  if (invalidCheckerMaster(string) === true) {
     return 0
   } else {
     return result
@@ -83,16 +51,26 @@ function scrabble(string) {
 }
 // ------------------- End of Main scrabble Function -------------------
 
-// Multiple Scoring Letters Checker Function
-function multipleLetterChecker(string) {
-  let invalidChecker = false
-  let additionalLetterPoints = 0
-  let upCasedString = ''
-  if (string === null) {
-    invalidChecker = true
-  } else {
-    upCasedString = string.toUpperCase()
+// Basic Score
+
+function basicScore(string) {
+  const upCasedString = string.toUpperCase()
+  let total = 0
+  for (let i = 0; i < upCasedString.length; i++) {
+    const score = points[upCasedString[i]]
+    if (score > 0) {
+      total += score
+    }
   }
+  return total
+}
+// ------------------- End of basicScore Function -------------------
+
+// Multiple Scoring Letters Checker Function
+
+function multipleLetterChecker(string) {
+  let additionalLetterPoints = 0
+  const upCasedString = string.toUpperCase()
 
   // Checks for double or tripple letters, and updates the points.
   for (let i = 0; i < upCasedString.length; i++) {
@@ -111,23 +89,14 @@ function multipleLetterChecker(string) {
       }
     }
   }
-
-  if (multiplierTokenChecker(string) === true) {
-    invalidChecker = true
-  }
-
-  if (invalidChecker === true) {
-    return invalidChecker
-  } else {
-    return additionalLetterPoints
-  }
+  return additionalLetterPoints
 }
 
 // ------------------- End of multipleLetterChecker Function -------------------
 
 // Multiple Scoring Word Checker
+
 function multipleWordChecker(string) {
-  let invalidChecker = false
   let multiplier = 1
 
   // Checking for correct word multiplier
@@ -160,24 +129,7 @@ function multipleWordChecker(string) {
     multiplier = 1
   }
 
-  // Checking if string is correctly wrapped
-  if (string[0] === '{' && string[string.length - 1] !== '}') {
-    invalidChecker = true
-  } else if (string[0] === '[' && string[string.length - 1] !== ']') {
-    invalidChecker = true
-  }
-
-  // Checking for incorrect amount of multiplier markers.
-  if (multiplierTokenChecker(string) === true) {
-    invalidChecker = true
-  }
-
-  // Returning False for invalid, or the multiplier for correct usage!
-  if (invalidChecker === true) {
-    return invalidChecker
-  } else {
-    return multiplier
-  }
+  return multiplier
 }
 
 // ------------------- End of multipleWordChecker Function -------------------
@@ -195,6 +147,8 @@ function wrongTokenChecker(string) {
 }
 
 // ------------------- End of wrongTokenChecker Function -------------------
+
+// Multiplier Token Checker
 
 function multiplierTokenChecker(string) {
   let invalidChecker = false
@@ -224,5 +178,36 @@ function multiplierTokenChecker(string) {
 }
 
 // ------------------- End of multiplierTokenChecker Function -------------------
+
+// Correctly Wrapped Multiplier Checker
+
+function correctlyWrapped(string) {
+  let invalidChecker = false
+  if (string[0] === '{' && string[string.length - 1] !== '}') {
+    invalidChecker = true
+  } else if (string[0] === '[' && string[string.length - 1] !== ']') {
+    invalidChecker = true
+  }
+  return invalidChecker
+}
+
+// ------------------- End of correctlyWrapped Function -------------------
+
+// Invalid Checker - Master Function!
+
+function invalidCheckerMaster(string) {
+  let invalidChecker = false
+  if (correctlyWrapped(string) === true) {
+    invalidChecker = true
+  } else if (multiplierTokenChecker(string) === true) {
+    invalidChecker = true
+  } else if (wrongTokenChecker(string) === true) {
+    invalidChecker = true
+  }
+
+  return invalidChecker
+}
+
+// ------------------- End of invalidCheckerMaster Function -------------------
 
 module.exports = scrabble

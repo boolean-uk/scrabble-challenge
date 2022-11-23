@@ -79,32 +79,21 @@ function multipleLetterChecker(string) {
 function multipleWordChecker(string) {
   let multiplier = 1
 
-  // Checking for correct word multiplier
-  if (string[0] === '{' && string[string.length - 1] === '}') {
+  // Checking for double word modifier
+  if (doubleWord(string)) {
     multiplier = 2
-  } else if (string[0] === '[' && string[string.length - 1] === ']') {
+  }
+
+  // Checking for triple word modifier
+  if (tripleWord(string)) {
     multiplier = 3
   }
 
   // Checking for rare double AND triple multiplier
-  if (
-    string[0] === '{' &&
-    string[string.length - 1] === '}' &&
-    string[1] === '[' &&
-    string[string.length - 2] === ']'
-  ) {
-    multiplier = 6
-  } else if (
-    string[0] === '[' &&
-    string[string.length - 1] === ']' &&
-    string[1] === '{' &&
-    string[string.length - 2] === '}'
-  ) {
+  if (doubleAndTripleWord(string)) {
     multiplier = 6
   }
-
   // Checking for end letters confusing multiWord
-
   if (string[0] === '{' && string[2] === '}') {
     multiplier = 1
   }
@@ -113,6 +102,51 @@ function multipleWordChecker(string) {
 }
 
 // ------------------- End of multipleWordChecker Function -------------------
+
+// Double Word Modifier Function
+
+function doubleWord(string) {
+  if (string[0] === '{' && string[string.length - 1] === '}') {
+    return true
+  } else {
+    return false
+  }
+}
+// ------------------- End of doubleWord Function -------------------
+
+// Triple Word Modifier Function
+
+function tripleWord(string) {
+  if (string[0] === '[' && string[string.length - 1] === ']') {
+    return true
+  } else {
+    return false
+  }
+}
+
+// ------------------- End of tripleWord Function -------------------
+
+// Rare Double AND Triple Word Modifier
+
+function doubleAndTripleWord(string) {
+  if (
+    string[0] === '{' &&
+    string[string.length - 1] === '}' &&
+    string[1] === '[' &&
+    string[string.length - 2] === ']'
+  ) {
+    return true
+  } else if (
+    string[0] === '[' &&
+    string[string.length - 1] === ']' &&
+    string[1] === '{' &&
+    string[string.length - 2] === '}'
+  ) {
+    return true
+  }
+}
+
+// ------------------- End of doubleAndTripleWord Function -------------------v
 
 // Token Checker, returns true if invalid are found, false if none are found.!
 

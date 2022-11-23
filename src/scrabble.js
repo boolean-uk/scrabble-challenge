@@ -11,11 +11,11 @@ const getLetterScore = (letter) => {
         Q: 10,
         Z: 10
     }
-    console.log(letter)
-    console.log(letter.toUpperCase())
 
-    if()
-    return letterScoreTable[letter.toUpperCase()];
+    if(letterScoreTable[letter.toUpperCase()] != undefined)
+        return letterScoreTable[letter.toUpperCase()];
+    else
+        return 0;
 }
 
 
@@ -30,11 +30,11 @@ function scrabble(word) {
     return wordScore
 }
 
-//console.log(scrabble('')) // should return 0
+console.log(scrabble('')) // should return 0
 
 console.log(scrabble(" \t\n")) // should return 0
 
-/*console.log(scrabble(null)) // should return 0
+console.log(scrabble(null)) // should return 0
 
 console.log(scrabble('a')) // should return 1
 
@@ -44,6 +44,6 @@ console.log(scrabble('street')) // should return 6
 
 console.log(scrabble('quirky')) // should return 22
 
-console.log(scrabble('OXYPHENBUTAZONE')) // should return 41*/
+console.log(scrabble('OXYPHENBUTAZONE')) // should return 41
 
 module.exports = scrabble

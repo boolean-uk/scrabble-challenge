@@ -37,11 +37,6 @@ function letterValue(letter) {
   }
 }
 
-// function multiLetter(word) {
-//   if (word.includes('{')) {
-//   }
-// }
-
 function scrabble(word) {
   let score = 0
   if (typeof word !== 'string' || word instanceof String) {
@@ -54,6 +49,6 @@ function scrabble(word) {
   return score
 }
 
-// console.log(scrabble('cabbage'))
+console.log(scrabble('cabbage'))
 
 module.exports = scrabble

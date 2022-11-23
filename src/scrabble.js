@@ -1,154 +1,120 @@
+// Object of all the Point Values for scrabble.
+const points = {
+  A: 1,
+  E: 1,
+  I: 1,
+  O: 1,
+  U: 1,
+  L: 1,
+  N: 1,
+  R: 1,
+  S: 1,
+  T: 1,
+  D: 2,
+  G: 2,
+  B: 3,
+  C: 3,
+  M: 3,
+  P: 3,
+  F: 4,
+  H: 4,
+  V: 4,
+  W: 4,
+  Y: 4,
+  K: 5,
+  J: 8,
+  X: 8,
+  Q: 10,
+  Z: 10
+}
+
+// Main Scrabble Function
+
 function scrabble(string) {
-  const points = {
-    A: 1,
-    E: 1,
-    I: 1,
-    O: 1,
-    U: 1,
-    L: 1,
-    N: 1,
-    R: 1,
-    S: 1,
-    T: 1,
-    D: 2,
-    G: 2,
-    B: 3,
-    C: 3,
-    M: 3,
-    P: 3,
-    F: 4,
-    H: 4,
-    V: 4,
-    W: 4,
-    Y: 4,
-    K: 5,
-    J: 8,
-    X: 8,
-    Q: 10,
-    Z: 10
-  }
   let invalidChecker = false
   let result = 0
   let upCasedString = ''
+
+  // Checking for null in string
   if (string === null) {
     return result
   } else {
     upCasedString = string.toUpperCase()
   }
 
+  // Working out the total score for the string. Ignoring all unnecessary characters
   for (let i = 0; i < upCasedString.length; i++) {
     const score = points[upCasedString[i]]
     if (score > 0) {
-      result = result + score
+      result += score
     }
   }
-
+  // Checks how many additional points from double or triple letters,
+  // within the multipleLetterChecker function, and adds to the total.
   const letterPoints = multipleLetterChecker(string)
   if (letterPoints === true) {
     invalidChecker = true
   } else if (letterPoints > 0) {
-    result = result + letterPoints
+    result += letterPoints
   }
 
+  // Checks how many additional points from double or triple word,
+  // using the multipleWordChecker function, and multiples the total.
   const multiWordPoints = multipleWordChecker(string)
   if (multiWordPoints === true) {
     invalidChecker = true
   } else if (multiWordPoints > 0) {
-    result = result * multiWordPoints
+    result *= multiWordPoints
   }
 
-  if (tokenChecker(string) === true) {
+  // Checks if any wrong tokens are used in the string,
+  // using the wrongTokenChecker function.
+  if (wrongTokenChecker(string) === true) {
     invalidChecker = true
   }
 
+  // Checks if any of the previous functions found anything invalid.
+  // If so, returns 0. Otherwise returns the total score.
   if (invalidChecker === true) {
     return 0
   } else {
     return result
   }
 }
+// ------------------- End of Main scrabble Function -------------------
 
-// Multiple Scoring Letters Checker
+// Multiple Scoring Letters Checker Function
 function multipleLetterChecker(string) {
-  const points = {
-    A: 1,
-    E: 1,
-    I: 1,
-    O: 1,
-    U: 1,
-    L: 1,
-    N: 1,
-    R: 1,
-    S: 1,
-    T: 1,
-    D: 2,
-    G: 2,
-    B: 3,
-    C: 3,
-    M: 3,
-    P: 3,
-    F: 4,
-    H: 4,
-    V: 4,
-    W: 4,
-    Y: 4,
-    K: 5,
-    J: 8,
-    X: 8,
-    Q: 10,
-    Z: 10
-  }
-
   let invalidChecker = false
   let additionalLetterPoints = 0
   let upCasedString = ''
   if (string === null) {
-    return additionalLetterPoints
+    invalidChecker = true
   } else {
     upCasedString = string.toUpperCase()
   }
 
-  // Invalid Checker (checking that amount of brackets is an even number)
+  // Checks for double or tripple letters, and updates the points.
   for (let i = 0; i < upCasedString.length; i++) {
-    let curlyOpenCounter = 0
-    let curlyClosedCounter = 0
-    let squareOpenCounter = 0
-    let squareClosedCounter = 0
-    for (let i = 0; i < string.length; i++) {
-      if (string[i] === '{') {
-        curlyOpenCounter += 1
-      } else if (string[i] === '}') {
-        curlyClosedCounter += 1
-      } else if (string[i] === '[') {
-        squareOpenCounter += 1
-      } else if (string[i] === ']') {
-        squareClosedCounter += 1
-      }
-    }
-    if ((curlyOpenCounter + curlyClosedCounter) % 2 !== 0) {
-      invalidChecker = true
-    }
-    if ((squareOpenCounter + squareClosedCounter) % 2 !== 0) {
-      invalidChecker = true
-    }
-
     // Successful double letter
     if (upCasedString[i] === '{' && upCasedString[i + 2] === '}') {
       const score = points[upCasedString[i + 1]]
       if (score > 0) {
-        additionalLetterPoints = additionalLetterPoints + score
+        additionalLetterPoints += score
       }
     }
     // Successful triple letter:
     if (upCasedString[i] === '[' && upCasedString[i + 2] === ']') {
       const score = points[upCasedString[i + 1]]
       if (score > 0) {
-        additionalLetterPoints = additionalLetterPoints + score * 2
+        additionalLetterPoints += score * 2
       }
     }
   }
 
-  // Invalid Checker!
+  if (multiplierTokenChecker(string) === true) {
+    invalidChecker = true
+  }
 
   if (invalidChecker === true) {
     return invalidChecker
@@ -156,6 +122,8 @@ function multipleLetterChecker(string) {
     return additionalLetterPoints
   }
 }
+
+// ------------------- End of multipleLetterChecker Function -------------------
 
 // Multiple Scoring Word Checker
 function multipleWordChecker(string) {
@@ -200,6 +168,36 @@ function multipleWordChecker(string) {
   }
 
   // Checking for incorrect amount of multiplier markers.
+  if (multiplierTokenChecker(string) === true) {
+    invalidChecker = true
+  }
+
+  // Returning False for invalid, or the multiplier for correct usage!
+  if (invalidChecker === true) {
+    return invalidChecker
+  } else {
+    return multiplier
+  }
+}
+
+// ------------------- End of multipleWordChecker Function -------------------
+
+// Token Checker, checking that tokens are valid!
+
+function wrongTokenChecker(string) {
+  let invalidChecker = false
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === '|') {
+      invalidChecker = true
+    }
+  }
+  return invalidChecker
+}
+
+// ------------------- End of wrongTokenChecker Function -------------------
+
+function multiplierTokenChecker(string) {
+  let invalidChecker = false
   let curlyOpenCounter = 0
   let curlyClosedCounter = 0
   let squareOpenCounter = 0
@@ -222,25 +220,9 @@ function multipleWordChecker(string) {
   if ((squareOpenCounter + squareClosedCounter) % 2 !== 0) {
     invalidChecker = true
   }
-
-  // Returning False for invalid, or the multiplier for correct usage!
-  if (invalidChecker === true) {
-    return invalidChecker
-  } else {
-    return multiplier
-  }
-}
-
-// Token Checker, checking that tokens are valid!
-
-function tokenChecker(string) {
-  let invalidChecker = false
-  for (let i = 0; i < string.length; i++) {
-    if (string[i] === '|') {
-      invalidChecker = true
-    }
-  }
   return invalidChecker
 }
+
+// ------------------- End of multiplierTokenChecker Function -------------------
 
 module.exports = scrabble

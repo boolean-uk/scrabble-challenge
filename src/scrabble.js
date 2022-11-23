@@ -231,6 +231,8 @@ function multipleWordChecker(string) {
   }
 }
 
+// Token Checker, checking that tokens are valid!
+
 function tokenChecker(string) {
   let invalidChecker = false
   for (let i = 0; i < string.length; i++) {
@@ -240,6 +242,5 @@ function tokenChecker(string) {
   }
   return invalidChecker
 }
-console.log(tokenChecker(`|d|og`))
 
 module.exports = scrabble

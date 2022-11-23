@@ -27,34 +27,31 @@ const values = {
     "Z": 10
 }
 
-// function scrabble(string)
-// {
-//    var letterCheck = /^[A-Za-z]+$/;
-//    if(string.match(letterCheck)) {
-//     const toPoints = (string) => {
-//         const word = string.toUpperCase()
-//         let sum = 0
-//         for (let i = 0; i < string.length; i++) {
-//             let current = word[i]
-//             sum += values[current]
-//         }
-//         return sum
-//     }
-//     toPoints(string)
-//    } else {
-//     console.log('test4')
-//    }
-// } 
-
-const scrabble = (string) => {
-    const word = string.toUpperCase()
-    let sum = 0
-    for (let i = 0; i < string.length; i++) {
-        let current = word[i]
-        sum += values[current]
-    }
+function scrabble(string) {
+if (string === null) {
+    return 0
+} else {
+    var regEx = /^[A-Za-z]+$/
+    if(string.match(regEx)) { 
+        const word = string.toUpperCase()
+        let sum = 0
+        for (let i = 0; i < string.length; i++) {
+            let current = word[i]
+            sum += values[current]
+        }
     return sum
+} else { 
+    return 0
+}
+}
 }
 
-console.log(scrabble('test'))
+console.log(scrabble(''))
+console.log(scrabble(" \t\n"))
+console.log(scrabble(null))
+console.log(scrabble('a'))
+console.log(scrabble('f'))
+console.log(scrabble('street'))
+console.log(scrabble('quirky'))
+console.log(scrabble('OXYPHENBUTAZONE'))
 module.exports = scrabble

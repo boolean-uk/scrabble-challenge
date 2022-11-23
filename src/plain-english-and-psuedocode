@@ -1,0 +1,8 @@
+take the string and assign a value to each letter in the string from a pre-determined kist,
+once i have those values i add all those values together and find a result that gets returned as the final value 
+
+psuedo code:
+assighn vaules to letters given const variables
+
+use a for loop sto go through the index of a string and the charAt() look at each charachter in the string
+comparing the chachters to vaulues assighned to those charachters if ('a' ==== 'a') { }

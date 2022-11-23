@@ -1,5 +1,3 @@
-function scrabble() {
-
-}
+function scrabble() {}
 
 module.exports = scrabble

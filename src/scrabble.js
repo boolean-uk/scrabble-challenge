@@ -22,7 +22,6 @@ function scrabble(userString) {
     let value = []
     let finalSum = 0
     for (i = 0; i < str.length; i++) {
-        console.log(str[i])
         if (str[i] === 'A' || str[i] === 'E' || str[i] === 'I' || str[i] === 'O' || str[i] === 'U') {
             value.push(1)
         } else if (str[i] === 'L' || str[i] === 'N' || str[i] === 'R' || str[i] === 'S' || str[i] === 'T') {
@@ -43,16 +42,16 @@ function scrabble(userString) {
             value.push(0)
         }
     }
-    console.log(value)
 
     for (j = 0; j < value.length; j++) {
         finalSum += value[j]
     }
 
+    console.log(`your word was ${userString}, you scored ${finalSum} points!`)
     return finalSum
 }
 }
 
-scrabble('quirky')
+scrabble('chicken nuggets')
 
 module.exports = scrabble

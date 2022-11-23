@@ -1,4 +1,4 @@
-const getLetterScore = (letter) => {
+const getLetterScore = (letter, multiplier) => {
     const letterScoreTable = {
         ...Object.fromEntries(['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'].map(key => [key, 1])),
         D: 2,
@@ -13,7 +13,7 @@ const getLetterScore = (letter) => {
     }
 
     if(letterScoreTable[letter.toUpperCase()] != undefined)
-        return letterScoreTable[letter.toUpperCase()];
+        return letterScoreTable[letter.toUpperCase()] * multiplier;
     else
         return 0;
 }
@@ -21,28 +21,38 @@ const getLetterScore = (letter) => {
 
 function scrabble(word) {
     let wordScore = 0
+    let multiplier = 1
     if(word === null)
     {   return 0}
     for(let i=0; i< word.length; i++)
     {
-        wordScore += getLetterScore(word[i])
+        switch (word[i]) {
+            case `{`:
+                multiplier *= 2
+                break;
+            case `}`:
+                multiplier /= 2
+                break;
+            case `[`:
+                multiplier *= 3
+                break;
+            case `]`:
+                multiplier /= 3
+                break;
+        
+            default:
+                break;
+        }
+        if(multiplier < 1)
+            multiplier = 1
+        wordScore += getLetterScore(word[i], multiplier)
     }
     return wordScore
 }
 
-console.log(scrabble('')) // should return 0
+console.log(scrabble('st[r]{e}et')) // should return 9
 
-console.log(scrabble(" \t\n")) // should return 0
-
-console.log(scrabble(null)) // should return 0
-
-console.log(scrabble('a')) // should return 1
-
-console.log(scrabble('f')) // should return 4
-
-console.log(scrabble('street')) // should return 6
-
-console.log(scrabble('quirky')) // should return 22
+console.log(scrabble('[quirky]')) // should return 22
 
 console.log(scrabble('OXYPHENBUTAZONE')) // should return 41
 

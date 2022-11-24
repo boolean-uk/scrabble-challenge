@@ -63,6 +63,9 @@ function scrabble(string) {
     for (let i = 0; i < word.length; i++) {
       const counter = i
       let charsToBeDoubled = '.'
+      if (word[counter] === '}') {
+        return null
+      }
       if (word[counter] === '{') {
         // while (word[counter] !== '}') {
         for (let i = word.indexOf(word[counter]); i < word.length; i++) {

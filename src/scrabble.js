@@ -68,13 +68,14 @@ function scrabble(string) {
         for (let i = word.indexOf(word[counter]); i < word.length; i++) {
           const counter = i
           if (word[counter] === '}') {
-            break
+            return calculateScore(charsToBeDoubled)
+            // break
           }
           charsToBeDoubled += word[counter]
         }
 
         // console.log('INSIDE DOUBLE SCORE ---> ', charsToBeDoubled)
-        return calculateScore(charsToBeDoubled)
+        return null
         // }
       }
     }
@@ -82,7 +83,10 @@ function scrabble(string) {
     return 0
   }
 
-  const finalScore = calculateScore(word) + doubleScore()
+  let finalScore = calculateScore(word) + doubleScore()
+  if (doubleScore() === null) {
+    finalScore = 0
+  }
   return finalScore
 }
 

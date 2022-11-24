@@ -86,8 +86,37 @@ function scrabble(string) {
     return 0
   }
 
-  let finalScore = calculateScore(word) + doubleScore()
+  function tripleScore() {
+    for (let i = 0; i < word.length; i++) {
+      const counter = i
+      let charsToBeTripled = '.'
+      if (word[counter] === ']') {
+        return null
+      }
+      if (word[counter] === '[') {
+        // while (word[counter] !== '}') {
+        for (let i = word.indexOf(word[counter]); i < word.length; i++) {
+          const counter = i
+          if (word[counter] === ']') {
+            return calculateScore(charsToBeTripled) * 2
+            // break
+          }
+          charsToBeTripled += word[counter]
+        }
+
+        // console.log('INSIDE DOUBLE SCORE ---> ', charsToBeDoubled)
+        return null
+        // }
+      }
+    }
+    // score = 0
+    return 0
+  }
+
+  let finalScore = calculateScore(word) + doubleScore() + tripleScore()
   if (doubleScore() === null) {
+    finalScore = 0
+  } else if (tripleScore === null) {
     finalScore = 0
   }
   return finalScore

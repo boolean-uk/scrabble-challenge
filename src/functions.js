@@ -148,10 +148,12 @@ function doubleAndTripleWord(string) {
 
 // ------------------- End of doubleAndTripleWord Function -------------------v
 
-// Token Checker, returns true if invalid are found, false if none are found.!
-
+// Token Checker, returns true if invalid are found, false if none are found!
+// the RegEx is a Negated Set. So anything that isnt alphanumeric, underscore
+// curly or square bracket inside the string will return true - causing the
+// entire scrabble result to return 0.
 function wrongTokenChecker(string) {
-  return string.includes(`|`)
+  return /[^\w[\]{}]/g.test(string)
 }
 
 // ------------------- End of wrongTokenChecker Function -------------------

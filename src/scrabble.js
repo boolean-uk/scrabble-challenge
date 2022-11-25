@@ -29,22 +29,27 @@ function scrabble(word) {
   }
   let sum = 0
   let letter = ''
+  // write if statment that if the word is empty return the value of adding letters is `0`
   if (word === '') {
     return 0
   }
+  // write if statment that if the word is with the slash symbols return the value of adding letters is `0`
   if (word === ' \t\n') {
     return 0
   }
+  // write if statment that if the word is null return the value of adding letters is `0`
   if (word === null) {
     return 0
   }
-  word = word.toUpperCase()
+  //   change the words to casesenstivity to accept in the function
+  word = word.toLowerCase()
+  // create the for loop to take the each letter in the word and add together.
   for (let i = 0; i < word.length; i++) {
     letter = word[i]
     sum += lettersAN[letter]
   }
   return sum
 }
-console.log(scrabble('CABBAGE'))
-console.log(scrabble('Manoj'))
+console.log(scrabble('Cabbage'))
+console.log(scrabble('OXYPHENBUTAZONE'))
 module.exports = scrabble

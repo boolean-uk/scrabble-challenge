@@ -42,7 +42,7 @@ function scrabble(word) {
     return 0
   }
   //   change the words to casesenstivity to accept in the function
-  word = word.toLowerCase()
+  word = word.toUpperCase()
   // create the for loop to take the each letter in the word and add together.
   for (let i = 0; i < word.length; i++) {
     letter = word[i]

@@ -86,22 +86,50 @@ const isDoubleWord = (string) => {
   }
 }
 
-console.log(isTripleWord('[aabababa]'))
+const outermostBracketsAreTriple = (string) => {
+  if (
+    findTripleChars(string) !== null &&
+    findTripleChars(string)[0] === string
+  ) {
+    return true
+  } else {
+    return false
+  }
+}
+const outermostBracketsAreDouble = (string) => {
+  if (
+    findDoubleChars(string) !== null &&
+    findDoubleChars(string)[0] === string
+  ) {
+    return true
+  } else {
+    return false
+  }
+}
+
+console.log(findTripleChars('ss[ss]'))
 
 function scrabble(string) {
   if (!stringIsValid(string)) {
     return 0
   }
   let multiplier = 1
-
-  if (isTripleWord(string)) {
-    string = string.slice(1, string.length - 1)
-    multiplier = 3
-  } else if (isDoubleWord(string)) {
-    string = string.slice(1, string.length - 1)
-    multiplier = 2
+  if (isTripleWord(string) || isDoubleWord(string)) {
+    while (
+      outermostBracketsAreTriple(string) ||
+      outermostBracketsAreDouble(string)
+    ) {
+      if (outermostBracketsAreTriple(string)) {
+        string = string.slice(1, string.length - 1)
+        multiplier *= 3
+      }
+      if (outermostBracketsAreDouble(string)) {
+        string = string.slice(1, string.length - 1)
+        multiplier *= 2
+      }
+    }
+    // string = string.slice(1, string.length - 1)
   }
-
   let totalScore = 0
   while (findDoubleChars(string) !== null) {
     console.log(string)
@@ -120,6 +148,6 @@ function scrabble(string) {
   return totalScore * multiplier
 }
 
-console.log(scrabble('{[d]og}'))
+console.log(scrabble('[dog]'))
 
 module.exports = scrabble

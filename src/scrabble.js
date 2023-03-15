@@ -45,9 +45,11 @@ function scrabble(enteredWord) {
     if (
       enteredWord[i] === ' ' ||
       enteredWord[i] === `\t` ||
-      enteredWord[i] === `\n`
+      enteredWord[i] === `\n` ||
+      /\d/.test(enteredWord)
     ) {
       console.log(`Invalid character detected`)
+      return 0
     } else {
       // console.log(enteredWord[i])
       // console.log(letterValues)
@@ -57,7 +59,7 @@ function scrabble(enteredWord) {
   }
   return wordScore
 }
-console.log(typeof wordScore)
-console.log(scrabble(`\t\n`))
+// console.log(typeof wordScore)
+console.log(scrabble(`abc1`))
 
 module.exports = scrabble

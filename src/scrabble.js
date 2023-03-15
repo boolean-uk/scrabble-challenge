@@ -35,7 +35,7 @@ function scrabble(string) {
 
   let totalScore = 0
   string = string.toLowerCase()
-  for (i in string) {
+  for (const i in string) {
     if (string[i] === ' ' || string[i] === '\t' || string[i] === '\n') {
       console.log('oops')
     } else {

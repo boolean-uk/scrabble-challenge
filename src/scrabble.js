@@ -34,14 +34,12 @@ let score = 0
 comparePoints = (numPoints, correspondingPoints) => {
     for (i = 0; i <= numPoints.length; i++) {
         if (numPoints[i] === eachLetter[j]) {
-            console.log('found')
+            console.log('found, matching index: points ref (i), eachLetter ref (j) -', i, j)
             score += correspondingPoints
-        } else {
-            console.log('not found')
+        // } else {
+        //     console.log('not found')
         }
     }
-    console.log('points comparison added to score?', score)
-    return score
 }
 
 // 2 - read a given word as a sequence of letters
@@ -53,11 +51,13 @@ console.log(givenLetters)
 // 3 - loop through the array of givenLetters
 for (i = 0; i <= givenLetters.length-1; i++) {
     eachLetter = givenLetters[i]
-    console.log('each letter -', eachLetter)
+    console.log('eachLetter looking at -', eachLetter)
     console.log('score before -', score)
+    console.log('i = ', i)
     // loop through all the points and assoc. points value arrays
     for (j = 0; j <= eachLetter.length-1; j++) {
         console.log('letter looking for -', eachLetter)
+        console.log('j = ', j)
         comparePoints(onePoint, valueOnePoint)
         comparePoints(twoPoints, valueTwoPoints)
         comparePoints(threePoints, valueThreePoints)
@@ -65,9 +65,8 @@ for (i = 0; i <= givenLetters.length-1; i++) {
         comparePoints(fivePoints, valueFivePoints)
         comparePoints(eightPoints, valueEightPoints)
         comparePoints(tenPoints, valueTenPoints)
+        console.log('current score after all comparisons -', score)
     }
-
-    console.log('score after -'. score)
 }
 
 

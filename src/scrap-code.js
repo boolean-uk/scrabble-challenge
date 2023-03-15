@@ -23,13 +23,21 @@
 //     comparePoints(allPointsArrays, allValues)
 //     }
 // }
+
 const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
-const isLetterHere = onePoint.find((searchingFor) => {
-    if (searchingFor === true) {
-        
-    }
-    return 
-})
+const guess = 'I'
 
-console.log('is the letter in the array? -', isLetterHere)
+console.log(onePoint.includes(guess))
 
+// comparePoints = (numPoints, correspondingPoints) => {
+//     for (i = 0; i <= numPoints.length; i++) {
+//         if (numPoints[i] === eachLetter[j]) {
+//             console.log('found')
+//             score += correspondingPoints
+//         } else {
+//             console.log('not found')
+//         }
+//     }
+//     console.log('points comparison added to score?', score)
+//     return score
+// }

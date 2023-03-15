@@ -11,8 +11,6 @@ const fivePoints = ['K']
 const eightPoints = ['J', 'X' ]
 const tenPoints = ['Q', 'Z']
 
-const allPointsArrays = [onePoint, twoPoints, threePoints, fourPoints, fivePoints, eightPoints, tenPoints]
-
 valueOnePoint = 1
 valueTwoPoints = 2
 valueThreePoints = 3
@@ -21,54 +19,44 @@ valueFivePoints = 5
 valueEightPoints = 8
 valueTenPoints = 10
 
-const allValues = [
-    valueOnePoint, valueTwoPoints, 
-    valueThreePoints, valueFourPoints, 
-    valueFivePoints, valueEightPoints, 
-    valueTenPoints]
-
 let score = 0
 
-// write a function that loops through all the points arrays and compares each letter to it
-    // if you find a letter in an array, add corresponding points to score
-comparePoints = (numPoints, correspondingPoints) => {
-    for (i = 0; i <= numPoints.length; i++) {
-        if (numPoints[i] === eachLetter[j]) {
-            console.log('found, matching index: points ref (i), eachLetter ref (j) -', i, j)
-            score += correspondingPoints
-        // } else {
-        //     console.log('not found')
-        }
-    }
-}
-
 // 2 - read a given word as a sequence of letters
-const word = 'ex'
+const word = 'ian'
 const givenWord = word.toLocaleUpperCase()
 const givenLetters = givenWord.split('')
-console.log(givenLetters)
+console.log('given letters =', givenLetters)
 
 // 3 - loop through the array of givenLetters
 for (i = 0; i <= givenLetters.length-1; i++) {
     eachLetter = givenLetters[i]
-    console.log('eachLetter looking at -', eachLetter)
-    console.log('score before -', score)
-    console.log('i = ', i)
-    // loop through all the points and assoc. points value arrays
-    for (j = 0; j <= eachLetter.length-1; j++) {
-        console.log('letter looking for -', eachLetter)
-        console.log('j = ', j)
-        comparePoints(onePoint, valueOnePoint)
-        comparePoints(twoPoints, valueTwoPoints)
-        comparePoints(threePoints, valueThreePoints)
-        comparePoints(fourPoints, valueFourPoints)
-        comparePoints(fivePoints, valueFivePoints)
-        comparePoints(eightPoints, valueEightPoints)
-        comparePoints(tenPoints, valueTenPoints)
-        console.log('current score after all comparisons -', score)
+    console.log('current cummulative score -', score)
+    console.log('letter looking at -', eachLetter)
+// 4 - compare each letter with its score
+// 5 - sum the scores assigned for each letter
+    if (onePoint.includes(eachLetter)) {
+        score += valueOnePoint
+    } else if (twoPoints.includes(eachLetter)) {
+        score += valueTwoPoints
+    }  else if (threePoints.includes(eachLetter)) {
+        score += valueThreePoints
+    }  else if (fourPoints.includes(eachLetter)) {
+        score += valueFourPoints
+    }  else if (fivePoints.includes(eachLetter)) {
+        score += valueFivePoints
+    } else if (eightPoints.includes(eachLetter)) {
+        score += valueEightPoints
+    } else if (tenPoints.includes(eachLetter)) {
+        score += valueTenPoints
+    } else {
+        score = 0
+        console.log('invalid word given')
     }
 }
 
+console.log('------')
+// 6 - output the score for the given word
+console.log('what is the final score?', score)
 
 
 

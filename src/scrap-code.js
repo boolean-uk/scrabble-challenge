@@ -41,3 +41,37 @@ console.log(onePoint.includes(guess))
 //     console.log('points comparison added to score?', score)
 //     return score
 // }
+
+// const allPointsArrays = [onePoint, twoPoints, threePoints, fourPoints, fivePoints, eightPoints, tenPoints]
+// const allValues = [valueOnePoint, valueTwoPoints, valueThreePoints, valueFourPoints, valueFivePoints, valueEightPoints, valueTenPoints]
+
+
+
+// write a function that loops through all the points arrays and compares each letter to it
+    // if you find a letter in an array, add corresponding points to score
+// comparePoints = (numPoints, correspondingPoints) => {
+//     for (i = 0; i <= numPoints.length; i++) {
+//         if (numPoints[i] === eachLetter[j]) {
+//             console.log('found', i)
+//             score += correspondingPoints
+//         // } else {
+//         //     console.log('not found')
+//         }
+//     }
+// }
+
+  
+    // loop through all the points and assoc. points value arrays
+    // for (j = 0; j <= givenLetters.length-1; j++) {
+    //     // console.log('letter looking for -', eachLetter)
+    //     console.log('j = ', j)
+    //     console.log('letter looking for', givenLetters[j])
+    //     comparePoints(onePoint, valueOnePoint)
+    //     comparePoints(twoPoints, valueTwoPoints)
+    //     comparePoints(threePoints, valueThreePoints)
+    //     comparePoints(fourPoints, valueFourPoints)
+    //     comparePoints(fivePoints, valueFivePoints)
+    //     comparePoints(eightPoints, valueEightPoints)
+    //     comparePoints(tenPoints, valueTenPoints)
+    //     console.log('current score after all comparisons -', score)
+    // }

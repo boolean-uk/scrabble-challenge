@@ -25,21 +25,27 @@ You'll need these:
 --- Pseudo Code ---
 
 1 - have the scores for different letters stored
-    -->--> some form of array for letters and scores
+    --> some form of array for letters and scores
         --> separate by score? valueOne = [A, E, I ...]
 
 2 - read a given word as a sequence of letters
     a --> could split string into array of letters
         --> loop through array and convert letter into number score
 
-3 - compare each letter with its score
+3 - loop through the array of givenLetters
+    --> for loop that looks at each letter
+
+4 - compare each letter with its score
     --> lots of if statements?
         --> comparing stored point value with given word
+           if (givenLetter is in onePoint - add 1 to score)
+              if (givenLetter is in twoPoint - add 2 to score)
+                  etc...
 
-4 - sum the scores assigned for each letter
+5 - sum the scores assigned for each letter
     --> += the assigned scores as it finds them
 
-5 - output the score for the given word
+6 - output the score for the given word
     --> return the final score for word
         --> string interpolate the word and its score:
             (`the word ${given} scores ${returned score} points!)

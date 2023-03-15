@@ -1,7 +1,3 @@
-function scrabble() {
-
-}
-
 // 1 - have the scores for different letters stored
 const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
 const twoPoints = ['D', 'G' ]
@@ -21,17 +17,16 @@ valueTenPoints = 10
 
 let score = 0
 
+function scrabble(word) {
+
 // 2 - read a given word as a sequence of letters
-const word = 'ian'
 const givenWord = word.toLocaleUpperCase()
 const givenLetters = givenWord.split('')
-console.log('given letters =', givenLetters)
 
 // 3 - loop through the array of givenLetters
 for (i = 0; i <= givenLetters.length-1; i++) {
     eachLetter = givenLetters[i]
-    console.log('current cummulative score -', score)
-    console.log('letter looking at -', eachLetter)
+
 // 4 - compare each letter with its score
 // 5 - sum the scores assigned for each letter
     if (onePoint.includes(eachLetter)) {
@@ -53,11 +48,10 @@ for (i = 0; i <= givenLetters.length-1; i++) {
         console.log('invalid word given')
     }
 }
+return `The Scrabble score for the word '${word}' is ${score} points.`
+}
 
-console.log('------')
 // 6 - output the score for the given word
-console.log('what is the final score?', score)
-
-
+console.log(scrabble('example'))
 
 module.exports = scrabble

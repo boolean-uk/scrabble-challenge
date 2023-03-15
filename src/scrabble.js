@@ -70,9 +70,36 @@ const stringIsValid = (string) => {
   return true
 }
 
+const isTripleWord = (string) => {
+  if (string[0] === '[' && string[string.length - 1] === ']') {
+    return true
+  } else {
+    return false
+  }
+}
+
+const isDoubleWord = (string) => {
+  if (string[0] === '{' && string[string.length - 1] === '}') {
+    return true
+  } else {
+    return false
+  }
+}
+
+console.log(isTripleWord('[aabababa]'))
+
 function scrabble(string) {
   if (!stringIsValid(string)) {
     return 0
+  }
+  let multiplier = 1
+
+  if (isTripleWord(string)) {
+    string = string.slice(1, string.length - 1)
+    multiplier = 3
+  } else if (isDoubleWord(string)) {
+    string = string.slice(1, string.length - 1)
+    multiplier = 2
   }
 
   let totalScore = 0
@@ -90,9 +117,9 @@ function scrabble(string) {
     string = string.replace(findTripleChars(string)[0], '')
   }
   totalScore += getScoreOfPlainString(string, 1)
-  return totalScore
+  return totalScore * multiplier
 }
 
-console.log(scrabble('[dog]'))
+console.log(scrabble('{[d]og}'))
 
 module.exports = scrabble

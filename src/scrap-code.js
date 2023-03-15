@@ -5,7 +5,6 @@
 //     score += 1
 //     console.log('was a letter in onePoint? ', score)
 
-
 //     // write a function that loops through the points arrays
 // comparePoints = (numPoints) => {
 //     for (i = 0; i <= numPoints.length; i++) {
@@ -24,10 +23,10 @@
 //     }
 // }
 
-const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
-const guess = 'I'
+// const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
+// const guess = 'I'
 
-console.log(onePoint.includes(guess))
+// console.log(onePoint.includes(guess))
 
 // comparePoints = (numPoints, correspondingPoints) => {
 //     for (i = 0; i <= numPoints.length; i++) {
@@ -45,10 +44,8 @@ console.log(onePoint.includes(guess))
 // const allPointsArrays = [onePoint, twoPoints, threePoints, fourPoints, fivePoints, eightPoints, tenPoints]
 // const allValues = [valueOnePoint, valueTwoPoints, valueThreePoints, valueFourPoints, valueFivePoints, valueEightPoints, valueTenPoints]
 
-
-
 // write a function that loops through all the points arrays and compares each letter to it
-    // if you find a letter in an array, add corresponding points to score
+// if you find a letter in an array, add corresponding points to score
 // comparePoints = (numPoints, correspondingPoints) => {
 //     for (i = 0; i <= numPoints.length; i++) {
 //         if (numPoints[i] === eachLetter[j]) {
@@ -60,18 +57,24 @@ console.log(onePoint.includes(guess))
 //     }
 // }
 
+// loop through all the points and assoc. points value arrays
+// for (j = 0; j <= givenLetters.length-1; j++) {
+//     // console.log('letter looking for -', eachLetter)
+//     console.log('j = ', j)
+//     console.log('letter looking for', givenLetters[j])
+//     comparePoints(onePoint, valueOnePoint)
+//     comparePoints(twoPoints, valueTwoPoints)
+//     comparePoints(threePoints, valueThreePoints)
+//     comparePoints(fourPoints, valueFourPoints)
+//     comparePoints(fivePoints, valueFivePoints)
+//     comparePoints(eightPoints, valueEightPoints)
+//     comparePoints(tenPoints, valueTenPoints)
+//     console.log('current score after all comparisons -', score)
+// }
+
+function twoArgs(string1, number1) {
+    return string1.toUpperCase() + '!'.repeat(number1)
+  }
   
-    // loop through all the points and assoc. points value arrays
-    // for (j = 0; j <= givenLetters.length-1; j++) {
-    //     // console.log('letter looking for -', eachLetter)
-    //     console.log('j = ', j)
-    //     console.log('letter looking for', givenLetters[j])
-    //     comparePoints(onePoint, valueOnePoint)
-    //     comparePoints(twoPoints, valueTwoPoints)
-    //     comparePoints(threePoints, valueThreePoints)
-    //     comparePoints(fourPoints, valueFourPoints)
-    //     comparePoints(fivePoints, valueFivePoints)
-    //     comparePoints(eightPoints, valueEightPoints)
-    //     comparePoints(tenPoints, valueTenPoints)
-    //     console.log('current score after all comparisons -', score)
-    // }
+  console.log(twoArgs('Hello', 7))
+  

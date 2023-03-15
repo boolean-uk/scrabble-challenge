@@ -92,6 +92,7 @@ function scrabble(word) {
           scrabbleArray[scrabbleArray.length - 1] === '}'
         ) {
           score *= 2
+          return score
         }
 
         if (
@@ -99,8 +100,8 @@ function scrabble(word) {
           scrabbleArray[scrabbleArray.length - 1] === ']'
         ) {
           score *= 3
+          return score
         }
-        return score
       }
 
       if (isAlpha(scrabbleArray[k])) {
@@ -131,6 +132,6 @@ function scrabble(word) {
   return count
 }
 
-console.log(scrabble(''))
+console.log(scrabble('d{og'))
 
 module.exports = scrabble

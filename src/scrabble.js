@@ -7,46 +7,46 @@ function scrabble(aWord) {
     let sum = 0
     for (i = 0; i < newWord.length; i++) {
       if (
-        newWord.charAt(i) === 'A' ||
-        newWord.charAt(i) === 'E' ||
-        newWord.charAt(i) === 'I' ||
-        newWord.charAt(i) === 'O' ||
-        newWord.charAt(i) === 'U' ||
-        newWord.charAt(i) === 'L' ||
-        newWord.charAt(i) === 'N' ||
-        newWord.charAt(i) === 'R' ||
-        newWord.charAt(i) === 'S' ||
-        newWord.charAt(i) === 'T'
+        newWord[i].includes('A') ||
+        newWord[i].includes('E') ||
+        newWord[i].includes('I') ||
+        newWord[i].includes('O') ||
+        newWord[i].includes('U') ||
+        newWord[i].includes('L') ||
+        newWord[i].includes('N') ||
+        newWord[i].includes('R') ||
+        newWord[i].includes('S') ||
+        newWord[i].includes('T')
       ) {
         sum += 1
       }
-      if (newWord.charAt(i) === 'D' || newWord.charAt(i) === 'G') {
+      if (newWord[i].includes('D') || newWord[i].includes('G')) {
         sum += 2
       }
       if (
-        newWord.charAt(i) === 'B' ||
-        newWord.charAt(i) === 'C' ||
-        newWord.charAt(i) === 'M' ||
-        newWord.charAt(i) === 'P'
+        newWord[i].includes('B') ||
+        newWord[i].includes('C') ||
+        newWord[i].includes('M') ||
+        newWord[i].includes('P')
       ) {
         sum += 3
       }
       if (
-        newWord.charAt(i) === 'F' ||
-        newWord.charAt(i) === 'H' ||
-        newWord.charAt(i) === 'V' ||
-        newWord.charAt(i) === 'W' ||
-        newWord.charAt(i) === 'Y'
+        newWord[i].includes('F') ||
+        newWord[i].includes('H') ||
+        newWord[i].includes('V') ||
+        newWord[i].includes('W') ||
+        newWord[i].includes('Y')
       ) {
         sum += 4
       }
-      if (newWord.charAt(i) === 'K') {
+      if (newWord[i].includes('K')) {
         sum += 5
       }
-      if (newWord.charAt(i) === 'J' || newWord.charAt(i) === 'X') {
+      if (newWord[i].includes('J') || newWord[i].includes('X')) {
         sum += 8
       }
-      if (newWord.charAt(i) === 'Q' || newWord.charAt(i) === 'Z') {
+      if (newWord[i].includes('Q') || newWord[i].includes('Z')) {
         sum += 10
       }
     }

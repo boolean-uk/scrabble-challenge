@@ -1,0 +1,21 @@
+
+
+
+
+
+
+Input a word
+    Check IF its a string
+        Return if not a string ' this is not a string '
+Initialise an empty array
+Loop through the word inputting every character into the array
+    Satisfying when it reaches the .length of the string
+
+Now the array is initialised correctly
+    
+    Use a loop to loop through the array
+Initialise a count and for every value that satisfies the case, add 1 per letter
+
+Continue to use conditional statements within the loop to keep updating the count
+
+Eventually print the count when the loop is satisfied

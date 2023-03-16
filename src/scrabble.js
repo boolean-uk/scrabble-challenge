@@ -29,7 +29,7 @@ const pointValuesForLetters = {
   }
 }
 
-console.log(pointValuesForLetters.onePoint.letters[0])
+// console.log(pointValuesForLetters.onePoint.letters[0])
 // console.log(pointValuesForLetters.eightPoints.points)
 
 function upperString(aString) {
@@ -39,19 +39,40 @@ function upperString(aString) {
     return ''
   }
 }
+const lookThroughObject = () => {
+  for (let i = 0; i <= pointValuesForLetters.length - 1; i++) {
+    console.log('looking through object')
+    checkEachPointValue()
+  }
+}
+const checkGivenLetter = (letterToFind, numOfPoints) => {
+  for (letterToFind in numOfPoints) {
+    console.log('found')
+  }
+}
+const checkEachPointValue = (currentLetter) => {
+  pointValuesForLetters.forEach((pointValueGroup, pointValuesForLetters) => {
+    console.log('current pointValueGroup looking at -', pointValueGroup)
+    checkGivenLetter(currentLetter, pointValuesForLetters)
+  })
+}
+
+// function itterates through parent object
+// function itterates through arrays of object children
+// returns associated point from child object when finds letter
 
 function scrabble(word) {
   const score = 0
   const givenWord = upperString(word)
   const givenLetters = givenWord.split('')
   for (let i = 0; i <= givenLetters.length - 1; i++) {
-//     const eachLetter = givenLetters[i]
-// call function that takes i and checks against pointsValuesForLetters
+    const currentLetter = givenLetters[i]
+    lookThroughObject(currentLetter)
   }
   return score + 1
 }
 
-// console.log(scrabble('ian'))
+console.log(scrabble('z'))
 
 module.exports = scrabble
 

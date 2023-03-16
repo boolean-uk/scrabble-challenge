@@ -126,57 +126,66 @@ function doubleWords(aWord5) {
 console.log('Double word score', doubleWords('{AAAAA}'))
 
 function scrabble(aWord) {
-  const myLength = aWord.length
-  if (aWord[0] === '[' && aWord[myLength - 1] === ']') {
-    const newWord2 = aWord.slice(1, myLength - 1)
-    console.log('newWord', newWord2)
-    if (newWord2[0] === '{') {
-      const tripleWords =
-        (normalScore(newWord2) * 3 +
+  if (typeof aWord === 'string') {
+    const myLength = aWord.length
+    if (aWord[0] === '[' && aWord[myLength - 1] === ']') {
+      const newWord2 = aWord.slice(1, myLength - 1)
+      console.log('newWord', newWord2)
+      if (newWord2[0] === '{') {
+        const tripleWords =
+          (normalScore(newWord2) * 3 +
+            doubleLetter(newWord2) +
+            trippleLetter(newWord2)) *
+          2
+        return tripleWords
+      } else {
+        const tripleWords =
+          normalLetter(newWord2) * 3 +
           doubleLetter(newWord2) +
-          trippleLetter(newWord2)) *
+          trippleLetter(newWord2)
+        return tripleWords
+      }
+    }
+    const myLength2 = aWord.length
+    if (aWord[0] === '{' && aWord[myLength2 - 1] === '}' && aWord[2] !== '}') {
+      const newWord3 = aWord.slice(1, myLength - 1)
+      console.log('newWord here', newWord3)
+      console.log('normal score', normalScore(newWord3))
+      console.log('double letter', doubleLetter(newWord3))
+      console.log('triple letter', trippleLetter(newWord3))
+      const doubleWords =
+        (normalLetter(newWord3) +
+          doubleLetter(newWord3) +
+          trippleLetter(newWord3)) *
         2
-      return tripleWords
+      return doubleWords
+    }
+    if (
+      (aWord.includes('[') && aWord.includes(']')) ||
+      (aWord.includes('{') && aWord.includes('}'))
+    ) {
+      const finalScore =
+        normalLetter(aWord) + doubleLetter(aWord) + trippleLetter(aWord)
+
+      return finalScore
+    }
+    if (
+      (aWord.includes('[') && !aWord.includes(']')) ||
+      (aWord.includes('{') && !aWord.includes('}')) ||
+      (aWord.includes(']') && !aWord.includes('[')) ||
+      (aWord.includes('}') && !aWord.includes('{')) ||
+      aWord.includes('|')
+    ) {
+      return 0
     } else {
-      const tripleWords =
-        normalScore(newWord2) * 3 +
-        doubleLetter(newWord2) +
-        trippleLetter(newWord2)
-      return tripleWords
+      return normalScore(aWord)
     }
   }
-  const myLength2 = aWord.length
-  if (aWord[0] === '{' && aWord[myLength2 - 1] === '}' && aWord[2] !== '}') {
-    const newWord3 = aWord.slice(1, myLength - 1)
-    console.log('newWord here', newWord3)
-    console.log('normal score', normalScore(newWord3))
-    console.log('double letter', doubleLetter(newWord3))
-    console.log('triple letter', trippleLetter(newWord3))
-    const doubleWords =
-      (normalLetter(newWord3) +
-        doubleLetter(newWord3) +
-        trippleLetter(newWord3)) *
-      2
-    return doubleWords
-  }
-  if (
-    (aWord.includes('[') && aWord.includes(']')) ||
-    (aWord.includes('{') && aWord.includes('}'))
-  ) {
-    const finalScore =
-      normalLetter(aWord) + doubleLetter(aWord) + trippleLetter(aWord)
-
-    return finalScore
-  }
-  if (
-    (aWord.includes('[') && !aWord.includes(']')) ||
-    (aWord.includes('{') && !aWord.includes('}')) ||
-    (aWord.includes(']') && !aWord.includes('[')) ||
-    (aWord.includes('}') && !aWord.includes('{'))
-  ) {
+  else {
     return 0
-  } else return 0
+  }
 }
 
-console.log('test scrabble', scrabble('{[d]og}'))
+console.log('test scrabble', scrabble('f'))
+
 module.exports = scrabble

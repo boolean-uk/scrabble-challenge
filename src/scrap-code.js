@@ -6,6 +6,12 @@ const array1 = [
 
 let score = 0
 
+function scrabble(givenWord) {
+  console.log('what is the currentScore and score? ', score)
+  searchArray1(givenWord)
+  return score
+}
+
 // itterate through array1
 const searchArray1 = (lookingFor) => {
   const questionedLetter = lookingFor
@@ -27,28 +33,16 @@ const findObject = (idx, questionedLetter) => {
   checkLetter(innerObject[0], questionedLetter)
 }
 
+// compare array looking at with letter questioned
 const checkLetter = (groupedLetters, questionedLetter) => {
   const groupedLettersLookingAt = groupedLetters.toString()
-  console.log('what is groupedLettersLookingAt?', groupedLettersLookingAt)
-  console.log(
-    'what is questioned Letter while checking Letter? ',
-    questionedLetter
-  )
-  console.log('what is typeof grouped letters element? ', typeof groupedLettersLookingAt[0])
-  console.log('type of questioned letter -', typeof questionedLetter)
   if (groupedLettersLookingAt.includes(questionedLetter)) {
     console.log('found')
-    score += 1
+    score += 10
     console.log('current score ', score)
   } else {
     score = 0
   }
-  return score
-}
-
-const scrabble = (givenWord) => {
-  searchArray1(givenWord)
-  return score
 }
 
 console.log('scrabble! -', scrabble('a'))

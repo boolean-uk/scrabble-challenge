@@ -28,13 +28,14 @@ const letterValues = {
 }
 
 //  Calculates the base score of a string with no conditions applied
+//  If checked character does not have a number value of 1 or greater, it doesn't exist in the letterValues array and is skipped
 
 function baseScore(givenWord) {
   const lowerCaseString = givenWord.toLowerCase()
   let wordScore = 0
   for (let i = 0; i < lowerCaseString.length; i++) {
     const letterScore = letterValues[lowerCaseString[i]]
-    if (letterScore > 0) {
+    if (letterScore >= 1) {
       wordScore += letterScore
     }
   }
@@ -42,6 +43,7 @@ function baseScore(givenWord) {
 }
 
 //  Check if double or triple word
+//  Compares first and last characters to look for a set of brackets
 
 function isDoubleWord(givenWord) {
   if (givenWord[0] === `{` && givenWord[givenWord.length - 1] === `}`) {
@@ -58,6 +60,8 @@ function isTripleWord(givenWord) {
     return false
   }
 }
+
+//  Checks for two sets of brackets
 
 function isDoubleAndTripleWord(givenWord) {
   if (
@@ -76,6 +80,10 @@ function isDoubleAndTripleWord(givenWord) {
   }
 }
 
+//  Solves the edge case {d}o{g}
+//  Checks if the 1st & 3rd characters are a bracket and if the last and last - 2 characters are a bracket
+//  Horribliy clunky but it works!
+
 function endLetterMultipliers(givenWord) {
   if (
     (givenWord[0] === `{` &&
@@ -84,6 +92,14 @@ function endLetterMultipliers(givenWord) {
       givenWord[givenWord.length - 1] === `}`) ||
     (givenWord[0] === `[` &&
       givenWord[2] === `]` &&
+      givenWord[givenWord.length - 3] === `[` &&
+      givenWord[givenWord.length - 1] === `]`) ||
+    (givenWord[0] === `[` &&
+      givenWord[2] === `]` &&
+      givenWord[givenWord.length - 3] === `{` &&
+      givenWord[givenWord.length - 1] === `}`) ||
+    (givenWord[0] === `{` &&
+      givenWord[2] === `}` &&
       givenWord[givenWord.length - 3] === `[` &&
       givenWord[givenWord.length - 1] === `]`)
   ) {
@@ -118,6 +134,8 @@ function wordMultiplier(givenWord) {
 }
 
 //  Check for double & triple letters
+//  Compares the i and i+2 characters to look for brackets with one character in between
+//  Adds 1 or 2 times the letter value if brackets are found
 
 function letterMultiplier(givenWord) {
   let additionalLetterScore = 0
@@ -135,7 +153,9 @@ function letterMultiplier(givenWord) {
   return additionalLetterScore
 }
 
-// Check for incomplete sets of brackets
+//  Check for incomplete sets of brackets
+//  Counts number of open and close brackets
+//  If open does not equal close there must be an incomplete set of brackets
 
 function incompleteBrackets(givenWord) {
   let curlyOpenCount = 0
@@ -185,6 +205,10 @@ function invalidGivenWord(givenWord) {
     return false
   }
 }
+
+//  Adds together the base word score, any additional points from double/triple letters
+//  and multiplies everything by the word multiplier
+//  If any of the invalid input checks fail it exits at that point
 
 function scrabble(givenWord) {
   let totalScore = 0

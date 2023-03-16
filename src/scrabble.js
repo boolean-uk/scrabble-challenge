@@ -1,8 +1,8 @@
-function scrabble(aWord) {
+function normalScore(aWord) {
   if (aWord === '' || aWord === ' \t\n' || aWord === null) {
     return 0
   } else {
-    const newWord = aWord.toUpperCase()
+    const newWord = aWord
     console.log('new word is', newWord)
     let sum = 0
     for (i = 0; i < newWord.length; i++) {
@@ -16,18 +16,37 @@ function scrabble(aWord) {
         newWord[i].includes('N') ||
         newWord[i].includes('R') ||
         newWord[i].includes('S') ||
-        newWord[i].includes('T')
+        newWord[i].includes('T') ||
+        newWord[i].includes('a') ||
+        newWord[i].includes('e') ||
+        newWord[i].includes('i') ||
+        newWord[i].includes('o') ||
+        newWord[i].includes('u') ||
+        newWord[i].includes('l') ||
+        newWord[i].includes('n') ||
+        newWord[i].includes('r') ||
+        newWord[i].includes('s') ||
+        newWord[i].includes('t')
       ) {
         sum += 1
       }
-      if (newWord[i].includes('D') || newWord[i].includes('G')) {
+      if (
+        newWord[i].includes('D') ||
+        newWord[i].includes('G') ||
+        newWord[i].includes('d') ||
+        newWord[i].includes('g')
+      ) {
         sum += 2
       }
       if (
         newWord[i].includes('B') ||
         newWord[i].includes('C') ||
         newWord[i].includes('M') ||
-        newWord[i].includes('P')
+        newWord[i].includes('P') ||
+        newWord[i].includes('b') ||
+        newWord[i].includes('c') ||
+        newWord[i].includes('m') ||
+        newWord[i].includes('p')
       ) {
         sum += 3
       }
@@ -36,17 +55,32 @@ function scrabble(aWord) {
         newWord[i].includes('H') ||
         newWord[i].includes('V') ||
         newWord[i].includes('W') ||
-        newWord[i].includes('Y')
+        newWord[i].includes('Y') ||
+        newWord[i].includes('f') ||
+        newWord[i].includes('h') ||
+        newWord[i].includes('v') ||
+        newWord[i].includes('w') ||
+        newWord[i].includes('y')
       ) {
         sum += 4
       }
-      if (newWord[i].includes('K')) {
+      if (newWord[i].includes('K') || newWord[i].includes('k')) {
         sum += 5
       }
-      if (newWord[i].includes('J') || newWord[i].includes('X')) {
+      if (
+        newWord[i].includes('J') ||
+        newWord[i].includes('X') ||
+        newWord[i].includes('j') ||
+        newWord[i].includes('x')
+      ) {
         sum += 8
       }
-      if (newWord[i].includes('Q') || newWord[i].includes('Z')) {
+      if (
+        newWord[i].includes('Q') ||
+        newWord[i].includes('Z') ||
+        newWord[i].includes('q') ||
+        newWord[i].includes('z')
+      ) {
         sum += 10
       }
     }
@@ -54,5 +88,95 @@ function scrabble(aWord) {
   }
 }
 
-console.log('test', scrabble('OXYPHENBUTAZONE'))
+function doubleLetter(aWord) {
+  const regex1 = /{[A-Z|a-z]}/g
+  const found1 = aWord.match(regex1)
+  const doubleLetter = normalScore(found1) * 2
+  return doubleLetter
+}
+
+console.log('Double letter test', doubleLetter('{A}{A}'))
+
+function trippleLetter(aWord) {
+  const regex2 = /\[[A-Z | a-z]]/g
+  const found2 = aWord.match(regex2)
+  const trippleLetter = normalScore(found2) * 3
+  return trippleLetter
+}
+
+function normalLetter(aWord) {
+  const split = aWord.replaceAll(/{[A-Z | a-z]}/g, '')
+  const split2 = split.replaceAll(/\[[A-Z | a-z]]/g, '')
+
+  console.log('split3', split2.toString())
+  console.log('First Normal Score', normalScore(split2))
+  return normalScore(split2)
+}
+
+function doubleWords(aWord5) {
+  const myLength = aWord5.length
+  if (aWord5[0] === '{' && aWord5[myLength - 1] === '}') {
+    const newWord = aWord5.slice(1, myLength - 1)
+    console.log('newWord', newWord)
+    const doubleWords = normalScore(newWord) * 2
+    return doubleWords
+  }
+}
+
+console.log('Double word score', doubleWords('{AAAAA}'))
+
+function scrabble(aWord) {
+  const myLength = aWord.length
+  if (aWord[0] === '[' && aWord[myLength - 1] === ']') {
+    const newWord2 = aWord.slice(1, myLength - 1)
+    console.log('newWord', newWord2)
+    if (newWord2[0] === '{') {
+      const tripleWords =
+        (normalScore(newWord2) * 3 +
+          doubleLetter(newWord2) +
+          trippleLetter(newWord2)) *
+        2
+      return tripleWords
+    } else {
+      const tripleWords =
+        normalScore(newWord2) * 3 +
+        doubleLetter(newWord2) +
+        trippleLetter(newWord2)
+      return tripleWords
+    }
+  }
+  const myLength2 = aWord.length
+  if (aWord[0] === '{' && aWord[myLength2 - 1] === '}' && aWord[2] !== '}') {
+    const newWord3 = aWord.slice(1, myLength - 1)
+    console.log('newWord here', newWord3)
+    console.log('normal score', normalScore(newWord3))
+    console.log('double letter', doubleLetter(newWord3))
+    console.log('triple letter', trippleLetter(newWord3))
+    const doubleWords =
+      (normalLetter(newWord3) +
+        doubleLetter(newWord3) +
+        trippleLetter(newWord3)) *
+      2
+    return doubleWords
+  }
+  if (
+    (aWord.includes('[') && aWord.includes(']')) ||
+    (aWord.includes('{') && aWord.includes('}'))
+  ) {
+    const finalScore =
+      normalLetter(aWord) + doubleLetter(aWord) + trippleLetter(aWord)
+
+    return finalScore
+  }
+  if (
+    (aWord.includes('[') && !aWord.includes(']')) ||
+    (aWord.includes('{') && !aWord.includes('}')) ||
+    (aWord.includes(']') && !aWord.includes('[')) ||
+    (aWord.includes('}') && !aWord.includes('{'))
+  ) {
+    return 0
+  } else return 0
+}
+
+console.log('test scrabble', scrabble('{[d]og}'))
 module.exports = scrabble

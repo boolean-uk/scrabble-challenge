@@ -29,47 +29,58 @@ const pointValuesForLetters = {
   }
 }
 
-// console.log(pointValuesForLetters.onePoint.letters[0])
-// console.log(pointValuesForLetters.eightPoints.points)
-
-function upperString(aString) {
+// function turns all given letters to capitals
+const upperString = (aString) => {
   if (typeof aString === 'string') {
     return aString.toUpperCase()
   } else {
     return ''
   }
 }
-const lookThroughObject = () => {
-  for (let i = 0; i <= pointValuesForLetters.length - 1; i++) {
-    console.log('looking through object')
-    checkEachPointValue()
+
+// function itterates through parent object
+const lookThroughObject = (currentLetter) => {
+  for (currentLetter in pointValuesForLetters) {
+    checkEachPointValueGroup(pointValuesForLetters)
   }
 }
+
+// function itterates through arrays of object children
+const checkEachPointValueGroup = (currentLetter) => {
+  pointValuesForLetters.pointValueGroup.letters.forEach(
+    (pointValueGroup, pointValuesForLetters) => {
+      console.log('current pointValueGroup looking at -', pointValueGroup)
+      checkGivenLetter(currentLetter, pointValuesForLetters)
+    }
+  )
+}
+
+// function checks if letter is in an array
 const checkGivenLetter = (letterToFind, numOfPoints) => {
   for (letterToFind in numOfPoints) {
     console.log('found')
+    foundLetterReturnPoints()
   }
 }
-const checkEachPointValue = (currentLetter) => {
-  pointValuesForLetters.forEach((pointValueGroup, pointValuesForLetters) => {
-    console.log('current pointValueGroup looking at -', pointValueGroup)
-    checkGivenLetter(currentLetter, pointValuesForLetters)
-  })
+
+// function returns point value when letter is found
+const foundLetterReturnPoints = () => {
+  console.log('number of points scored - ')
 }
 
-// function itterates through parent object
-// function itterates through arrays of object children
-// returns associated point from child object when finds letter
-
+// function takes any word and returns scrabble score
 function scrabble(word) {
   const score = 0
   const givenWord = upperString(word)
+  console.log('what is givenWord?', givenWord)
   const givenLetters = givenWord.split('')
+  console.log('what is givenLetters?', givenLetters)
   for (let i = 0; i <= givenLetters.length - 1; i++) {
     const currentLetter = givenLetters[i]
+    console.log('what is currentLetter?', currentLetter)
     lookThroughObject(currentLetter)
   }
-  return score + 1
+  console.log('score -', score)
 }
 
 console.log(scrabble('z'))

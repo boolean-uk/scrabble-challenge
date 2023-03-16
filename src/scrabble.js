@@ -1,18 +1,36 @@
-const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
-const twoPoints = ['D', 'G']
-const threePoints = ['B', 'C', 'M', 'P']
-const fourPoints = ['F', 'H', 'V', 'W', 'Y']
-const fivePoints = ['K']
-const eightPoints = ['J', 'X']
-const tenPoints = ['Q', 'Z']
+const pointValuesForLetters = {
+  onePoint: {
+    letters: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+    points: 1
+  },
+  twoPoints: {
+    letters: ['D', 'G'],
+    points: 2
+  },
+  threePoints: {
+    letters: ['B', 'C', 'M', 'P'],
+    points: 3
+  },
+  fourPoints: {
+    letters: ['F', 'H', 'V', 'W', 'Y'],
+    points: 4
+  },
+  fivePoints: {
+    letters: ['K'],
+    points: 5
+  },
+  eightPoints: {
+    letters: ['J', 'X'],
+    points: 8
+  },
+  tenPoints: {
+    letters: ['Q', 'Z'],
+    points: 10
+  }
+}
 
-const valueOnePoint = 1
-const valueTwoPoints = 2
-const valueThreePoints = 3
-const valueFourPoints = 4
-const valueFivePoints = 5
-const valueEightPoints = 8
-const valueTenPoints = 10
+console.log(pointValuesForLetters.onePoint.letters[0])
+// console.log(pointValuesForLetters.eightPoints.points)
 
 function upperString(aString) {
   if (typeof aString === 'string') {
@@ -23,30 +41,14 @@ function upperString(aString) {
 }
 
 function scrabble(word) {
-  let score = 0
+  const score = 0
   const givenWord = upperString(word)
   const givenLetters = givenWord.split('')
   for (let i = 0; i <= givenLetters.length - 1; i++) {
-    const eachLetter = givenLetters[i]
-    if (onePoint.includes(eachLetter)) {
-      score += valueOnePoint
-    } else if (twoPoints.includes(eachLetter)) {
-      score += valueTwoPoints
-    } else if (threePoints.includes(eachLetter)) {
-      score += valueThreePoints
-    } else if (fourPoints.includes(eachLetter)) {
-      score += valueFourPoints
-    } else if (fivePoints.includes(eachLetter)) {
-      score += valueFivePoints
-    } else if (eightPoints.includes(eachLetter)) {
-      score += valueEightPoints
-    } else if (tenPoints.includes(eachLetter)) {
-      score += valueTenPoints
-    } else {
-      score = 0
-    }
+//     const eachLetter = givenLetters[i]
+// call function that takes i and checks against pointsValuesForLetters
   }
-  return score
+  return score + 1
 }
 
 // console.log(scrabble('ian'))

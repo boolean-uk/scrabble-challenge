@@ -28,10 +28,10 @@ const lettersToPoints = {
 }
 
 const brackets = {
-  '{': {multi: 2, corresponding: '}'},
-  '}': {multi: 2, corresponding: '{'},
-  '[': {multi: 3, corresponding: ']'},
-  ']': {multi: 3, corresponding: '['}
+  '{': {multi: 2, corresponding: '}', type: 'open'},
+  '[': {multi: 3, corresponding: ']', type: 'open'},
+  '}': {multi: 2, corresponding: '{', type: 'close'},
+  ']': {multi: 3, corresponding: '[', type: 'close'}
 }
 function scrabble(str) {
   if (typeof str !== 'string' || !str) {
@@ -74,13 +74,11 @@ function scrabble(str) {
 }
 
 function calculateMultiplier(char, arr, multiplier) {
-  switch(char) {
-    case '{':
-    case '[':
+  switch(brackets[char].type) {
+    case 'open':
       arr.push(char)
       return multiplier *= brackets[char].multi
-    case '}':
-    case ']':
+    case 'close':
       // console.log("corresponding", brackets[char].corresponding)
       if(arr.length === 0) {
         return -1

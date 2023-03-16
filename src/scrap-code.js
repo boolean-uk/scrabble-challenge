@@ -73,8 +73,7 @@
 // }
 
 function twoArgs(string1, number1) {
-    return string1.toUpperCase() + '!'.repeat(number1)
-  }
-  
-  console.log(twoArgs('Hello', 7))
-  
+  return string1.toUpperCase() + '!'.repeat(number1)
+}
+
+console.log(twoArgs('Hello', 7))

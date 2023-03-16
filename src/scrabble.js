@@ -15,19 +15,22 @@ const valueFivePoints = 5
 const valueEightPoints = 8
 const valueTenPoints = 10
 
-let score = 0
-
 function upperString(aString) {
+  if (typeof aString === 'string') {
     return aString.toUpperCase()
+  } else {
+    return ''
   }
+}
 
 function scrabble(word) {
   // 2 - read a given word as a sequence of letters
-//   if (typeof word !== 'string') {
-//     score = 0
-//   } else {
+  //   if (typeof word !== 'string') {
+  //     score = 0
+  //   } else {
+  let score = 0
   const givenWord = upperString(word)
-  console.log(givenWord)
+  //   console.log(givenWord)
   const givenLetters = givenWord.split('')
 
   // 3 - loop through the array of givenLetters
@@ -52,11 +55,11 @@ function scrabble(word) {
       score += valueTenPoints
     } else {
       score = 0
-    //   console.log('invalid word given')
+      //   console.log('invalid word given')
     }
   }
   return score
-//   return `The Scrabble score for the word '${word}' is ${score} points.`
+  //   return `The Scrabble score for the word '${word}' is ${score} points.`
 }
 
 // 6 - output the score for the given word
@@ -69,6 +72,6 @@ function scrabble(word) {
 // console.log(scrabble('f'))
 // console.log(scrabble('street'))
 // console.log(scrabble('quirky'))
-
+// console.log(scrabble('OXYPHENBUTAZONE'))
 
 module.exports = scrabble

@@ -1,4 +1,3 @@
-// 1 - have the scores for different letters stored
 const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
 const twoPoints = ['D', 'G']
 const threePoints = ['B', 'C', 'M', 'P']
@@ -24,21 +23,11 @@ function upperString(aString) {
 }
 
 function scrabble(word) {
-  // 2 - read a given word as a sequence of letters
-  //   if (typeof word !== 'string') {
-  //     score = 0
-  //   } else {
   let score = 0
   const givenWord = upperString(word)
-  //   console.log(givenWord)
   const givenLetters = givenWord.split('')
-
-  // 3 - loop through the array of givenLetters
   for (let i = 0; i <= givenLetters.length - 1; i++) {
     const eachLetter = givenLetters[i]
-
-    // 4 - compare each letter with its score
-    // 5 - sum the scores assigned for each letter
     if (onePoint.includes(eachLetter)) {
       score += valueOnePoint
     } else if (twoPoints.includes(eachLetter)) {
@@ -55,23 +44,15 @@ function scrabble(word) {
       score += valueTenPoints
     } else {
       score = 0
-      //   console.log('invalid word given')
     }
   }
   return score
-  //   return `The Scrabble score for the word '${word}' is ${score} points.`
 }
 
-// 6 - output the score for the given word
-// console.log(scrabble())
-
-// console.log(scrabble(''))
-// console.log(scrabble(' \t\n'))
-// console.log(scrabble(null))
-// console.log(scrabble('a'))
-// console.log(scrabble('f'))
-// console.log(scrabble('street'))
-// console.log(scrabble('quirky'))
-// console.log(scrabble('OXYPHENBUTAZONE'))
+// console.log(scrabble('ian'))
 
 module.exports = scrabble
+
+// --- refactor plan ---
+// a - combine point and letter arrays into single object
+// b - make function for iterating through checks to find letter

@@ -87,52 +87,6 @@ function letterMultiply() {
   }
 }
 
-// function wordMultiply() {
-//   if (
-//     wordSplit[0] === '[' &&
-//     wordSplit[1] === '{' &&
-//     wordSplit[3] !== '}' &&
-//     wordSplit[wordSplit.length - 2] === '}' &&
-//     wordSplit[wordSplit.length - 1] === ']'
-//   ) {
-//     wordSplit.push(
-//       ...wordSplit,
-//       ...wordSplit,
-//       ...wordSplit,
-//       ...wordSplit,
-//       ...wordSplit
-//     )
-//   } else if (
-//     wordSplit[0] === '{' &&
-//     wordSplit[1] === '[' &&
-//     wordSplit[3] !== ']' &&
-//     wordSplit[wordSplit.length - 2] === ']' &&
-//     wordSplit[wordSplit.length - 1] === '}'
-//   ) {
-//     wordSplit.push(
-//       ...wordSplit,
-//       ...wordSplit,
-//       ...wordSplit,
-//       ...wordSplit,
-//       ...wordSplit
-//     )
-//   } else if (
-//     wordSplit[0] === '[' &&
-//     wordSplit[wordSplit.length - 1] === ']' &&
-//     wordSplit[2] !== ']'
-//   ) {
-//     wordSplit.push(...wordSplit, ...wordSplit)
-//   } else if (
-//     wordSplit[0] === '{' &&
-//     wordSplit[wordSplit.length - 1] === '}' &&
-//     wordSplit[2] !== '}'
-//   ) {
-//     wordSplit.push(...wordSplit)
-//   } else {
-//     return wordSplit
-//   }
-// }
-
 function wordMultiply() {
   if (
     wordSplit[0] === '[' &&

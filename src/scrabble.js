@@ -101,6 +101,23 @@ function isDoubleAndTripleWord(givenWord) {
   }
 }
 
+function endLetterMultipliers(givenWord) {
+  if (
+    (givenWord[0] === `{` &&
+      givenWord[2] === `}` &&
+      givenWord[givenWord.length - 3] === `{` &&
+      givenWord[givenWord.length - 1] === `}`) ||
+    (givenWord[0] === `[` &&
+      givenWord[2] === `]` &&
+      givenWord[givenWord.length - 3] === `[` &&
+      givenWord[givenWord.length - 1] === `]`)
+  ) {
+    return true
+  } else {
+    return false
+  }
+}
+
 //  Assign multipler variable based on true conditions of above functions
 
 function wordMultiplier(givenWord) {
@@ -116,6 +133,10 @@ function wordMultiplier(givenWord) {
 
   if (isDoubleAndTripleWord(givenWord)) {
     multiplier = 6
+  }
+
+  if (endLetterMultipliers(givenWord)) {
+    multiplier = 1
   }
 
   return multiplier

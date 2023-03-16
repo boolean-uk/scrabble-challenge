@@ -32,8 +32,6 @@ const findDoubleChars = (string) => {
   return matched
 }
 
-console.log(findDoubleChars('aaa[bb]'))
-
 const findTripleChars = (string) => {
   const matched = string.match(/\[(.*?)\]/)
   return matched
@@ -43,12 +41,9 @@ const getScoreOfPlainString = (string, multiplier) => {
   let totalScore = 0
   string = string.toLowerCase()
   for (const i in string) {
-    if (string[i] === ' ' || string[i] === '\t' || string[i] === '\n') {
-      // console.log('oops')
-    } else {
-      // console.log(string[i])
-      // console.log(charScores)
-      // console.log(charScores[string[i]])
+    const isAZeroScoreCharacter =
+      string[i] === ' ' || string[i] === '\t' || string[i] === '\n'
+    if (!isAZeroScoreCharacter) {
       totalScore += charScores[string[i]]
     }
   }
@@ -68,22 +63,6 @@ const stringIsValid = (string) => {
     return false
   }
   return true
-}
-
-const isTripleWord = (string) => {
-  if (string[0] === '[' && string[string.length - 1] === ']') {
-    return true
-  } else {
-    return false
-  }
-}
-
-const isDoubleWord = (string) => {
-  if (string[0] === '{' && string[string.length - 1] === '}') {
-    return true
-  } else {
-    return false
-  }
 }
 
 const outermostBracketsAreTriple = (string) => {
@@ -107,47 +86,36 @@ const outermostBracketsAreDouble = (string) => {
   }
 }
 
-console.log(findTripleChars('ss[ss]'))
-
 function scrabble(string) {
   if (!stringIsValid(string)) {
     return 0
   }
   let multiplier = 1
-  if (isTripleWord(string) || isDoubleWord(string)) {
-    while (
-      outermostBracketsAreTriple(string) ||
-      outermostBracketsAreDouble(string)
-    ) {
-      if (outermostBracketsAreTriple(string)) {
-        string = string.slice(1, string.length - 1)
-        multiplier *= 3
-      }
-      if (outermostBracketsAreDouble(string)) {
-        string = string.slice(1, string.length - 1)
-        multiplier *= 2
-      }
+  while (
+    outermostBracketsAreTriple(string) ||
+    outermostBracketsAreDouble(string)
+  ) {
+    if (outermostBracketsAreTriple(string)) {
+      string = string.slice(1, string.length - 1)
+      multiplier *= 3
     }
-    // string = string.slice(1, string.length - 1)
+    if (outermostBracketsAreDouble(string)) {
+      string = string.slice(1, string.length - 1)
+      multiplier *= 2
+    }
   }
   let totalScore = 0
   while (findDoubleChars(string) !== null) {
-    console.log(string)
-    console.log(findDoubleChars(string)[0])
     totalScore += getScoreOfPlainString(findDoubleChars(string)[1], 2)
-    // remove matched string from input string
     string = string.replace(findDoubleChars(string)[0], '')
   }
 
   while (findTripleChars(string) !== null) {
     totalScore += getScoreOfPlainString(findTripleChars(string)[1], 3)
-    // remove matched string from input string
     string = string.replace(findTripleChars(string)[0], '')
   }
   totalScore += getScoreOfPlainString(string, 1)
   return totalScore * multiplier
 }
-
-console.log(scrabble('[dog]'))
 
 module.exports = scrabble

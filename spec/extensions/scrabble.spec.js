@@ -1,3 +1,4 @@
+// npx jasmine spec/extensions/scrabble.spec.js
 // Extend these specs as you like
 
 const scrabble = require('../../src/scrabble')

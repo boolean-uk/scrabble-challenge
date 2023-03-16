@@ -50,11 +50,6 @@ function scrabble(letter) {
   }
 }
 
-// function loopLetters(values) {
-//   for (let i = 0; i <= scores.length; i++) {
-//     newWord = newWord + scores + i
-//   }
-// }
 // const keys = Object.keys(scores)
 
 function loopLetters(word) {

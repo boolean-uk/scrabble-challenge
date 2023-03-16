@@ -24,17 +24,40 @@ BREAKING DOWN THE PROCESS
 #Se la parola contiene più di una lettera uguale (i.e. cabbage) dobbiamo calcolarla 2 volte nella somma totale
 --> if Statement?
 
+
+
 const keys = Object.keys(score)
 function loopLetters() {
   for (const a of keys) {
     console.log(score[a])
   }
 }
-#compare letters to keys and scores
+----------------------------------
 
-  
+
   function loopLetters(values) {
   for (let i = 0; i < letterValues.length; i++) {
     console.log('letter', i)
   }
 }
+------------------------------------
+function loopLetters(values) {
+   for (let i = 0; i <= scores.length; i++) {
+     newWord = newWord + scores + i
+   }
+ }
+-------------------------------------
+function loopLetters(word) {
+  for (let i = 0; i <= word.length; i++) {
+    let total = 0 // console.log(word[i])
+    const letter = word.charAt(i)
+    const letterValue = scores.indexOf(letter) + 1
+    total += letterValue
+    // console.log(scores[word[i]])
+    console.log(total)
+  }
+}
+
+LEFT TO DO
+#compare letters to keys and scores
+#add up scores

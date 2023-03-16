@@ -27,12 +27,9 @@ const scores = {
   z: 10
 }
 
-// console.log(letterValues.a)
-// console.log(letterValues.b)
-// console.log(letterValues.c)
 const notValid = 'Input not valid:'
 const validWord = 'Great, your point is:'
-const singleValue = scores['p']
+const singleValue = scores
 
 function scrabble(letter) {
   if (typeof letter !== 'string') {
@@ -50,17 +47,18 @@ function scrabble(letter) {
   }
 }
 
-// const keys = Object.keys(scores)
-
 function loopLetters(word) {
   for (let i = 0; i <= word.length; i++) {
-    // console.log(word[i])
+    word.toLoweCase()
+    // let score = 0 // console.log(word[i])
+    //  score += .charAt(i).toLowerCase()
+    // score += scores[word[i]]
     console.log(scores[word[i]])
   }
 }
 
-console.log('--', loopLetters('goodbye'))
+console.log('--', loopLetters('Daniele'))
 
-console.log(scrabble('r'))
+console.log(scrabble())
 
 module.exports = scrabble

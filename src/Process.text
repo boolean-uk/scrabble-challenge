@@ -1,0 +1,76 @@
+BREAKING DOWN THE PROCESS
+
+
+1 - Assign a value to each letters ✅
+#Prima devo assegnare ad ogni lettera un valore ✅
+--> Create an object with letters and their values ✅
+#Creare un oggetto con lettere e conseguente valore ✅
+
+2 - Convert each letter into it's corrispondent value
+#Devo convertire la lettera in valore numerico 
+--> 
+--> Console.log
+
+5 - If the user types anything that's not a word it won't get any points ✅
+#Devo assicurarmi che non vengano assegnati valori ammeno che non si scrivano effettive lettere/parole ✅
+--> Create an if statement to exclude other charat. ✅
+
+3 - If we write a word we'll get the sum of each letter/value to get the total
+#Se scriviamo una parola una parola avremo la somma dei valori per il punteggio totale
+--> Create a function that will sum up each value
+#Creare una funzione che per ogni lettera si sommi alla prossima
+
+4 - If the word cointains more than of the same letter (i.e. cabbage) we need to count them twice in the total
+#Se la parola contiene più di una lettera uguale (i.e. cabbage) dobbiamo calcolarla 2 volte nella somma totale
+--> if Statement?
+
+
+
+const keys = Object.keys(score)
+function loopLetters() {
+  for (const a of keys) {
+    console.log(score[a])
+  }
+}
+----------------------------------
+
+
+  function loopLetters(values) {
+  for (let i = 0; i < letterValues.length; i++) {
+    console.log('letter', i)
+  }
+}
+------------------------------------
+function loopLetters(values) {
+   for (let i = 0; i <= scores.length; i++) {
+     newWord = newWord + scores + i
+   }
+ }
+-------------------------------------
+function loopLetters(word) {
+  for (let i = 0; i <= word.length; i++) {
+    let total = 0 // console.log(word[i])
+    const letter = word.charAt(i)
+    const letterValue = scores.indexOf(letter) + 1
+    total += letterValue
+    // console.log(scores[word[i]])
+    console.log(total)
+  }
+}
+----------------------------------
+function loopLetters(word) {
+  let result = 0
+  for (let i = 0; i <= word.length; i++) {
+    // let score = 0 
+  // console.log(word[i])
+    //  score += .charAt(i).toLowerCase()
+    // score += scores[word[i]]
+    result += [word[i]]
+    console.log(scores[word[i]])
+  }
+  return result
+}
+-------------------------------------
+LEFT TO DO
+#compare letters to keys and scores
+#add up scores

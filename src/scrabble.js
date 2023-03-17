@@ -16,15 +16,19 @@ const pointScored = (pointValue) => {
   score += pointValue
   return score
 }
-// score 0 points
-const zeroPoints = () => {
-  score = 0
-  return score
-}
+// // score 0 points
+// const zeroPoints = () => {
+//   score = 0
+//   return score
+// }
 
 // --- INPUT A WORD ---
 // // function takes any word and returns scrabble score
 function scrabble(word) {
+  // reset the score for a new given word
+  if (score !== 0) {
+    score = 0
+  }
   // word to upper case
   const givenWord = caseSensitive(word)
   // UC word split to array of letters
@@ -32,7 +36,8 @@ function scrabble(word) {
   // for each of the given letters, loop ref. array
   letterLookingFor(givenLettersArray)
   console.log('---')
-  return score
+  const wordScore = score
+  return wordScore
 }
 
 // function checks valid string input, turns all given letters to capitals
@@ -40,7 +45,7 @@ const caseSensitive = (aString) => {
   if (typeof aString === 'string') {
     return aString.toUpperCase()
   } else {
-    return zeroPoints()
+    return ''
   }
 }
 
@@ -67,7 +72,5 @@ const letterLookingFor = (givenArrayOfLetters) => {
     }
   }
 }
-
-console.log(scrabble('example'))
 
 module.exports = scrabble

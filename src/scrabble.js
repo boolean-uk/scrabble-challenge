@@ -1,14 +1,58 @@
+const doubleArray = []
+const tripleArray = []
+const alphabet = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z'
+]
+
 function scrabble(word) {
   let score = 0
-  const check = wordCheck(word)
+  const check = wordCheck(word) // this function checks that the word only has acceptable characters
   console.log(check) // this displays whether the word is valid
-  // the wordCheck function checks that the word only has acceptable characters
   if (check === true) {
     word = word.toUpperCase()
     for (let i = 0; i < word.length; i++) {
       const letter = word[i]
-      console.log(letter) // this shows the individual letters been checked
+      // console.log(letter) // this shows the individual letters been checked
       score += scoring(letter)
+    }
+    if (doubleArray.length !== 0) {
+      console.log(doubleArray)
+      for (let i = 0; i < doubleArray.length; i++) {
+        const letter = doubleArray[i].toUpperCase()
+        score += scoring(letter) * 2
+      }
+    }
+    if (tripleArray.length !== 0) {
+      console.log(tripleArray)
+      for (let i = 0; i < tripleArray.length; i++) {
+        const letter = tripleArray[i].toUpperCase()
+        score += scoring(letter) * 3
+      }
     }
   }
   return score
@@ -45,54 +89,42 @@ function scoring(letter) {
 }
 
 function wordCheck(word) {
-  if (typeof word === 'string') {
+  if (typeof word !== 'string') {
+    return false
+  } else {
     for (let i = 0; i < word.length; i++) {
       const character = word[i]
       const c = character.toUpperCase()
-      if (
-        c === 'A' ||
-        c === 'E' ||
-        c === 'I' ||
-        c === 'O' ||
-        c === 'U' ||
-        c === 'L' ||
-        c === 'N' ||
-        c === 'R' ||
-        c === 'S' ||
-        c === 'T' ||
-        c === 'D' ||
-        c === 'G' ||
-        c === 'B' ||
-        c === 'C' ||
-        c === 'M' ||
-        c === 'P' ||
-        c === 'F' ||
-        c === 'H' ||
-        c === 'V' ||
-        c === 'W' ||
-        c === 'Y' ||
-        c === 'K' ||
-        c === 'J' ||
-        c === 'X' ||
-        c === 'Q' ||
-        c === 'Z'
-      ) {
+      if (alphabet.includes(c) === true) {
         continue
-      } else {
-        return false
-      }
+      } else return false
     }
     return true
-  } else {
-    return false
   }
 }
 
-// console.log(scrabble(null))
-// console.log(scrabble('hi'))
-// console.log(scrabble(' '))
-// console.log(scrabble(' /\d?'))
-console.log(scrabble('sdfgfsgsfdghs'))
+console.log(scrabble('aa'))
+
+// else if (c === '{'){
+//   console.log(word.indexOf('{'))
+//   const secondBraketIndex = word.indexOf('}')
+
+//   if (secondBraketIndex === -1) {
+//       return false
+//     }
+
+// else {
+//   console.log(i)
+//     const n = secondBraketIndex - i // number of bonus letters position
+//     word.slice(word[i], 1) // removes first braket
+//     // for (let k = 0; k < n; k++) {
+//     //   doubleArray.push(word.slice(word[i], 1)) // removes letter from word and adds to double array
+//     // }
+//     word.slice(word[i], 1) // removes second braket
+//     i--
+//     console.log(i)
+
+// create function to filter brakets
 
 // input a word and have its letters evaluated for a value
 // output value

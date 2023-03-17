@@ -14,14 +14,15 @@
 
 // Creating an if statement - that if a word has a length of 0 then this should return a score of 0
 
-// If words are entered in capitals then need to assign the toUpperCase() method to string
+// If words are entered in capitals then need to assign the toUpperCase() method to string because it becomes case sensitive.
 
 function scrabble(word) {
   if (word === null && word === '\n' && word === '\t' && word.length === 0) {
     return 0
+    
   }
-}
-word = word.trim()
+
+  word = word.trim()
 
 word = word.toUpperCase()
 
@@ -63,7 +64,7 @@ for (let character of word) {
   totalScore += letterScore[character] 
 }
 return totalScore;
-
+}
 
 
 console.log(scrabble('laptop'))

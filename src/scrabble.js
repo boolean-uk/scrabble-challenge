@@ -69,7 +69,7 @@ const compareInnerArray = (innerArrayElement, questionedLetter2) => {
   console.log('searchingList =', searchingList)
   const lookingFor = questionedLetter2
   console.log('lookingFor =', lookingFor)
-  // compare the letter we're searching for with the reference array element we are at
+  // compare the letter we're searching for with the reference array element we are looking at
   if (searchingList.includes(lookingFor)) {
     // score some points - point value from array letter found in
     console.log('FOUND!')

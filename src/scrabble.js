@@ -1,4 +1,4 @@
-const lettersToPoints = {
+const lettersToPoints = { // Object containing each letter in uppercase as the key, and their respective values as the value
   A: 1,
   E: 1,
   I: 1,
@@ -26,14 +26,16 @@ const lettersToPoints = {
   Q: 10,
   Z: 10
 }
-
-const brackets = {
+// Object containing each type of bracket as the key, whose value is another object containing information about said bracket 
+// (multiplier value, corresponding open/closing bracket, and what type of bracket it is (open or closing))
+const brackets = { 
   '{': {multi: 2, corresponding: '}', type: 'open'},
   '[': {multi: 3, corresponding: ']', type: 'open'},
   '}': {multi: 2, corresponding: '{', type: 'close'},
   ']': {multi: 3, corresponding: '[', type: 'close'}
 }
 function scrabble(str) {
+  // Guard clause to return 0 if the type of our parameter is not a string
   if (typeof str !== 'string' || !str) {
     return 0
   } 
@@ -41,8 +43,12 @@ function scrabble(str) {
   let points = 0
   let stack = []
   let multiplier = 1
+
+  // Iterating through our input string, once per letter
   for (let i = 0; i < str.length; i++) {
-    // console.log('loop nr', i)
+    // If statement to check if the current letter we are "looking at" is a bracket of any kind
+
+    // if true - run the calculateMultiplier function
     if (str[i] === '{'
      || str[i] === '}'
      || str[i] === '['
@@ -52,6 +58,7 @@ function scrabble(str) {
         return 0
       }
 
+      // if false - add the current letters corresponding value in the lettersToPoints object
     } else {
       let currentLetter = str[i].toUpperCase()
 
@@ -66,6 +73,7 @@ function scrabble(str) {
       // console.log('current points', points)
     }
   }
+  // If statement to check if our array called 'stack' is empty, if it is not empty, it means we have an invalid input string
   if (stack.length === 0) {
     return points
   } else {
@@ -73,11 +81,15 @@ function scrabble(str) {
   }
 }
 
+// function to calculate the multiplier that should be added to the current letter
 function calculateMultiplier(char, arr, multiplier) {
+  // switch statement to check if the current bracket we are looking at is a closing or opening bracket
   switch(brackets[char].type) {
+    // if "char" is an opening bracket we return the corresponding value from the brackets object as the multiplier
     case 'open':
       arr.push(char)
       return multiplier *= brackets[char].multi
+    // if "char" is an closing bracket we return multiplier with the corresponding value from the brackets object removed
     case 'close':
       // console.log("corresponding", brackets[char].corresponding)
       if(arr.length === 0) {

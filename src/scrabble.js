@@ -29,34 +29,45 @@ const scores = {
 
 const notValid = 'Input not valid:'
 const validWord = 'Great, your point is:'
-const singleValue = scores
+// const singleValue = scores
 let total = 0
 
 function scrabble(letter) {
   if (typeof letter !== 'string') {
-    return `${notValid} 0`
+    console.log(`${notValid}`)
+    return 0
   } else if (letter === '!' || letter === '.') {
-    return `${notValid} 0`
-  } else if (letter === '' || letter === '\t\n') {
-    return `${notValid} 0`
+    console.log(`${notValid}`)
+    return 0
+  } else if (letter === '' || letter === ' \t\n') {
+    console.log(`${notValid}`)
+    return 0
   } else if (letter === ',' || letter === '?') {
-    return `${notValid} 0`
+    console.log(`${notValid}`)
+    return 0
   } else if (letter === ',' || letter === null) {
-    return `${notValid} 0`
+    console.log(`${notValid}`)
+    return 0
   } else {
-    // return `${validWord} ${singleValue}`
-    loopLetters('goodbye')
+    loopLetters(letter)
+    console.log(`${letter} ${validWord} ${total}`)
+    return total
   }
 }
 
 function loopLetters(word) {
+  if (total !== 0) {
+    total = 0
+  }
   for (let i = 0; i < word.length; i++) {
+    word = word.toLowerCase()
     // console.log('------', scores[word[i]])
     total += scores[word[i]]
   }
   return total
 }
-console.log(scrabble())
+console.log(scrabble('OXYPHENBUTAZONE'))
 // console.log(scrabble('hello'))
-console.log(loopLetters('hi'))
+// loopLetters('hello')
+
 module.exports = scrabble

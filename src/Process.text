@@ -57,7 +57,20 @@ function loopLetters(word) {
     console.log(total)
   }
 }
-
+----------------------------------
+function loopLetters(word) {
+  let result = 0
+  for (let i = 0; i <= word.length; i++) {
+    // let score = 0 
+  // console.log(word[i])
+    //  score += .charAt(i).toLowerCase()
+    // score += scores[word[i]]
+    result += [word[i]]
+    console.log(scores[word[i]])
+  }
+  return result
+}
+-------------------------------------
 LEFT TO DO
 #compare letters to keys and scores
 #add up scores

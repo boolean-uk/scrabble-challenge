@@ -49,16 +49,16 @@ function scrabble(letter) {
 
 function loopLetters(word) {
   for (let i = 0; i <= word.length; i++) {
-    word.toLoweCase()
-    // let score = 0 // console.log(word[i])
-    //  score += .charAt(i).toLowerCase()
-    // score += scores[word[i]]
-    console.log(scores[word[i]])
+    console.log('------', scores[word[i]]) /* undefined message */
+    // if (word.length === 0) {
+    //   return `${notValid}`
+    // }
   }
 }
+console.log('--', loopLetters('hi')) /** undefined message */
 
-console.log('--', loopLetters('Daniele'))
+console.log(scrabble('hello')) /** Giving me the valid/not valid */
 
-console.log(scrabble())
+/** Broke it - just return 'input not valid:0' */
 
 module.exports = scrabble

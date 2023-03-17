@@ -8,39 +8,24 @@ const referenceArray = [
   [10, 'Q', 'Z']
 ]
 
-// --- SCORING ---
-// keep track of the score
 let score = 0
-// score some points
 const pointScored = (pointValue) => {
   score += pointValue
   return score
 }
-// // score 0 points
-// const zeroPoints = () => {
-//   score = 0
-//   return score
-// }
 
-// --- INPUT A WORD ---
-// // function takes any word and returns scrabble score
 function scrabble(word) {
-  // reset the score for a new given word
   if (score !== 0) {
     score = 0
   }
-  // word to upper case
   const givenWord = caseSensitive(word)
-  // UC word split to array of letters
   const givenLettersArray = splitLetters(givenWord)
-  // for each of the given letters, loop ref. array
   letterLookingFor(givenLettersArray)
   console.log('---')
-  const wordScore = score
-  return wordScore
+  console.log(`"${word}" scored ${score} points!`)
+  return score
 }
 
-// function checks valid string input, turns all given letters to capitals
 const caseSensitive = (aString) => {
   if (typeof aString === 'string') {
     return aString.toUpperCase()
@@ -49,21 +34,17 @@ const caseSensitive = (aString) => {
   }
 }
 
-// split UC word into Array of Letters
 const splitLetters = (givenWord) => {
   const givenLettersArray = givenWord.split('')
   console.log('givenLetters =', givenLettersArray)
   return givenLettersArray
 }
 
-// loop through array of given letters
 const letterLookingFor = (givenArrayOfLetters) => {
   const letterToCompare = givenArrayOfLetters
   for (let i = 0; i < letterToCompare.length; i++) {
-    // for each given letter, loop through the reference array
     for (let j = 0; j <= referenceArray.length - 1; j++) {
       if (referenceArray[j].includes(letterToCompare[i])) {
-        // return the associated number of points for that letter
         console.log(
           `${letterToCompare[i]} scored ${referenceArray[j][0]} points!`
         )
@@ -73,4 +54,22 @@ const letterLookingFor = (givenArrayOfLetters) => {
   }
 }
 
+scrabble('example')
+
 module.exports = scrabble
+
+// apply a 2x or 3x multiplier when required
+const scoreMultiplier = (points, value) => {
+  // score is x3
+  if (points === 'tripled') {
+    return (value *= 3)
+    // score is x2
+  } else if (points === 'doubled') {
+    return (value *= 2)
+    // score remains x1
+  } else {
+    return (value *= 1)
+  }
+}
+
+console.log('score multiplier', scoreMultiplier('', 10))

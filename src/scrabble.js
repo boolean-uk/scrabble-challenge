@@ -3,9 +3,8 @@ function scrabble(word) {
   if (typeof word !== 'string' || word.includes('|') === true) {
     return (score = 0)
   } else {
-    const upperCaseWord
-    upperCaseWord = word.toUpperCase()
-    const arrayOfWord = [...upperCaseWord]
+    word = word.toUpperCase()
+    const arrayOfWord = [...word]
     if (
       arrayOfWord.includes('{') === false &&
       arrayOfWord.includes('}') === true

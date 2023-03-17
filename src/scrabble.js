@@ -14,7 +14,7 @@
 
 // module.exports = scrabble
 // eslint-disable-next-line no-unused-vars
-function scrabbleScore(word) {
+function scrabble(word) {
   // Define an object to map each letter to its corresponding score
   const letterScores = {
     A: 1,
@@ -58,4 +58,5 @@ function scrabbleScore(word) {
   // Return the total score
   return score
 }
-module.exports = scrabbleScore
+
+module.exports = scrabble

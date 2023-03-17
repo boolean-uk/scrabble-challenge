@@ -17,8 +17,8 @@
 00 Create a multiplier variable, which we will multiply the characters' score by.
 00 Validate the string for lone `]` or `}`, and also for unacceptable characters such as `|`.
 1. Start looping through the string as normal.
-2. If a `[` is encoutered, double the multiplier. When a `]` is encountered, halve the multiplier.
-3. Similarly, if a `{` is encoutered, triple the multiplier. When a `}` is encountered, third the multiplier.
+2. If a `{` is encoutered, double the multiplier. When a `}` is encountered, halve the multiplier.
+3. Similarly, if a `[` is encoutered, triple the multiplier. When a `]` is encountered, third the multiplier.
 
 ### 2
 Using the match function:

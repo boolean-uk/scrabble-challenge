@@ -49,9 +49,25 @@ function scrabble(anyWord) {
   }
   return preScore
 }
-const anyWord = `S_percalafragilistic`
+
+// if (typeof anyWord === `{` + `string` + `}`)
+//     return basicScore *= 2
+
+const anyWord = `S_perCalafragilistic`
 console.log(
   `The word ` + anyWord + ` will award you ` + scrabble(anyWord) + ` points!!`
 )
+
+// function DoubleLetter(anyWord) {
+//  LenWord = anyWord.length
+//  score = 0
+//  for (let i = 0; i < LenWord; i++){
+//     if anyWord[i] === '{' {
+//         score = letterValues[anyWord[i+1]]*2
+//         i+=2
+
+//     }
+//  }
+// }
 
 module.exports = scrabble

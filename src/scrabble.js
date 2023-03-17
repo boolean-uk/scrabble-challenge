@@ -14,6 +14,40 @@ const pointScored = (pointValue) => {
   return score
 }
 
+// apply a 2x or 3x multiplier when required
+const scoreMultiplier = (points, value) => {
+  // score is x3
+  if (points === 'tripled') {
+    return (value *= 3)
+    // score is x2
+  } else if (points === 'doubled') {
+    return (value *= 2)
+    // score remains x1
+  } else {
+    return (value *= 1)
+  }
+}
+
+// 2 - if there is a double/triple word score declared, double/triple the score output
+//     --> double/triple word - recognise start { && end } / start [ && end ]
+const checkWordScoreMultiplier = (aWord) => {
+  if (aWord.charAt(0) === '{' && aWord.charAt(aWord.length - 1) === '}') {
+    scoreMultiplier('doubled', score)
+    score *= 2
+    return score
+  } else if (
+    aWord.charAt(0) === '[' &&
+    aWord.charAt(aWord.length - 1) === ']'
+  ) {
+    scoreMultiplier('tripled', score)
+    score *= 3
+    return score
+  } else {
+    scoreMultiplier('', score)
+    return score
+  }
+}
+
 function scrabble(word) {
   if (score !== 0) {
     score = 0
@@ -21,6 +55,7 @@ function scrabble(word) {
   const givenWord = caseSensitive(word)
   const givenLettersArray = splitLetters(givenWord)
   letterLookingFor(givenLettersArray)
+  checkWordScoreMultiplier(word)
   console.log('---')
   console.log(`"${word}" scored ${score} points!`)
   return score
@@ -57,19 +92,3 @@ const letterLookingFor = (givenArrayOfLetters) => {
 scrabble('example')
 
 module.exports = scrabble
-
-// apply a 2x or 3x multiplier when required
-const scoreMultiplier = (points, value) => {
-  // score is x3
-  if (points === 'tripled') {
-    return (value *= 3)
-    // score is x2
-  } else if (points === 'doubled') {
-    return (value *= 2)
-    // score remains x1
-  } else {
-    return (value *= 1)
-  }
-}
-
-console.log('score multiplier', scoreMultiplier('', 10))

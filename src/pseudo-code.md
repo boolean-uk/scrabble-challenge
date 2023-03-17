@@ -70,20 +70,19 @@ Similar to above, your solution should support the ability to define double and 
 
 --- Pseudo Code ---
 
-1 - if there is a double word score declared, double the score output
+1 - a function that will multiply 1x, 2x or 3x
+    --> will recieve with a letter or word score and output the mofified value
+
+2 - if there is a double word score declared, double the score output
     --> double word recognise start { && end }
-    --> apply 2x multiplier to total score before outputting score
 
-2 - if there is a triple word score declared, triple the score output
+3 - if there is a triple word score declared, triple the score output
     --> triple word recognise start [ && end ]
-    --> apply 3x multiplier to total score before outputting score
 
-3 - if there is a double letter score declared, double the associated letter score
+4 - if there is a double letter score declared, double the associated letter score
     --> check each letter for {} 
         --> ensure open and closed included
-            --> for that letter, assign the point twice
 
-4 - if there is a triple letter score declared, triple the associated letter score
+5 - if there is a triple letter score declared, triple the associated letter score
    --> check each letter for [] 
         --> ensure open and closed included
-            --> for that letter, assign the point three times

@@ -77,7 +77,7 @@ Similar to above, your solution should support the ability to define double and 
     --> double word recognise start { && end }
 
 3 - if there is a triple word score declared, triple the score output
-    --> triple word recognise start [ && end ]
+    --> triple word recognise start [ && end ] 
 
 4 - if there is a double letter score declared, double the associated letter score
     --> check each letter for {} 

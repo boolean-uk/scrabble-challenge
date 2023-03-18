@@ -14,50 +14,33 @@
 
 // Creating an if statement - that if a word has a length of 0 then this should return a score of 0
 
+// Used OR || because will run even if only one statement is true
+
 // If words are entered in capitals then need to assign the toUpperCase() method to string because it becomes case sensitive.
 
+
 function scrabble(word) {
-  if (word === null && word === '\n' && word === '\t' && word.length === 0) {
+  if (word === null || word === '\n' || word === '\t' || word.length === 0) {
     return 0
     
   }
-
   word = word.trim()
-
-word = word.toUpperCase()
+  word = word.toUpperCase()
+  
 
 // Created a const variable 'letterScore' - then assigned the scores to the characters of the alphabet as later on - when we enter any word, a score will be retrived in the terminal.
 
-// Created a for loop because it is easier than listing multiple times. Create a variable for the sum of score 'totalScore'. Can now assign letterScore (const variable below). So totalScore = totalScore + letterScore. Use Return to return a totalScore.
+// Created a for loop because it is easier than listing multiple times. Created a variable for the sum of score 'totalScore'. Can now assign letterScore (const variable below). So totalScore = totalScore + letterScore. Use Return to return a totalScore.
 
 
 const letterScore = {
-  A: 1,
-  E: 1,
-  I: 1,
-  O: 1,
-  U: 1,
-  L: 1,
-  N: 1,
-  R: 1,
-  S: 1,
-  T: 1,
-  D: 2,
-  G: 2,
-  B: 3,
-  C: 3,
-  M: 3,
-  P: 3,
-  F: 4,
-  H: 4,
-  V: 4,
-  W: 4,
-  Y: 4,
+  A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
+  D: 2, G: 2,
+  B: 3, C: 3, M: 3, P: 3,
+  F: 4, H: 4, V: 4, W: 4, Y: 4,
   K: 5,
-  J: 8,
-  X: 8,
-  Q: 10,
-  Z: 10
+  J: 8, X: 8,
+  Q: 10, Z: 10
 }
 let totalScore = 0
 for (let character of word) {
@@ -67,8 +50,18 @@ return totalScore;
 }
 
 
-console.log(scrabble('laptop'))
-console.log('hello')
+console.log(scrabble('laptop')) // Practice
+console.log(scrabble('')) // returns score of 0
+console.log(scrabble(" \t\n")) // returns score of 0
+console.log(scrabble(null)) //return score od 0
+console.log(scrabble('a')) // returns score of 1
+console.log(scrabble('f')) // returns score of 4
+console.log(scrabble('street')) //returns score of 6
+console.log(scrabble('quirky')) //returns score of 22
+console.log(scrabble('OXYPHENBUTAZONE')) //returns score of 41
+console.log(scrabble('Flapjack')) // returns 26
+
+
 
 
 // Plain English and Pseudo

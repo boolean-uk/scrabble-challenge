@@ -73,6 +73,7 @@ module.exports = scrabble
 ```
 
 1. Break each step to different function, first checkInput() to check for wrong inputs.
-2. Then it's easy to check if the word will score double or triple score with doubleTripleWord() function and return the value of the multiplier.
-3. Then I will clear the input of any outer symbols if it has a multiplier.
-4. 
+2. Then will loop a check if the word will score double or triple or both score with doubleTripleWord() function and return the value of the multiplier.
+3. Then I will clear the input of any outer symbols if it has a multiplier, looping this incase of double + triple.
+4. Make another function which will score letters by letter multiplier and sum it up and be returned to the main function.
+5. I lastly multiply the word score with the word multiplier and will return the value.

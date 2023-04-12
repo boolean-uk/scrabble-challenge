@@ -1,6 +1,7 @@
 function valueOfLetter(char) {
   char = char.toUpperCase().charAt(0)
   const letters = [
+    [],
     ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
     ['D', 'G'],
     ['B', 'C', 'M', 'P'],

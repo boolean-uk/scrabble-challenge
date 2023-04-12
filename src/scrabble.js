@@ -29,7 +29,7 @@ const score = {
 
 function scrabble(word) {
   let total = 0
-  if (word === null) {
+  if (word === null || word === undefined) {
     total += 0
   } else {
     const input = word.toUpperCase()
@@ -43,6 +43,6 @@ function scrabble(word) {
   return total
 }
 
-scrabble('')
+console.log(scrabble('OXYPHENBUTAZONE'))
 
 module.exports = scrabble

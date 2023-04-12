@@ -26,12 +26,12 @@ scoreboard.set('X', 8)
 scoreboard.set('Y', 4)
 scoreboard.set('Z', 10)
 
-const specialChars = ['{', '}', '[', ']']
+const specialChars = ['{', '}', '[', ']', '*', '*']
 const validChars = [...scoreboard.keys(), ...specialChars]
 
 function stringToBeReplaced(string, opening, closing) {
   const start = string.indexOf(opening)
-  const end = string.indexOf(closing, start)
+  const end = string.indexOf(closing, start + 1)
 
   const stringWithoutSpecialChar = string.substring(start + 1, end) // end is exclusive
   const stringWithSpecialChar = string.substring(start, end + 1)
@@ -50,6 +50,23 @@ function stringWithReplacedSubstringNTimes(
   nTimes
 ) {
   return string.replace(targetString, sourceString.repeat(nTimes))
+}
+
+function stringWithReplacedAsterisk(string) {
+  const targetString = stringToBeReplaced(string, '*', '*')
+
+  if (targetString.exists) {
+    return stringWithReplacedAsterisk(
+      stringWithReplacedSubstringNTimes(
+        string,
+        targetString.withSpecialChar,
+        targetString.withoutSpecialChar,
+        5
+      )
+    )
+  }
+
+  return string
 }
 
 function stringWithReplacedCurlyBrackets(string) {
@@ -88,7 +105,10 @@ function stringWithReplacedSqaureBrackets(string) {
 
 function stringContainsWronglyPlacedSpeciaChars(string, specialChar) {
   const firstAppearance = string.indexOf(specialChar.openingChar)
-  const secondAppearance = string.indexOf(specialChar.closingChar)
+  const secondAppearance = string.indexOf(
+    specialChar.closingChar,
+    firstAppearance + 1
+  )
 
   if (firstAppearance === -1 && secondAppearance === -1) return false
 
@@ -134,7 +154,9 @@ function convertedString(string) {
 
   if (stringContainsInvalidCharacter(s)) return ''
 
-  return stringWithReplacedCurlyBrackets(stringWithReplacedSqaureBrackets(s))
+  return stringWithReplacedAsterisk(
+    stringWithReplacedCurlyBrackets(stringWithReplacedSqaureBrackets(s))
+  )
 }
 
 function letterScore(letter) {

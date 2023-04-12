@@ -8,7 +8,7 @@ const eightValue = ['J', 'X']
 const tenValue = ['Q', 'Z']
 
 // Functions
-const checkInvalidWord = (word) => {
+function checkInvalidWord(word) {
   if (word === ''||
       word === undefined  ||
       word === null ||
@@ -21,8 +21,7 @@ const checkInvalidWord = (word) => {
   }
 }
 
-// get letter value from array
-const getLetterValue = (letter) => {
+function getLetterValue(letter) {
   let letterValue = 0
   if (oneValue.includes(letter)) {
     letterValue = 1
@@ -42,8 +41,20 @@ const getLetterValue = (letter) => {
   return letterValue
 }
 
+// Function checks if '{' or '[' is at index 1 and '}' or ']' is at index2]} and return multiplier
+function getMultiplier(letters, index1, index2) {
+  let multiplier = 1
+  let previousChar = letters[index1]
+  let nextChar = letters[index2]
+  if (previousChar === '{' && nextChar === '}' ) {
+    multiplier = 2
+  } else if (previousChar === '[' && nextChar === ']' ) {
+    multiplier = 3
+  }
+  return multiplier
+}
 
-const wordMultiplier = (word) => {
+function wordMultiplier(word) {
   let multiplier = 1
   if ((word.substring(0, 2) === '[{') && (word.substring(word.length - 2, word.length) === '}]')) {
     multiplier = 6
@@ -55,24 +66,23 @@ const wordMultiplier = (word) => {
   return multiplier
 }
 
+function getLetters(word){
+  let letters = word.split('')
+  return letters
+}
+
 function getScore(word) {
   let score = 0
-  let letters = word.split('')
+  let letters = getLetters(word)
   for (let i = 0; i < letters.length; i++) {
     let capitalLetter = letters[i].toUpperCase()
     let value = getLetterValue(capitalLetter)
-    let multiplier = 1
-    if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-      multiplier = 2
-    } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-      multiplier = 3
-    }
-    score += (value * multiplier)
+    let multiplier = getMultiplier(letters, i - 1, i + 1)
+    score += value * multiplier
   }
   let multiplier = wordMultiplier(word)
   return score * multiplier
 }
-
 
 // Main function
 function scrabble(word) {

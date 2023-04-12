@@ -4,10 +4,9 @@
 
 ```
 1.
-
+Create obj with values of letter
 2.
-
+loop over the word and add the value of the letter
 3.
-
-...etc
-```
+if letter is a key word mupli ->multi
+4.if letter is not in the obj you create ->invalid

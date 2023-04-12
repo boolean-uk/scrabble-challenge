@@ -1,11 +1,15 @@
 function scrabble(word) {
+  let wordMultiplier = 1
+
   if (checkInput(word)) {
-    const wordMultiplier = doubleTripleWord(word)
-    if (wordMultiplier > 1) {
-      const arrWord = word.split('')
-      arrWord.shift()
-      arrWord.pop()
-      word = arrWord.join('')
+    while (doubleTripleWord(word) !== 1) {
+      wordMultiplier *= doubleTripleWord(word)
+      if (wordMultiplier > 1) {
+        const arrWord = word.split('')
+        arrWord.shift()
+        arrWord.pop()
+        word = arrWord.join('')
+      }
     }
 
     const wordScore = scoreLetters(word)
@@ -28,9 +32,13 @@ function checkInput(word) {
 }
 
 function doubleTripleWord(word) {
-  if (word[0] === '{' && word[word.length - 1] === '}') {
+  if (word[0] === '{' && word[word.length - 1] === '}' && word[2] !== '}') {
     return 2
-  } else if (word[0] === '[' && word[word.length - 1] === ']') {
+  } else if (
+    word[0] === '[' &&
+    word[word.length - 1] === ']' &&
+    word[2] !== ']'
+  ) {
     return 3
   } else {
     return 1

@@ -59,6 +59,7 @@ function scrabble(input) {
     else {
       let charPoints = pointsMap.get(char)
 
+      //if the character is not valid return 0
       if (!charPoints) {
         return 0
       }

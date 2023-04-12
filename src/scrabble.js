@@ -21,6 +21,28 @@ const checkInvalidWord = (word) => {
   }
 }
 
+// get letter value from array
+const getLetterValue = (letter) => {
+  let letterValue = 0
+  if (oneValue.includes(letter)) {
+    letterValue = 1
+  } else if (twoValue.includes(letter)) {
+    letterValue = 2
+  } else if (threeValue.includes(letter)) {
+    letterValue = 3
+  } else if (fourValue.includes(letter)) {
+    letterValue = 4
+  } else if (fiveValue.includes(letter)) {
+    letterValue = 5
+  } else if (eightValue.includes(letter)) {
+    letterValue = 8
+  } else if (tenValue.includes(letter)) {
+    letterValue = 10
+  }
+  return letterValue
+}
+
+
 const wordMultiplier = (word) => {
   let multiplier = 1
   if ((word.substring(0, 2) === '[{') && (word.substring(word.length - 2, word.length) === '}]')) {
@@ -33,74 +55,20 @@ const wordMultiplier = (word) => {
   return multiplier
 }
 
-
-
 function getScore(word) {
   let score = 0
   let letters = word.split('')
   for (let i = 0; i < letters.length; i++) {
     let capitalLetter = letters[i].toUpperCase()
-    if (oneValue.includes(capitalLetter)) {
-      letterValue = 1
-      if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-        letterValue = 1 * 2
-      } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-        letterValue = 1 * 3
-      }
-      score += letterValue
-    } else if (twoValue.includes(capitalLetter)) {
-      letterValue = 2
-      if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-        letterValue = 2 * 2
-      } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-        letterValue = 2 * 3
-      }
-      score += letterValue
-    } else if (threeValue.includes(capitalLetter)) {
-      letterValue = 3
-      if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-        letterValue = 3 * 2
-      } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-        letterValue = 3 * 3
-      }
-      score += letterValue
-    } else if (fourValue.includes(capitalLetter)) {
-      letterValue = 4
-      if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-        letterValue = 4 * 2
-      } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-        letterValue = 4 * 3
-      }
-      score += letterValue
-    } else if (fiveValue.includes(capitalLetter)) {
-      letterValue = 5
-      if (letters[i] === '{' || '}'){
-        if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-          letterValue = 5 * 2
-        } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-          letterValue = 5 * 3
-        }
-      }
-      score += letterValue
-    } else if (eightValue.includes(capitalLetter)) {
-      letterValue = 8
-      if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-        letterValue = 8 * 2
-      } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-        letterValue = 8 * 3
-      }
-      score += letterValue
-    } else if (tenValue.includes(capitalLetter)) {
-      letterValue = 10
-      if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
-        letterValue = 10 * 2
-      } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
-        letterValue = 10 * 3
-      }
-      score += letterValue
+    let value = getLetterValue(capitalLetter)
+    let multiplier = 1
+    if (letters[i - 1] === '{' && letters[i + 1] === '}' ) {
+      multiplier = 2
+    } else if (letters[i - 1] === '[' && letters[i + 1] === ']' ) {
+      multiplier = 3
     }
+    score += (value * multiplier)
   }
-
   let multiplier = wordMultiplier(word)
   return score * multiplier
 }

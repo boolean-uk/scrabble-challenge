@@ -26,16 +26,20 @@ scoreboard.set('X', 8)
 scoreboard.set('Y', 4)
 scoreboard.set('Z', 10)
 
-const validChars = [...scoreboard.keys(), '{', '}', '[', ']']
+const specialChars = ['{', '}', '[', ']']
+const validChars = [...scoreboard.keys(), ...specialChars]
 
-function positionOfBracketsInString(string, opening, closing) {
+function stringToBeReplaced(string, opening, closing) {
   const start = string.indexOf(opening)
-  const end = string.indexOf(closing)
+  const end = string.indexOf(closing, start)
+
+  const stringWithoutSpecialChar = string.substring(start + 1, end) // end is exclusive
+  const stringWithSpecialChar = string.substring(start, end + 1)
 
   return {
     exists: start !== -1 && end !== -1,
-    start,
-    end
+    withSpecialChar: stringWithSpecialChar,
+    withoutSpecialChar: stringWithoutSpecialChar
   }
 }
 
@@ -45,27 +49,20 @@ function stringWithReplacedSubstringNTimes(
   sourceString,
   nTimes
 ) {
-  let newString = ''
-
-  for (let i = 0; i < nTimes; i++) {
-    newString += sourceString
-  }
-
-  return string.replace(targetString, newString)
+  return string.replace(targetString, sourceString.repeat(nTimes))
 }
 
 function stringWithReplacedCurlyBrackets(string) {
-  const { exists, start, end } = positionOfBracketsInString(string, '{', '}')
+  const targetString = stringToBeReplaced(string, '{', '}')
 
-  if (exists) {
-    const stringInBrackets = string.substring(start + 1, end) // end is exclusive
-    const stringWithBrackets = string.substring(start, end + 1)
-
-    return stringWithReplacedSubstringNTimes(
-      string,
-      stringWithBrackets,
-      stringInBrackets,
-      2
+  if (targetString.exists) {
+    return stringWithReplacedCurlyBrackets(
+      stringWithReplacedSubstringNTimes(
+        string,
+        targetString.withSpecialChar,
+        targetString.withoutSpecialChar,
+        2
+      )
     )
   }
 
@@ -73,53 +70,58 @@ function stringWithReplacedCurlyBrackets(string) {
 }
 
 function stringWithReplacedSqaureBrackets(string) {
-  const { exists, start, end } = positionOfBracketsInString(string, '[', ']')
+  const targetString = stringToBeReplaced(string, '[', ']')
 
-  if (exists) {
-    const stringInBrackets = string.substring(start + 1, end) // end is exclusive
-    const stringWithBrackets = string.substring(start, end + 1)
-
-    return stringWithReplacedSubstringNTimes(
-      string,
-      stringWithBrackets,
-      stringInBrackets,
-      3
+  if (targetString.exists) {
+    return stringWithReplacedSqaureBrackets(
+      stringWithReplacedSubstringNTimes(
+        string,
+        targetString.withSpecialChar,
+        targetString.withoutSpecialChar,
+        3
+      )
     )
   }
 
   return string
 }
 
-function stringContainsWronglyPlacedBrackets(string) {
-  const firstCurly = string.indexOf('{')
-  const secondCurly = string.indexOf('}')
+function stringContainsWronglyPlacedSpeciaChars(string, specialChar) {
+  const firstAppearance = string.indexOf(specialChar.openingChar)
+  const secondAppearance = string.indexOf(specialChar.closingChar)
 
-  const firstSquare = string.indexOf('[')
-  const secondSquare = string.indexOf(']')
+  if (firstAppearance === -1 && secondAppearance === -1) return false
 
   // only first curly bracket exists
-  if (firstCurly !== -1 && secondCurly === -1) return true
+  if (firstAppearance !== -1 && secondAppearance === -1) return true
 
   // only second curly bracket exists
-  if (firstCurly === -1 && secondCurly !== -1) return true
+  if (firstAppearance === -1 && secondAppearance !== -1) return true
 
   // both curly brackets exist, but in wrong order }{
-  if (firstCurly > secondCurly) return true
+  if (firstAppearance > secondAppearance) return true
 
-  // only first square bracket exists
-  if (firstSquare !== -1 && secondSquare === -1) return true
+  const StringWithRemovedSpecChar = string
+    .replace(specialChar.openingChar, '')
+    .replace(specialChar.closingChar, '')
 
-  // only second square bracket exists
-  if (firstSquare === -1 && secondSquare !== -1) return true
-
-  // both square brackets exist, but in wrong order }{
-  if (firstSquare > secondSquare) return true
-
-  return false
+  return stringContainsWronglyPlacedSpeciaChars(
+    StringWithRemovedSpecChar,
+    specialChar
+  )
 }
 
 function stringContainsInvalidCharacter(string) {
-  if (stringContainsWronglyPlacedBrackets(string)) return true
+  for (let i = 0; i < specialChars.length; i += 2) {
+    if (
+      stringContainsWronglyPlacedSpeciaChars(string, {
+        openingChar: specialChars[i],
+        closingChar: specialChars[i + 1]
+      })
+    ) {
+      return true
+    }
+  }
 
   if ([...string].filter((c) => !validChars.includes(c)).length !== 0)
     return true
@@ -128,25 +130,15 @@ function stringContainsInvalidCharacter(string) {
 }
 
 function convertedString(string) {
-  let s = string.toUpperCase()
+  const s = string.toUpperCase()
 
   if (stringContainsInvalidCharacter(s)) return ''
 
-  let repeat = true
-
-  while (repeat) {
-    s = stringWithReplacedCurlyBrackets(stringWithReplacedSqaureBrackets(s))
-
-    repeat =
-      (s.includes('{') && s.includes('}')) ||
-      (s.includes('[') && s.includes(']'))
-  }
-
-  return s
+  return stringWithReplacedCurlyBrackets(stringWithReplacedSqaureBrackets(s))
 }
 
 function letterScore(letter) {
-  return scoreboard.has(letter) ? scoreboard.get(letter) : 0
+  return scoreboard.get(letter) || 0
 }
 
 function scrabble(string) {

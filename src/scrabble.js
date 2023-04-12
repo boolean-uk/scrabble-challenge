@@ -25,12 +25,25 @@ const pointsMap = new Map([
   ['X', 8],
   ['Y', 4],
   ['Z', 10],
+]);
+
+const multiplierMap = new Map([
   ['[', 3],
   [']', 3],
   ['{', 2],
   ['}', 2]
 ]);
 
+const getMultiplier = (char, currentMultiplier) => {
+  let multiplier = currentMultiplier || 1
+  if (char === '[' || char === '{') {
+    multiplier *= multiplierMap.get(char)
+  } else if (char === ']' || char === '}') {
+    multiplier /= multiplierMap.get(char)
+  }
+
+  return multiplier
+}
 
 function scrabble(input) {
   let points = 0
@@ -41,12 +54,9 @@ function scrabble(input) {
 
   for (let c = 0; c < input.length; c++) {
     let char = input[c].toUpperCase();
-    if (char === '[' || char === '{') {
-      multiplier *= pointsMap.get(char)
-    } else if (char === ']' || char === '}') {
-      multiplier /= pointsMap.get(char)
-    } else {
-      //let charPoints = pointsMap.get(char) * multiplier || 0
+    if (multiplierMap.has(char))
+      multiplier = getMultiplier(char, multiplier)
+    else {
       let charPoints = pointsMap.get(char)
 
       if (!charPoints) {
@@ -54,19 +64,14 @@ function scrabble(input) {
       }
       points += charPoints * multiplier
     }
+
+
   }
 
   //multiplier should be 1 at the end, to ensure every opening bracket has a closing one
   return multiplier === 1 ? points : 0
 
-
-  // for (let c = 0; c < input.length; c++) {
-  //   let charPoints = pointsMap.get(input[c].toUpperCase()) || 0
-  //   points += charPoints
-  // }
-
-  //return points
-
 }
+
 
 module.exports = scrabble

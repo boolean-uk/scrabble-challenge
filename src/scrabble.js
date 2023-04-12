@@ -145,6 +145,4 @@ function scoreLetters(word) {
   return sum
 }
 
-// console.log(scrabble('d{o}g'))
-
 module.exports = scrabble

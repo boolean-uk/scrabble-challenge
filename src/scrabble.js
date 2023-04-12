@@ -1,5 +1,44 @@
-function scrabble() {
-  // write code here
+const pointsMap = new Map([
+  ['A', 1],
+  ['B', 3],
+  ['C', 3],
+  ['D', 2],
+  ['E', 1],
+  ['F', 4],
+  ['G', 2],
+  ['H', 4],
+  ['I', 1],
+  ['J', 8],
+  ['K', 5],
+  ['L', 1],
+  ['M', 3],
+  ['N', 1],
+  ['O', 1],
+  ['P', 3],
+  ['Q', 10],
+  ['R', 1],
+  ['S', 1],
+  ['T', 1],
+  ['U', 1],
+  ['V', 4],
+  ['W', 4],
+  ['X', 8],
+  ['Y', 4],
+  ['Z', 10]
+]);
+
+function scrabble(input) {
+  let points = 0
+  if (!input) return points
+
+  for (let c = 0; c < input.length; c++) {
+    let charPoints = pointsMap.get(input[c].toUpperCase()) || 0
+    points += charPoints
+  }
+
+  return points
+
 }
+
 
 module.exports = scrabble

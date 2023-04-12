@@ -127,7 +127,7 @@ function stringContainsInvalidCharacter(string) {
   return false
 }
 
-function formatedString(string) {
+function convertedString(string) {
   let s = string.toUpperCase()
 
   if (stringContainsInvalidCharacter(s)) return ''
@@ -154,9 +154,9 @@ function scrabble(string) {
 
   let score = 0
 
-  const fString = formatedString(string)
+  const cString = convertedString(string)
 
-  for (const c of fString) {
+  for (const c of cString) {
     score += letterScore(c)
   }
 

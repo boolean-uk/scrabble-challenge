@@ -12,21 +12,22 @@ function scrabble(word) {
   if (word === null) {
     return 0
   }
+  word = word.toUpperCase()
   let result = 0
   // find out what is the lenght of the word
   for (let i = 0; i < word.length; i++) {
     for (let j = 0; j < letterValue.length; j++) {
       // use the letters from index 0 in the arrays and change them toUppercase
-      if (letterValue[j][0].includes(word[i].toUpperCase())) {
+      if (letterValue[j][0].includes(word[i])) {
         // call the value of each array in the const letterValue
         result = result + letterValue[j][1]
       }
-    }
-    // find if any word contains a special character that is differend than specified
-    const specialCharacters = '[{}]AEIOULNRSTDGBCMPFHVWYKJXQZ'
-    for (let k = 0; k < letterValue.length; k++) {
-      if (specialCharacters.includes(word[k].toUpperCase()) === false){
-        return 0
+      // find if any word contains a special character that is differend than specified
+      const specialCharacters = '[{}]AEIOULNRSTDGBCMPFHVWYKJXQZ'
+      for (let k = 0; k < letterValue.length; k++) {
+        if (specialCharacters.includes(word[i]) === false) {
+          return 0
+        }
       }
     }
   }

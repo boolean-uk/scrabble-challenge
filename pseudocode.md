@@ -1,10 +1,8 @@
 # Pseudocode
 
-#### Add the steps you need to take to implement the requirements for Scrabble Challenge
-
-
 ## First Step - function valueOfLetter(char)
-```
+
+``` language
 1. Create a function that calculates the value of the
    letter 
 2. The function will have a parameter of 1 letter string
@@ -25,7 +23,8 @@
 ```
 
 ## Second Step - function valueOfWord(word)
-```
+
+``` language
 1. Will have a scabble word as a parameter.
 2. Will have a value variable initialized as 0
 3. Will iterate through each letter of the word and call
@@ -35,5 +34,28 @@
    letter-word
 5. Increment the value variable by the return of the
    valueOflLetter function
+
+```
+
+## Third Step - Extended Criteria
+
+### Writing down thoughts
+
+``` language
+1.   So I must check if a string starts contains one of the 
+     characters "{[" and check if there is the appropriate 
+     closingcharacter "]}" after 2 indexes.
+2.   If that is true, then multiply the value returned from 
+     valueOfLetter() by the corresponding value. 
+2.1. Do I need to remove the chars "{[]}" or can I pass them
+     in the function too? What Is better down the road?
+3.   Can I add some functionality in a function to reuse it in
+     the next step? I will start by writing and then refactor it.
+```
+
+### multiplyLetterValue
+
+``` language
+
 
 ```

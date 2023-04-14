@@ -51,6 +51,7 @@ function checkValidity(word) {
   let countBracketsClosed = 0
   let countCurlyBracketsOpen = 0
   let countCurlyBracketsClosed = 0
+  if (!word) return false
   for (let i = 0; i < word.length; i++) {
     if (valueOfLetter(word.charAt(i)) === -1) {
       return false

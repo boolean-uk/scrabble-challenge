@@ -1,9 +1,9 @@
 function scrabble(word) {
   let value = 0
-  const arr = word.toUpperCase().split('')
   if (errorCheck(word) === -1) {
     return 0
   }
+  const arr = word.toUpperCase().split('')
   for (let i = 0; i < arr.length; i++) {
     value += valueOfLetter(arr[i])
   }

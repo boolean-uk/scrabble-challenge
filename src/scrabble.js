@@ -3,18 +3,7 @@ function scrabble(word) {
   if (errorCheck(word) === -1) {
     return 0
   }
-  const arr = word.toUpperCase().split('')
-  for (let i = 0; i < arr.length; i++) {
-    value += valueOfLetter(arr[i])
-  }
-  // value += doubleLetters(arr)
-  // value += trippleLetter(arr)
-  if (word.indexOf('{') !== -1 && word.indexOf('[') !== -1) {
-    return 0
-  } else {
-    value += doubleWord(word)
-    value += tripleWord(word)
-  }
+  value = multipliers(word)
   return value
 }
 
@@ -66,37 +55,56 @@ function valueOfLetter(letter) {
   return value
 }
 
-function doubleWord(word) {
-  const start = word.indexOf('{')
-  const end = word.indexOf('}')
-  if (start === -1) {
-    return 0
-  }
+function multipliers(word) {
   let count = 0
-  word
-    .slice(start + 1, end)
-    .split('')
-    .forEach((letter) => {
-      count += valueOfLetter(letter.toUpperCase())
-      console.log(count)
-    })
-  return count
-}
-
-function tripleWord(word) {
-  const start = word.indexOf('[')
-  const end = word.indexOf(']')
-  if (start === -1) {
-    return 0
+  const arr = word.toUpperCase().split('')
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === '{') {
+      const doubleWord = word
+        .toUpperCase()
+        .substring(i + 1, arr.indexOf('}', i))
+        .split('')
+      for (let j = 0; j < doubleWord.length; j++) {
+        if (arr[j] === '[') {
+          const tripleWord = doubleWord
+            .toString()
+            .substring(j + 1, arr.indexOf(']', j))
+            .split('')
+          for (let k = 0; k < tripleWord.length; k++) {
+            count += valueOfLetter(tripleWord[k]) * 6
+            console.log(count)
+            j++
+          }
+        } else {
+          count += valueOfLetter(doubleWord[j]) * 2
+          i += 3
+        }
+      }
+    }
+    if (arr[i] === '[') {
+      const tripleWord = word
+        .toUpperCase()
+        .substring(i + 1, arr.indexOf(']', i))
+        .split('')
+      for (let j = 0; j < tripleWord.length; j++) {
+        if (arr[j] === '{') {
+          const doubleWord = tripleWord
+            .toString()
+            .substring(j + 1, arr.indexOf('}', j))
+            .split('')
+          for (let k = 0; k < doubleWord.length; k++) {
+            count += valueOfLetter(doubleWord[k]) * 6
+            j++
+          }
+          count += 9
+        } else {
+          count += valueOfLetter(tripleWord[j]) * 3
+          i += 3
+        }
+      }
+    }
+    count += valueOfLetter(arr[i])
   }
-  let count = 0
-  word
-    .slice(start + 1, end)
-    .split('')
-    .forEach((letter) => {
-      count += valueOfLetter(letter.toUpperCase()) * 2
-      console.log(count)
-    })
   return count
 }
 
@@ -116,35 +124,5 @@ function errorCheck(word) {
   return 0
 }
 
-// function doubleLetters(arr) {
-//   let start
-//   let end
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] === '{') {
-//       start = i
-//     }
-//     if (arr[i] === '}') {
-//       end = i
-//     }
-//   }
-//   const indexOfDoubleLetter = end - start
-//   return valueOfLetter(arr[indexOfDoubleLetter])
-// }
-
-// function trippleLetter(arr) {
-//   let start
-//   let end
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] === '[') {
-//       start = i
-//     }
-//     if (arr[i] === ']') {
-//       end = i
-//     }
-//   }
-//   const indexOfDoubleLetter = end - start
-//   return valueOfLetter(arr[indexOfDoubleLetter]) * 2
-// }
-
-console.log(scrabble('d[o]g'))
+console.log(scrabble('[{dog}]'))
 module.exports = scrabble

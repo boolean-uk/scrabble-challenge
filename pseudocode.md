@@ -24,10 +24,10 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
   - [x] Return: `['a', 'b', 'c']`
 - [ ] Function ~~`findWordScore`~~ `scrabble`
   - [ ] Parameter: (`abc`)
-  - [ ] Guard clause:
-    - [ ] input is of type string
-  - [ ] Convert String to stringArray using `stringToArray`
-    - [ ] `['a', 'b', 'c']`
+  - [x] Guard clause:
+    - [x] input is of type string
+  - [x] Convert String to stringArray using `stringToArray`
+    - [x] `['a', 'b', 'c']`
   - [ ] Invoke `.map()` on stringArray using `findLetterScore` to create numArray
     - [ ] `[1, 2, 3]`
   - [ ] Parse numArray into `tallyScore` to return totalScore

@@ -18,10 +18,10 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
   - [x] Parameter: (`[1, 3, 3]`)
   - [x] `Array.reduce()` looks to sum an array of numbers
   - [x] Return: `7`
-- [ ] Function `stringToArray`
-  - [ ] Parameter: (`abc`)
-  - [ ] `String.split('')` will separate a string into an array with each character being a separate element in the array:
-  - [ ] Return: `['a', 'b', 'c']`
+- [x] Function `stringToArray`
+  - [x] Parameter: (`abc`)
+  - [x] `String.split('')` will separate a string into an array with each character being a separate element in the array:
+  - [x] Return: `['a', 'b', 'c']`
 - [ ] Function ~~`findWordScore`~~ `scrabble`
   - [ ] Parameter: (`abc`)
   - [ ] Guard clause:
@@ -53,10 +53,10 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
 - [ ] Function `findLetterScore`
 - [ ] Add Guard Clause
   - [ ] Check to see if input is a key found in `scoreMultiplier`
-- [ ] Function `scoreMultiplicatorizer`
-  - [ ] Parameter: `[` OR `a`
-  - [ ] If input is a key found in `scoreMultiplier`
-    - [ ] set `MULTIPLE` to matching value
-  - [ ] Else `pass`
+- [x] Function `scoreMultiplicatorizer`
+  - [x] Parameter: `[` OR `a`
+  - [x] If input is a key found in `scoreMultiplier`
+    - [x] set `MULTIPLE` to matching value
+  - [x] Else keep `MULTIPLE` the same
 
 Changes above should pass both extensions

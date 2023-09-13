@@ -1,3 +1,5 @@
+const { LETTERSCORES, SCOREMULTIPLIER } = require('../src/constants')
+let { MULTIPLE } = require('../src/constants')
 const {
   tallyScore,
   stringToArray,
@@ -22,6 +24,7 @@ describe('stringToArray', () => {
   it("return ['h', 'i'] for 'hi'", () => {
     expect(stringToArray('hi')).toEqual(['h', 'i'])
   })
+
   it("return ['g', 'o', 'o', 'd', ' ', 'd', 'a', 'y'] for 'hi'", () => {
     expect(stringToArray('good day')).toEqual([
       'g',
@@ -33,5 +36,37 @@ describe('stringToArray', () => {
       'a',
       'y'
     ])
+  })
+})
+
+describe('scoreMultiplicatorizer', () => {
+  it("set MULTIPLE to 2 for '{'", () => {
+    MULTIPLE = scoreMultiplicatorizer('{')
+
+    expect(MULTIPLE).toEqual(2)
+  })
+
+  it("set MULTIPLE to 1 for '}'", () => {
+    MULTIPLE = scoreMultiplicatorizer('}')
+
+    expect(MULTIPLE).toEqual(1)
+  })
+
+  it("set MULTIPLE to 3 for '['", () => {
+    MULTIPLE = scoreMultiplicatorizer('[')
+
+    expect(MULTIPLE).toEqual(3)
+  })
+
+  it("set MULTIPLE to 1 for ']'", () => {
+    MULTIPLE = scoreMultiplicatorizer(']')
+
+    expect(MULTIPLE).toEqual(1)
+  })
+
+  it("keep MULTIPLE the same for 'a'", () => {
+    MULTIPLE = scoreMultiplicatorizer('a')
+
+    expect(MULTIPLE).toEqual(MULTIPLE)
   })
 })

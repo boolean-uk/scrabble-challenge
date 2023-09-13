@@ -27,7 +27,7 @@ const LETTERSCORES = {
   Z: 10
 }
 
-const MULTIPLE = 1
+let MULTIPLE = 1
 
 const SCOREMULTIPLIER = {
   '{': 2,

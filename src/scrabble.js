@@ -15,6 +15,7 @@ const stringToArray = (word) => {
 }
 
 const stringArrayToScore = (stringArray) => {
+  // FIXME: resolve eslint error below
   let numArray = stringArray.map((val) => {
     switch (scoreOrMultiply(val)) {
       case 'score':
@@ -23,15 +24,16 @@ const stringArrayToScore = (stringArray) => {
         MULTIPLE = scoreMultiplicatorizer(val)
     }
   })
-
+  console.log('numArray before :>> ', numArray)
   numArray = numArray.filter((val) => !(val === undefined))
+  console.log('numArray after :>> ', numArray)
   return numArray
 }
 
 const scoreOrMultiply = (character) => {
   edgeCasesIDisagreeWith(character)
   logMultiplierUsage(character)
-  const charUpper = character.toUpperCase() // repeating line - refactor?
+  const charUpper = character.toUpperCase() // FIXME: repeating line - refactor?
   if (SCORE_MULTIPLIER[charUpper]) {
     return 'multiply'
   } else {
@@ -40,7 +42,7 @@ const scoreOrMultiply = (character) => {
 }
 
 const findLetterScore = (character) => {
-  const charUpper = character.toUpperCase() // repeating line - refactor?
+  const charUpper = character.toUpperCase() // FIXME: repeating line - refactor?
   const result = LETTER_SCORES[charUpper] * MULTIPLE
   if (result) {
     return result
@@ -104,7 +106,7 @@ const scrabble = (word) => {
   const numArray = stringArrayToScore(stringArray)
 
   if (
-    MULTIPLIER_USAGE['['] !== MULTIPLIER_USAGE[']'] ||
+    MULTIPLIER_USAGE['['] !== MULTIPLIER_USAGE[']'] || // FIXME: refactor into function?
     MULTIPLIER_USAGE['{'] !== MULTIPLIER_USAGE['}']
   ) {
     VALID_SCORE = false
@@ -118,10 +120,9 @@ const scrabble = (word) => {
   }
 }
 
-// const edgeCases30 = scrabble('quirky')
-// console.log('edgeCases30 :>> ', edgeCases30)
-// console.log('typeof(edgeCases30) :>> ', typeof edgeCases30)
-// console.log('MULTIPLIER_USAGE :>> ', MULTIPLIER_USAGE)
+// TODO:
+// [ ] Move functions into separate file?
+// [ ] Fix test(s) in `function.spec.js` messing up `npm test`
 
 module.exports = {
   scrabble,

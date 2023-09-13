@@ -2,8 +2,7 @@ let { MULTIPLE } = require('../src/constants')
 const {
   tallyScore,
   stringToArray,
-  scoreOrMultiply,
-  scoreMultiplicatorizer
+  scoreOrMultiply
 } = require('../src/scrabble')
 
 describe('tallyScore', () => {

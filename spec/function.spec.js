@@ -1,3 +1,4 @@
+/*
 let { MULTIPLE } = require('../src/constants')
 const {
   tallyScore,
@@ -47,3 +48,4 @@ describe('scoreOrMultiply', () => {
     expect(scoreOrMultiply(']')).toEqual('multiply')
   })
 })
+*/

@@ -24,9 +24,7 @@ const stringArrayToScore = (stringArray) => {
         MULTIPLE = scoreMultiplicatorizer(val)
     }
   })
-  console.log('numArray before :>> ', numArray)
   numArray = numArray.filter((val) => !(val === undefined))
-  console.log('numArray after :>> ', numArray)
   return numArray
 }
 

@@ -16,5 +16,22 @@ describe('tallyScore', () => {
   it('return 95 for [3, 6, 1, 47, 38]', () => {
     expect(tallyScore([3, 6, 1, 47, 38])).toEqual(95)
   })
+})
 
+describe('stringToArray', () => {
+  it("return ['h', 'i'] for 'hi'", () => {
+    expect(stringToArray('hi')).toEqual(['h', 'i'])
+  })
+  it("return ['g', 'o', 'o', 'd', ' ', 'd', 'a', 'y'] for 'hi'", () => {
+    expect(stringToArray('good day')).toEqual([
+      'g',
+      'o',
+      'o',
+      'd',
+      ' ',
+      'd',
+      'a',
+      'y'
+    ])
+  })
 })

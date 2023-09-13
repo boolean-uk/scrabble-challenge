@@ -27,7 +27,6 @@ const letterValues = {
   Z: 10
 }
 function scrabble(word) {
-  // intialized score
   let score = 0
   if (word === null || word.length === 0 || word === '\n\t') {
     console.log('checking invalid input')
@@ -35,7 +34,7 @@ function scrabble(word) {
   }
   // loop through the object
   for (const key in letterValues) {
-    // loop through the word and comparing on line 42
+    // loop through the word and comparing
     for (let i = 0; i < word.length; i++) {
       if (key.toLowerCase() === word[i].toLowerCase()) {
         score += letterValues[key]
@@ -45,5 +44,4 @@ function scrabble(word) {
   return score
 }
 
-// at the moment there is some problem with checking backslash
 module.exports = scrabble

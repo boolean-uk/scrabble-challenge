@@ -1,8 +1,12 @@
 const { LETTERSCORES, SCOREMULTIPLIER } = require('./constants')
 let { MULTIPLE } = require('./constants')
 
-const stringToArray = (wordString) => {
-  return wordString.split('')
+const stringToArray = (word) => {
+  if (typeof word === 'string') {
+    return word.split('')
+  } else {
+    return ['']
+  }
 }
 
 const stringArrayToScore = (stringArray) => {
@@ -21,18 +25,22 @@ const stringArrayToScore = (stringArray) => {
 
 const scoreOrMultiply = (character) => {
   const charUpper = character.toUpperCase() // repeating line - refactor?
-  if (LETTERSCORES[charUpper]) {
-    return 'score'
-  } else if (SCOREMULTIPLIER[charUpper]) {
+  if (SCOREMULTIPLIER[charUpper]) {
     return 'multiply'
   } else {
-    throw TypeError(`${character} is not a valid scoring character`)
+    return 'score'
   }
 }
 
 const findLetterScore = (character) => {
   const charUpper = character.toUpperCase() // repeating line - refactor?
-  return LETTERSCORES[charUpper] * MULTIPLE
+  const result = LETTERSCORES[charUpper] * MULTIPLE
+  console.log('result :>> ', result);
+  if (result) {
+    return result
+  } else {
+    return 0
+  }
 }
 
 const scoreMultiplicatorizer = (character) => {
@@ -45,22 +53,26 @@ const scoreMultiplicatorizer = (character) => {
 }
 
 const tallyScore = (numArray) => {
-  return numArray.reduce((acc, val) => acc + val)
+  if (numArray.length === 0) {
+    return 0
+  } else {
+    return numArray.reduce((acc, val) => acc + val)
+  }
 }
 
-const scrabble = (wordString) => {
-  switch (typeof wordString === 'string') {
+const scrabble = (word) => {
+  switch (typeof word === 'string') {
     case false:
-      throw TypeError(`${wordString} must be a string`)
+    // throw TypeError(`${word} must be a string`)
   }
-  const stringArray = stringToArray(wordString)
-
+  const stringArray = stringToArray(word)
+  console.log('stringArray :>> ', stringArray)
   const numArray = stringArrayToScore(stringArray)
 
   return tallyScore(numArray)
 }
 
-// console.log(scrabble(''));
+console.log(scrabble(null))
 
 module.exports = {
   scrabble,

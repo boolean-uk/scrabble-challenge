@@ -1,8 +1,9 @@
-const { LETTERSCORES, SCOREMULTIPLIER } = require('../src/constants')
+// const { LETTERSCORES, SCOREMULTIPLIER } = require('../src/constants')
 let { MULTIPLE } = require('../src/constants')
 const {
   tallyScore,
   stringToArray,
+  scoreOrMultiply,
   scoreMultiplicatorizer
 } = require('../src/scrabble')
 
@@ -36,6 +37,16 @@ describe('stringToArray', () => {
       'a',
       'y'
     ])
+  })
+})
+
+describe('scoreOrMultiply', () => {
+  it("return 'score' for 'c'", () => {
+    expect(scoreOrMultiply('c')).toEqual('score')
+  })
+
+  it("return 'score' for ']'", () => {
+    expect(scoreOrMultiply(']')).toEqual('multiply')
   })
 })
 

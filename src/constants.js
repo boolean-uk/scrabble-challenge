@@ -1,4 +1,4 @@
-const LETTERSCORES = {
+const LETTER_SCORES = {
   A: 1,
   B: 3,
   C: 3,
@@ -27,17 +27,31 @@ const LETTERSCORES = {
   Z: 10
 }
 
+const INCORRECT_TOKENS = ['|', '(', ')'] // I was happy just ignoring them and scoring dog without giving 0 :(
+
 const MULTIPLE = 1
 
-const SCOREMULTIPLIER = {
-  '{': 2,
-  '}': 1,
-  '[': 3,
-  ']': 1
+const MULTIPLIER_USAGE = {
+  '{': 0,
+  '}': 0,
+  '[': 0,
+  ']': 0
 }
 
+const SCORE_MULTIPLIER = {
+  '{': 2,
+  '}': 1 / 2,
+  '[': 3,
+  ']': 1 / 3
+}
+
+const VALID_SCORE = true
+
 module.exports = {
-  LETTERSCORES,
+  LETTER_SCORES,
   MULTIPLE,
-  SCOREMULTIPLIER
+  MULTIPLIER_USAGE,
+  SCORE_MULTIPLIER,
+  INCORRECT_TOKENS,
+  VALID_SCORE
 }

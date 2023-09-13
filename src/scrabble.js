@@ -1,5 +1,10 @@
-const { LETTERSCORES, SCOREMULTIPLIER } = require('./constants')
-let { MULTIPLE } = require('./constants')
+const { LETTER_SCORES, INCORRECT_TOKENS } = require('./constants')
+let {
+  MULTIPLE,
+  VALID_SCORE,
+  MULTIPLIER_USAGE,
+  SCORE_MULTIPLIER
+} = require('./constants')
 
 const stringToArray = (word) => {
   if (typeof word === 'string') {
@@ -24,8 +29,10 @@ const stringArrayToScore = (stringArray) => {
 }
 
 const scoreOrMultiply = (character) => {
+  edgeCasesIDisagreeWith(character)
+  logMultiplierUsage(character)
   const charUpper = character.toUpperCase() // repeating line - refactor?
-  if (SCOREMULTIPLIER[charUpper]) {
+  if (SCORE_MULTIPLIER[charUpper]) {
     return 'multiply'
   } else {
     return 'score'
@@ -34,8 +41,7 @@ const scoreOrMultiply = (character) => {
 
 const findLetterScore = (character) => {
   const charUpper = character.toUpperCase() // repeating line - refactor?
-  const result = LETTERSCORES[charUpper] * MULTIPLE
-  console.log('result :>> ', result);
+  const result = LETTER_SCORES[charUpper] * MULTIPLE
   if (result) {
     return result
   } else {
@@ -44,11 +50,24 @@ const findLetterScore = (character) => {
 }
 
 const scoreMultiplicatorizer = (character) => {
-  const multiplier = SCOREMULTIPLIER[character]
+  const multiplier = SCORE_MULTIPLIER[character]
   if (multiplier) {
-    return multiplier
+    return MULTIPLE * multiplier
   } else {
     return MULTIPLE
+  }
+}
+
+const logMultiplierUsage = (character) => {
+  const usageKeys = Object.keys(MULTIPLIER_USAGE)
+  if (usageKeys.includes(character)) {
+    MULTIPLIER_USAGE[character]++
+  }
+}
+
+const edgeCasesIDisagreeWith = (character) => {
+  if (INCORRECT_TOKENS.includes(character)) {
+    VALID_SCORE = false
   }
 }
 
@@ -60,19 +79,49 @@ const tallyScore = (numArray) => {
   }
 }
 
-const scrabble = (word) => {
-  switch (typeof word === 'string') {
-    case false:
-    // throw TypeError(`${word} must be a string`)
-  }
-  const stringArray = stringToArray(word)
-  console.log('stringArray :>> ', stringArray)
-  const numArray = stringArrayToScore(stringArray)
+const resetConstants = () => {
+  MULTIPLE = 1
 
-  return tallyScore(numArray)
+  MULTIPLIER_USAGE = {
+    '{': 0,
+    '}': 0,
+    '[': 0,
+    ']': 0
+  }
+
+  SCORE_MULTIPLIER = {
+    '{': 2,
+    '}': 1 / 2,
+    '[': 3,
+    ']': 1 / 3
+  }
+
+  VALID_SCORE = true
 }
 
-console.log(scrabble(null))
+const scrabble = (word) => {
+  const stringArray = stringToArray(word)
+  const numArray = stringArrayToScore(stringArray)
+
+  if (
+    MULTIPLIER_USAGE['['] !== MULTIPLIER_USAGE[']'] ||
+    MULTIPLIER_USAGE['{'] !== MULTIPLIER_USAGE['}']
+  ) {
+    VALID_SCORE = false
+  }
+  if (VALID_SCORE) {
+    resetConstants()
+    return tallyScore(numArray)
+  } else {
+    resetConstants()
+    return 0
+  }
+}
+
+// const edgeCases30 = scrabble('quirky')
+// console.log('edgeCases30 :>> ', edgeCases30)
+// console.log('typeof(edgeCases30) :>> ', typeof edgeCases30)
+// console.log('MULTIPLIER_USAGE :>> ', MULTIPLIER_USAGE)
 
 module.exports = {
   scrabble,

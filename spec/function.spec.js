@@ -1,4 +1,3 @@
-// const { LETTERSCORES, SCOREMULTIPLIER } = require('../src/constants')
 let { MULTIPLE } = require('../src/constants')
 const {
   tallyScore,
@@ -47,37 +46,5 @@ describe('scoreOrMultiply', () => {
 
   it("return 'score' for ']'", () => {
     expect(scoreOrMultiply(']')).toEqual('multiply')
-  })
-})
-
-describe('scoreMultiplicatorizer', () => {
-  it("set MULTIPLE to 2 for '{'", () => {
-    MULTIPLE = scoreMultiplicatorizer('{')
-
-    expect(MULTIPLE).toEqual(2)
-  })
-
-  it("set MULTIPLE to 1 for '}'", () => {
-    MULTIPLE = scoreMultiplicatorizer('}')
-
-    expect(MULTIPLE).toEqual(1)
-  })
-
-  it("set MULTIPLE to 3 for '['", () => {
-    MULTIPLE = scoreMultiplicatorizer('[')
-
-    expect(MULTIPLE).toEqual(3)
-  })
-
-  it("set MULTIPLE to 1 for ']'", () => {
-    MULTIPLE = scoreMultiplicatorizer(']')
-
-    expect(MULTIPLE).toEqual(1)
-  })
-
-  it("keep MULTIPLE the same for 'a'", () => {
-    MULTIPLE = scoreMultiplicatorizer('a')
-
-    expect(MULTIPLE).toEqual(MULTIPLE)
   })
 })

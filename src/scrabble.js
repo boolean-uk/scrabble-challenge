@@ -70,6 +70,7 @@ const letterScore = {
   Z: 10
 }
 
+
 // 2. Create a function called 'scrabble' with one parameter called 'word'
 function scrabble(word) {
 
@@ -78,35 +79,51 @@ function scrabble(word) {
 
   let totalScore = 0
 
+
+  if (word === null || word === ' \t\n' || word === '') {
+    return 0
+  }
+
   // 4. Create loop that iterates through the word that is passed through the function - that way it can check whether the scores for each letter and these up
   // eslint-disable-next-line no-unreachable-loop
 
+  // eslint-disable-next-line no-unreachable
   for (let i = 0; i < word.length; i++) {
     // 5. Create a variable and store one letter and apply upperCase method, so if lowerCase is entered, the function still works
+
     const aLetter = word[i].toUpperCase()
 
     // 6. if a letter is in the letterScore then update the totalScore by calcuting the letter score depending on the score. The word 'in' returns true if the specified propety is in the specified object
     if (aLetter in letterScore) {
       // update the totalscore = totalscore + letterscore[letter]
       totalScore += letterScore[aLetter]
-    }
 
-    if (aLetter === null || aLetter === ' \t\n' || aLetter === '') {
-      return 0
     }
   }
   return totalScore
 }
 
-console.log(scrabble('hello'))
-console.log(scrabble(''))
-console.log(scrabble(' \t\n'))
-// console.log(scrabble(null))
-console.log(scrabble('f'))
-console.log(scrabble('street'))
-console.log(scrabble('quirky'))
-console.log(scrabble('OXYPHENBUTAZONE'))
+console.log('This is an empty string:', scrabble('')) // returns 0
 
+console.log('This is ensuring no tabs or new lines entered:', scrabble(' \t\n')) // returns 0
+
+console.log('This is null:', scrabble(null)) // returns 0
+
+console.log('a:', scrabble('a')) // returns 1
+console.log('f:', scrabble('f')) // returns 4
+console.log('street:', scrabble('street')) // returns 6
+console.log('quirky:', scrabble('quirky')) // returns 22
+console.log('OXYPHENBUTAZONE:', scrabble('OXYPHENBUTAZONE')) // returns 39 but should be 41
+
+console.log('-----------------------------------------------')
+const newLine = 'hello\nWorld!'
+console.log('newLine:', newLine)
+// newLine: hello
+// World!
+
+const tab = 'Hello\tWorld'
+console.log("tab:", tab)
+// tab: Hello      World
 
 module.exports = scrabble
 

@@ -15,25 +15,25 @@ function scrabble(word) {
   const lowerCaseWord = word.toLowerCase()
 
   for (let i = 0; i < word.length; i++) {
-    if (lettersWorthOne.includes(lowerCaseWord[i]) === true) {
+    if (lettersWorthOne.includes(lowerCaseWord[i])) {
       scrabbleScore += 1
     }
-    if (lettersWorthTwo.includes(lowerCaseWord[i]) === true) {
+    if (lettersWorthTwo.includes(lowerCaseWord[i])) {
       scrabbleScore += 2
     }
-    if (lettersWorthThree.includes(lowerCaseWord[i]) === true) {
+    if (lettersWorthThree.includes(lowerCaseWord[i])) {
       scrabbleScore += 3
     }
-    if (lettersWorthFour.includes(lowerCaseWord[i]) === true) {
+    if (lettersWorthFour.includes(lowerCaseWord[i])) {
       scrabbleScore += 4
     }
-    if (lettersWorthFive.includes(lowerCaseWord[i]) === true) {
+    if (lettersWorthFive.includes(lowerCaseWord[i])) {
       scrabbleScore += 5
     }
-    if (lettersWorthEight.includes(lowerCaseWord[i]) === true) {
+    if (lettersWorthEight.includes(lowerCaseWord[i])) {
       scrabbleScore += 8
     }
-    if (lettersWorthTen.includes(lowerCaseWord[i]) === true) {
+    if (lettersWorthTen.includes(lowerCaseWord[i])) {
       scrabbleScore += 10
     }
   }

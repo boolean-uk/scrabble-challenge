@@ -22,7 +22,7 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
   - [ ] Parameter: (`abc`)
   - [ ] `String.split('')` will separate a string into an array with each character being a separate element in the array:
   - [ ] Return: `['a', 'b', 'c']`
-- [ ] Function `findWordScore`
+- [ ] Function ~~`findWordScore`~~ `scrabble`
   - [ ] Parameter: (`abc`)
   - [ ] Guard clause:
     - [ ] input is of type string

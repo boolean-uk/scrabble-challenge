@@ -4,7 +4,7 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
 
 ## 1. Making function `findWordScore`
 
-- [ ] Object `letterScores` detailing values of each letter eg:
+- [x] Object `letterScores` detailing values of each letter eg:
   - `{ A: 1, B: 3, C: 3, ... Z: 10}`
 
 - [ ] Function `findLetterScore`
@@ -38,8 +38,8 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
 
 ### `findLetterScore` will need to be refactored
 
-- [ ] const `MULTIPLE`, defaulted to `1`
-- [ ] Object `scoreMultiplier` detailing what the score multiplier should be set to:
+- [x] const `MULTIPLE`, defaulted to `1`
+- [x] Object `scoreMultiplier` detailing what the score multiplier should be set to:
 
 ```js
   {

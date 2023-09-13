@@ -1,4 +1,4 @@
-function scrabble() {
+const scrabble = () => {
   // write code here
 }
 

@@ -14,87 +14,41 @@ const scrabble = (word) => {
     }
 
     for (let j = 0; j < scrabbleArr.length; j++) {
-      if (scrabbleArr[j] === 'a') {
+      if (
+        scrabbleArr[j] === 'a' ||
+        scrabbleArr[j] === 'e' ||
+        scrabbleArr[j] === 'i' ||
+        scrabbleArr[j] === 'o' ||
+        scrabbleArr[j] === 'u' ||
+        scrabbleArr[j] === 'l' ||
+        scrabbleArr[j] === 'n' ||
+        scrabbleArr[j] === 'r' ||
+        scrabbleArr[j] === 's' ||
+        scrabbleArr[j] === 't'
+      ) {
         output += 1
       }
 
-      if (scrabbleArr[j] === 'e') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'i') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'o') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'u') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'l') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'n') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'r') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 's') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 't') {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'd') {
+      if (scrabbleArr[j] === 'd' || scrabbleArr[j] === 'g') {
         output += 2
       }
 
-      if (scrabbleArr[j] === 'g') {
-        output += 2
-      }
-
-      if (scrabbleArr[j] === 'b') {
+      if (
+        scrabbleArr[j] === 'b' ||
+        scrabbleArr[j] === 'c' ||
+        scrabbleArr[j] === 'm' ||
+        scrabbleArr[j] === 'p'
+      ) {
         output += 3
       }
 
-      if (scrabbleArr[j] === 'c') {
-        output += 3
-      }
-
-      if (scrabbleArr[j] === 'm') {
-        output += 3
-      }
-
-      if (scrabbleArr[j] === 'p') {
-        output += 3
-      }
-
-      if (scrabbleArr[j] === 'f') {
-        output += 4
-      }
-
-      if (scrabbleArr[j] === 'h') {
-        output += 4
-      }
-
-      if (scrabbleArr[j] === 'v') {
-        output += 4
-      }
-
-      if (scrabbleArr[j] === 'w') {
-        output += 4
-      }
-
-      if (scrabbleArr[j] === 'y') {
+      if (
+        scrabbleArr[j] === 'f' ||
+        scrabbleArr[j] === 'h' ||
+        scrabbleArr[j] === 'v' ||
+        scrabbleArr[j] === 'w' ||
+        scrabbleArr[j] === 'y'
+      ) {
         output += 4
       }
 
@@ -102,19 +56,11 @@ const scrabble = (word) => {
         output += 5
       }
 
-      if (scrabbleArr[j] === 'j') {
+      if (scrabbleArr[j] === 'j' || scrabbleArr[j] === 'x') {
         output += 8
       }
 
-      if (scrabbleArr[j] === 'x') {
-        output += 8
-      }
-
-      if (scrabbleArr[j] === 'q') {
-        output += 10
-      }
-
-      if (scrabbleArr[j] === 'z') {
+      if (scrabbleArr[j] === 'q' || scrabbleArr[j] === 'z') {
         output += 10
       }
     }

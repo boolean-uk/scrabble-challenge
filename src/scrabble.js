@@ -39,24 +39,17 @@ const scrabble = (myWord) => {
     let wordScore = 0
 
     const newWord = myWord.toUpperCase().split('')
-    // console.log('word split to letters:', newWord)
 
     for (let i = 0; i < newWord.length; i++) {
       const wordLetters = newWord[i]
-      // console.log('Letters:', wordLetters)
 
-      // eslint-disable-next-line no-prototype-builtins
       if (alphabetPoints.hasOwnProperty(wordLetters)) {
         const letterValues = alphabetPoints[wordLetters]
-        // console.log('Letter values:', letterValues)
         wordScore += letterValues
-        // console.log('Word Score:', wordScore)
       }
     }
     return wordScore
   }
 }
-
-console.log('Scrabble score:', scrabble('OXYPHENBUTAZONE'))
 
 module.exports = scrabble

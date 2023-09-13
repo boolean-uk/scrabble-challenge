@@ -2,7 +2,7 @@
 
 const scrabble = require('../../src/scrabble')
 
-describe("Scrabble", () => {
+describe('Scrabble', () => {
   describe("letter multipliers", () => {
     it('returns 6 for double letter o', () => {
       expect(scrabble('d{o}g')).toEqual(6)

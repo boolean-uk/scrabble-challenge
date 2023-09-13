@@ -64,6 +64,6 @@ function scrabble(word) {
   return scrabbleScore
 }
 
-scrabble('POTATO')
+// not sure if this is the most elegant solution, but it seems to be a solution
 
 module.exports = scrabble

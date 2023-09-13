@@ -14,10 +14,10 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
       - [ ] if Uppercased character is not in `letterScores`, throw an error and highlight the offending character
   - [ ] Reference uppercased input in `letterScores`
   - [ ] Return: `1`
-- [ ] Function `tallyScore`
-  - [ ] Parameter: (`[1, 3, 3]`)
-  - [ ] `Array.reduce()` looks to sum an array of numbers
-  - [ ] Return: `7`
+- [x] Function `tallyScore`
+  - [x] Parameter: (`[1, 3, 3]`)
+  - [x] `Array.reduce()` looks to sum an array of numbers
+  - [x] Return: `7`
 - [ ] Function `stringToArray`
   - [ ] Parameter: (`abc`)
   - [ ] `String.split('')` will separate a string into an array with each character being a separate element in the array:
@@ -54,7 +54,7 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
 - [ ] Add Guard Clause
   - [ ] Check to see if input is a key found in `scoreMultiplier`
 - [ ] Function `scoreMultiplicatorizer`
-  - [ ] Parameter: `[` `a`
+  - [ ] Parameter: `[` OR `a`
   - [ ] If input is a key found in `scoreMultiplier`
     - [ ] set `MULTIPLE` to matching value
   - [ ] Else `pass`

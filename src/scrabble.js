@@ -43,7 +43,6 @@ const scrabble = (word) => {
         return
       }
       wordScore += letterScore * currentMultiplier
-      console.log(currentMultiplier, wordScore, letterScore)
     })
     // const doubleAndTripleLetters = doubleAndTripleLetterScore(word)
     return wordScore
@@ -68,6 +67,6 @@ const scrabble = (word) => {
 //   }
 // }
 
-console.log(scrabble('d{o}g'))
+console.log(scrabble('dog'))
 
 module.exports = scrabble

@@ -15,27 +15,28 @@ const stringToArray = (word) => {
 }
 
 const stringArrayToScore = (stringArray) => {
-  // FIXME: resolve eslint error below
   let numArray = stringArray.map((val) => {
-    switch (scoreOrMultiply(val)) {
-      case 'score':
-        return findLetterScore(val)
-      case 'multiply':
+    switch (multiplyCheck(val)) {
+      case true:
         MULTIPLE = scoreMultiplicatorizer(val)
+        return undefined
+      default:
+        return findLetterScore(val)
     }
   })
+  console.log('numArray :', numArray)
   numArray = numArray.filter((val) => !(val === undefined))
   return numArray
 }
 
-const scoreOrMultiply = (character) => {
+const multiplyCheck = (character) => {
   edgeCasesIDisagreeWith(character)
   logMultiplierUsage(character)
   const charUpper = character.toUpperCase() // FIXME: repeating line - refactor?
   if (SCORE_MULTIPLIER[charUpper]) {
-    return 'multiply'
+    return true
   } else {
-    return 'score'
+    return false
   }
 }
 
@@ -118,6 +119,8 @@ const scrabble = (word) => {
   }
 }
 
+console.log(stringArrayToScore(['{', 'd', 'o', 'g', '}']))
+
 // TODO:
 // [ ] Move functions into separate file?
 // [ ] Fix test(s) in `function.spec.js` messing up `npm test`
@@ -127,7 +130,7 @@ module.exports = {
   findLetterScore,
   tallyScore,
   stringToArray,
-  scoreOrMultiply,
+  multiplyCheck,
   scoreMultiplicatorizer,
   resetConstants
 }

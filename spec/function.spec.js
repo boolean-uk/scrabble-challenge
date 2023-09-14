@@ -1,7 +1,7 @@
 const {
   tallyScore,
   stringToArray,
-  scoreOrMultiply,
+  multiplyCheck,
   resetConstants
 } = require('../src/scrabble')
 
@@ -37,16 +37,16 @@ describe('stringToArray', () => {
   })
 })
 
-describe('scoreOrMultiply', () => {
+describe('multiplyCheck', () => {
   beforeEach(() => {
     resetConstants()
   })
 
   it("return 'score' for 'c'", () => {
-    expect(scoreOrMultiply('c')).toEqual('score')
+    expect(multiplyCheck('c')).toEqual(false)
   })
 
   it("return 'score' for ']'", () => {
-    expect(scoreOrMultiply(']')).toEqual('multiply')
+    expect(multiplyCheck(']')).toEqual(true)
   })
 })

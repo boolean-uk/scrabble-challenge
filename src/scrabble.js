@@ -26,7 +26,6 @@ function scrabble(word) {
           updateCharFactor(1/3)
           break;
       }
-      console.log("changed Factor", charFactor.previous, "->", charFactor.current)
     }
     return 0 // this is just so it will do its thing but doesn't affect the addition
   }

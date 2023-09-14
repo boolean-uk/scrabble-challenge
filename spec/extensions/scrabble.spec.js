@@ -1,5 +1,3 @@
-// Extend these specs as you like
-
 const scrabble = require('../../src/scrabble')
 
 describe("Scrabble", () => {
@@ -12,11 +10,11 @@ describe("Scrabble", () => {
       expect(scrabble('d[o]g')).toEqual(7)
     })
 
-    it('returns 0 for invalid multiplier', () => {
+    it('returns 0 for invalid multiplier 1', () => {
       expect(scrabble('d{og')).toEqual(0)
     })
 
-    it('returns 0 for invalid multiplier', () => {
+    it('returns 0 for invalid multiplier 2', () => {
       expect(scrabble('do}g')).toEqual(0)
     })
   })
@@ -30,10 +28,10 @@ describe("Scrabble", () => {
       expect(scrabble('[dog]')).toEqual(15)
     })
 
-    it('returns 0 for invalid multiplier', () => {
+    it('returns 0 for invalid multiplier 3', () => {
       expect(scrabble('{dog')).toEqual(0)
     })
-    it('returns 0 for invalid multiplier', () => {
+    it('returns 0 for invalid multiplier 4', () => {
       expect(scrabble('dog}')).toEqual(0)
     })
   })

@@ -1,73 +1,105 @@
-const scoreOf1 = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
-const scoreOf2 = ['D', 'G']
-const scoreOf3 = ['B', 'C', 'M', 'P']
-const scoreOf4 = ['F', 'H', 'V', 'W', 'Y']
-const scoreOf5 = ['K']
-const scoreOf8 = ['J', 'X']
-const scoreOf10 = ['Q', 'Z']
-let letterScore = 0
+const letterValues = {
+  A: 1,
+  E: 1,
+  I: 1,
+  O: 1,
+  U: 1,
+  L: 1,
+  N: 1,
+  R: 1,
+  S: 1,
+  T: 1,
+  D: 2,
+  G: 2,
+  B: 3,
+  C: 3,
+  M: 3,
+  P: 3,
+  F: 4,
+  H: 4,
+  V: 4,
+  W: 4,
+  Y: 4,
+  K: 5,
+  J: 8,
+  X: 8,
+  Q: 10,
+  Z: 10
+}
 
-const scrabble = (word) => {
-  let wordScore = 0
-  let currentMultiplier = 1
-  if (word === '' || word === null || word === ' \t\n') {
-    return 0
+// New guard clause to check if the input is correct
+function scrabble(word) {
+  if (typeof word === 'string') {
+    return scoreCalculator(word)
   } else {
-    const wordArray = word.toUpperCase().split('')
-    wordArray.forEach((letter) => {
-      if (scoreOf1.includes(letter)) {
-        letterScore = 1
-      } else if (scoreOf2.includes(letter)) {
-        letterScore = 2
-      } else if (scoreOf3.includes(letter)) {
-        letterScore = 3
-      } else if (scoreOf4.includes(letter)) {
-        letterScore = 4
-      } else if (scoreOf5.includes(letter)) {
-        letterScore = 5
-      } else if (scoreOf8.includes(letter)) {
-        letterScore = 8
-      } else if (scoreOf10.includes(letter)) {
-        letterScore = 10
-      } else if (letter === '{') {
-        currentMultiplier = 2
-        return
-      } else if (letter === '[') {
-        currentMultiplier = 3
-        return
-      } else if (letter === '}') {
-        currentMultiplier = 1
-        return
-      } else if (letter === ']') {
-        currentMultiplier = 1
-        return
-      }
-      wordScore += letterScore * currentMultiplier
-      console.log(wordScore, letterScore, currentMultiplier)
-    })
-    // const doubleAndTripleLetters = doubleAndTripleLetterScore(word)
-    return wordScore
+    return 0
   }
 }
 
-// const doubleAndTripleLetterScore = (word) => {
-//   let wordScore = 0
-//   if (word === '' || word === null || word === ' \t\n') {
-//     return 0
-//   } else {
-//     const wordArray = word.toUpperCase().split('')
-//     wordArray.forEach((letter) => {
-//       if (doubleLetter.includes(letter)) {
-//         letterScore * 2
-//       } else if (tripleLetter.includes(letter)) {
-//         letterScore * 3
-//       }
-//       wordScore += letterScore
-//     })
-//     return wordScore
-//   }
-// }
+// restructuring from arrow functions to regular functions to gain clarity on some of the harder arguments
 
-console.log(scrabble('{a}'))
+function scoreCalculator(word) {
+  let initialScore = 0
+  let multiplier = 1
+  for (let idx = 0; idx < word.length; idx++) {
+    const letter = word.charAt(idx).toUpperCase()
+
+    if (letterValues[letter] !== undefined) {
+      initialScore += letterValues[letter] * multiplier
+    } else if (letter === '{') {
+      if (Checker1(word, idx) === true) {
+        multiplier = multiplier * 2
+      } else {
+        initialScore = 0
+        break
+      }
+    } else if (letter === '[') {
+      if (Checker1(word, idx) === true) {
+        multiplier = multiplier * 3
+      } else {
+        initialScore = 0
+        break
+      }
+    } else if (letter === '}') {
+      if (Checker2(word, idx) === true) {
+        multiplier = multiplier / 2
+      } else {
+        initialScore = 0
+        break
+      }
+    } else if (letter === ']') {
+      if (Checker2(word, idx) === true) {
+        multiplier = multiplier / 3
+      } else {
+        initialScore = 0
+        break
+      }
+    } else {
+      initialScore = 0
+      break
+    }
+  }
+  return initialScore
+}
+
+function Checker1(word, idx) {
+  let check = false
+  for (let i = idx + 1; i < word.length; i++) {
+    if (word[i] === '}' || word[i] === ']') {
+      check = true
+    }
+  }
+  return check
+}
+
+function Checker2(word, idx) {
+  let check = false
+  for (let i = idx; i >= 0; i--) {
+    if (word[i] === '{' || word[i] === '[') {
+      check = true
+    }
+  }
+  return check
+}
 
 module.exports = scrabble

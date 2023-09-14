@@ -1,4 +1,5 @@
-let scrabbleScore
+let wordScore = 0
+// const lowerCaseLettersInWord = []
 const lettersWorthOne = ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't']
 const lettersWorthTwo = ['d', 'g']
 const lettersWorthThree = ['b', 'c', 'm', 'p']
@@ -7,37 +8,52 @@ const lettersWorthFive = ['k']
 const lettersWorthEight = ['j', 'x']
 const lettersWorthTen = ['q', 'z']
 
+// returns the score IF the word is not an empty string
 function scrabble(word) {
-  scrabbleScore = 0
   if (word === null) {
-    return scrabbleScore
+    wordScore = 0
+    return wordScore
   }
-  const lowerCaseWord = word.toLowerCase()
-
+  wordScore = calculateWordScore(word)
+  return wordScore
+}
+// re-initialises the wordScore variable after it has calculated the score of one word. This prevents the score from the first word that is passed through from being added to that of the second word.
+function reinitialiseWordScore() {
+  wordScore = 0
+}
+// calculates the word score by adding the scores of each letter to the wordScore variable
+function calculateWordScore(word) {
+  reinitialiseWordScore(wordScore)
   for (let i = 0; i < word.length; i++) {
-    if (lettersWorthOne.includes(lowerCaseWord[i])) {
-      scrabbleScore += 1
-    }
-    if (lettersWorthTwo.includes(lowerCaseWord[i])) {
-      scrabbleScore += 2
-    }
-    if (lettersWorthThree.includes(lowerCaseWord[i])) {
-      scrabbleScore += 3
-    }
-    if (lettersWorthFour.includes(lowerCaseWord[i])) {
-      scrabbleScore += 4
-    }
-    if (lettersWorthFive.includes(lowerCaseWord[i])) {
-      scrabbleScore += 5
-    }
-    if (lettersWorthEight.includes(lowerCaseWord[i])) {
-      scrabbleScore += 8
-    }
-    if (lettersWorthTen.includes(lowerCaseWord[i])) {
-      scrabbleScore += 10
-    }
+    wordScore += indentifyLetterValue(word[i].toLowerCase())
   }
-  return scrabbleScore
+  return wordScore
+}
+
+// iterates through the arrays of letters, finds the one that has been passed through, return its associated score
+function indentifyLetterValue(letter) {
+  if (lettersWorthOne.includes(letter)) {
+    return 1
+  }
+  if (lettersWorthTwo.includes(letter)) {
+    return 2
+  }
+  if (lettersWorthThree.includes(letter)) {
+    return 3
+  }
+  if (lettersWorthFour.includes(letter)) {
+    return 4
+  }
+  if (lettersWorthFive.includes(letter)) {
+    return 5
+  }
+  if (lettersWorthEight.includes(letter)) {
+    return 8
+  }
+  if (lettersWorthTen.includes(letter)) {
+    return 10
+  }
+  return 0
 }
 
 module.exports = scrabble

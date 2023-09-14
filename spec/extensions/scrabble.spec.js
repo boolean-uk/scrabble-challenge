@@ -1,5 +1,3 @@
-// Extend these specs as you like
-
 const scrabble = require('../../src/scrabble')
 
 describe("Scrabble", () => {

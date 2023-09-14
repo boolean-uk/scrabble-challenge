@@ -15,11 +15,11 @@ describe("Scrabble", () => {
     expect(scrabble(null)).toEqual(0)
   })
 
-  it('scores short word', () => {
+  it('scores short word 1', () => {
     expect(scrabble('a')).toEqual(1)
   })
 
-  it('scores short word', () => {
+  it('scores short word 2', () => {
     expect(scrabble('f')).toEqual(4)
   })
 

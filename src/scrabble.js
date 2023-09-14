@@ -9,7 +9,6 @@ let letterScore = 0
 
 const scrabble = (word) => {
   let wordScore = 0
-  let currentMultiplier = 1
   if (word === '' || word === null || word === ' \t\n') {
     return 0
   } else {
@@ -29,20 +28,8 @@ const scrabble = (word) => {
         letterScore = 8
       } else if (scoreOf10.includes(letter)) {
         letterScore = 10
-      } else if (letter === '{') {
-        currentMultiplier = 2
-        return
-      } else if (letter === '[') {
-        currentMultiplier = 3
-        return
-      } else if (letter === '}') {
-        currentMultiplier = 1
-        return
-      } else if (letter === ']') {
-        currentMultiplier = 1
-        return
       }
-      wordScore += letterScore * currentMultiplier
+      wordScore += letterScore
     })
     // const doubleAndTripleLetters = doubleAndTripleLetterScore(word)
     return wordScore

@@ -1,10 +1,11 @@
-// const { findLettersInCurlyBrackets } = require('./scoreModifiers.js')
-// const { findLettersInSquareBrackets } = require('./scoreModifiers.js')
-// const { doubleScore } = require('./scoreModifiers.js')
-// const { tripleScore } = require('./scoreModifiers.js')
+// the module.exports seems to be working fine
+const { findLettersInCurlyBrackets } = require('./scoreModifiers.js')
+const { findLettersInSquareBrackets } = require('./scoreModifiers.js')
+const { doubleScore } = require('./scoreModifiers.js')
+const { tripleScore } = require('./scoreModifiers.js')
 let wordScore = 0
 
-// const lowerCaseLettersInWord = []
+// might want to store those in an object, and chuck that into another file
 const lettersWorthOne = ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't']
 const lettersWorthTwo = ['d', 'g']
 const lettersWorthThree = ['b', 'c', 'm', 'p']
@@ -26,8 +27,20 @@ function scrabble(word) {
 function reinitialiseWordScore() {
   wordScore = 0
 }
+
+// that one needs work - it can find the letters in {} or [], and it can multiply values. But that remains to be integrated with the rest of the code. Might re-write this function entirely
+function checkForScoreModifiers(word) {
+  if (findLettersInCurlyBrackets(word)) {
+    doubleScore() // need to figure out how that will interact with calculateWordScore()
+  }
+  if (findLettersInSquareBrackets(word)) {
+    tripleScore() // need to figure out how that will interact with calculateWordScore()
+  }
+}
+
 // calculates the word score by adding the scores of each letter to the wordScore variable
 function calculateWordScore(word) {
+  checkForScoreModifiers(word)
   reinitialiseWordScore(wordScore)
   for (let i = 0; i < word.length; i++) {
     wordScore += indentifyLetterValue(word[i].toLowerCase())

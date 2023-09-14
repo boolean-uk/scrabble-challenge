@@ -1,6 +1,7 @@
 let lettersInCurlyBrackets
 let lettersInSquareBrackets
 
+console.log(lettersInSquareBrackets)
 function doubleScore(value) {
   value *= 2
   return value
@@ -17,7 +18,7 @@ function findLettersInCurlyBrackets(word) {
   const a = word.search('{')
   const b = word.search('}')
   lettersInCurlyBrackets = word.slice(a + 1, b)
-  return lettersInCurlyBrackets
+  return lettersInCurlyBrackets // returning the score assigned to it instead? Besides, I think I might need to use slice to also return the rest of the letters - then put them back together and pass them through identifyLetterValue(). Or think of a different system to get the word to pass through all the functions it needs to pass through. That's tomorrow's job
 }
 
 function escapeRegExp(string) {
@@ -30,11 +31,8 @@ function findLettersInSquareBrackets(word) {
   const a = word.search(escapeRegExp('['))
   const b = word.search(escapeRegExp(']'))
   const lettersInSquareBrackets = word.slice(a + 1, b)
-  return lettersInSquareBrackets
+  return lettersInSquareBrackets // returning the score assigned to it instead?
 }
-console.log(lettersInSquareBrackets)
-console.log(findLettersInSquareBrackets('r[o]ck'))
-console.log(findLettersInCurlyBrackets('guit{a}r'))
 
 module.exports = {
   findLettersInCurlyBrackets,

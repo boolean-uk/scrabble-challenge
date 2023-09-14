@@ -7,7 +7,8 @@ function scrabble(word) {
   }
 
   const charFactor = {
-    current: 1
+    current: 1,
+    valid: true
   }
 
   charFactorChangeTrigger = (char) => {
@@ -31,18 +32,11 @@ function scrabble(word) {
   }
 
   updateCharFactor = (newFactor) => {
-    charFactor.previous = charFactor.current;
-    charFactor.current *= newFactor
-  }
-
-  // determine the word factor
-  wordFactor = (word) => {
-    if (word[0] === "{" && word[word.length-1]=== "}") {
-      return 2
-    } else if(word[0] === "[" && word[word.length-1]=== "]") {
-      return 3
+    if (charFactor.current * newFactor >= 1) {
+      charFactor.previous = charFactor.current;
+      charFactor.current *= newFactor
     } else {
-      return 1
+      charFactor.valid = false
     }
   }
 
@@ -52,8 +46,8 @@ function scrabble(word) {
   word.length > 0 ? charArr = word.split("") : wordValue = 0
 
   charArr.length > 0 ? charArr.forEach((char) => wordValue += (charFactorChangeTrigger(char) + getValue(char)) * charFactor.current) : wordValue = 0
-  
-  return charFactor.current === 1 ? wordValue : 0
+
+  return (charFactor.current === 1 && charFactor.valid === true) ? wordValue : 0
 }
 
 module.exports = scrabble

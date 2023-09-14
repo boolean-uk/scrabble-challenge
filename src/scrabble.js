@@ -3,7 +3,7 @@
 // Plain english
 
 // GOAL -
-// The purpose is to pass in a word via a function and that word should return a score depending on the word passed through
+// The purpose is to pass in a word via a function and that word should return a score depending on the word passed through. The letters should be assigned with points - the points should add together to give a total score.
 
 // For example,
 // A = 1
@@ -15,7 +15,7 @@
 
 // However, if a white space is entered - ('') empty string = this should return 0
 // However, if a new line is entered /n   (" \t\n")         = should return 0
-// However, if null is entered                              = should return 0
+// However, if null (nothing) is entered                              = should return 0
 
 // Pseudo code
 
@@ -30,7 +30,11 @@
 // if J, X                         then return 8
 // if Q, Z                         then return 10
 
-// 3. Lower case
+// 2. Need a loop that goes through each letter after the word is entered in the function, however as null is not a string, cannot use the word.length condition. Therefore have these conditons outside the loop.
+// If statements ensuring if:
+// - '' is entered should return 0
+// - \t\n is entered should return 0
+// - null should return 0
 
 // 5. Create a variable that keeps track of the score
 
@@ -38,8 +42,7 @@
 // - if any word entered
 // add the totalScore to the scoreLetters
 
-// 7.
-// Create if statements within the function that take into account the possible enteries example if empty string entered, new line entered, null is entered, then this should return a score of 0
+
 // 1. Assigning the letters to scores
 const letterScore = {
   A: 1,
@@ -54,10 +57,10 @@ const letterScore = {
   T: 1,
   D: 2,
   G: 2,
-  B: 2,
-  C: 2,
-  M: 2,
-  P: 2,
+  B: 3,
+  C: 3,
+  M: 3,
+  P: 3,
   F: 4,
   H: 4,
   V: 4,
@@ -75,14 +78,13 @@ const letterScore = {
 function scrabble(word) {
 
 
-  // 3. Create a variable that keeps track of the totalScore
-
-  let totalScore = 0
-
 
   if (word === null || word === ' \t\n' || word === '') {
     return 0
   }
+  // 3. Create a variable that keeps track of the totalScore
+
+  let totalScore = 0
 
   // 4. Create loop that iterates through the word that is passed through the function - that way it can check whether the scores for each letter and these up
   // eslint-disable-next-line no-unreachable-loop
@@ -97,7 +99,6 @@ function scrabble(word) {
     if (aLetter in letterScore) {
       // update the totalscore = totalscore + letterscore[letter]
       totalScore += letterScore[aLetter]
-
     }
   }
   return totalScore
@@ -113,7 +114,8 @@ console.log('a:', scrabble('a')) // returns 1
 console.log('f:', scrabble('f')) // returns 4
 console.log('street:', scrabble('street')) // returns 6
 console.log('quirky:', scrabble('quirky')) // returns 22
-console.log('OXYPHENBUTAZONE:', scrabble('OXYPHENBUTAZONE')) // returns 39 but should be 41
+console.log('OXYPHENBUTAZONE:', scrabble('OXYPHENBUTAZONE')) // returns 41 
+console.log('HI', scrabble('HI'))
 
 console.log('-----------------------------------------------')
 const newLine = 'hello\nWorld!'

@@ -1,3 +1,5 @@
+const { letters } = require('./letter.js')
+
 const scrabble = (word) => {
   let output = 0
   const scrabbleArr = []
@@ -13,55 +15,9 @@ const scrabble = (word) => {
       scrabbleArr.push(word[i].toLowerCase())
     }
 
-    for (let j = 0; j < scrabbleArr.length; j++) {
-      if (
-        scrabbleArr[j] === 'a' ||
-        scrabbleArr[j] === 'e' ||
-        scrabbleArr[j] === 'i' ||
-        scrabbleArr[j] === 'o' ||
-        scrabbleArr[j] === 'u' ||
-        scrabbleArr[j] === 'l' ||
-        scrabbleArr[j] === 'n' ||
-        scrabbleArr[j] === 'r' ||
-        scrabbleArr[j] === 's' ||
-        scrabbleArr[j] === 't'
-      ) {
-        output += 1
-      }
-
-      if (scrabbleArr[j] === 'd' || scrabbleArr[j] === 'g') {
-        output += 2
-      }
-
-      if (
-        scrabbleArr[j] === 'b' ||
-        scrabbleArr[j] === 'c' ||
-        scrabbleArr[j] === 'm' ||
-        scrabbleArr[j] === 'p'
-      ) {
-        output += 3
-      }
-
-      if (
-        scrabbleArr[j] === 'f' ||
-        scrabbleArr[j] === 'h' ||
-        scrabbleArr[j] === 'v' ||
-        scrabbleArr[j] === 'w' ||
-        scrabbleArr[j] === 'y'
-      ) {
-        output += 4
-      }
-
-      if (scrabbleArr[j] === 'k') {
-        output += 5
-      }
-
-      if (scrabbleArr[j] === 'j' || scrabbleArr[j] === 'x') {
-        output += 8
-      }
-
-      if (scrabbleArr[j] === 'q' || scrabbleArr[j] === 'z') {
-        output += 10
+    for (const letter of scrabbleArr) {
+      if (letter in letters) {
+        output += letters[letter]
       }
     }
   } else if (stringContainsNum === true) {
@@ -72,5 +28,5 @@ const scrabble = (word) => {
   return output
 }
 
-console.log(scrabble(' \t\n'))
+console.log(scrabble('d{o}g'))
 module.exports = scrabble

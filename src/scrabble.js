@@ -31,14 +31,19 @@ const scrabble = (word) => {
         letterScore = 10
       } else if (letter === '{') {
         currentMultiplier = 2
+        return
       } else if (letter === '[') {
         currentMultiplier = 3
+        return
       } else if (letter === '}') {
         currentMultiplier = 1
+        return
       } else if (letter === ']') {
         currentMultiplier = 1
+        return
       }
       wordScore += letterScore * currentMultiplier
+      console.log(currentMultiplier, wordScore, letterScore)
     })
     // const doubleAndTripleLetters = doubleAndTripleLetterScore(word)
     return wordScore
@@ -63,6 +68,6 @@ const scrabble = (word) => {
 //   }
 // }
 
-console.log(scrabble('a'))
+console.log(scrabble('d{o}g'))
 
 module.exports = scrabble

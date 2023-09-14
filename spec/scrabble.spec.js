@@ -1,14 +1,18 @@
 // Note: you shouldn't need to change anything in this file.
 
-const scrabble = require('../src/scrabble')
+const { scrabble, resetConstants } = require('../src/scrabble')
 
-describe("Scrabble", () => {
+describe('Scrabble', () => {
+  beforeEach(() => {
+    resetConstants()
+  })
+
   it('returns 0 for empty words', () => {
     expect(scrabble('')).toEqual(0)
   })
 
   it('returns 0 for whitespace', () => {
-    expect(scrabble(" \t\n")).toEqual(0)
+    expect(scrabble(' \t\n')).toEqual(0)
   })
 
   it('returns 0 for null', () => {

@@ -1,6 +1,6 @@
 // Extend these specs as you like
 
-const scrabble = require('../../src/scrabble')
+const { scrabble } = require('../../src/scrabble')
 
 describe("Scrabble", () => {
   describe("letter multipliers", () => {

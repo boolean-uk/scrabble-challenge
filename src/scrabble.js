@@ -77,6 +77,18 @@ const tallyScore = (numArray) => {
   }
 }
 
+const validScoreChecker3000tron = () => {
+  const matchingBrackets =
+    MULTIPLIER_USAGE['['] === MULTIPLIER_USAGE[']'] &&
+    MULTIPLIER_USAGE['{'] === MULTIPLIER_USAGE['}']
+
+  const approvalFromTheAlmightyValidScoreChecker3000tron =
+    matchingBrackets && VALID_SCORE
+  resetConstants()
+
+  return approvalFromTheAlmightyValidScoreChecker3000tron
+}
+
 const resetConstants = () => {
   MULTIPLE = 1
 
@@ -101,26 +113,17 @@ const scrabble = (word) => {
   const stringArray = stringToArray(word)
   const numArray = stringArrayToScore(stringArray)
 
-  if (
-    MULTIPLIER_USAGE['['] !== MULTIPLIER_USAGE[']'] || // FIXME: refactor into function?
-    MULTIPLIER_USAGE['{'] !== MULTIPLIER_USAGE['}']
-  ) {
-    VALID_SCORE = false
-  }
-  if (VALID_SCORE) {
-    resetConstants()
+  if (validScoreChecker3000tron()) {
     return tallyScore(numArray)
   } else {
-    resetConstants()
     return 0
   }
 }
 
-console.log(scrabble('{dog}'))
+// console.log(scrabble('{dog}'))
 
 // TODO:
 // [ ] Move functions into separate file?
-// [ ] Fix test(s) in `function.spec.js` messing up `npm test`
 
 module.exports = {
   scrabble,

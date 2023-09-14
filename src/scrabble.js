@@ -1,5 +1,4 @@
 // Welcome to my scrabble function - It'll calculate those words for you in scrabble points; how exciting.
-
 const scores = {
   A: 1,
   E: 1,
@@ -29,6 +28,8 @@ const scores = {
   Z: 10
 }
 
+// console.log(scrabble("[hi]"))
+
 // Main function - checks the input is a string then sends the parameter value to the calculator function.
 function scrabble(word) {
   if (typeof word === 'string') {
@@ -41,14 +42,41 @@ function scrabble(word) {
 // Responsable for working out the total score
 function calculator(word) {
   let score = 0
-  const multiplier = 1
-  // indexs through each letter
+  let multiplier = 1
+  // Indexs through each letter
   for (let x = 0; x < word.length; x++) {
     const letter = word.charAt(x).toUpperCase()
-    // console.log(letter)
-    // console.log(alphabet[letter])
+
     if (scores[letter] !== undefined) {
       score += scores[letter] * multiplier
+    } else if (letter === '[') {
+      if (squareBracketChecker(word, x) === true) {
+        multiplier = multiplier * 3
+      } else {
+        score = 0
+        break
+      }
+    } else if (letter === '{') {
+      if (bracketChecker(word, x) === true) {
+        multiplier = multiplier * 2
+      } else {
+        score = 0
+        break
+      }
+    } else if (letter === '}') {
+      if (bChecker(word, x) === true) {
+        multiplier = multiplier / 2
+      } else {
+        score = 0
+        break
+      }
+    } else if (letter === ']') {
+      if (sbChecker(word, x) === true) {
+        multiplier = multiplier / 3
+      } else {
+        score = 0
+        break
+      }
     } else {
       score = 0
       break
@@ -57,23 +85,45 @@ function calculator(word) {
   return score
 }
 
-// check the letter is a special character
+// The functions below are only called when checking an inputted word has valid bracket use
+function squareBracketChecker(word, x) {
+  let check = false
+  for (let i = x + 1; i < word.length; i++) {
+    if (word[i] === ']') {
+      check = true
+    }
+  }
+  return check
+}
 
-// console.log(scrabble("hi"))
+function bracketChecker(word, x) {
+  let check = false
+  for (let i = x + 1; i < word.length; i++) {
+    if (word[i] === '}') {
+      check = true
+    }
+  }
+  return check
+}
 
-// const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", 'V', 'W', 'X', 'Y', 'Z']
+function sbChecker(word, x) {
+  let check = false
+  for (let i = x; i >= 0; i--) {
+    if (word[i] === '[') {
+      check = true
+    }
+  }
+  return check
+}
 
-// else if (letter === "[") {
-//   console.log("bonus start")
-// }
-// else if (letter === "{") {
-//   console.log("bonus3 start")
-// }
-// else if (letter === "]") {
-//   console.log("bonus end")
-// }
-// else if (letter === "}") {
-//   console.log("bonus3 end")
-// }
+function bChecker(word, x) {
+  let check = false
+  for (let i = x; i >= 0; i--) {
+    if (word[i] === '{') {
+      check = true
+    }
+  }
+  return check
+}
 
 module.exports = scrabble

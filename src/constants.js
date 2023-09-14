@@ -4,12 +4,18 @@ const charValue = {
 
 const charFactor = {
   current: 1,
-  valid: true
+  valid: true,
 }
 
-getValue = (char) => (!!char.match(/[^A-Za-z]/) ? 0 : charValue[char.toUpperCase()])
+const resetCharFactor = () => {
+  charFactor.current = 1
+  charFactor.valid = true
+  delete charFactor.previous
+}
 
-charFactorChangeTrigger = (char) => {
+const getValue = (char) => (!!char.match(/[^A-Za-z]/) ? 0 : charValue[char.toUpperCase()])
+
+const charFactorChangeTrigger = (char) => {
   if (!!char.match(/[\[\]\{\}]/)) {
     switch (char) {
       case "{":
@@ -29,9 +35,9 @@ charFactorChangeTrigger = (char) => {
   return 0 // this is just so it will do its thing but doesn't affect the addition
 }
 
-updateCharFactor = (newFactor) => {
+const updateCharFactor = (newFactor) => {
   if (charFactor.current * newFactor >= 1) {
-    charFactor.previous = charFactor.current;
+    charFactor.previous = charFactor.current
     charFactor.current *= newFactor
   } else {
     charFactor.valid = false
@@ -39,9 +45,8 @@ updateCharFactor = (newFactor) => {
 }
 
 module.exports = {
-  charValue,
   charFactor,
+  resetCharFactor,
   getValue,
-  charFactorChangeTrigger,
-  updateCharFactor
+  charFactorChangeTrigger
 }

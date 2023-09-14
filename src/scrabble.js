@@ -1,13 +1,15 @@
-const { charValue, charFactor } = require("./constants")
-
-let { getValue, charFactorChangeTrigger } = require("./constants")
+const {
+  charFactor,
+  resetCharFactor,
+  getValue,
+  charFactorChangeTrigger
+} = require('./constants')
 
 function scrabble(word) {
+  resetCharFactor()
 
   if (!!word === false || !!word.match(/[^A-Za-z\[\]\{\}]/g)) return 0
   
-  // const getValue = (char) => (!!char.match(/[^A-Za-z]/) ? 0 : charValue[char.toUpperCase()])
-
   let wordValue = 0
   word.length > 0 ? charArr = word.split("") : wordValue = 0
 

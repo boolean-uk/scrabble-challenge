@@ -12,25 +12,34 @@ I'd probably be better of storing the letters in arrays (one for each score that
 Double and Triple Letter
 ```
 0. take in a word as a parameter and iterate through it
-1. find specific letters 
-2. enclose them in {}
-3. double their value
-4. find other specific letters
-5. enclose them in []
-6. triple their value
+1. find {} or []
+3. if {} double the score
+4. if [] triple the score
 ```
-Double or Triple Word
+```
+function detectCurlyBraces() {
+  // iterates through a string, and, if it detects curly braces, returns the letters countained within
+}
+
+function detectBrackets() {
+  // iterates through a string, and, if it detects brackets, returns the letters countained within
+}
+
+function doubleScore() {
+  // takes in the letters extracted by detectCurlyBraces, and returns letterValue * 2
+}
+
+function tripleScore() {
+  // takes in the letters extracted by detectCurlyBraces, and returns letterValue * 3
+}
+```
 
 ```
 1. take in a word as a parameter
-2. enclose it in {}
-3. double its value
- OR
-2. enclose it in []
-3. triple its value
+2. detect {} or [] if present around the string
+3. if {} double the score
+4. if [] triple the score
 ```
 Concise Code
 ```
-My best guess is that scrabble will need to work a bit like 'occupancy' did in softplay - all it does is to keep track of stuff
-3. 
 ```

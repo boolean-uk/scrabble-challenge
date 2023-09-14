@@ -1,4 +1,9 @@
+// const { findLettersInCurlyBrackets } = require('./scoreModifiers.js')
+// const { findLettersInSquareBrackets } = require('./scoreModifiers.js')
+// const { doubleScore } = require('./scoreModifiers.js')
+// const { tripleScore } = require('./scoreModifiers.js')
 let wordScore = 0
+
 // const lowerCaseLettersInWord = []
 const lettersWorthOne = ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't']
 const lettersWorthTwo = ['d', 'g']
@@ -53,7 +58,7 @@ function indentifyLetterValue(letter) {
   if (lettersWorthTen.includes(letter)) {
     return 10
   }
-  return 0
+  return 0 // this is to catch any words that might fall through the net in scrabble(), especially if they include whitespace and therefore aren't strictly equal to null. I still decided to leave the guard clause in scrabble() - no point running the entire code if the word string is null.
 }
 
 module.exports = scrabble

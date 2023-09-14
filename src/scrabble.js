@@ -128,5 +128,6 @@ module.exports = {
   tallyScore,
   stringToArray,
   scoreOrMultiply,
-  scoreMultiplicatorizer
+  scoreMultiplicatorizer,
+  resetConstants
 }

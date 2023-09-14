@@ -119,11 +119,6 @@ const scrabble = (word) => {
   }
 }
 
-// console.log(scrabble('{dog}'))
-
-// TODO:
-// [ ] Move functions into separate file?
-
 module.exports = {
   scrabble,
   findLetterScore,

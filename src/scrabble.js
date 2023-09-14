@@ -16,12 +16,11 @@ const stringToArray = (word) => {
 
 const stringArrayToScore = (stringArray) => {
   let numArray = stringArray.map((val) => {
-    switch (multiplyCheck(val)) {
-      case true:
-        MULTIPLE = scoreMultiplicatorizer(val)
-        return undefined
-      default:
-        return findLetterScore(val)
+    if (multiplyCheck(val)) {
+      MULTIPLE = scoreMultiplicatorizer(val)
+      return undefined
+    } else {
+      return findLetterScore(val)
     }
   })
   numArray = numArray.filter((val) => !(val === undefined))
@@ -84,8 +83,8 @@ const validScoreChecker3000tron = () => {
 
   const approvalFromTheAlmightyValidScoreChecker3000tron =
     matchingBrackets && VALID_SCORE
-  resetConstants()
 
+  resetConstants()
   return approvalFromTheAlmightyValidScoreChecker3000tron
 }
 

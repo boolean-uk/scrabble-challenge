@@ -28,12 +28,12 @@ describe('stringToArray', () => {
     resetConstants()
   })
 
-  it("return ['h', 'i'] for 'hi'", () => {
-    expect(stringToArray('hi')).toEqual(['h', 'i'])
+  it("return ['H', 'I'] for 'hi'", () => {
+    expect(stringToArray('hi')).toEqual(['H', 'I'])
   })
 
-  it("return ['g', 'o', 'o', 'd', ' ', 'd', 'a', 'y'] for 'hi'", () => {
-    expect(stringToArray('good day')).toEqual([ 'g', 'o', 'o', 'd', ' ', 'd', 'a', 'y']) // prettier-ignore
+  it("return ['G', 'O', 'O', 'D', ' ', 'D', 'A', 'Y'] for 'hi'", () => {
+    expect(stringToArray('good day')).toEqual([ 'G', 'O', 'O', 'D', ' ', 'D', 'A', 'Y']) // prettier-ignore
   })
 })
 

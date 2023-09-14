@@ -60,3 +60,7 @@ Add the steps you need to take to implement the requirements for Scrabble Challe
   - [x] Else keep `MULTIPLE` the same
 
 Changes above should pass both extensions
+
+## 3. Forgetting to tick off the rest of the planning
+
+- [x] Done

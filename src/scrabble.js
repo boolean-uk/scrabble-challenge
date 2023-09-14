@@ -8,7 +8,7 @@ let {
 
 const stringToArray = (word) => {
   if (typeof word === 'string') {
-    return word.split('')
+    return word.toUpperCase().split('')
   } else {
     return ['']
   }
@@ -24,7 +24,6 @@ const stringArrayToScore = (stringArray) => {
         return findLetterScore(val)
     }
   })
-  console.log('numArray :', numArray)
   numArray = numArray.filter((val) => !(val === undefined))
   return numArray
 }
@@ -32,8 +31,7 @@ const stringArrayToScore = (stringArray) => {
 const multiplyCheck = (character) => {
   edgeCasesIDisagreeWith(character)
   logMultiplierUsage(character)
-  const charUpper = character.toUpperCase() // FIXME: repeating line - refactor?
-  if (SCORE_MULTIPLIER[charUpper]) {
+  if (SCORE_MULTIPLIER[character]) {
     return true
   } else {
     return false
@@ -41,8 +39,7 @@ const multiplyCheck = (character) => {
 }
 
 const findLetterScore = (character) => {
-  const charUpper = character.toUpperCase() // FIXME: repeating line - refactor?
-  const result = LETTER_SCORES[charUpper] * MULTIPLE
+  const result = LETTER_SCORES[character] * MULTIPLE
   if (result) {
     return result
   } else {
@@ -119,7 +116,7 @@ const scrabble = (word) => {
   }
 }
 
-console.log(stringArrayToScore(['{', 'd', 'o', 'g', '}']))
+console.log(scrabble('{dog}'))
 
 // TODO:
 // [ ] Move functions into separate file?

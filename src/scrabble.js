@@ -1,12 +1,9 @@
 function scrabble(scrabbleword) {
   scrabbleword = scrabbleword.toUpperCase();
-//scrabble('') // should return 0
-
-//scrabble(" \t\n") // should return 0
-
-//scrabble(null) // should return 0
-
-const letterscores = {
+if (scrabbleword === '' || scrabbleword === " \t\n" || scrabbleword === null) {
+  return 0
+}
+const lettervalues = {
 'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
 'D': 2, 'G': 2,
 'B': 3, 'C': 3, 'M': 3, 'P': 3,
@@ -15,12 +12,12 @@ const letterscores = {
 'J': 8, 'X': 8,
 'Q': 10,'Z': 10,
 }
-
-
-
-
-
-
-
+let score = 0
+for (i = 0; i < scrabbleword.length; i++){
+  score += lettervalues[scrabbleword[i]]
 }
+return score
+}
+
+
 module.exports = scrabble

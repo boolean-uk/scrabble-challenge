@@ -5,7 +5,6 @@ function scrabble(word) {
     return 0
   }
 
-  // Define the letter values in an object
   const letterValues = {
     AEIOULNRST: 1,
     DG: 2,
@@ -16,13 +15,10 @@ function scrabble(word) {
     QZ: 10
   }
 
-  // Convert the word to uppercase for case-insensitivity
   word = word.toUpperCase()
 
-  // Initialize the total score
   let score = 0
 
-  // Loop through each letter in the word and calculate the score
   for (let i = 0; i < word.length; i++) {
     for (const key in letterValues) {
       if (key.includes(word[i])) {

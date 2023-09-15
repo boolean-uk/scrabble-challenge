@@ -46,6 +46,7 @@ function scrabble(inputWord) {
     sum += pointValues[word[i]]
 
     // DOUBLE AND TRIPLE WORDS
+    //  WRITE A SEPERATE FUNCTION FOR CHECKING FOR PARENTHESIS..
     if (word === '[]' && word[i] === true) {
       // JUST WRITING NONSENSE TO TRY AND PICTURE IT / SUEDO CODE NEXT?
       sum += pointValues[word[i]] * 3
@@ -66,6 +67,15 @@ function scrabble(inputWord) {
   return sum
 }
 
+// WHAT TO DO WITH THIS?
+function parenthesis1(word, index) {
+  for (let i = 0; i < word.length; i++)
+    if (word[i] === '[' || word[i] === '{') {
+      return true
+    }
+}
+
+console.log(parenthesis1('{d[o]g}'))
 console.log(scrabble('{d[o]g}'))
 
 module.exports = scrabble

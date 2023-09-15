@@ -32,9 +32,7 @@ function firstScore(generatedWord) {
   let eachWordScore = 0
   for (let i = 0; i < lowerCaseString.length; i++) {
     const letterScore = letterValues[lowerCaseString[i]]
-    if (letterScore >= 1) {
-      eachWordScore += letterScore
-    }
+    if (letterScore >= 1) eachWordScore += letterScore
   }
   return eachWordScore
 }
@@ -43,11 +41,9 @@ function doubleWord(generatedWord) {
   if (
     generatedWord[0] === `{` &&
     generatedWord[generatedWord.length - 1] === `}`
-  ) {
+  )
     return true
-  } else {
-    return false
-  }
+  else return false
 }
 function tripleWord(generatedWord) {
   if (
@@ -99,23 +95,10 @@ function endLetterMultipliers(generatedWord) {
 }
 function wordMultiplier(generatedWord) {
   let multiplier = 1
-
-  if (doubleWord(generatedWord)) {
-    multiplier = 2
-  }
-
-  if (tripleWord(generatedWord)) {
-    multiplier = 3
-  }
-
-  if (isDoubleAndTripleWord(generatedWord)) {
-    multiplier = 6
-  }
-
-  if (endLetterMultipliers(generatedWord)) {
-    multiplier = 1
-  }
-
+  if (doubleWord(generatedWord)) multiplier = 2
+  if (tripleWord(generatedWord)) multiplier = 3
+  if (isDoubleAndTripleWord(generatedWord)) multiplier = 6
+  if (endLetterMultipliers(generatedWord)) multiplier = 1
   return multiplier
 }
 function letterMultiplier(generatedWord) {
@@ -139,57 +122,27 @@ function incompleteBrackets(generatedWord) {
   let squareBracketOpen = 0
   let squareBracketClosed = 0
   for (let i = 0; i < generatedWord.length; i++) {
-    if (generatedWord[i] === `{`) {
-      flowerBracketOpen += 1
-    }
-    if (generatedWord[i] === `}`) {
-      flowerBracketClosed += 1
-    }
-    if (generatedWord[i] === `[`) {
-      squareBracketOpen += 1
-    }
-    if (generatedWord[i] === `]`) {
-      squareBracketClosed += 1
-    }
+    if (generatedWord[i] === `{`) flowerBracketOpen += 1
+    if (generatedWord[i] === `}`) flowerBracketClosed += 1
+    if (generatedWord[i] === `[`) squareBracketOpen += 1
+    if (generatedWord[i] === `]`) squareBracketClosed += 1
   }
-  if (flowerBracketOpen !== flowerBracketClosed) {
-    return true
-  } else if (squareBracketOpen !== squareBracketClosed) {
-    return true
-  } else {
-    return false
-  }
-}
-function invalidCharacterCheck(generatedWord) {
-  const lowerCaseString = generatedWord.toLowerCase()
-  const invalidCharStored = /[^[\]{}a-z]/g.test(lowerCaseString)
-  return invalidCharStored
+  if (flowerBracketOpen !== flowerBracketClosed) return true
+  else if (squareBracketOpen !== squareBracketClosed) return true
+  else return false
 }
 function wordInvalidCase(generatedWord) {
-  if (
-    invalidCharacterCheck(generatedWord) ||
-    incompleteBrackets(generatedWord)
-  ) {
-    return true
-  } else {
-    return false
-  }
+  if (incompleteBrackets(generatedWord)) return true
+  else return false
 }
 function scrabble(generatedWord) {
   let combineScore = 0
-  if (generatedWord === null) {
-    return 0
-  }
+  if (generatedWord === null) return 0
   combineScore = firstScore(generatedWord)
-
   combineScore += letterMultiplier(generatedWord)
-
   combineScore *= wordMultiplier(generatedWord)
-
-  if (wordInvalidCase(generatedWord)) {
-    return 0
-  } else {
-    return combineScore
-  }
+  if (wordInvalidCase(generatedWord)) return 0
+  else return combineScore
 }
+
 module.exports = scrabble

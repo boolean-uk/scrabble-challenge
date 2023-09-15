@@ -30,21 +30,19 @@ function scrabble(word) {
   return wordScore
 }
 
-console.log(scrabble('d{o}g'))
-
 // re-initialises the wordScore variable after it has calculated the score of one word.
 function reinitialiseWordScore() {
   wordScore = 0
 }
-
+console.log(scrabble('po[t]ato'))
 // TODO: figure out how to apply score modifiers to entire words
 // this returns the updated values of any letters found in [] or {}
-function multiplyLetterValue(word) {
+function multiplyScore(word) {
   if (findLettersInCurlyBrackets(word)) {
-    return doubleScore(indentifyLetterValue(findLettersInCurlyBrackets(word)))
+    return doubleScore(calculateWordScore(findLettersInCurlyBrackets(word)))
   }
   if (findLettersInSquareBrackets(word)) {
-    return tripleScore(indentifyLetterValue(findLettersInSquareBrackets(word)))
+    return tripleScore(calculateWordScore(findLettersInSquareBrackets(word)))
   }
 }
 
@@ -57,9 +55,17 @@ function calculateWordScore(word) {
 }
 
 function calculateModifiedWordScore(word) {
-  if (findLettersInCurlyBrackets(word)) {
+  // if there are no letters found within {} and there are no letters found within [], do not run this function
+  if (!findLettersInCurlyBrackets(word) && !findLettersInSquareBrackets(word)) {
+    return
+  }
+  // if there are letters within {} AND the length of that sub-string is one, then run ...
+  if (
+    findLettersInCurlyBrackets(word) &&
+    findLettersInCurlyBrackets(word).length === 1
+  ) {
     return (
-      multiplyLetterValue(word) +
+      multiplyScore(word) +
       calculateWordScore(
         word.slice(0, word.indexOf(findLettersInCurlyBrackets(word)))
       ) +
@@ -71,9 +77,13 @@ function calculateModifiedWordScore(word) {
       )
     )
   }
-  if (findLettersInSquareBrackets(word)) {
+  // if there are letters within [] AND the length of that sub-string is one, then run ...
+  if (
+    findLettersInSquareBrackets(word) &&
+    findLettersInSquareBrackets(word).length === 1
+  ) {
     return (
-      multiplyLetterValue(word) +
+      multiplyScore(word) +
       calculateWordScore(
         word.slice(0, word.indexOf(findLettersInSquareBrackets(word)))
       ) +
@@ -84,6 +94,17 @@ function calculateModifiedWordScore(word) {
         )
       )
     )
+  }
+  // If there are more than one letter within [], then run...
+  if (
+    findLettersInSquareBrackets(word) &&
+    findLettersInSquareBrackets(word).length > 1
+  ) {
+    return multiplyScore(word)
+  }
+  // If there are more than one letter within {}, then run...
+  if (findLettersInCurlyBrackets(word).length > 1) {
+    return multiplyScore(word)
   }
 }
 

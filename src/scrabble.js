@@ -5,7 +5,7 @@ const { doubleScore } = require('./scoreModifiers.js')
 const { tripleScore } = require('./scoreModifiers.js')
 let wordScore = 0
 
-// might want to store those in an object, and chuck that into another file
+// might want to store those in an object
 const lettersWorthOne = ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't']
 const lettersWorthTwo = ['d', 'g']
 const lettersWorthThree = ['b', 'c', 'm', 'p']
@@ -23,23 +23,23 @@ function scrabble(word) {
   wordScore = calculateWordScore(word)
   return wordScore
 }
-// re-initialises the wordScore variable after it has calculated the score of one word. This prevents the score from the first word that is passed through from being added to that of the second word.
+// re-initialises the wordScore variable after it has calculated the score of one word.
 function reinitialiseWordScore() {
   wordScore = 0
 }
 
-// TODO: find a way to add the doubled or tripled letter values to the sum of the values of the letters in the rest of the word - using slice.
+// TODO: find a way to add the doubled or tripled letter values to the sum of the values of the letters in the rest of the word - using slice?
+// TODO: figure out how to apply score modifiers to entire words
 // this returns the updated values of any letters found in [] or {}
 function checkForScoreModifiers(word) {
   if (findLettersInCurlyBrackets(word)) {
-    doubleScore(findLettersInCurlyBrackets(word)) // need to figure out how that will interact with calculateWordScore()
+    doubleScore(findLettersInCurlyBrackets(word))
   }
   if (findLettersInSquareBrackets(word)) {
-    tripleScore(indentifyLetterValue(findLettersInSquareBrackets(word))) // need to figure out how that will interact with calculateWordScore()
+    tripleScore(indentifyLetterValue(findLettersInSquareBrackets(word)))
   }
 }
 
-// calculates the word score by adding the scores of each letter to the wordScore variable
 function calculateWordScore(word) {
   checkForScoreModifiers(word)
   reinitialiseWordScore(wordScore)
@@ -49,7 +49,6 @@ function calculateWordScore(word) {
   return wordScore
 }
 
-// iterates through the arrays of letters, finds the one that has been passed through, return its associated score
 function indentifyLetterValue(letter) {
   if (lettersWorthOne.includes(letter)) {
     return 1
@@ -72,7 +71,7 @@ function indentifyLetterValue(letter) {
   if (lettersWorthTen.includes(letter)) {
     return 10
   }
-  return 0 // this is to catch any words that might fall through the net in scrabble(), especially if they include whitespace and therefore aren't strictly equal to null. I still decided to leave the guard clause in scrabble() - no point running the entire code if the word string is null.
+  return 0
 }
 
 module.exports = scrabble

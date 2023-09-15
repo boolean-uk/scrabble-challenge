@@ -6,13 +6,15 @@ const { tripleScore } = require('./scoreModifiers.js')
 let wordScore = 0
 
 // might want to store those in an object
-const lettersWorthOne = ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't']
-const lettersWorthTwo = ['d', 'g']
-const lettersWorthThree = ['b', 'c', 'm', 'p']
-const lettersWorthFour = ['f', 'h', 'v', 'w', 'y']
-const lettersWorthFive = ['k']
-const lettersWorthEight = ['j', 'x']
-const lettersWorthTen = ['q', 'z']
+const letterValues = {
+  lettersWorthOne: ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'],
+  lettersWorthTwo: ['d', 'g'],
+  lettersWorthThree: ['b', 'c', 'm', 'p'],
+  lettersWorthFour: ['f', 'h', 'v', 'w', 'y'],
+  lettersWorthFive: ['k'],
+  lettersWorthEight: ['j', 'x'],
+  lettersWorthTen: ['q', 'z']
+}
 
 // returns the score IF the word is not an empty string
 function scrabble(word) {
@@ -33,10 +35,10 @@ function reinitialiseWordScore() {
 // this returns the updated values of any letters found in [] or {}
 function checkForScoreModifiers(word) {
   if (findLettersInCurlyBrackets(word)) {
-    doubleScore(findLettersInCurlyBrackets(word))
+    return doubleScore(indentifyLetterValue(findLettersInCurlyBrackets(word)))
   }
   if (findLettersInSquareBrackets(word)) {
-    tripleScore(indentifyLetterValue(findLettersInSquareBrackets(word)))
+    return tripleScore(indentifyLetterValue(findLettersInSquareBrackets(word)))
   }
 }
 
@@ -50,25 +52,25 @@ function calculateWordScore(word) {
 }
 
 function indentifyLetterValue(letter) {
-  if (lettersWorthOne.includes(letter)) {
+  if (letterValues.lettersWorthOne.includes(letter)) {
     return 1
   }
-  if (lettersWorthTwo.includes(letter)) {
+  if (letterValues.lettersWorthTwo.includes(letter)) {
     return 2
   }
-  if (lettersWorthThree.includes(letter)) {
+  if (letterValues.lettersWorthThree.includes(letter)) {
     return 3
   }
-  if (lettersWorthFour.includes(letter)) {
+  if (letterValues.lettersWorthFour.includes(letter)) {
     return 4
   }
-  if (lettersWorthFive.includes(letter)) {
+  if (letterValues.lettersWorthFive.includes(letter)) {
     return 5
   }
-  if (lettersWorthEight.includes(letter)) {
+  if (letterValues.lettersWorthEight.includes(letter)) {
     return 8
   }
-  if (lettersWorthTen.includes(letter)) {
+  if (letterValues.lettersWorthTen.includes(letter)) {
     return 10
   }
   return 0

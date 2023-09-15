@@ -16,21 +16,25 @@ function tripleScore(value) {
 }
 
 function findLettersInCurlyBrackets(word) {
-  const a = word.search('{')
-  const b = word.search('}')
+  const a = word.search(escapeRegExp('{'))
+  const b = word.search(escapeRegExp('}'))
+  if (a < 0 || b < 0) {
+    return // this is to prevent .search() from returning -1 when the string it searches for is not found
+  }
   lettersInCurlyBrackets = word.slice(a + 1, b)
-  return lettersInCurlyBrackets
+  return lettersInCurlyBrackets.toLowerCase()
 }
 
 function findLettersInSquareBrackets(word) {
   escapeRegExp(word)
   const a = word.search(escapeRegExp('['))
   const b = word.search(escapeRegExp(']'))
-  const lettersInSquareBrackets = word.slice(a + 1, b)
-  return lettersInSquareBrackets
+  if (a < 0 || b < 0) {
+    return
+  }
+  lettersInSquareBrackets = word.slice(a + 1, b)
+  return lettersInSquareBrackets.toLowerCase()
 }
-console.log(lettersInSquareBrackets)
-console.log(lettersInCurlyBrackets)
 
 module.exports = {
   findLettersInCurlyBrackets,

@@ -37,15 +37,35 @@ function scrabble(inputWord) {
   ) {
     return 0
   }
+  // ENSURING KEYS GET ACCESSED
   const word = inputWord.toUpperCase()
   let sum = 0
 
+  // ADDING POINTS
   for (let i = 0; i < word.length; i++) {
     sum += pointValues[word[i]]
+
+    // DOUBLE AND TRIPLE WORDS
+    if (word === '[]' && word[i] === true) {
+      // JUST WRITING NONSENSE TO TRY AND PICTURE IT / SUEDO CODE NEXT?
+      sum += pointValues[word[i]] * 3
+    }
+
+    if (word[i] === '{' && word[i] === true) {
+      sum += pointValues[word[i]] * 2
+    }
+
+    if (word[i] === '{word}' && word === true) {
+      sum += pointValues[word[i]] * 2
+    }
+
+    if (word[i] === '{word}' && word === true) {
+      sum += pointValues[word[i]] * 3
+    }
   }
   return sum
 }
 
-console.log(scrabble(null))
+console.log(scrabble('{d[o]g}'))
 
 module.exports = scrabble

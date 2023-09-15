@@ -28,13 +28,14 @@ function reinitialiseWordScore() {
   wordScore = 0
 }
 
-// that one needs work - it can find the letters in {} or [], and it can multiply values. But that remains to be integrated with the rest of the code. Might re-write this function entirely
+// TODO: find a way to add the doubled or tripled letter values to the sum of the values of the letters in the rest of the word - using slice.
+// this returns the updated values of any letters found in [] or {}
 function checkForScoreModifiers(word) {
   if (findLettersInCurlyBrackets(word)) {
-    doubleScore() // need to figure out how that will interact with calculateWordScore()
+    doubleScore(findLettersInCurlyBrackets(word)) // need to figure out how that will interact with calculateWordScore()
   }
   if (findLettersInSquareBrackets(word)) {
-    tripleScore() // need to figure out how that will interact with calculateWordScore()
+    tripleScore(indentifyLetterValue(findLettersInSquareBrackets(word))) // need to figure out how that will interact with calculateWordScore()
   }
 }
 

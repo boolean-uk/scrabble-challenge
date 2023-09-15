@@ -30,6 +30,8 @@ function scrabble(word) {
   return wordScore
 }
 
+console.log(scrabble('d{o}g'))
+
 // re-initialises the wordScore variable after it has calculated the score of one word.
 function reinitialiseWordScore() {
   wordScore = 0
@@ -62,7 +64,10 @@ function calculateModifiedWordScore(word) {
         word.slice(0, word.indexOf(findLettersInCurlyBrackets(word)))
       ) +
       calculateWordScore(
-        word.slice(word.indexOf(findLettersInCurlyBrackets(word)), word.length)
+        word.slice(
+          word.indexOf(findLettersInCurlyBrackets(word)) + 1,
+          word.length
+        )
       )
     )
   }
@@ -73,7 +78,10 @@ function calculateModifiedWordScore(word) {
         word.slice(0, word.indexOf(findLettersInSquareBrackets(word)))
       ) +
       calculateWordScore(
-        word.slice(word.indexOf(findLettersInSquareBrackets(word)), word.length)
+        word.slice(
+          word.indexOf(findLettersInSquareBrackets(word)) + 1,
+          word.length
+        )
       )
     )
   }

@@ -22,15 +22,19 @@ function scrabble(word) {
     wordScore = 0
     return wordScore
   }
+  if (calculateModifiedWordScore(word)) {
+    wordScore = calculateModifiedWordScore(word)
+    return wordScore
+  }
   wordScore = calculateWordScore(word)
   return wordScore
 }
+
 // re-initialises the wordScore variable after it has calculated the score of one word.
 function reinitialiseWordScore() {
   wordScore = 0
 }
 
-// TODO: find a way to add the doubled or tripled letter values to the sum of the values of the letters in the rest of the word - using slice?
 // TODO: figure out how to apply score modifiers to entire words
 // this returns the updated values of any letters found in [] or {}
 function multiplyLetterValue(word) {
@@ -50,7 +54,7 @@ function calculateWordScore(word) {
   return wordScore
 }
 
-function calculatedModifiedWordScore(word) {
+function calculateModifiedWordScore(word) {
   if (findLettersInCurlyBrackets(word)) {
     return (
       multiplyLetterValue(word) +
@@ -74,7 +78,6 @@ function calculatedModifiedWordScore(word) {
     )
   }
 }
-console.log(calculatedModifiedWordScore('c[o]ffe'))
 
 function indentifyLetterValue(letter) {
   if (letterValues.lettersWorthOne.includes(letter)) {

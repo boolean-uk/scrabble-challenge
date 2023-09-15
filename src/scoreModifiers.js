@@ -15,6 +15,11 @@ function tripleScore(value) {
   return value
 }
 
+// TODO: 1. use .slice() to remove the {letter}
+// TODO: 2. run findLettersInCurlyBrackets again
+// TODO: 3. repeat steps 1. and 2. until there are no {} left
+// TODO: apply 1-3 to letters in [] as well
+
 function findLettersInCurlyBrackets(word) {
   const a = word.search(escapeRegExp('{'))
   const b = word.search(escapeRegExp('}'))
@@ -41,7 +46,7 @@ function findLettersInSquareBrackets(word) {
   lettersInSquareBrackets = word.slice(a + 1, b)
   return lettersInSquareBrackets.toLowerCase()
 }
-console.log(findLettersInCurlyBrackets('d{og'))
+
 module.exports = {
   findLettersInCurlyBrackets,
   findLettersInSquareBrackets,

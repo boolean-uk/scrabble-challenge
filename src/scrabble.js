@@ -15,11 +15,15 @@ const letterValues = {
   lettersWorthEight: ['j', 'x'],
   lettersWorthTen: ['q', 'z']
 }
+// TODO: 0. figure out why I get 26 instead of 18 for {[d]og}
+// TODO: modify scoreModifers.js so that scrabble() can also calculates scores if more that one letter needs to be doubled or tripled
+//
 
 // returns the score IF the word is not an empty string
 function scrabble(word) {
   if (
     word === null ||
+    word.includes('|') ||
     findLettersInCurlyBrackets(word) === 0 ||
     findLettersInSquareBrackets === 0
   ) {
@@ -62,6 +66,52 @@ function calculateModifiedWordScore(word) {
   // if there are no letters found within {} and there are no letters found within [], do not run this function
   if (!findLettersInCurlyBrackets(word) && !findLettersInSquareBrackets(word)) {
     return
+  }
+  // if there are [] around the word and {} around one of its letters, run ...
+  if (
+    findLettersInCurlyBrackets(word) &&
+    findLettersInSquareBrackets(word) &&
+    findLettersInCurlyBrackets(word).length === 1 &&
+    findLettersInSquareBrackets(word).length > 1
+  ) {
+    return tripleScore(
+      multiplyScore(word) + // tripled letter value
+        // sum of the values for the rest of the word (both halves)
+        // first half
+        calculateWordScore(
+          word.slice(0, word.indexOf(findLettersInSquareBrackets(word)))
+        ) +
+        // second half
+        calculateWordScore(
+          word.slice(
+            word.indexOf(findLettersInSquareBrackets(word)) + 1,
+            word.length
+          )
+        )
+    )
+  }
+  // if there are {} around the word and [] around one of its letters, run ...
+  if (
+    findLettersInSquareBrackets(word) &&
+    findLettersInCurlyBrackets(word) &&
+    findLettersInSquareBrackets(word).length === 1 &&
+    findLettersInCurlyBrackets(word).length > 1
+  ) {
+    return doubleScore(
+      multiplyScore(word) + // doubled letter value
+        // sum of the values for the rest of the word (both halves)
+        // first half
+        calculateWordScore(
+          word.slice(0, word.indexOf(findLettersInSquareBrackets(word)))
+        ) +
+        // second half
+        calculateWordScore(
+          word.slice(
+            word.indexOf(findLettersInSquareBrackets(word)) + 1,
+            word.length
+          )
+        )
+    )
   }
   // if there are letters within {} AND the length of that sub-string is one, then run ...
   if (

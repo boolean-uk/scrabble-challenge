@@ -131,8 +131,14 @@ function incompleteBrackets(generatedWord) {
   else if (squareBracketOpen !== squareBracketClosed) return true
   else return false
 }
+function invalidCharacterCheck(generatedWord) {
+  const lowerCaseString = generatedWord.toLowerCase()
+  const invalidCharStored = /[^[\]{}a-z]/g.test(lowerCaseString)
+  return invalidCharStored
+}
 function wordInvalidCase(generatedWord) {
-  if (incompleteBrackets(generatedWord)) return true
+  if (incompleteBrackets(generatedWord) || invalidCharacterCheck(generatedWord))
+    return true
   else return false
 }
 function scrabble(generatedWord) {

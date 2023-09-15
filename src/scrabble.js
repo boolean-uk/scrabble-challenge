@@ -33,7 +33,7 @@ function reinitialiseWordScore() {
 // TODO: find a way to add the doubled or tripled letter values to the sum of the values of the letters in the rest of the word - using slice?
 // TODO: figure out how to apply score modifiers to entire words
 // this returns the updated values of any letters found in [] or {}
-function checkForScoreModifiers(word) {
+function multiplyLetterValue(word) {
   if (findLettersInCurlyBrackets(word)) {
     return doubleScore(indentifyLetterValue(findLettersInCurlyBrackets(word)))
   }
@@ -43,13 +43,38 @@ function checkForScoreModifiers(word) {
 }
 
 function calculateWordScore(word) {
-  checkForScoreModifiers(word)
   reinitialiseWordScore(wordScore)
   for (let i = 0; i < word.length; i++) {
     wordScore += indentifyLetterValue(word[i].toLowerCase())
   }
   return wordScore
 }
+
+function calculatedModifiedWordScore(word) {
+  if (findLettersInCurlyBrackets(word)) {
+    return (
+      multiplyLetterValue(word) +
+      calculateWordScore(
+        word.slice(0, word.indexOf(findLettersInCurlyBrackets(word)))
+      ) +
+      calculateWordScore(
+        word.slice(word.indexOf(findLettersInCurlyBrackets(word)), word.length)
+      )
+    )
+  }
+  if (findLettersInSquareBrackets(word)) {
+    return (
+      multiplyLetterValue(word) +
+      calculateWordScore(
+        word.slice(0, word.indexOf(findLettersInSquareBrackets(word)))
+      ) +
+      calculateWordScore(
+        word.slice(word.indexOf(findLettersInSquareBrackets(word)), word.length)
+      )
+    )
+  }
+}
+console.log(calculatedModifiedWordScore('c[o]ffe'))
 
 function indentifyLetterValue(letter) {
   if (letterValues.lettersWorthOne.includes(letter)) {

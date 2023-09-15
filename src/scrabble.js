@@ -18,7 +18,11 @@ const letterValues = {
 
 // returns the score IF the word is not an empty string
 function scrabble(word) {
-  if (word === null) {
+  if (
+    word === null ||
+    findLettersInCurlyBrackets(word) === 0 ||
+    findLettersInSquareBrackets === 0
+  ) {
     wordScore = 0
     return wordScore
   }

@@ -44,38 +44,44 @@ function scrabble(inputWord) {
   // ADDING POINTS
   for (let i = 0; i < word.length; i++) {
     sum += pointValues[word[i]]
-
-    // DOUBLE AND TRIPLE WORDS
-    //  WRITE A SEPERATE FUNCTION FOR CHECKING FOR PARENTHESIS..
-    if (word === '[]' && word[i] === true) {
-      // JUST WRITING NONSENSE TO TRY AND PICTURE IT / SUEDO CODE NEXT?
-      sum += pointValues[word[i]] * 3
-    }
-
-    if (word[i] === '{' && word[i] === true) {
-      sum += pointValues[word[i]] * 2
-    }
-
-    if (word[i] === '{word}' && word === true) {
-      sum += pointValues[word[i]] * 2
-    }
-
-    if (word[i] === '{word}' && word === true) {
-      sum += pointValues[word[i]] * 3
-    }
   }
   return sum
 }
 
-// WHAT TO DO WITH THIS?
-function parenthesis1(word, index) {
-  for (let i = 0; i < word.length; i++)
-    if (word[i] === '[' || word[i] === '{') {
-      return true
-    }
-}
-
-console.log(parenthesis1('{d[o]g}'))
 console.log(scrabble('{d[o]g}'))
 
 module.exports = scrabble
+
+// // WHAT TO DO WITH THIS?
+// function parenthesis1(word, index) {
+//   const total = 0
+//   for (let i = 0; i < word.length; i++)
+//     if (word[i] === '[' || word[i] === '{') {
+//       return total
+//     }
+// }
+// DOUBLE AND TRIPLE WORDS
+//  WRITE A SEPERATE FUNCTION FOR CHECKING FOR PARENTHESIS..
+// function mulitplyPoints(word, index)
+//   let sum = 0
+
+//   for (let i = 0; i < word.length; i++) {
+//     if (word === '[]' && word[i] === true) {
+//       sum += pointValues[word[i]] * 3
+
+//       if (word[i] === '{' && word[i] === true) {
+//         sum += pointValues[word[i]] * 2
+//       }
+
+//       if (word[i] === '{word}' && word === true) {
+//         sum += pointValues[word[i]] * 2
+//       }
+
+//       if (word[i] === '{word}' && word === true) {
+//         sum += pointValues[word[i]] * 3
+//       }
+//     }
+//     return mulitplyPoints
+//   }
+
+// console.log(parenthesis1('{d[o]g}'))

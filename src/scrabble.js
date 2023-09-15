@@ -27,38 +27,53 @@ const scores = {
   z: 10
 }
 
-// function scrabble(word){
-//   let sum = 0
-//   for (let i = 0; i < word.length; i++) {
-//     sum += scores[word[i]]
-//   }
-//   return sum
-// }
-
 function scrabble(word) {
-  // write code here
-  if (
-    word === null ||
-    word === '' ||
-    word === ' \t\n' ||
-    typeof word !== 'string'
-  ) {
+  if (typeof word !== 'string') {
     return 0
   }
-  const caseSensitive = word.toLowerCase()
+
   let sum = 0
-  // const object = Object.keys(scores)
-  for (let i = 0; i < caseSensitive.length; i++) {
-    sum += scores[caseSensitive[i]]
-    // if (object.includes(caseSensitive[i])) {
-    //   sum += scores[caseSensitive.charAt(i)]
-    // }
+  let multiplier = 1
+
+  for (let x = 0; x < word.length; x++) {
+    const letter = word.charAt(x).toLowerCase()
+
+    if (scores[letter] !== undefined) {
+      sum += scores[letter] * multiplier
+    } else if (letter === '[') {
+      if (squareBracketChecker(word, x) === true) {
+        multiplier = multiplier * 3
+      } else sum = 0
+    } else if (letter === '{') {
+      if (bracketChecker(word, x) === true) {
+        multiplier = multiplier * 2
+      } else sum = 0
+    }
   }
   return sum
 }
 
-console.log(scrabble('quirky'))
-console.log(scrabble('OXYPHENBUTAZONE'))
-console.log(scrabble())
+function squareBracketChecker(word, x) {
+  let check = false
+  for (let i = x + 1; i < word.length; i++) {
+    if (word[i] === ']') {
+      check = true
+    }
+  }
+  return check
+}
+
+function bracketChecker(word, x) {
+  let check = false
+  for (let i = x + 1; i < word.length; i++) {
+    if (word[i] === '}') {
+      check = true
+    }
+  }
+  return check
+}
+
+console.log(scrabble('{OXYPHENBUTAZONE}'))
+console.log(scrabble('{b}'))
 
 module.exports = scrabble

@@ -38,18 +38,19 @@ const scrabble = (myWord) => {
   } else {
     let wordScore = 0
 
-    const newWord = myWord.toUpperCase().split('')
+    const letterArray = myWord.toUpperCase().split('')
 
-    for (let i = 0; i < newWord.length; i++) {
-      const wordLetters = newWord[i]
+    for (let i = 0; i < letterArray.length; i++) {
+      const wordLetters = letterArray[i]
 
+      // eslint-disable-next-line no-prototype-builtins
       if (alphabetPoints.hasOwnProperty(wordLetters)) {
-        const letterValues = alphabetPoints[wordLetters]
-        wordScore += letterValues
+        wordScore += alphabetPoints[wordLetters]
       }
     }
     return wordScore
   }
 }
+console.log(scrabble('bread'))
 
 module.exports = scrabble

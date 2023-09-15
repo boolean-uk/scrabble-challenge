@@ -35,17 +35,17 @@ function scrabble(word) {
   let sum = 0
   let multiplier = 1
 
-  for (let x = 0; x < word.length; x++) {
-    const letter = word.charAt(x).toLowerCase()
+  for (let i = 0; i < word.length; i++) {
+    const letter = word.charAt(i).toLowerCase()
 
     if (scores[letter] !== undefined) {
       sum += scores[letter] * multiplier
     } else if (letter === '[') {
-      if (squareBracketChecker(word, x) === true) {
+      if (letter[i] + 1 === ']') {
         multiplier = multiplier * 3
       } else sum = 0
     } else if (letter === '{') {
-      if (bracketChecker(word, x) === true) {
+      if (letter[i] + 1 === '}') {
         multiplier = multiplier * 2
       } else sum = 0
     }
@@ -53,27 +53,7 @@ function scrabble(word) {
   return sum
 }
 
-function squareBracketChecker(word, x) {
-  let check = false
-  for (let i = x + 1; i < word.length; i++) {
-    if (word[i] === ']') {
-      check = true
-    }
-  }
-  return check
-}
-
-function bracketChecker(word, x) {
-  let check = false
-  for (let i = x + 1; i < word.length; i++) {
-    if (word[i] === '}') {
-      check = true
-    }
-  }
-  return check
-}
-
-console.log(scrabble('{OXYPHENBUTAZONE}'))
+console.log(scrabble('OXYPHENBUTAZONE'))
 console.log(scrabble('{b}'))
 
 module.exports = scrabble

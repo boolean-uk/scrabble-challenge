@@ -40,17 +40,13 @@ const scrabble = (myWord) => {
 
     const letterArray = myWord.toUpperCase().split('')
 
-    for (let i = 0; i < letterArray.length; i++) {
-      const wordLetters = letterArray[i]
-
-      // eslint-disable-next-line no-prototype-builtins
-      if (alphabetPoints.hasOwnProperty(wordLetters)) {
-        wordScore += alphabetPoints[wordLetters]
+    letterArray.forEach((letter) => {
+      if (alphabetPoints[letter]) {
+        wordScore += alphabetPoints[letter]
       }
-    }
+    })
     return wordScore
   }
 }
-console.log(scrabble('bread'))
 
 module.exports = scrabble

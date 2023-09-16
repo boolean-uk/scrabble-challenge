@@ -32,16 +32,23 @@ function scrabble(word) {
     console.log('checking invalid input')
     return 0
   }
-  // loop through the object
-  for (const key in letterValues) {
-    // loop through the word and comparing
-    for (let i = 0; i < word.length; i++) {
+
+  const checkerArr = []
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === '{' || word[i] === '[') {
+      checkerArr.push(word[i])
+    }
+    for (const key in letterValues) {
       if (key.toLowerCase() === word[i].toLowerCase()) {
         score += letterValues[key]
+        console.log(score)
       }
     }
   }
+  console.log(checkerArr)
   return score
 }
+scrabble('s{tre[et')
 
+//(score += letterValues[key]) serve ad aggiungere la somma dei valori dei caratteri
 module.exports = scrabble

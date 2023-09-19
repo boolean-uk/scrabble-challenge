@@ -1,56 +1,39 @@
-  function scrabble() {
-    // write code here
-  // 1. Assigning the letters to scores
-  const letterScore = {
-    A: 1,
-    E: 1,
-    I: 1,
-    O: 1,
-    U: 1,
-    L: 1,
-    N: 1,
-    R: 1,
-    S: 1,
-    T: 1,
-    D: 2,
-    G: 2,
-    B: 3,
-    C: 3,
-    M: 3,
-    P: 3,
-    F: 4,
-    H: 4,
-    V: 4,
-    W: 4,
-    Y: 4,
-    K: 5,
-    J: 8,
-    X: 8,
-    Q: 10,
-    Z: 10
+function scrabble(word) {
+  if (!word || !/^[a-zA-Z]+$/.test(word) || ["null", "nil", "none"].includes(word.toLowerCase())) {
+    return 0;
   }
-  
-  // 2. Create a function called 'scrabble' with one parameter called 'word'
-  function scrabble(word) {
-    if (word === null || word.trim() === '') {
-      return 0
+
+  const letterValues = {
+    'a': 1, 'e': 1, 'i': 1, 'o': 1, 'u': 1, 'l': 1, 'n': 1, 'r': 1, 's': 1, 't': 1,
+    'd': 2, 'g': 2,
+    'b': 3, 'c': 3, 'm': 3, 'p': 3,
+    'f': 4, 'h': 4, 'v': 4, 'w': 4, 'y': 4,
+    'k': 5,
+    'j': 8, 'x': 8,
+    'q': 10, 'z': 10,
+  };
+
+  let totalScore = 0;
+  let wordMultiplier = 1;
+  let letterMultiplier = 1;
+
+  for (const char of word.toLowerCase()) {
+    if (char === '{') {
+      letterMultiplier = 2;
+    } else if (char === '}') {
+      letterMultiplier = 1;
+    } else if (char === '[') {
+      wordMultiplier = 3;
+    } else if (char === ']') {
+      wordMultiplier = 1;
+    } else {
+      const letterScore = letterValues[char] || 0;
+      totalScore += letterScore * letterMultiplier;
     }
-  
-    // 3. Create a variable that keeps track of the totalScore
-    let totalScore = 0
-  
-    // 4. Create a loop that iterates through the word that is passed through the function
-    for (let i = 0; i < word.length; i++) {
-      // 5. Create a variable and store one letter and apply upperCase method
-      const aLetter = word[i].toUpperCase()
-  
-      // 6. Check if a letter is in the letterScore, then update the totalScore
-      if (aLetter in letterScore) {
-        totalScore += letterScore[aLetter]
-      }
-    }
-    return totalScore
   }
+
+  return totalScore * wordMultiplier;
+}
   
   console.log(scrabble('hello')) // Should return 8
   console.log(scrabble('')) // Should return 0
@@ -73,5 +56,3 @@
 
 
 }
-
-module.exports = scrabble

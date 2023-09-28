@@ -1,4 +1,4 @@
-function scrabble() {
+function scrabble() {}
       // write code here
 const Libraryscores = {
   A: 1
@@ -29,7 +29,7 @@ const Libraryscores = {
   Z: 10
 }
 
-function scrubble(LibraryScore = str = '') => {
+const scrubble (LibraryScore = str = '') => {
   if (Libraryscores === '' || Libraryscores === null || Libraryscores === ' \t\n') {
     return 0
 }

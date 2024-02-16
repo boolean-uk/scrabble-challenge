@@ -26,19 +26,36 @@ const letterMap = {
   Q: 10,
   Z: 10
 }
-
 const multiplierList = ['{', '}', '[', ']']
 
+/**
+ * Calculate the scrabble score for the given input string.
+ * @param {string} input the input string to calculate the scrabble score for.
+ * @returns {number} the scrabble score for the input string.
+ */
 function scrabble(input) {
   if (!input || input === '') {
     return 0
   }
-  input = input.trim()
-  const letters = input.toUpperCase().split('')
+  const letters = convertInputToLetters(input)
   const score = calculateScore(letters)
   return score
 }
 
+/**
+ * Convert the input string to a list of uppercase letters.
+ * @param {string} input the input string to convert to list of letters.
+ * @returns {char[]} the list of letters in the input string as UPPERCASE.
+ */
+function convertInputToLetters(input) {
+  return input.trim().toUpperCase().split('')
+}
+
+/**
+ * Calculates the score of a word in scrabble, taking into account multipliers, returning 0 if the input is invalid.
+ * @param {char[]} letters array of letters to calculate the score for
+ * @returns {number} the score for the given letters, with multipliers applied and accounting for invalid input.
+ */
 function calculateScore(letters) {
   let score = 0
   let scoreMultiplier = 1
@@ -67,20 +84,16 @@ function calculateScore(letters) {
     }
     score += letterMap[letters[i]] * scoreMultiplier
   }
-  if (multiplierStack.length > 0) return 0
+  if (multiplierStack.length > 0) return 0 // if you have any leftover multipliers, it's invalid
   return score
 }
 
+/**
+ * Checks if the given letter is allowed
+ * @param {char} letter the character to check if valid
+ * @returns {boolean} true if the letter is a valid letter or a valid multiplier, false otherwise.
+ */
 function isValidLetter(letter) {
   return letter in letterMap || multiplierList.includes(letter)
 }
-
-// function getLetterMultiplier(letters, index) {
-//   if (letters[index] === '}') return 1 / 2
-//   if (letters[index] === ']') return 1 / 3
-//   if (letters[index] === '{' && letters[index + 2] === '}') return 2
-//   if (letters[index] === '[' && letters[index + 2] === ']') return 3
-//   return 1
-// }
-
 module.exports = scrabble

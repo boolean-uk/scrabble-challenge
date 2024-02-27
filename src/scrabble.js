@@ -1,5 +1,4 @@
 function scrabble(word) {
-  // Define my letter values.
   const letterValues = {
     a: 1,
     e: 1,
@@ -28,24 +27,37 @@ function scrabble(word) {
     q: 10,
     z: 10
   }
-  // Convert the word to lowercase, so there is no case incensitivity.
+  const letterMultipliers = {
+    o: 2
+  }
+  const wordMultipliers = {
+    o: 3
+  }
   const lowercaseWord = word ? word.toLowerCase() : ''
 
-  // Calculate the score.
   let score = 0
+
   for (let i = 0; i < lowercaseWord.length; i++) {
     const letter = lowercaseWord[i]
-
-    // Check if the letter is in the letterValues object
+    let letterScore = letterValues[letter] || 0
     // eslint-disable-next-line no-prototype-builtins
-    if (letterValues.hasOwnProperty(letter)) {
-      score += letterValues[letter]
+    if (letterMultipliers.hasOwnProperty(letter)) {
+      letterScore *= letterMultipliers[letter]
+    }
+
+    score += letterScore
+  }
+
+  for (let i = 0; i < lowercaseWord.length; i++) {
+    const letter = lowercaseWord[i]
+    // eslint-disable-next-line no-prototype-builtins
+    if (wordMultipliers.hasOwnProperty(letter)) {
+      score *= wordMultipliers[letter]
+      delete wordMultipliers[letter]
     }
   }
+
   return score
 }
 
-// const word = 'cabbage'
-// const score = calculateScore(word)
-// console.log(`The Scrabble score for "${word}" is ${score} points.`)
 module.exports = scrabble

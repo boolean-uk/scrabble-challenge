@@ -3,13 +3,23 @@
 #### Add the steps you need to take to implement the requirements for Scrabble Challenge
 
 ```
+- Steps for the core scrabble functionality
+
 1. Get the given word
 
 2. Check if it's a valid word
 
-3. Itterate through the word and summ the value of each letter
+3. Create arrays of letters groupped according to the points they give
 
-4. 
+4. Create a variable to sum the points of each character according to the letter
 
-...etc
+5. Itterate through the word and check each character against the 'points' arrays. Add the value of each letter to the sum of points
+
+6. Return the sum of the points 
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+- Steps for the double/triple-value letters functionality
+
+
 ```

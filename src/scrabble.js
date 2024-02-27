@@ -60,6 +60,6 @@ function scrabble(word) {
   return points // `The word '${word}' gives you ${points} points!`
 }
 
-console.log(scrabble('OXYPHENBUTAZONE'))
+// console.log(scrabble('OXYPHENBUTAZONE'))
 
 module.exports = scrabble

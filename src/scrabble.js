@@ -38,7 +38,7 @@ function scrabble(word) {
     word === undefined
   ) {
     points = 0
-    return `${word} is not a valid word. You get ${points} points`
+    return 0 // `${word} is not a valid word. You get ${points} points`
   }
   for (const i of word) {
     if (onePoint.includes(i)) {
@@ -57,7 +57,7 @@ function scrabble(word) {
       points += 10
     }
   }
-  return `The word '${word}' gives you ${points} points!`
+  return points // `The word '${word}' gives you ${points} points!`
 }
 
 console.log(scrabble('OXYPHENBUTAZONE'))

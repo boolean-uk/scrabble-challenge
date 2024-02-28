@@ -174,5 +174,5 @@ function multiWord(wordArr) {
     completeCheck = doubleCheck === true && tripleCheck === true
   }
 }
-// console.log(scrabble('{poop}'))
+
 module.exports = scrabble

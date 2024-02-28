@@ -1,4 +1,5 @@
 function scrabble(word) {
+  // Define my letter values.
   const letterValues = {
     a: 1,
     e: 1,
@@ -28,11 +29,15 @@ function scrabble(word) {
     z: 10
   }
   const letterMultipliers = {
-    o: 2
+    // o: 2 // Example: Double letter multiplier for the letter 'o'
+    // Add other letter multipliers as needed
   }
-  const wordMultipliers = {
-    o: 3
-  }
+
+  // const wordMultipliers = {
+  // o: 3 // Example: Triple word multiplier for the letter 'o'
+  // Add other word multipliers as needed
+  // }
+
   const lowercaseWord = word ? word.toLowerCase() : ''
 
   let score = 0
@@ -40,6 +45,8 @@ function scrabble(word) {
   for (let i = 0; i < lowercaseWord.length; i++) {
     const letter = lowercaseWord[i]
     let letterScore = letterValues[letter] || 0
+
+    // Check for letter multipliers
     // eslint-disable-next-line no-prototype-builtins
     if (letterMultipliers.hasOwnProperty(letter)) {
       letterScore *= letterMultipliers[letter]
@@ -48,14 +55,16 @@ function scrabble(word) {
     score += letterScore
   }
 
-  for (let i = 0; i < lowercaseWord.length; i++) {
-    const letter = lowercaseWord[i]
-    // eslint-disable-next-line no-prototype-builtins
-    if (wordMultipliers.hasOwnProperty(letter)) {
-      score *= wordMultipliers[letter]
-      delete wordMultipliers[letter]
-    }
-  }
+  // Apply word multipliers
+  // for (let i = 0; i < lowercaseWord.length; i++) {
+  //   const letter = lowercaseWord[i]
+  //   // eslint-disable-next-line no-prototype-builtins
+  //   if (wordMultipliers.hasOwnProperty(letter)) {
+  //     score *= wordMultipliers[letter]
+  //     // Assuming the word multiplier applies only once, remove the letter after applying
+  //     delete wordMultipliers[letter]
+  //   }
+  // }
 
   return score
 }

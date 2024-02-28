@@ -28,15 +28,21 @@ function scrabble(word) {
     q: 10,
     z: 10
   }
-  const letterMultipliers = {
-    // o: 2 // Example: Double letter multiplier for the letter 'o'
-    // Add other letter multipliers as needed
+  let letterMultipliersArray2 = word
+    .match(/{([a-z])}/g)
+  console.log(letterMultipliersArray2)
+  if(Array.isArray(letterMultipliersArray2)) {
+    letterMultipliersArray2 = letterMultipliersArray2.map((match) => match[1])
   }
+ 
 
-  // const wordMultipliers = {
-  // o: 3 // Example: Triple word multiplier for the letter 'o'
-  // Add other word multipliers as needed
-  // }
+
+
+
+  // const letterMultipliersArray3 = word
+  //   .match(/\[([a-z])\]/g)
+  //   .map((match) => match[1])
+  // console.log(letterMultipliersArray3)
 
   const lowercaseWord = word ? word.toLowerCase() : ''
 
@@ -48,8 +54,8 @@ function scrabble(word) {
 
     // Check for letter multipliers
     // eslint-disable-next-line no-prototype-builtins
-    if (letterMultipliers.hasOwnProperty(letter)) {
-      letterScore *= letterMultipliers[letter]
+    if (letterMultipliersArray2.includes(letter)) {
+      letterScore *= 2
     }
 
     score += letterScore
@@ -68,5 +74,6 @@ function scrabble(word) {
 
   return score
 }
+console.log(scrabble('d{o}[g]'))
 
 module.exports = scrabble

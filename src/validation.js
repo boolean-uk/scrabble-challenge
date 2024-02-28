@@ -5,20 +5,21 @@ async function validate(word) {
   }
   try {
     const response = await fetch(
-      `https://www.collinsdictionary.com/dictionary/english/${word}`
+      `https://www.merriam-webster.com/dictionary/${word}`
     )
-    if (response.redirected) {
-      console.log('Not a word')
+    if (response.status === 404) {
+      console.log('Not a Legal Scrabble Word')
       return false
     } else {
+      console.log('A Legal Scrabble Word')
       return true
     }
+    // Checks that the entry exists, if it does not exist they will give a 404 error.
   } catch (error) {
-    console.error('Error occurred:', error)
-    return false // Return false in case of an error
+    console.error('Error checking word:', error)
+    return false
   }
 }
-// Checks that the entry exists, if it does not exist they will redirect.
 
 module.exports = {
   validate

@@ -10,6 +10,7 @@ function scrabble(word) {
   if (typeof word !== 'string') {
     return 0
   }
+
   const wordToValidate = word
     .replaceAll('{', '')
     .replaceAll('}', '')
@@ -17,10 +18,14 @@ function scrabble(word) {
     .replaceAll(']', '')
     .toLowerCase()
 
-  const validationCheck = validate(wordToValidate)
-  if (validationCheck === false) {
+  const validation = async () => {
+    await validate(wordToValidate)
+  }
+  const valid = validation()
+  if (valid === false) {
     return 0
   }
+
   return scoreCheck(word)
 }
 
@@ -169,5 +174,5 @@ function multiWord(wordArr) {
     completeCheck = doubleCheck === true && tripleCheck === true
   }
 }
-console.log(scrabble('cat'))
+// console.log(scrabble('{poop}'))
 module.exports = scrabble

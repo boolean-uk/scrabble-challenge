@@ -87,7 +87,7 @@ const determineTripleWord = word => {
 
 const calculateFinalScore = (letterScore, doubleScore, tripleScore) => {
   if (doubleScore && tripleScore) {
-    return letterScore * 3 * 2
+    return letterScore * 6
   } else if (doubleScore) {
     return letterScore * 2
   } else if (tripleScore) {

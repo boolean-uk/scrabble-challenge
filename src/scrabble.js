@@ -12,8 +12,8 @@ const scrabble = word => {
 
   if (validWordCheck(lowerCaseWord)) {
     let totalLetterScore = calculateLetterScores(lowerCaseWord)
-    doubleWordScore = determineDoubleWord(lowerCaseWord)
-    tripleWordScore = determineTripleWord(lowerCaseWord) 
+    let doubleWordScore = determineDoubleWord(lowerCaseWord)
+    let tripleWordScore = determineTripleWord(lowerCaseWord) 
     let totalScore = calculateFinalScore(totalLetterScore, doubleWordScore, tripleWordScore)
     return totalScore
   } else {

@@ -41,18 +41,52 @@ function validCheck(word) {
     'W',
     'X',
     'Y',
-    'Z'
+    'Z',
+    '{',
+    '}',
+    '[',
+    ']'
   ]
   let validWord = true
+  let validDoubleMultiplier = true
+  let validTripleMultiplier = true
 
   for (let i = 0; i < word.length; i++) {
     const valid = validSymbols.includes(word[i])
     if (valid === false) {
       validWord = false
     }
+    // add checks for bracket positions
+    if (word[i] === '[' && validTripleMultiplier === false) {
+      return false
+    } else if (word[i] === '[' && validTripleMultiplier === true) {
+      validTripleMultiplier = false
+    }
+
+    if (word[i] === '{' && validDoubleMultiplier === false) {
+      return false
+    } else if (word[i] === '{' && validDoubleMultiplier === true) {
+      validDoubleMultiplier = false
+    }
+
+    if (word[i] === ']' && validTripleMultiplier === true) {
+      return false
+    } else if (word[i] === ']' && validTripleMultiplier === false) {
+      validTripleMultiplier = true
+    }
+
+    if (word[i] === '}' && validDoubleMultiplier === true) {
+      return false
+    } else if (word[i] === '}' && validDoubleMultiplier === false) {
+      validDoubleMultiplier = true
+    }
   }
 
-  if (validWord === true) {
+  if (
+    validWord === true &&
+    validDoubleMultiplier === true &&
+    validTripleMultiplier === true
+  ) {
     return true
   } else {
     return false
@@ -90,14 +124,34 @@ function scoreCalculator(word) {
     Z: 10
   }
   let score = 0
+  let multiplier = 1
 
   for (let i = 0; i < word.length; i++) {
-    score += scoreObject[word[i]]
+    if (word[i] === '{') {
+      multiplier = multiplier * 2
+    } else if (word[i] === '}') {
+      multiplier = multiplier / 2
+    } else if (word[i] === '[') {
+      multiplier = multiplier * 3
+    } else if (word[i] === ']') {
+      multiplier = multiplier / 3
+    } else {
+      score += scoreObject[word[i]] * multiplier
+    }
   }
 
   return score
 }
 
-// console.log(scrabble("hi"))
+// console.log(scrabble("[hi]"))
+
+// test for word check - should return false at first
+// console.log(validCheck("A{B}"), "true")
+// console.log(validCheck("A{B"), "false")
+// console.log(validCheck("A{{B}"), "false")
+// console.log(validCheck("A[B]"), "true")
+// console.log(validCheck("A[B}"), "false")
+// console.log(validCheck("A{B]"), "false")
+// console.log(validCheck("[A{B}]"), "true")
 
 module.exports = scrabble

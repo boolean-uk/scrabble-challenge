@@ -24,14 +24,16 @@ const validWordCheck = word => {
   let frontSquareCount = 0
   let backSquareCount = 0
 
-  if (word === null) {
+  let lowerCaseWord = word.toLowerCase()
+   
+  if (lowerCaseWord === null) {
     return false
   }  
 
-  for (let i = 0; i < word.length; i++) {
+  for (let i = 0; i < lowerCaseWord.length; i++) {
 
-    if (Object.keys(letterScores).includes(word[i]) || word[i] === '{' || word[i] === '}' || word[i] === '[' || word[i] === ']') {
-      switch(word[i]){
+    if (Object.keys(letterScores).includes(lowerCaseWord[i]) || lowerCaseWord[i] === '{' || lowerCaseWord[i] === '}' || lowerCaseWord[i] === '[' || lowerCaseWord[i] === ']') {
+      switch(lowerCaseWord[i]){
         case '{': frontBraceCount++; break;
         case '}': backBraceCount++; break;
         case '[': frontSquareCount++; break;
@@ -99,4 +101,4 @@ const calculateFinalScore = (letterScore, doubleScore, tripleScore) => {
 
 module.exports = scrabble
 
-console.log(scrabble(null))
+console.log(scrabble('OXYPHENBUTAZONE'))

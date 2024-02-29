@@ -16,7 +16,7 @@ function hasInvalidMultiplier(word) {
   }
 }
 function scrabble(word) {
-  if ((word === null)) {
+  if (word === null) {
     return 0
   }
   const letterValues = {

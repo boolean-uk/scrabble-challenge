@@ -19,7 +19,15 @@
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-- Steps for the double/triple-value letters functionality
+- Steps for the double/triple-points letters functionality
+
+1. Decide how to implement this functionality. 
+
+1. Check if the given word contains characters enclosed in {} or []
+
+2. Apply points * 2 for letters in {} and points * 3 for letters in []
+
+
 
 
 ```

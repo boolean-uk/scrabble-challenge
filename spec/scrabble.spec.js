@@ -1,6 +1,6 @@
 // Note: you shouldn't need to change anything in this file.
 
-const scrabble = require('../src/scrabble')
+const { scrabble } = require('../src/scrabble')
 
 describe('Scrabble', () => {
   it('returns 0 for empty words', () => {

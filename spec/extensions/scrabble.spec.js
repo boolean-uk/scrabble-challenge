@@ -79,30 +79,30 @@ describe('word legality checks', () => {
 })
 
 describe('final output checks', () => {
-  it('returns "not a legal word"', async () => {
+  it('returns correct score and "not a legal word"', async () => {
     expect(await fullScrabble('lhasiasipg')).toEqual(
       'This word would score 16, and it is Not a Legal Scrabble Word'
     )
   })
 
-  it('returns "not a legal word"', async () => {
+  it('returns correct score and "not a legal word"', async () => {
     expect(await fullScrabble('jafihasfipa')).toEqual(
       'This word would score 29, and it is Not a Legal Scrabble Word'
     )
   })
 
-  it('returns "legal word"', async () => {
+  it('returns correct score and "legal word"', async () => {
     expect(await fullScrabble('c{a}t')).toEqual(
       'This word would score 6, and it is A Legal Scrabble Word'
     )
   })
 
-  it('returns "legal word"', async () => {
+  it('returns correct score and "legal word"', async () => {
     expect(await fullScrabble('[dog]')).toEqual(
       'This word would score 15, and it is A Legal Scrabble Word'
     )
   })
-  it('returns "legal word"', async () => {
+  it('returns correct score and "legal word"', async () => {
     expect(await fullScrabble('{OXYPHENBUTAZONE}')).toEqual(
       'This word would score 82, and it is A Legal Scrabble Word'
     )

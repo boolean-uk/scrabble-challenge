@@ -28,10 +28,14 @@ const values = {
 }
 
 // Scrabble function to calculate word score
+// First check if the word is a valid word: if validWordCheck is false, return total is 0
+// Then check if the word contains a double and triple word score. If it does, the total should be what is calculated in calculateDoubleAndTripleWordScore
+// If none of this is the case, the word should be a normal word or a word with single brackets. In that case, the total should start with what is calculated in detectBracket and the word should be split. Where the double letter has been taken out. Then the normal word score can be calculated.
+// In the end, the total should be returned
 function scrabble(word) {
   let total = 0
-  const doubleOrTripleWord = doubleAndTripleCheck(word)
-  const validWordCheck = checkWord(word)
+  const doublePlusTripleWord = doubleAndTripleCheck(word)
+  const validWordCheck = checkIfWordIsWord(word)
 
   if (validWordCheck === false) {
     total = 0
@@ -39,8 +43,8 @@ function scrabble(word) {
   }
 
   if (
-    doubleOrTripleWord.doubleWord === true ||
-    doubleOrTripleWord.tripleWord === true
+    doublePlusTripleWord.doubleWord === true ||
+    doublePlusTripleWord.tripleWord === true
   ) {
     total = caculateDoubleAndTripleWordScore(word)
   } else {
@@ -56,7 +60,11 @@ function scrabble(word) {
 }
 
 // Check if word is an actual word, without special characters
-function checkWord(word) {
+// First check if the word does not cotain an empty string, null or whitespace
+// Then check if the word contains a single bracket instead of two
+// Lastly, check if the word contains any special characters
+// If any of this is true, return validWordCheck is false, else return validWordCheck is true
+function checkIfWordIsWord(word) {
   let validWordCheck = true
   const specialChars = /[`!@#$%^&*()_+\-=;':"\\|,.<>/?~]/
 
@@ -77,6 +85,9 @@ function checkWord(word) {
 }
 
 // Check if word contains any brackets and calculate the correspoding score if they do
+// If the word contains curly brackets, the double score for this letter should be calculated and added to the total
+// If the word includes straight brackets, the triple score for this letter should be calculated and added to the total
+// In the end, the total should be returned
 function detectBracket(word) {
   let total = 0
   word = word.toUpperCase()
@@ -103,6 +114,8 @@ function detectBracket(word) {
 }
 
 // If the word contains any brackets, split the word and take out the brackets
+// If the word contains any brackets, the new word, without the double or triple letter should be returned
+// Else, the original word should be returned
 function splitWords(word) {
   word = word.toUpperCase()
 
@@ -122,6 +135,9 @@ function splitWords(word) {
 }
 
 // Check if the word contains double and triple brackets
+// If the word is an empty string or null, doubleWord and tripleWord should be false
+// If the word is either a double word or triple word, then it should be true
+// In the end, it should retrun doubleAndTripleWords
 function doubleAndTripleCheck(word) {
   const doubleAndTripleWords = { doubleWord: false, tripleWord: false }
 
@@ -145,13 +161,18 @@ function doubleAndTripleCheck(word) {
 }
 
 // Calculate score for two word mulipliers
+// If the word is a double score word it should be checked for having a triple word or letter score in the word as well. If it does, the corresponding score should be calculated
+// If it does not have a triple word or letter score in there, the double word score should be calculated
+// If the word is a triple score word it should be checked for having a double word or letter score in the word as well. If it does, the corresponding score should be calculated
+// If it does not have a double word or letter score in there, the triple word score should be calculated
+// It should return the calculated total
 function caculateDoubleAndTripleWordScore(word) {
-  let doubleOrTripleWord = false
+  let doublePlusTripleWord = false
   let total = 0
-  doubleOrTripleWord = doubleAndTripleCheck(word)
+  doublePlusTripleWord = doubleAndTripleCheck(word)
   word = word.toUpperCase()
 
-  if (doubleOrTripleWord.doubleWord === true) {
+  if (doublePlusTripleWord.doubleWord === true) {
     const re = /[^{]+(?=\})/g
     const found = word.match(re)
     word = found.toString()
@@ -185,7 +206,7 @@ function caculateDoubleAndTripleWordScore(word) {
 
       total *= 2
     }
-  } else if (doubleOrTripleWord.tripleWord === true) {
+  } else if (doublePlusTripleWord.tripleWord === true) {
     const re = /(?<=\[).+?(?=\])/g
     const toUpperCase = word.toUpperCase()
     const found = toUpperCase.match(re)

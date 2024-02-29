@@ -14,4 +14,8 @@
 // Null and whitespace should return a value
 // Lower all the cases to serve for every word
 
+// Step 4 (extensions)
+// Multiply every letter by 2 that starts with '{' and ends with '}'
+// Multiply every letter by 3 that starts with '[' and ends with ']'
+
 ```

@@ -27,12 +27,54 @@ const points = {
   z: 10
 }
 
-function scrabble(str) {
+const brackets = {
+  '{': 2,
+  '}': 2,
+  '[': 3,
+  ']': 3
+}
+
+const increase = (multiplier, value) => {
+  return (multiplier *= value)
+}
+
+const decrease = (multiplier, value) => {
+  return (multiplier /= value)
+}
+
+const checkBrackets = (bracket, multiplier) => {
+  if (bracket === '{') {
+    return increase(multiplier, 2)
+  } else if (bracket === '[') {
+    return increase(multiplier, 3)
+  } else if (bracket === '}') {
+    return decrease(multiplier, 2)
+  } else if (bracket === ']') {
+    return decrease(multiplier, 3)
+  }
+}
+
+const scrabble = (str) => {
   let score = 0
+  let multiplier = 1
   const word = (str || '').trim().toLowerCase().split('')
-  word.forEach((letter) => {
-    score += points[letter]
-  })
+
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] in brackets) {
+      multiplier = checkBrackets(word[i], multiplier)
+      continue
+    }
+
+    if (!(word[i] in points)) {
+      return 0
+    }
+    score += points[word[i]] * multiplier
+  }
+
+  if (multiplier !== 1) {
+    return 0
+  }
+
   return score
 }
 

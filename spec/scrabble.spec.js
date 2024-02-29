@@ -2,7 +2,7 @@
 
 const scrabble = require('../src/scrabble')
 
-describe("Scrabble", () => {
+describe('Scrabble', () => {
   it('returns 0 for empty words', () => {
     expect(scrabble('')).toEqual(0)
   })

@@ -1,5 +1,21 @@
+function hasInvalidMultiplier(word) {
+  let openingBraceCount = 0
+  let closingBraceCount = 0
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === '{') {
+      openingBraceCount++
+    }
+    if (word[i] === '}') {
+      closingBraceCount++
+    }
+  }
+  if (openingBraceCount === closingBraceCount) {
+    return false
+  } else {
+    return true
+  }
+}
 function scrabble(word) {
-  // Define my letter values.
   const letterValues = {
     a: 1,
     e: 1,
@@ -28,17 +44,23 @@ function scrabble(word) {
     q: 10,
     z: 10
   }
-  let letterMultipliersArray2 = word
-    .match(/{([a-z])}/g)
+
+  if (hasInvalidMultiplier(word)) {
+    return 0
+  }
+
+  let letterMultipliersArray2 = word.match(/{([a-z])}/g)
   console.log(letterMultipliersArray2)
-  if(Array.isArray(letterMultipliersArray2)) {
+  if (Array.isArray(letterMultipliersArray2)) {
     letterMultipliersArray2 = letterMultipliersArray2.map((match) => match[1])
   }
- 
 
+  let letterMultipliersArray3 = word.match(/\[([a-z])\]/g)
 
-
-
+  if (Array.isArray(letterMultipliersArray3)) {
+    letterMultipliersArray3 = letterMultipliersArray3.map((match) => match[1])
+  }
+  console.log(letterMultipliersArray3)
   // const letterMultipliersArray3 = word
   //   .match(/\[([a-z])\]/g)
   //   .map((match) => match[1])
@@ -54,26 +76,31 @@ function scrabble(word) {
 
     // Check for letter multipliers
     // eslint-disable-next-line no-prototype-builtins
-    if (letterMultipliersArray2.includes(letter)) {
+    if (
+      Array.isArray(letterMultipliersArray2) &&
+      letterMultipliersArray2.includes(letter)
+    ) {
       letterScore *= 2
+    }
+    if (
+      Array.isArray(letterMultipliersArray3) &&
+      letterMultipliersArray3.includes(letter)
+    ) {
+      letterScore *= 3
     }
 
     score += letterScore
   }
-
-  // Apply word multipliers
-  // for (let i = 0; i < lowercaseWord.length; i++) {
-  //   const letter = lowercaseWord[i]
-  //   // eslint-disable-next-line no-prototype-builtins
-  //   if (wordMultipliers.hasOwnProperty(letter)) {
-  //     score *= wordMultipliers[letter]
-  //     // Assuming the word multiplier applies only once, remove the letter after applying
-  //     delete wordMultipliers[letter]
-  //   }
-  // }
+  if (word.startsWith('{') && word.endsWith('}')) {
+    score *= 2
+  }
+  if (word.startsWith('[') && word.endsWith(']')) {
+    score *= 3
+  }
 
   return score
 }
-console.log(scrabble('d{o}[g]'))
+
+console.log(hasInvalidMultiplier('d{o}[g}]'))
 
 module.exports = scrabble

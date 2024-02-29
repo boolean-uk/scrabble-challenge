@@ -5,12 +5,9 @@ const letterScores = {
 }
 
 const scrabble = word => {
-  if (word === null) {
-    return 0
-  }
-  let lowerCaseWord = word.toLowerCase()
 
-  if (validWordCheck(lowerCaseWord)) {
+  if (validWordCheck(word)) {
+    let lowerCaseWord = word.toLowerCase()
     let totalLetterScore = calculateLetterScores(lowerCaseWord)
     let doubleWordScore = determineDoubleWord(lowerCaseWord)
     let tripleWordScore = determineTripleWord(lowerCaseWord) 
@@ -27,7 +24,12 @@ const validWordCheck = word => {
   let frontSquareCount = 0
   let backSquareCount = 0
 
+  if (word === null) {
+    return false
+  }  
+
   for (let i = 0; i < word.length; i++) {
+
     if (Object.keys(letterScores).includes(word[i]) || word[i] === '{' || word[i] === '}' || word[i] === '[' || word[i] === ']') {
       switch(word[i]){
         case '{': frontBraceCount++; break;
@@ -39,7 +41,6 @@ const validWordCheck = word => {
       return false
     }
   }
-
   if (frontBraceCount !== backBraceCount || frontSquareCount !== backSquareCount) {
     return false
   } else {
@@ -98,3 +99,4 @@ const calculateFinalScore = (letterScore, doubleScore, tripleScore) => {
 
 module.exports = scrabble
 
+console.log(scrabble(null))

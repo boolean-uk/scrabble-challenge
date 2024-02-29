@@ -24,11 +24,12 @@ const validWordCheck = word => {
   let frontSquareCount = 0
   let backSquareCount = 0
 
-  let lowerCaseWord = word.toLowerCase()
-   
-  if (lowerCaseWord === null) {
+  
+  if (word === null) {
     return false
   }  
+
+  let lowerCaseWord = word.toLowerCase()
 
   for (let i = 0; i < lowerCaseWord.length; i++) {
 
@@ -100,5 +101,3 @@ const calculateFinalScore = (letterScore, doubleScore, tripleScore) => {
 }
 
 module.exports = scrabble
-
-console.log(scrabble('OXYPHENBUTAZONE'))

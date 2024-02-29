@@ -27,7 +27,7 @@ const values = {
   Z: 10
 }
 
-// Scrabble function
+// Scrabble function to calculate word score
 function scrabble(word) {
   let total = 0
   const doubleOrTripleWord = doubleAndTripleCheck(word)
@@ -46,6 +46,7 @@ function scrabble(word) {
   } else {
     total = detectBracket(word)
     word = splitWords(word)
+
     for (const letter of word) {
       total += values[letter]
     }
@@ -80,24 +81,22 @@ function detectBracket(word) {
   let total = 0
   word = word.toUpperCase()
 
-  if (word === '' || word === null) {
-    total = 0
-  } else if (word.includes('{') === true && word.includes('}') === true) {
+  if (word.includes('{') && word.includes('}')) {
     const re = /[^{]+(?=\})/g
     const found = word.match(re)
     word = found.toString()
+
     for (const letter of found) {
       total += values[letter] * 2
     }
-  } else if (word.includes('[') === true && word.includes(']') === true) {
+  } else if (word.includes('[') && word.includes(']')) {
     const re = /(?<=\[).+?(?=\])/g
     const found = word.match(re)
     word = found.toString()
+
     for (const letter of word) {
       total += values[letter] * 3
     }
-  } else {
-    total = 0
   }
 
   return total
@@ -107,11 +106,11 @@ function detectBracket(word) {
 function splitWords(word) {
   word = word.toUpperCase()
 
-  if (word.includes('{') === true && word.includes('}') === true) {
+  if (word.includes('{') && word.includes('}')) {
     const tempWord = word.split('{')
     const tempWord2 = tempWord[1].split('}')
     word = tempWord[0] + tempWord2[1]
-  } else if (word.includes('[') === true && word.includes(']') === true) {
+  } else if (word.includes('[') && word.includes(']')) {
     const tempWord = word.split('[')
     const tempWord2 = tempWord[1].split(']')
     word = tempWord[0] + tempWord2[1]
@@ -156,10 +155,12 @@ function caculateDoubleAndTripleWordScore(word) {
     const re = /[^{]+(?=\})/g
     const found = word.match(re)
     word = found.toString()
+
     if (word[0] === '[' && word[word.length - 1] === ']') {
       const re = /(?<=\[).+?(?=\])/g
       const found = word.match(re)
       word = found.toString()
+
       for (const letter of word) {
         total += values[letter] * 2 * 3
       }
@@ -171,13 +172,17 @@ function caculateDoubleAndTripleWordScore(word) {
       const re = /(?<=\[).+?(?=\])/g
       const found = word.match(re)
       const newWord = found.toString()
+
       for (const letter of newWord) {
         total += values[letter] * 3
       }
+
       word = splitWords(word)
+
       for (const letter of word) {
         total += values[letter]
       }
+
       total *= 2
     }
   } else if (doubleOrTripleWord.tripleWord === true) {
@@ -185,10 +190,12 @@ function caculateDoubleAndTripleWordScore(word) {
     const toUpperCase = word.toUpperCase()
     const found = toUpperCase.match(re)
     word = found.toString()
+
     if (word[0] === '{' && word[word.length - 1] === '}') {
       const re = /[^{]+(?=\})/g
       const found = word.match(re)
       word = found.toString()
+
       for (const letter of word) {
         total += values[letter] * 2 * 3
       }
@@ -200,13 +207,16 @@ function caculateDoubleAndTripleWordScore(word) {
       const re = /[^{]+(?=\})/g
       const found = word.match(re)
       const newWord = found.toString()
+
       for (const letter of newWord) {
         total += values[letter] * 2
       }
       word = splitWords(word)
+
       for (const letter of word) {
         total += values[letter]
       }
+
       total *= 3
     }
   }

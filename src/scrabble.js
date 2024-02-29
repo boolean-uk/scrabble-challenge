@@ -9,7 +9,7 @@ function scrabble(string) {
   let score = 0
   let multiplier = 1
 
-  // To make sure that the input is not a falsy value or a number or including on one brackets
+  // To make sure that the input is not a falsy value, a number or including only one brackets.
   if (
     !string ||
     isItNumber(string) ||
@@ -48,7 +48,7 @@ function scrabble(string) {
   return score
 }
 
-// work as expected
+// Works as expected (the basic task and most of extension one)
 console.log(scrabble(25)) // 0
 console.log(scrabble('hamada')) // 12
 console.log(scrabble('ha{m}ada')) // 15
@@ -63,8 +63,8 @@ console.log(scrabble('ham[ada')) // 0
 
 console.log(scrabble('ham =-34|@%  ada')) // 0
 
-// does not work as expected
-console.log(scrabble('{[d]og}')) //  9  ❌     should be 18
-console.log(scrabble('[{dog}]')) // 10  ❌     should be 30
+// Does NOT work as expected (the last tow tests of the extension task)
+console.log(scrabble('{[d]og}')) //  9  ❌  should be 18  (as d: should be tripled first and then the new value should be doubled, o anf g should be doubled)
+console.log(scrabble('[{dog}]')) // 10  ❌  should be 30  (as the values of all letters should be doubled first and then the new values should be tripled)
 
 module.exports = scrabble

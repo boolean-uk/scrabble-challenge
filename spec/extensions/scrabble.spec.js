@@ -1,9 +1,10 @@
 // Extend these specs as you like
 
-const scrabble = require('../../src/scrabble')
+const { scrabble, fullScrabble } = require('../../src/scrabble')
+const { validate } = require('../../src/validation.js')
 
-describe("Scrabble", () => {
-  describe("letter multipliers", () => {
+describe('Scrabble', () => {
+  describe('letter multipliers', () => {
     it('returns 6 for double letter o', () => {
       expect(scrabble('d{o}g')).toEqual(6)
     })
@@ -21,7 +22,7 @@ describe("Scrabble", () => {
     })
   })
 
-  describe("word multipliers", () => {
+  describe('word multipliers', () => {
     it('returns 10 for double letter o', () => {
       expect(scrabble('{dog}')).toEqual(10)
     })
@@ -38,7 +39,7 @@ describe("Scrabble", () => {
     })
   })
 
-  describe("edge cases", () => {
+  describe('edge cases', () => {
     it('returns 18 for letter and word multiplier', () => {
       expect(scrabble('{[d]og}')).toEqual(18)
     })
@@ -53,5 +54,62 @@ describe("Scrabble", () => {
     it('returns 0 for incorrect tokens', () => {
       expect(scrabble('|d|og')).toEqual(0)
     })
+  })
+})
+
+describe('word legality checks', () => {
+  it('returns "not a legal word"', async () => {
+    expect(await validate('lhasiasipg')).toEqual('Not a Legal Scrabble Word')
+  })
+
+  it('returns "not a legal word"', async () => {
+    expect(await validate('jafihasfipa')).toEqual('Not a Legal Scrabble Word')
+  })
+
+  it('returns "legal word"', async () => {
+    expect(await validate('cat')).toEqual('A Legal Scrabble Word')
+  })
+
+  it('returns "legal word"', async () => {
+    expect(await validate('dog')).toEqual('A Legal Scrabble Word')
+  })
+  it('returns "legal word"', async () => {
+    expect(await validate('OXYPHENBUTAZONE')).toEqual('A Legal Scrabble Word')
+  })
+})
+
+describe('final output checks', () => {
+  it('returns "not a legal word"', async () => {
+    expect(await fullScrabble('lhasiasipg')).toEqual(
+      'This word would score 16, and it is Not a Legal Scrabble Word'
+    )
+  })
+
+  it('returns "not a legal word"', async () => {
+    expect(await fullScrabble('jafihasfipa')).toEqual(
+      'This word would score 29, and it is Not a Legal Scrabble Word'
+    )
+  })
+
+  it('returns "legal word"', async () => {
+    expect(await fullScrabble('c{a}t')).toEqual(
+      'This word would score 6, and it is A Legal Scrabble Word'
+    )
+  })
+
+  it('returns "legal word"', async () => {
+    expect(await fullScrabble('[dog]')).toEqual(
+      'This word would score 15, and it is A Legal Scrabble Word'
+    )
+  })
+  it('returns "legal word"', async () => {
+    expect(await fullScrabble('{OXYPHENBUTAZONE}')).toEqual(
+      'This word would score 82, and it is A Legal Scrabble Word'
+    )
+  })
+  it('returns "invalid word"', async () => {
+    expect(await fullScrabble('{OXY{PHE[NBU}TAZONE}')).toEqual(
+      'This word is not valid, and would score 0'
+    )
   })
 })

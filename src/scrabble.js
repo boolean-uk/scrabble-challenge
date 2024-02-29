@@ -6,23 +6,17 @@ let tripleLetter = false
 let doubleWord = false
 let tripleWord = false
 
+async function fullScrabble(word) {
+  const score = scrabble(word)
+  const legality = await validate(word)
+  if (score === 0) {
+    return 'This word is not valid, and would score 0'
+  }
+  return `This word would score ${score}, and it is ${legality}`
+}
+
 function scrabble(word) {
   if (typeof word !== 'string') {
-    return 0
-  }
-
-  const wordToValidate = word
-    .replaceAll('{', '')
-    .replaceAll('}', '')
-    .replaceAll('[', '')
-    .replaceAll(']', '')
-    .toLowerCase()
-
-  const validation = async () => {
-    await validate(wordToValidate)
-  }
-  const valid = validation()
-  if (valid === false) {
     return 0
   }
 
@@ -175,4 +169,7 @@ function multiWord(wordArr) {
   }
 }
 
-module.exports = scrabble
+module.exports = {
+  scrabble,
+  fullScrabble
+}

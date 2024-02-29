@@ -16,6 +16,9 @@ function hasInvalidMultiplier(word) {
   }
 }
 function scrabble(word) {
+  if ((word === null)) {
+    return 0
+  }
   const letterValues = {
     a: 1,
     e: 1,
@@ -48,6 +51,9 @@ function scrabble(word) {
   if (hasInvalidMultiplier(word)) {
     return 0
   }
+  if (!/^[a-zA-Z{}[\]]*$/g.test(word)) {
+    return 0
+  }
 
   let letterMultipliersArray2 = word.match(/{([a-z])}/g)
   console.log(letterMultipliersArray2)
@@ -61,10 +67,6 @@ function scrabble(word) {
     letterMultipliersArray3 = letterMultipliersArray3.map((match) => match[1])
   }
   console.log(letterMultipliersArray3)
-  // const letterMultipliersArray3 = word
-  //   .match(/\[([a-z])\]/g)
-  //   .map((match) => match[1])
-  // console.log(letterMultipliersArray3)
 
   const lowercaseWord = word ? word.toLowerCase() : ''
 
@@ -74,7 +76,6 @@ function scrabble(word) {
     const letter = lowercaseWord[i]
     let letterScore = letterValues[letter] || 0
 
-    // Check for letter multipliers
     // eslint-disable-next-line no-prototype-builtins
     if (
       Array.isArray(letterMultipliersArray2) &&
@@ -91,10 +92,20 @@ function scrabble(word) {
 
     score += letterScore
   }
-  if (word.startsWith('{') && word.endsWith('}')) {
+  if (
+    word.startsWith('{') &&
+    word.includes('}') &&
+    word.indexOf('}') !== word.length - 1
+  ) {
+    return score
+  }
+  const wordWithoutCurlyB = word.replace(/{|}/g, '')
+  const wordWithoutArrayB = word.replace(/\[|\]/g, '')
+
+  if (wordWithoutArrayB.startsWith('{') && wordWithoutArrayB.endsWith('}')) {
     score *= 2
   }
-  if (word.startsWith('[') && word.endsWith(']')) {
+  if (wordWithoutCurlyB.startsWith('[') && wordWithoutCurlyB.endsWith(']')) {
     score *= 3
   }
 

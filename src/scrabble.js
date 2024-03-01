@@ -9,7 +9,7 @@ function hasInvalidMultiplier(word) {
     if (word[i] === '{') {
       openingBraceCount++
     }
-    if (word[i] === ']') {
+    if (word[i] === '}') {
       closingBraceCount++
     }
     if (word[i] === '[') {
@@ -19,7 +19,7 @@ function hasInvalidMultiplier(word) {
       closingSquareCount++
     }
   }
-  // vhecking if total number of each brackets are the same:
+  // checking if total number of each brackets are the same:
   if (
     openingBraceCount === closingBraceCount &&
     openingSquareCount === closingSquareCount

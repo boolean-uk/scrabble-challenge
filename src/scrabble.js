@@ -15,25 +15,22 @@ function scrabble(word) {
   for (let i = 0; i < lowerCaseWord.length; i++) {
     if (onePointLetter(lowerCaseWord[i])) {
       total += 1
-      break
     } else if (twoPointLetter(lowerCaseWord[i])) {
       total += 2
-      break
     } else if (threePointLetter(lowerCaseWord[i])) {
       total += 3
-      break
     } else if (fourPointLetter(lowerCaseWord[i])) {
       total += 4
-      break
     } else if (fivePointLetter(lowerCaseWord[i])) {
       total += 5
-      break
     } else if (eightPointLetter(lowerCaseWord[i])) {
       total += 8
-      break
     } else if (tenPointLetter(lowerCaseWord[i])) {
       total += 10
-      break
+    } else if (doublePoints(lowerCaseWord[i])) {
+      total *= 2
+    } else if (triplePoints(lowerCaseWord[i])) {
+      total *= 3
     }
   }
   return total
@@ -112,6 +109,26 @@ function tenPointLetter(character) {
     if (character === pointCharacter) {
       result = true
     }
+  }
+  return result
+}
+
+function doublePoints(character) {
+  const symbol1 = `{`
+  const symbol2 = `}`
+  let result = false
+  if (character === symbol1 && symbol2) {
+    result = true
+  }
+  return result
+}
+
+function triplePoints(character) {
+  const symbol1 = `[`
+  const symbol2 = `]`
+  let result = false
+  if (character === symbol1 && symbol2) {
+    result = true
   }
   return result
 }

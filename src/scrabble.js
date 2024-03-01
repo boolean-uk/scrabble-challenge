@@ -27,33 +27,28 @@ const lettersValues = {
 }
 
 const scrabble = (word) => {
-  if (wordValidate(word)) {
-    let lowerCaseWord = word.toLowerCase()
-    let wordScoreTally = tallyLetterScores(lowerCaseWord)
-    let wordScoreDouble = doubleWordRule(lowerCaseWord)
-    let wordScoreTriple = tripleWordRule(lowerCaseWord)
-    let totalScore = tallyFinalScores(
-      wordScoreTally,
-      wordScoreDouble,
-      wordScoreTriple
-    )
-    return totalScore
+  if (validateWord(word)) {
+    const lowerCaseWord = word.toLowerCase()
+    const wordScoreTally = tallyLetterScores(lowerCaseWord)
+    const wordScoreDouble = doubleWordRule(lowerCaseWord)
+    const wordScoreTriple = tripleWordRule(lowerCaseWord)
+    return tallyFinalScores(wordScoreTally, wordScoreDouble, wordScoreTriple)
   } else {
     return 0
   }
 }
 
-const wordValidate = (word) => {
+const validateWord = (word) => {
   let openingBrace = 0
   let closingBrace = 0
   let openingBracket = 0
   let closingBracket = 0
 
-  if (word === null) {
+  if (!word) {
     return false
   }
 
-  let lowerCaseWord = word.toLowerCase()
+  const lowerCaseWord = word.toLowerCase()
 
   for (let i = 0; i < lowerCaseWord.length; i++) {
     if (
@@ -65,17 +60,17 @@ const wordValidate = (word) => {
     ) {
       switch (lowerCaseWord[i]) {
         case '{':
-          openingBrace++;
-          break;
+          openingBrace++
+          break
         case '}':
-          closingBrace++;
-          break;
+          closingBrace++
+          break
         case '[':
-          openingBracket++;
+          openingBracket++
           break
         case ']':
-          closingBracket++;
-          break;
+          closingBracket++
+          break
       }
     } else {
       return false
@@ -94,6 +89,9 @@ const tallyLetterScores = (word) => {
   let wordScoreDouble = 0
   let wordScoreTriple = 0
 
+  const multiplyByTwo = 2
+  const multiplyByThree = 3
+
   for (let i = 0; i < word.length; i++) {
     if (
       word[i] === '{' ||
@@ -104,9 +102,9 @@ const tallyLetterScores = (word) => {
       continue
     }
     if (word[i - 1] === '{' && word[i + 1] === '}') {
-      wordScoreDouble += (lettersValues[word[i]] * 2)
+      wordScoreDouble += lettersValues[word[i]] * multiplyByTwo
     } else if (word[i - 1] === '[' && word[i + 1] === ']') {
-      wordScoreTriple += (lettersValues[word[i]] * 3)
+      wordScoreTriple += lettersValues[word[i]] * multiplyByThree
     } else {
       wordScoreSingle += lettersValues[word[i]]
     }
@@ -136,9 +134,9 @@ const tallyFinalScores = (lettersValue, scoreDouble, scoreTriple) => {
   if (scoreDouble && scoreTriple) {
     return (lettersValue *= 6)
   } else if (scoreDouble) {
-    return (lettersValue *= 2)
+    return (lettersValue *= multiplyByTwo)
   } else if (scoreTriple) {
-    return (lettersValue *= 3)
+    return (lettersValue *= multiplyByThree)
   }
   return lettersValue
 }

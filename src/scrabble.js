@@ -12,6 +12,7 @@ const lettersValues = {
   k: 5,
   l: 1,
   m: 3,
+  n: 1,
   o: 1,
   p: 3,
   q: 10,
@@ -49,7 +50,7 @@ const validateWord = (word) => {
   }
 
   const lowerCaseWord = word.toLowerCase()
-
+  console.log(lowerCaseWord)
   for (let i = 0; i < lowerCaseWord.length; i++) {
     if (
       Object.keys(lettersValues).includes(lowerCaseWord[i]) ||
@@ -83,6 +84,7 @@ const validateWord = (word) => {
     return true
   }
 }
+console.log(validateWord('OXYPHENBUTAZON'))
 
 const tallyLetterScores = (word) => {
   let wordScoreSingle = 0
@@ -91,7 +93,6 @@ const tallyLetterScores = (word) => {
 
   const multiplyByTwo = 2
   const multiplyByThree = 3
-
   for (let i = 0; i < word.length; i++) {
     if (
       word[i] === '{' ||
@@ -134,9 +135,9 @@ const tallyFinalScores = (lettersValue, scoreDouble, scoreTriple) => {
   if (scoreDouble && scoreTriple) {
     return (lettersValue *= 6)
   } else if (scoreDouble) {
-    return (lettersValue *= multiplyByTwo)
+    return (lettersValue *= 2)
   } else if (scoreTriple) {
-    return (lettersValue *= multiplyByThree)
+    return (lettersValue *= 3)
   }
   return lettersValue
 }

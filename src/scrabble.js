@@ -1,17 +1,38 @@
+const LEFT_BRACE = '{'
+const RIGHT_BRACE = '}'
+const LEFT_SQUARE_BRACE = '['
+const RIGHT_SQUARE_BRACE = ']'
 function scrabble(word) {
   // write code here
+
   if (word === null) return 0
 
+  if (!isWordProperlyFormatted(word)) return 0
+
   let score = 0
+  let multiplier = 1
   word = word.toUpperCase()
 
   for (let i = 0; i < word.length; i++) {
-    score = score + getLetterValue(word[i])
+    if (word[i] === LEFT_BRACE) {
+      multiplier = multiplier * 2
+    }
+    if (word[i] === LEFT_SQUARE_BRACE) {
+      multiplier = multiplier * 3
+    }
+    if (word[i] === RIGHT_BRACE) {
+      multiplier = multiplier / 2
+    }
+    if (word[i] === RIGHT_SQUARE_BRACE) {
+      multiplier = multiplier / 3
+    }
+
+    score = score + getLetterValue(word[i], multiplier)
   }
   return score
 }
 
-function getLetterValue(letter) {
+function getLetterValue(letter, multiplier) {
   let letterValue
 
   if (
@@ -54,11 +75,44 @@ function getLetterValue(letter) {
     letterValue = 0
   }
 
-  return letterValue
+  return letterValue * multiplier
 }
 
-console.log(scrabble('GOOGLE'))
-scrabble('google')
-console.log(scrabble(' \t\n'))
-console.log(scrabble('street'))
+function isWordProperlyFormatted(word) {
+  let i = 0
+  const stack = []
+
+  while (i < word.length) {
+    if (word[i] === LEFT_BRACE || word[i] === LEFT_SQUARE_BRACE) {
+      stack.push(word[i])
+    } else if (
+      word[i] === RIGHT_BRACE &&
+      stack[stack.length - 1] === LEFT_BRACE
+    ) {
+      stack.pop()
+    } else if (
+      word[i] === RIGHT_SQUARE_BRACE &&
+      stack[stack.length - 1] === LEFT_SQUARE_BRACE
+    ) {
+      stack.pop()
+    } else if (word[i] === RIGHT_BRACE || word[i] === RIGHT_SQUARE_BRACE) {
+      return false
+    } else if (!isValidToken(word[i])) {
+      return false
+    }
+    i++
+  }
+  return stack.length === 0
+}
+
+function isValidToken(token) {
+  return /^[a-zA-Z0-9{}[\]]+$/.test(token)
+}
+
+console.log(scrabble('[{d}og]'))
+console.log(scrabble('{d}o[{g}o]a'))
+console.log(scrabble('{d}o[{g}[o]]{a'))
+console.log(scrabble('{d}o{g}'))
+console.log(scrabble('|d|og'))
+
 module.exports = scrabble

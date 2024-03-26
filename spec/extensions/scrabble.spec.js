@@ -53,5 +53,9 @@ describe("Scrabble", () => {
     it('returns 0 for incorrect tokens', () => {
       expect(scrabble('|d|og')).toEqual(0)
     })
+
+    // it('returns 0 for incorrectly ordered tokens', () => {
+    //   expect(scrabble('inval}id{order')).toEqual(0)
+    // })
   })
 })

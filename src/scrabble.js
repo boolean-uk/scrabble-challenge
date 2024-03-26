@@ -1,4 +1,5 @@
 function scrabble(word) {
+  console.log("hello, this is the container")
 
   if (typeof word !== "string" || word === null || word === undefined || word.length === 0 || !!word.match(/[^A-Za-z\[\]\{\}]/g)) return 0
 
@@ -10,6 +11,7 @@ function scrabble(word) {
     current: 1,
     valid: true
   }
+
 
   charFactorChangeTrigger = (char) => {
     if (!!char.match(/[\[\]\{\}]/)) {

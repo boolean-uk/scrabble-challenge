@@ -1,3 +1,5 @@
+const modifiers = ['{', '}', '[', ']']
+let totalPoints
 const points = {
   a: 1,
   e: 1,
@@ -27,47 +29,25 @@ const points = {
   z: 10
 }
 
-let totalPoints = 0
-
 function scrabble(input) {
-  console.log(input)
   totalPoints = 0
 
-  if () {
-      if (input.includes('{')) {
-        if (input.includes('}')) {
-          const startIndex = input.indexOf('{')
-          const endIndex = input.indexOf('}')
-          const substring = input.slice(startIndex + 1, endIndex)
-          tally(substring, 2)
-          console.log('{}: ', totalPoints)
-        } else {
-          return totalPoints
-        }
-      }
-      if (input.includes('[')) {
-        if (input.includes(']')) {
-          const startIndex = input.indexOf('[')
-          const endIndex = input.indexOf(']')
-          const substring = input.slice(startIndex + 1, endIndex)
-          tally(substring, 3)
-          console.log('[]: ', totalPoints)
-        } else {
-          return totalPoints
-        }
-      }
+  if (typeof input !== 'string') {
+    return totalPoints
   }
 
-  tally(input, 1)
-  console.log('Final: ', totalPoints)
-
+  if (modifiers.some((mod) => input.includes(mod))) {
+    square(input)
+    bracket(input)
+  } else if (input.includes('|')) {
+    totalPoints = 0
+  } else {
+    tally(input, 1)
+  }
   return totalPoints
 }
 
 function tally(string, multiplier) {
-  if (typeof string !== 'string') {
-    return totalPoints
-  }
   const input = string.toLowerCase()
   for (let i = 0; i <= input.length; i++) {
     const key = points[input[i]]
@@ -79,12 +59,45 @@ function tally(string, multiplier) {
   }
 }
 
-// console.log(scrabble(' \t\n'))
-// console.log(scrabble(null))
-// console.log(scrabble('a'))
-// console.log(scrabble('f'))
-// console.log(scrabble('street'))
-// console.log(scrabble('quirky'))
-// console.log(scrabble('OXYPHENBUTAZONE'))
+function square(input) {
+  if (input.includes('[')) {
+    if (input.includes(']')) {
+      const substring = input.slice(input.indexOf('[') + 1, input.indexOf(']'))
+      tally(substring, 3)
+      if (input.includes('{' && '}')) {
+        tally(substring, 1)
+        const bracketstring = input
+          .slice(input.indexOf('{'), input.indexOf('}'))
+          .toLowerCase()
+        tally(bracketstring, 2)
+      } else {
+        const rest = input.replace(substring, '')
+        tally(rest, 1)
+      }
+    }
+  }
+}
+
+function bracket(input) {
+  if (!input.includes('[')) {
+    if (input.includes('{')) {
+      if (input.includes('}')) {
+        const substring = input.slice(
+          input.indexOf('{') + 1,
+          input.indexOf('}')
+        )
+        tally(substring, 2)
+        const rest = input.replace(substring, '')
+        tally(rest, 1)
+        if (input.indexOf('}') < input.lastIndexOf('}')) {
+          const substring = input.slice(input.indexOf('}') + 3)
+          tally(substring, 1)
+        }
+      } else {
+        return totalPoints
+      }
+    }
+  }
+}
 
 module.exports = scrabble

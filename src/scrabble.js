@@ -9,7 +9,7 @@ function scrabble(string) {
     lowerCaseWord = string.toLowerCase()
     console.log(string)
   }
-  for (i = 0; i < lowerCaseWord.length; i++) {
+  for (let i = 0; i < lowerCaseWord.length; i++) {
     console.log(string[i])
     if (
       lowerCaseWord[i] === 'a' ||

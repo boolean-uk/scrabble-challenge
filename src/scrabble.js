@@ -55,7 +55,7 @@ function dealingWithBrackets(string) {
 
 function keepingScore(string) {
   let totalScore = 0
-  let lowerCaseWord = string.toLowerCase()
+  const lowerCaseWord = string.toLowerCase()
   console.log(lowerCaseWord)
   for (let i = 0; i < string.length; i++) {
     console.log(string[i])

@@ -26,7 +26,7 @@ function scrabble(word) {
       i++;  //Move past the opening bracket
       const letter = word[i]; //Retrieve the current letter from the word for processing.
       if (!letter) break; // Skip if no letter follows
-      score += (letterValues[letter.toUpperCase()] || 0) * modifier;
+      score += (letterValues[letter.toUpperCase()] || 0) * modifier; //Add the letter's score to the total, applying a double or triple modifier if necessary.
       i++;
       while (i < word.length && word[i] !== endChar) // Skip to the closing bracket.
       i++;

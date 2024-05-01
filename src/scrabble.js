@@ -1,4 +1,10 @@
-const { letters, scores } = require('./scrabbleinfo.js')
+const {
+  letters,
+  scores,
+  doubleWord,
+  tripleWord,
+  error
+} = require('./scrabbleinfo')
 
 function scrabble(word) {
   let total = 0
@@ -8,24 +14,33 @@ function scrabble(word) {
   word = word.toLowerCase()
   for (let i = 0; i < word.length; i++) {
     const index = letters.indexOf(word[i])
-    const score = scores[index]
+    let score = scores[index]
     if (score === undefined) {
       total = 0
       break
     }
+    if (word[i - 1] === '[' && word[i + 1] === ']') {
+      score = score * 3
+    }
+    if (word[i - 1] === '{' && word[i + 1] === '}') {
+      score = score * 2
+    }
     total += score
   }
-  /*
-  if (word[0] === '{' && word[word.length - 1] === '}') {
-    total += total
-  } else if (word[0] === '[' && word[word.length - 1] === ']') {
+  if (tripleWord.test(word)) {
+    tripleWord.test(word)
     total = total * 3
+    word = word.slice(1, word.length - 1)
   }
-  */
-  console.log(total)
+  if (doubleWord.test(word)) {
+    doubleWord.test(word)
+    total = total * 2
+  }
+  if (error(word) === true) {
+    total = 0
+  }
+
   return total
 }
-
-scrabble('{monkey}')
 
 module.exports = scrabble

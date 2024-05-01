@@ -33,8 +33,30 @@ const scrabbleScores = {
 
 const letters = Object.keys(scrabbleScores)
 const scores = Object.values(scrabbleScores)
+const doubleWord = /^{.+}$(?<!{.})/g
+const tripleWord = /^\[.+\]$(?<!\[.\])/g
+
+function errorDetective(word) {
+  let count = 0
+  for (let i = 0; i < word.length; i++) {
+    if (
+      word[i] === '{' ||
+      word[i] === '}' ||
+      word[i] === '[' ||
+      word[i] === ']'
+    ) {
+      count += 1
+    }
+  }
+  if (count % 2 === 1) {
+    return true
+  }
+}
 
 module.exports = {
   letters,
-  scores
+  scores,
+  doubleWord,
+  tripleWord,
+  error: errorDetective
 }

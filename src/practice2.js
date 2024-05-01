@@ -16,17 +16,12 @@ function scrabble(string) {
 }
 
 function dealingWithBrackets(string) {
-  if (
-    string.includes('[') &&
-    string.includes(']') &&
-    string.includes('{') &&
-    string.includes('}')
-  ) {
+  if (string.includes('[') && string.includes(']') && string.includes('{') && string.includes('}')) {
     const startIndex = string.indexOf('{')
     const endIndex = string.indexOf('}')
     const substring = string.substring(startIndex + 1, endIndex)
     console.log(substring)
-    const letterWithinBracketsScore = keepingScore(substring)
+    const letterWithinBracketsScore = keepingScore(substring) 
     const originalStringScore = keepingScore(string)
     const finalScore = (letterWithinBracketsScore + originalStringScore) * 3
     return finalScore
@@ -54,9 +49,9 @@ function dealingWithBrackets(string) {
 }
 
 function keepingScore(string) {
-  let totalScore = 0
-  let lowerCaseWord = string.toLowerCase()
-  console.log(lowerCaseWord)
+let totalScore = 0
+let lowerCaseWord = string.toLowerCase()
+console.log(lowerCaseWord)
   for (let i = 0; i < string.length; i++) {
     console.log(string[i])
     if (
@@ -101,6 +96,5 @@ function keepingScore(string) {
   }
   return totalScore
 }
-console.log(scrabble('[dog]'))
-
-module.exports = scrabble
+console.log(scrabble('{[d]og}'));
+console.log(scrabble('{d}o{g}'))

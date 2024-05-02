@@ -44,7 +44,8 @@ function scrabble(givenWord) {
     }
   }
 
+  console.log(totalPoints)
+  console.log(letterArray)
   return totalPoints
 }
-
-module.exports = scrabble
+console.log(scrabble('OXYPHENBUTAZONE'))

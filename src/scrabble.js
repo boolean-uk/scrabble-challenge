@@ -75,7 +75,14 @@ function scrabble(word) {
 
   return totalScore * globalMultiplier
 }
-
+console.log(scrabble(''))
+console.log(scrabble(' \t\n'))
+console.log(scrabble(null))
+console.log(scrabble('a'))
+console.log(scrabble('f'))
+console.log(scrabble('street'))
+console.log(scrabble('quirky'))
+console.log(scrabble('OXYPHENBUTAZONE'))
 console.log(scrabble('{dog}'))
 console.log(scrabble('[dog]'))
 console.log(scrabble('d{o}g'))

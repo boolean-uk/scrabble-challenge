@@ -21,31 +21,52 @@ function scrabble(givenWord) {
   }
 
   for (let i = 0; i < letterArray.length; i++) {
+    let currentLetterScore = 0
     if (onePointers.includes(letterArray[i])) {
-      totalPoints++
+      currentLetterScore++
     }
     if (twoPointers.includes(letterArray[i])) {
-      totalPoints += 2
+      currentLetterScore += 2
     }
     if (threePointers.includes(letterArray[i])) {
-      totalPoints += 3
+      currentLetterScore += 3
     }
     if (fourPointers.includes(letterArray[i])) {
-      totalPoints += 4
+      currentLetterScore += 4
     }
     if (fivePointers.includes(letterArray[i])) {
-      totalPoints += 5
+      currentLetterScore += 5
     }
     if (eightPointers.includes(letterArray[i])) {
-      totalPoints += 8
+      currentLetterScore += 8
     }
     if (tenPointers.includes(letterArray[i])) {
-      totalPoints += 10
+      currentLetterScore += 10
     }
+    if (letterArray[i - 1] === '{' && letterArray[i + 1] === '}') {
+      currentLetterScore *= 2
+    }
+    if (letterArray[i - 1] === '[' && letterArray[i + 1] === ']') {
+      currentLetterScore *= 3
+    }
+    totalPoints += currentLetterScore
+  }
+  if (letterArray[0] === '{' && letterArray[letterArray.length - 1] === '}') {
+    totalPoints *= 2
+  }
+  if (letterArray[0] === '[' && letterArray[letterArray.length - 1] === ']') {
+    totalPoints *= 3
   }
 
-  console.log(totalPoints)
-  console.log(letterArray)
+  if (letterArray.includes('[') && !letterArray.includes(']')) {
+    return 0
+  }
+
+  if (letterArray.includes('{') && !letterArray.includes('}')) {
+    return 0
+  }
+
   return totalPoints
 }
-console.log(scrabble('OXYPHENBUTAZONE'))
+let cereme = 'dog{'
+console.log(scrabble(cereme))
